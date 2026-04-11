@@ -16873,3 +16873,19 @@ Double Battle: No
 Kyogre
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+=== TRAINER_SNOW_R1_1_NOEL ===
+Name: NOEL
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Sentret
+Level: 4
+Ability: Keen Eye
+Nature: Jolly
+- Scratch
+- Defense Curl
