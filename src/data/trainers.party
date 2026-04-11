@@ -16889,3 +16889,20 @@ Ability: Keen Eye
 Nature: Jolly
 - Scratch
 - Defense Curl
+
+
+=== TRAINER_SNOW_R1_2_ELISE ===
+Name: ELISE
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move
+
+Snover
+Level: 4
+Ability: Snow Warning
+Nature: Quiet
+- Powder Snow
+- Leer
