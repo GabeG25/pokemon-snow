@@ -17207,3 +17207,210 @@ Nature: Jolly
 - Hone Claws
 - Sand Tomb
 - Scary Face
+
+=== TRAINER_SNOW_R5_1_KNOX ===
+Name: KNOX
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Machop
+Level: 19
+Ability: Guts
+Nature: Adamant
+- Low Kick
+- Revenge
+- Karate Chop
+- Leer
+
+Sandshrew-Alola
+Level: 19
+Ability: Snow Cloak
+Nature: Adamant
+- Metal Claw
+- Ice Shard
+- Rapid Spin
+- Powder Snow
+
+Nosepass @ Oran Berry
+Level: 20
+Ability: Sturdy
+Nature: Bold
+- Rock Throw
+- Thunder Wave
+- Rock Blast
+- Block
+
+Aron @ Oran Berry
+Level: 21
+Ability: Sturdy
+Nature: Adamant
+- Metal Claw
+- Rock Tomb
+- Headbutt
+- Protect
+
+=== TRAINER_SNOW_R5_2_LINA ===
+Name: LINA
+Class: Scientist Frlg
+Pic: Scientist Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Magnemite
+Level: 21
+Ability: Sturdy
+Nature: Modest
+- Flash Cannon
+- Thunder Shock
+- Thunder Wave
+- Supersonic
+
+Sableye @ Oran Berry
+Level: 22
+Ability: Keen Eye
+Nature: Bold
+- Night Shade
+- Shadow Sneak
+- Fake Out
+- Detect
+
+Darumaka-Galar @ Oran Berry
+Level: 23
+Ability: Hustle
+Nature: Jolly
+- Ice Fang
+- Fire Fang
+- Headbutt
+- Taunt
+
+=== TRAINER_SNOW_R5_3_GRUNT ===
+Name: GRUNT
+Class: Team Magma
+Pic: Magma Grunt M
+Gender: Male
+Music: Magma
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Woobat
+Level: 20
+Ability: Unaware
+Nature: Timid
+- Confusion
+- Heart Stamp
+- Air Cutter
+- Attract
+
+Skorupi @ Oran Berry
+Level: 21
+Ability: Battle Armor
+Nature: Jolly
+- Knock Off
+- Bug Bite
+- Bite
+- Pin Missile
+
+=== TRAINER_SNOW_R5_4_GRUNT ===
+Name: GRUNT
+Class: Team Magma
+Pic: Magma Grunt M
+Gender: Male
+Music: Magma
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Murkrow
+Level: 21
+Ability: Super Luck
+Nature: Jolly
+- Wing Attack
+- Assurance
+- Night Shade
+- Haze
+
+Pawniard @ Oran Berry
+Level: 22
+Ability: Defiant
+Nature: Adamant
+- Metal Claw
+- Assurance
+- Fury Cutter
+- Torment
+
+=== TRAINER_SNOW_R5_5_GRUNT ===
+Name: GRUNT
+Class: Team Magma
+Pic: Magma Grunt M
+Gender: Male
+Music: Magma
+Double Battle: Yes
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Swinub
+Level: 22
+Ability: Snow Cloak
+Nature: Adamant
+- Ice Shard
+- Mud-Slap
+- Icy Wind
+- Endure
+
+Vanillite
+Level: 23
+Ability: Ice Body
+Nature: Modest
+- Icy Wind
+- Avalanche
+- Uproar
+- Mist
+
+Cubchoo @ Oran Berry
+Level: 23
+Ability: Snow Cloak
+Nature: Adamant
+- Slash
+- Frost Breath
+- Brine
+- Icy Wind
+
+=== TRAINER_SNOW_R5_6_GRUNT ===
+Name: GRUNT
+Class: Team Magma
+Pic: Magma Grunt M
+Gender: Male
+Music: Magma
+Double Battle: Yes
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Houndour
+Level: 22
+Ability: Flash Fire
+Nature: Timid
+- Ember
+- Bite
+- Howl
+- Fire Fang
+
+Croagunk
+Level: 23
+Ability: Dry Skin
+Nature: Jolly
+- Fake Out
+- Low Kick
+- Venoshock
+- Pursuit
+
+Sneasel @ Oran Berry
+Level: 24
+Ability: Inner Focus
+Nature: Jolly
+- Feint Attack
+- Icy Wind
+- Quick Attack
+- Hone Claws
