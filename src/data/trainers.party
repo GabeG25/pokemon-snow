@@ -19016,3 +19016,256 @@ Nature: Jolly
 - Return
 - U-turn
 - Roost
+
+=== TRAINER_SNOW_R12_1_NYX ===
+Name: NYX
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Mismagius @ Lum Berry
+Level: 58
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Levitate
+Nature: Modest
+- Shadow Ball
+- Dazzling Gleam
+- Mystical Fire
+- Nasty Plot
+
+Honchkrow @ Sitrus Berry
+Level: 59
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Super Luck
+Nature: Adamant
+- Brave Bird
+- Sucker Punch
+- Heat Wave
+- Tailwind
+
+Weavile @ Chople Berry
+Level: 60
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Pressure
+Nature: Jolly
+- Knock Off
+- Ice Punch
+- Brick Break
+- Swords Dance
+
+=== TRAINER_SNOW_R12_2_HOLTZ ===
+Name: HOLTZ
+Class: Scientist Frlg
+Pic: Scientist Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Claydol @ Sitrus Berry
+Level: 60
+EVs: 252 HP / 252 Def / 4 SpD
+Ability: Levitate
+Nature: Bold
+- Earth Power
+- Psychic
+- Light Screen
+- Recover
+
+Espeon @ Sitrus Berry
+Level: 60
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Synchronize
+Nature: Timid
+- Psychic
+- Shadow Ball
+- Dazzling Gleam
+- Calm Mind
+
+=== TRAINER_SNOW_R12_3_BELMONT ===
+Name: BELMONT
+Class: Collector
+Pic: Collector
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Duosion @ Eviolite
+Level: 60
+EVs: 252 HP / 252 SpA / 4 Def
+Ability: Magic Guard
+Nature: Quiet
+- Psyshock
+- Shadow Ball
+- Trick Room
+- Recover
+
+Musharna @ Sitrus Berry
+Level: 60
+EVs: 252 HP / 252 Def / 4 SpA
+Ability: Synchronize
+Nature: Bold
+- Psychic
+- Dazzling Gleam
+- Yawn
+- Moonlight
+
+=== TRAINER_SNOW_R12_4_BARD ===
+Name: BARD
+Class: Dragon Tamer
+Pic: Dragon Tamer
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Aggron @ Sitrus Berry
+Level: 60
+EVs: 252 Atk / 252 Def / 4 HP
+Ability: Rock Head
+Nature: Adamant
+- Head Smash
+- Iron Head
+- Earthquake
+- Ice Punch
+
+Dragonite @ Lum Berry
+Level: 60
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Inner Focus
+Nature: Adamant
+- Dragon Claw
+- Extreme Speed
+- Fire Punch
+- Dragon Dance
+
+=== TRAINER_SNOW_R12_5_ELARA ===
+Name: ELARA
+Class: Scientist Frlg
+Pic: Scientist Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Sableye @ Sitrus Berry
+Level: 58
+EVs: 252 HP / 252 SpD / 4 Def
+Ability: Keen Eye
+Nature: Careful
+- Knock Off
+- Foul Play
+- Will-O-Wisp
+- Recover
+
+Gardevoir @ Sitrus Berry
+Level: 59
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Trace
+Nature: Modest
+- Psychic
+- Moonblast
+- Shadow Ball
+- Calm Mind
+
+Magcargo @ White Herb
+Level: 59
+EVs: 252 SpA / 252 HP / 4 Def
+Ability: Flame Body
+Nature: Modest
+- Shell Smash
+- Flamethrower
+- Earth Power
+- Recover
+
+Umbreon @ Sitrus Berry
+Level: 60
+EVs: 252 HP / 252 SpD / 4 Def
+Ability: Synchronize
+Nature: Careful
+- Foul Play
+- Toxic
+- Moonlight
+- Wish
+
+=== TRAINER_SNOW_R12_6_SLADE ===
+Name: SLADE
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: Yes
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Krookodile @ Lum Berry
+Level: 58
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Intimidate
+Nature: Jolly
+- Crunch
+- Stone Edge
+- Taunt
+- Protect
+
+Houndoom @ Sitrus Berry
+Level: 59
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Flash Fire
+Nature: Timid
+- Snarl
+- Flamethrower
+- Dark Pulse
+- Will-O-Wisp
+
+Toxicroak @ Payapa Berry
+Level: 60
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Dry Skin
+Nature: Jolly
+- Fake Out
+- Drain Punch
+- Poison Jab
+- Sucker Punch
+
+=== TRAINER_SNOW_R12_7_QUINN ===
+Name: QUINN
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: Yes
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Chandelure @ Lum Berry
+Level: 58
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Flash Fire
+Nature: Modest
+- Shadow Ball
+- Heat Wave
+- Energy Ball
+- Protect
+
+Bisharp @ Chople Berry
+Level: 59
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Defiant
+Nature: Adamant
+- Iron Head
+- Night Slash
+- Sucker Punch
+- Protect
+
+Vileplume @ Sitrus Berry
+Level: 60
+EVs: 252 HP / 252 Def / 4 SpA
+Ability: Prankster
+Nature: Bold
+- Sleep Powder
+- Sludge Bomb
+- Giga Drain
+- Moonlight
