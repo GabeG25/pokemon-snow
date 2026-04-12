@@ -79,6 +79,7 @@ CLASS_FALLBACKS = {
     # Name remaps (same class, different string in engine)
     "Ace Trainer": "Cooltrainer",    # Gen 5+ name → Gen 3 name
     "Pokémon Ranger": "Pkmn Ranger", # full name → engine abbreviation
+    "Ranger": "Pkmn Ranger",         # DI-5 Heath uses short form
     # Creative fallbacks (no engine equivalent exists)
     "Musician": "Guitarist",         # closest musical performer class
     "Special Agent": "Cooltrainer",  # elite operative → elite trainer
@@ -113,6 +114,7 @@ CLASS_GENDER_DEFAULTS = {
     "Ace Trainer": "Male",
     "Pokémon Ranger": "Male",
     "Special Agent": "Male",
+    "Ranger": "Male",
     "Tycoon": "Male",
     "Pokémon Tycoon": "Male",
     # Post-fallback resolved names (needed because gender lookup uses emit_class)
@@ -126,8 +128,13 @@ CLASS_GENDER_DEFAULTS = {
     "Swimmer F": "Female",
 }
 
+# Matches both "R{N}-{M}" and "DI-{M}" route headers.
+# Group 1: route identifier (digits for R-routes, "DI" for Driftrock Isle)
+# Group 2: trainer index within route
+# Group 3: class + name label
+# Group 4: Pokémon count
 TRAINER_HEADER_RE = re.compile(
-    r"^###\s+R(\d+)-(\d+)\s+—\s+(.+?)\s+\|\s+(\d+)\s+Pokémon(?:\s*\|.*)?\s*$"
+    r"^###\s+(?:R(\d+)|DI)-(\d+)\s+—\s+(.+?)\s+\|\s+(\d+)\s+Pokémon(?:\s*\|.*)?\s*$"
 )
 
 # Matches tag-double headers. Four known variants in v17:
@@ -146,7 +153,7 @@ GENDERED_CLASS_NAMES = {
 }
 # Male trainer names for gendered classes. Names not listed default to Female.
 GENDERED_CLASS_MALE_NAMES = {
-    "Swimmer": {"Troy", "Flynn", "Triton", "Nemo"},
+    "Swimmer": {"Troy", "Flynn", "Triton", "Nemo"},  # DI: Flynn; R9: Troy; R15: Triton, Nemo
 }
 
 # Classes where the Pic string differs from the Class string. Most classes use
@@ -170,6 +177,9 @@ class Mon:
     item: str | None
     moves: list[str]
     evs: str | None = None
+
+
+DI_ROUTE_NUM = 100  # synthetic route number for Driftrock Isle (DI) in internal logic
 
 
 @dataclass
@@ -224,8 +234,12 @@ class Trainer:
         return CLASS_GENDER_DEFAULTS[ec]
 
     @property
+    def route_label(self) -> str:
+        return "DI" if self.route == DI_ROUTE_NUM else f"R{self.route}"
+
+    @property
     def constant(self) -> str:
-        return f"TRAINER_SNOW_R{self.route}_{self.index}_{self.name.upper()}"
+        return f"TRAINER_SNOW_{self.route_label}_{self.index}_{self.name.upper()}"
 
 
 # Assumes trainer names are single-token. Multi-word names (e.g., "Mary Ann")
@@ -403,7 +417,7 @@ def parse_spec(spec_text: str, route_filter: int | None = None) -> list[Trainer]
         if not m:
             i += 1
             continue
-        route = int(m.group(1))
+        route = int(m.group(1)) if m.group(1) else DI_ROUTE_NUM
         index = int(m.group(2))
         label = m.group(3)
         expected_count = int(m.group(4))
@@ -506,8 +520,9 @@ def emit_trainer(t: Trainer, double_battles: set[tuple[int, int]]) -> str:
 
 # Anchored to column 0, line-bounded. Terminates at next ^=== header or EOF.
 def _shipped_block_re(route: int) -> re.Pattern:
+    label = "DI" if route == DI_ROUTE_NUM else f"R{route}"
     return re.compile(
-        rf"^=== TRAINER_SNOW_R{route}_(\d+)_[A-Z0-9_]+ ===.*?(?=^=== |\Z)",
+        rf"^=== TRAINER_SNOW_{label}_(\d+)_[A-Z0-9_]+ ===.*?(?=^=== |\Z)",
         re.MULTILINE | re.DOTALL,
     )
 
@@ -797,7 +812,7 @@ def commit_batch(route: int, parsed: list[Trainer],
 
 def main() -> int:
     ap = argparse.ArgumentParser(description="Port Snow trainers from v17 spec.")
-    ap.add_argument("--route", type=int, help="Port only this route number (e.g. 2)")
+    ap.add_argument("--route", type=str, help="Port only this route (e.g. 2, 15, DI)")
     ap.add_argument("--all", action="store_true",
                     help="Port all routes from start-flag")
     ap.add_argument("--start-flag", type=int, default=None,
@@ -817,8 +832,20 @@ def main() -> int:
         print("FATAL: pass --route N or --all", file=sys.stderr)
         return 2
 
+    # Convert route string to internal int (DI → DI_ROUTE_NUM)
+    route_num: int | None = None
+    if args.route is not None:
+        if args.route.upper() == "DI":
+            route_num = DI_ROUTE_NUM
+        else:
+            try:
+                route_num = int(args.route)
+            except ValueError:
+                print(f"FATAL: invalid route '{args.route}' — use a number or 'DI'", file=sys.stderr)
+                return 2
+
     spec_text = SPEC_PATH.read_text(encoding="utf-8")
-    trainers = parse_spec(spec_text, route_filter=args.route)
+    trainers = parse_spec(spec_text, route_filter=route_num)
     assert_spec_compliance(trainers)
     double_battles = parse_double_battles(spec_text)
 
@@ -835,27 +862,28 @@ def main() -> int:
               f"{sum(len(t.mons) for t in trainers)} Pokémon.")
         return 0
 
+    route_label = "DI" if route_num == DI_ROUTE_NUM else f"R{route_num}" if route_num else "all"
     party_text = TRAINERS_PARTY.read_text(encoding="utf-8")
-    shipped_blocks = extract_shipped_blocks(args.route, party_text) if args.route else {}
+    shipped_blocks = extract_shipped_blocks(route_num, party_text) if route_num else {}
     route_already_shipped = bool(shipped_blocks)
 
     if args.commit:
         if route_already_shipped:
             print(
-                f"FATAL: --commit refused — R{args.route} already shipped "
+                f"FATAL: --commit refused — {route_label} already shipped "
                 f"({len(shipped_blocks)} blocks present in trainers.party). "
                 f"Re-emitting would double-insert.",
                 file=sys.stderr,
             )
             return 2
-        return commit_batch(args.route, trainers, double_battles)
+        return commit_batch(route_num, trainers, double_battles)
 
     # Dry-run mode. Auto-detect: shipped route → round-trip; new route → preview.
     if route_already_shipped:
-        return round_trip_validate(args.route, trainers, double_battles, party_text)
+        return round_trip_validate(route_num, trainers, double_battles, party_text)
 
     # Preview emit for a not-yet-shipped route.
-    print(f"# Preview emit for R{args.route} ({len(trainers)} trainers, "
+    print(f"# Preview emit for {route_label} ({len(trainers)} trainers, "
           f"{sum(len(t.mons) for t in trainers)} Pokémon)\n")
     for t in trainers:
         print(emit_trainer(t, double_battles))
