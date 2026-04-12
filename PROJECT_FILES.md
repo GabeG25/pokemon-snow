@@ -6,10 +6,12 @@ Three companion documents live alongside this one:
 
 - `CLAUDE.md` — session rules, trainerproc format spec, build discipline (procedural rulebook)
 - `PROJECT_OVERVIEW.md` — what Pokémon Snow is, design vision, mechanical decisions (project context)
+- `METHODOLOGY.md` — bug-catch lessons and verification patterns (tactical reference)
+- `DECISIONS.md` — locked design decisions with rationale and alternatives (why things are the way they are)
 - `design-archive/POKEMON_SNOW_RESUME_HANDOFF_v17.md` — canonical design archive (design canon)
 - `PROJECT_FILES.md` — this file (filesystem map)
 
-Read order for a fresh Claude Code session: CLAUDE.md → most recent handoff → PROJECT_FILES.md (when path questions arise) → PROJECT_OVERVIEW.md or v17 (when design questions arise).
+Read order for a fresh Claude Code session: CLAUDE.md → most recent handoff → PROJECT_FILES.md (when path questions arise) → PROJECT_OVERVIEW.md or v17 (when design questions arise) → METHODOLOGY.md (when a bug or verification pattern is needed) → DECISIONS.md (when a decision seems locked and you want rationale).
 
 ---
 
@@ -28,6 +30,10 @@ Absolute path: `/home/gabe/pokemon-snow/`
 - **`PROJECT_OVERVIEW.md`** — Project vision and design context. What Pokémon Snow is, the Boralyss region, story, starters, mechanics, boss fight structure, implementation state, methodology patterns. Read when design context is needed. Committed to repo.
 
 - **`PROJECT_FILES.md`** — This file. Filesystem map. Committed to repo.
+
+- **`METHODOLOGY.md`** — Bug-catch lessons and verification patterns from real incidents in this project. Anti-patterns (silent sed/regex corruption, confident fabrication, Yes-Man Builder, Partial Route Commits), verification patterns (compiler-as-oracle, byte-identical round-trip, canary MD5), tactical techniques (`cat -A`, `git diff` before `checkout`), commit message standards, session discipline, and what-to-do-when-things-go-wrong runbook. Read when a situation matches something in it. Committed to repo.
+
+- **`DECISIONS.md`** — Every locked design decision for Pokémon Snow with rationale and alternatives considered. Organized by Gameplay & Mechanics, Regional & Content, Engine & Build, Workflow & Process. Plus a Deferred section for questions that will need CEO decisions later. Read when encountering an apparently-locked decision — answer is likely here rather than requiring re-debate. Committed to repo.
 
 - **`pokeemerald.gba`** — The compiled ROM output. Not committed (gitignored). Regenerated every time `make` runs. Current MD5 captured in the most recent handoff as canary.
 
