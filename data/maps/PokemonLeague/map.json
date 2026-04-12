@@ -13,7 +13,7 @@
     {
       "map": "MAP_SNOW_VICTORY_ROAD",
       "offset": 0,
-      "direction": "down"
+      "direction": "up"
     }
   ],
   "object_events": [],

@@ -13,12 +13,12 @@
     {
       "map": "MAP_IRONFROST_CITY",
       "offset": 0,
-      "direction": "down"
+      "direction": "up"
     },
     {
-      "map": "MAP_SNOW_ROUTE7",
+      "map": "MAP_FROSTBREAK_LODGE",
       "offset": 0,
-      "direction": "up"
+      "direction": "down"
     }
   ],
   "object_events": [

@@ -13,12 +13,12 @@
     {
       "map": "MAP_ICEHARBOR_CITY",
       "offset": 0,
-      "direction": "down"
+      "direction": "up"
     },
     {
       "map": "MAP_SNOW_ROUTE11",
       "offset": 0,
-      "direction": "up"
+      "direction": "down"
     }
   ],
   "object_events": [

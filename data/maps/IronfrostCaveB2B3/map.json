@@ -13,7 +13,7 @@
     {
       "map": "MAP_IRONFROST_CAVE_B1",
       "offset": 0,
-      "direction": "down"
+      "direction": "up"
     }
   ],
   "object_events": [],

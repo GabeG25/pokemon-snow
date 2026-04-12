@@ -11,14 +11,14 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
+      "map": "MAP_SNOW_ROUTE6",
+      "offset": 0,
+      "direction": "up"
+    },
+    {
       "map": "MAP_SNOW_ROUTE7",
       "offset": 0,
       "direction": "down"
-    },
-    {
-      "map": "MAP_SNOW_ROUTE8",
-      "offset": 0,
-      "direction": "up"
     }
   ],
   "object_events": [],

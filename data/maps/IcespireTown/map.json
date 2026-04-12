@@ -13,12 +13,12 @@
     {
       "map": "MAP_SNOW_ROUTE2",
       "offset": 0,
-      "direction": "down"
+      "direction": "up"
     },
     {
       "map": "MAP_SNOW_ROUTE3",
       "offset": 0,
-      "direction": "up"
+      "direction": "down"
     }
   ],
   "object_events": [],

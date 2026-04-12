@@ -13,12 +13,12 @@
     {
       "map": "MAP_SNOW_ROUTE9",
       "offset": 0,
-      "direction": "down"
+      "direction": "left"
     },
     {
       "map": "MAP_SNOW_ROUTE10",
       "offset": 0,
-      "direction": "up"
+      "direction": "down"
     },
     {
       "map": "MAP_DRIFTROCK_ISLE",

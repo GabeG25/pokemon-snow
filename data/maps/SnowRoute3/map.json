@@ -13,17 +13,17 @@
     {
       "map": "MAP_ICESPIRE_TOWN",
       "offset": 0,
-      "direction": "down"
+      "direction": "up"
     },
     {
       "map": "MAP_PINEGROVE_CITY",
       "offset": 0,
-      "direction": "up"
+      "direction": "down"
     },
     {
       "map": "MAP_SNOW_ROUTE4",
       "offset": 0,
-      "direction": "left"
+      "direction": "right"
     }
   ],
   "object_events": [

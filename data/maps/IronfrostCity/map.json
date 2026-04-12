@@ -13,12 +13,12 @@
     {
       "map": "MAP_SNOW_ROUTE5",
       "offset": 0,
-      "direction": "down"
+      "direction": "up"
     },
     {
       "map": "MAP_SNOW_ROUTE6",
       "offset": 0,
-      "direction": "up"
+      "direction": "down"
     },
     {
       "map": "MAP_IRONFROST_CAVE_B1",

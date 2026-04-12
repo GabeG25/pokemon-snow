@@ -13,12 +13,12 @@
     {
       "map": "MAP_DREAMURS_TOWN",
       "offset": 0,
-      "direction": "down"
+      "direction": "left"
     },
     {
       "map": "MAP_ICEHARBOR_CITY",
       "offset": 0,
-      "direction": "up"
+      "direction": "right"
     }
   ],
   "object_events": [

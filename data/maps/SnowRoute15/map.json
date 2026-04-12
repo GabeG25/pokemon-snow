@@ -13,12 +13,12 @@
     {
       "map": "MAP_SNOW_ROUTE14",
       "offset": 0,
-      "direction": "down"
+      "direction": "right"
     },
     {
       "map": "MAP_PYRESPIRE_CITY",
       "offset": 0,
-      "direction": "up"
+      "direction": "down"
     }
   ],
   "object_events": [

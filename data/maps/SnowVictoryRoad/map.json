@@ -13,12 +13,12 @@
     {
       "map": "MAP_PYRESPIRE_CITY",
       "offset": 0,
-      "direction": "down"
+      "direction": "up"
     },
     {
       "map": "MAP_POKEMON_LEAGUE",
       "offset": 0,
-      "direction": "up"
+      "direction": "down"
     }
   ],
   "object_events": [
