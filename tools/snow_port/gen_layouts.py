@@ -213,26 +213,34 @@ class Map:
 # ═══════════════════════════════════════════════════
 
 def make_dawnflake_town():
-    """Starting town. Small and cozy — player's house (mom heals),
-    neighbor's house, no PokéCenter. Grass patches for first encounters."""
-    w, h = 24, 20
+    """Starting town. 3 houses (Player, Asher, Autumn), Prof. Evergreen's
+    Lab, grass patches. No PokéCenter — mom heals at home."""
+    w, h = 30, 24
     m = Map(w, h, GRASS)
     m.tree_border(2)
-    # Main path running N-S through town
+    # Main N-S path through town center
     m.path_v(w//2, 0, h-1, 3)
-    # Short east-west path connecting houses
-    m.path_h(h//2, 5, w-6, 3)
-    # Player's house (upper left) — mom heals here
+    # East-west path connecting all buildings
+    m.path_h(8, 5, w-6, 3)
+    # Lower cross path to southern houses
+    m.path_h(h-8, 5, w-6, 3)
+    # Player's house (top-left)
     m.place_building(5, 4, HOUSE)
-    m.path_rect(5, 8, 8, h//2)
-    # Neighbor's house (upper right)
+    m.path_rect(5, 8, 8, 8)
+    # Asher's house (top-center-right)
+    m.place_building(w//2+2, 4, HOUSE)
+    m.path_rect(w//2+2, 8, w//2+5, 8)
+    # Autumn's house (top-right)
     m.place_building(w-9, 4, HOUSE)
-    m.path_rect(w-9, 8, w-6, h//2)
-    # Grass patches for first encounters (Sentret, Spearow, etc.)
-    m.grass_oval(6, h-5, 3, 2)
-    m.grass_oval(w-7, h-5, 3, 2)
-    m.grass_oval(w//2, h-4, 2, 2)
-    # Entrances — north exit to PowderpathVillage
+    m.path_rect(w-9, 8, w-6, 8)
+    # Prof. Evergreen's Lab (bottom-left, larger — using PokéCenter pattern as lab)
+    m.place_building(5, h-8, POKECENTER)
+    m.path_rect(5, h-8, 8, h-8)
+    # Grass patches for first wild encounters
+    m.grass_oval(w//2-4, h-5, 2, 2)
+    m.grass_oval(w-8, h-5, 3, 2)
+    m.grass_oval(w//2+6, h//2+2, 2, 2)
+    # North exit to PowderpathVillage, south exit for postgame
     m.entrance_n(w//2); m.entrance_s(w//2)
     return m, w, h
 
