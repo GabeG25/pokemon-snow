@@ -19269,3 +19269,372 @@ Nature: Bold
 - Sludge Bomb
 - Giga Drain
 - Moonlight
+
+=== TRAINER_SNOW_R13_1_REESE ===
+Name: REESE
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Yanmega @ Wise Glasses
+Level: 63
+Ability: Speed Boost
+Nature: Modest
+- Bug Buzz
+- Air Slash
+- Giga Drain
+- U-turn
+
+Forretress @ Sitrus Berry
+Level: 63
+Ability: Sturdy
+Nature: Relaxed
+- Gyro Ball
+- Spikes
+- Pain Split
+- Volt Switch
+
+Larvesta @ Eviolite
+Level: 64
+Ability: Flame Body
+Nature: Timid
+- Fiery Dance
+- Bug Buzz
+- Quiver Dance
+- Morning Sun
+
+Galvantula @ Wise Glasses
+Level: 64
+Ability: Compound Eyes
+Nature: Timid
+- Thunder
+- Bug Buzz
+- Sticky Web
+- Energy Ball
+
+=== TRAINER_SNOW_R13_2_LYRIC ===
+Name: LYRIC
+Class: Guitarist
+Pic: Guitarist
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Wigglytuff @ Wise Glasses
+Level: 63
+Ability: Pixilate
+Nature: Modest
+- Hyper Voice
+- Dazzling Gleam
+- Fire Blast
+- Wish
+
+Lilligant @ Sitrus Berry
+Level: 63
+Ability: Own Tempo
+Nature: Timid
+- Petal Dance
+- Sleep Powder
+- Quiver Dance
+- Synthesis
+
+Altaria @ Yache Berry
+Level: 64
+Ability: Aerilate
+Nature: Modest
+- Hyper Voice
+- Draco Meteor
+- Moonblast
+- Roost
+
+=== TRAINER_SNOW_R13_3_MANTIS ===
+Name: MANTIS
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Venomoth @ Black Sludge
+Level: 63
+Ability: Tinted Lens
+Nature: Modest
+- Hex
+- Toxic
+- Sleep Powder
+- Quiver Dance
+
+Drapion @ Shuca Berry
+Level: 63
+Ability: Sniper
+Nature: Adamant
+- Night Slash
+- Cross Poison
+- Pursuit
+- Aqua Tail
+
+Scolipede @ Black Sludge
+Level: 64
+Ability: Speed Boost
+Nature: Adamant
+- Megahorn
+- Poison Jab
+- Earthquake
+- Protect
+
+Kingler @ Scope Lens
+Level: 64
+Ability: Sniper
+Nature: Adamant
+- Crabhammer
+- Razor Shell
+- X-Scissor
+- Agility
+
+=== TRAINER_SNOW_R13_4_FERN ===
+Name: FERN
+Class: Pkmn Ranger
+Pic: Pokemon Ranger M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Umbreon @ Sitrus Berry
+Level: 63
+Ability: Synchronize
+Nature: Careful
+- Foul Play
+- Toxic
+- Wish
+- Protect
+
+Vaporeon @ Sitrus Berry
+Level: 63
+Ability: Water Absorb
+Nature: Bold
+- Scald
+- Ice Beam
+- Wish
+- Acid Armor
+
+Leafeon @ Toxic Orb
+Level: 64
+Ability: Poison Heal
+Nature: Adamant
+- Leaf Blade
+- Knock Off
+- Substitute
+- Swords Dance
+
+=== TRAINER_SNOW_R13_5_VANCE ===
+Name: VANCE
+Class: Gentleman
+Pic: Gentleman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Lapras @ Mystic Water
+Level: 63
+Ability: Water Absorb
+Nature: Modest
+- Hydro Pump
+- Ice Beam
+- Freeze-Dry
+- Thunderbolt
+
+Spiritomb @ Sitrus Berry
+Level: 63
+Ability: Pressure
+Nature: Quiet
+- Shadow Ball
+- Foul Play
+- Will-O-Wisp
+- Memento
+
+Eelektross @ Muscle Band
+Level: 64
+Ability: Levitate
+Nature: Adamant
+- Wild Charge
+- Drain Punch
+- Crunch
+- Coil
+
+Cradily @ Sitrus Berry
+Level: 64
+Ability: Suction Cups
+Nature: Careful
+- Recover
+- Curse
+- Power Whip
+- Stone Edge
+
+=== TRAINER_SNOW_R13_6_HUE ===
+Name: HUE
+Class: Painter Frlg
+Pic: Painter Frlg
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Togekiss @ Wise Glasses
+Level: 63
+Ability: Serene Grace
+Nature: Modest
+- Air Slash
+- Aura Sphere
+- Future Sight
+- Nasty Plot
+
+Sigilyph @ Wise Glasses
+Level: 63
+Ability: Magic Guard
+Nature: Bold
+- Stored Power
+- Cosmic Power
+- Roost
+- Psycho Shift
+
+Lumineon @ Wise Glasses
+Level: 64
+Ability: Storm Drain
+Nature: Modest
+- Hydro Pump
+- Ice Beam
+- U-turn
+- Tailwind
+
+Chandelure @ Wise Glasses
+Level: 64
+Ability: Flash Fire
+Nature: Quiet
+- Shadow Ball
+- Flamethrower
+- Energy Ball
+- Trick Room
+
+=== TRAINER_SNOW_R13_7_BUZZ ===
+Name: BUZZ
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Heracross @ Focus Sash
+Level: 63
+Ability: Guts
+Nature: Jolly
+- Reversal
+- Megahorn
+- Close Combat
+- Knock Off
+
+Magcargo @ Sitrus Berry
+Level: 64
+Ability: Water Absorb
+Nature: Quiet
+- Trick Room
+- Fire Blast
+- Earth Power
+- Recover
+
+Carnivine @ Mental Herb
+Level: 64
+Ability: Levitate
+Nature: Brave
+- Power Whip
+- Crunch
+- Sleep Powder
+- Substitute
+
+=== TRAINER_SNOW_R13_8_ROYCE ===
+Name: ROYCE
+Class: Gentleman
+Pic: Gentleman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Rampardos @ Muscle Band
+Level: 64
+Ability: Mold Breaker
+Nature: Adamant
+- Head Smash
+- Earthquake
+- Zen Headbutt
+- Stone Edge
+
+Druddigon @ Life Orb
+Level: 65
+Ability: Sheer Force
+Nature: Adamant
+- Fire Punch
+- Iron Tail
+- Rock Slide
+- Gunk Shot
+
+=== TRAINER_SNOW_R13_9_LANA ===
+Name: LANA
+Class: Pkmn Ranger
+Pic: Pokemon Ranger M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Rapidash @ Expert Belt
+Level: 63
+Ability: Flash Fire
+Nature: Jolly
+- Flare Blitz
+- Wild Charge
+- Drill Run
+- Flame Charge
+
+Stantler @ Sitrus Berry
+Level: 63
+Ability: Intimidate
+Nature: Adamant
+- Double-Edge
+- Zen Headbutt
+- Megahorn
+- Hypnosis
+
+Absol @ Scope Lens
+Level: 64
+Ability: Super Luck
+Nature: Jolly
+- Night Slash
+- Psycho Cut
+- Sucker Punch
+- Swords Dance
+
+Flareon @ Charcoal
+Level: 64
+Ability: Flash Fire
+Nature: Adamant
+- Flare Blitz
+- Superpower
+- Quick Attack
+- Iron Tail
+
+Serperior @ Wise Glasses
+Level: 64
+Ability: Contrary
+Nature: Timid
+- Leaf Storm
+- Glare
+- Synthesis
+- Aqua Tail
