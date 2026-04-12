@@ -19638,3 +19638,363 @@ Nature: Timid
 - Glare
 - Synthesis
 - Aqua Tail
+
+=== TRAINER_SNOW_R14_1_CINDER ===
+Name: CINDER
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Torkoal @ Sitrus Berry
+Level: 65
+Ability: White Smoke
+Nature: Bold
+- Body Press
+- Iron Defense
+- Lava Plume
+- Stealth Rock
+
+Golem @ Passho Berry
+Level: 65
+Ability: Rock Head
+Nature: Adamant
+- Double-Edge
+- Earthquake
+- Stone Edge
+- Explosion
+
+Golurk @ Muscle Band
+Level: 65
+Ability: Iron Fist
+Nature: Brave
+- Phantom Force
+- Drain Punch
+- Earthquake
+- Ice Punch
+
+Aggron @ Chople Berry
+Level: 65
+Ability: Rock Head
+Nature: Adamant
+- Head Smash
+- Earthquake
+- Heavy Slam
+- Aqua Tail
+
+=== TRAINER_SNOW_R14_2_MARLOW ===
+Name: MARLOW
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Pelipper @ Damp Rock
+Level: 65
+Ability: Drizzle
+Nature: Bold
+- Scald
+- Hurricane
+- U-turn
+- Roost
+
+Poliwrath @ Sitrus Berry
+Level: 65
+Ability: Water Absorb
+Nature: Adamant
+- Waterfall
+- Belly Drum
+- Drain Punch
+- Ice Punch
+
+Kingdra @ Wise Glasses
+Level: 65
+Ability: Swift Swim
+Nature: Modest
+- Hydro Pump
+- Draco Meteor
+- Ice Beam
+- Rain Dance
+
+=== TRAINER_SNOW_R14_3_CASSIA ===
+Name: CASSIA
+Class: Scientist Frlg
+Pic: Scientist Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Magnezone @ Air Balloon
+Level: 66
+Ability: Magnet Pull
+Nature: Modest
+- Thunderbolt
+- Flash Cannon
+- Volt Switch
+- Mirror Coat
+
+Metagross @ Muscle Band
+Level: 66
+Ability: Iron Fist
+Nature: Adamant
+- Meteor Mash
+- Hammer Arm
+- Bullet Punch
+- Ice Punch
+
+=== TRAINER_SNOW_R14_4_FORGE ===
+Name: FORGE
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Stunfisk @ Rocky Helmet
+Level: 65
+Ability: Static
+Nature: Relaxed
+- Discharge
+- Earth Power
+- Pain Split
+- Yawn
+
+Machoke @ Eviolite
+Level: 65
+Ability: No Guard
+Nature: Adamant
+- Dynamic Punch
+- Stone Edge
+- Bullet Punch
+- Earthquake
+
+Lucario @ Muscle Band
+Level: 65
+Ability: Technician
+Nature: Adamant
+- Bullet Punch
+- Mach Punch
+- Vacuum Wave
+- Force Palm
+
+=== TRAINER_SNOW_R14_5_VESTA ===
+Name: VESTA
+Class: Dragon Tamer
+Pic: Dragon Tamer
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Dragonair @ Eviolite
+Level: 65
+Ability: Marvel Scale
+Nature: Timid
+- Dragon Pulse
+- Thunder Wave
+- Disable
+- Aqua Tail
+
+Meganium @ Sitrus Berry
+Level: 65
+Ability: Adaptability
+Nature: Bold
+- Giga Drain
+- Body Press
+- Leech Seed
+- Synthesis
+
+Shelgon @ Eviolite
+Level: 65
+Ability: Rock Head
+Nature: Adamant
+- Double-Edge
+- Dragon Claw
+- Fire Fang
+- Protect
+
+Hydreigon @ Dragon Gem
+Level: 65
+Ability: Levitate
+Nature: Modest
+- Draco Meteor
+- Dark Pulse
+- Flamethrower
+- Earth Power
+
+=== TRAINER_SNOW_R14_6_EMBER ===
+Name: EMBER
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Larvitar @ Focus Sash
+Level: 65
+Ability: Guts
+Nature: Adamant
+- Endeavor
+- Stone Edge
+- Earthquake
+- Crunch
+
+Probopass @ Quick Claw
+Level: 65
+Ability: Sturdy
+Nature: Modest
+- Lock-On
+- Zap Cannon
+- Power Gem
+- Earth Power
+
+Gigalith @ Sitrus Berry
+Level: 65
+Ability: Sturdy
+Nature: Adamant
+- Stone Edge
+- Earthquake
+- Heavy Slam
+- Stealth Rock
+
+Claydol @ Sitrus Berry
+Level: 65
+Ability: Levitate
+Nature: Sassy
+- Trick
+- Earth Power
+- Psychic
+- Stealth Rock
+
+=== TRAINER_SNOW_R14_7_VEX ===
+Name: VEX
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Mightyena @ Muscle Band
+Level: 65
+Ability: Intimidate
+Nature: Adamant
+- Crunch
+- Play Rough
+- Sucker Punch
+- Snarl
+
+Pawniard @ Eviolite
+Level: 65
+Ability: Defiant
+Nature: Adamant
+- Iron Head
+- Sucker Punch
+- Knock Off
+- Swords Dance
+
+Shiftry @ Tanga Berry
+Level: 65
+Ability: Early Bird
+Nature: Jolly
+- Leaf Blade
+- Knock Off
+- Sucker Punch
+- Swords Dance
+
+=== TRAINER_SNOW_R14_8_MAREK ===
+Name: MAREK
+Class: Sailor
+Pic: Sailor
+Gender: Male
+Music: Male
+Double Battle: Yes
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Cloyster @ Damp Rock
+Level: 65
+Ability: Skill Link
+Nature: Adamant
+- Rain Dance
+- Icicle Spear
+- Razor Shell
+- Rock Blast
+
+Walrein @ Sitrus Berry
+Level: 65
+Ability: Thick Fat
+Nature: Bold
+- Surf
+- Ice Beam
+- Encore
+- Protect
+
+Seismitoad @ Wise Glasses
+Level: 65
+Ability: Swift Swim
+Nature: Modest
+- Earth Power
+- Sludge Wave
+- Muddy Water
+- Stealth Rock
+
+Staraptor @ Sharp Beak
+Level: 65
+Ability: Intimidate
+Nature: Adamant
+- Brave Bird
+- Close Combat
+- Tailwind
+- U-turn
+
+=== TRAINER_SNOW_R14_9_HALDEN ===
+Name: HALDEN
+Class: Sailor
+Pic: Sailor
+Gender: Male
+Music: Male
+Double Battle: Yes
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Tentacruel @ Black Sludge
+Level: 65
+Ability: Liquid Ooze
+Nature: Bold
+- Scald
+- Sludge Wave
+- Toxic Spikes
+- Acid Spray
+
+Lanturn @ Wise Glasses
+Level: 65
+Ability: Volt Absorb
+Nature: Modest
+- Thunderbolt
+- Hydro Pump
+- Ice Beam
+- Volt Switch
+
+Electrode @ Custap Berry
+Level: 65
+Ability: Static
+Nature: Hasty
+- Thunderbolt
+- Volt Switch
+- Taunt
+- Explosion
+
+Starmie @ Wise Glasses
+Level: 65
+Ability: Natural Cure
+Nature: Timid
+- Hydro Pump
+- Psychic
+- Ice Beam
+- Recover
