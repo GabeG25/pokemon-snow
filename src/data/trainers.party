@@ -16906,3 +16906,19 @@ Ability: Snow Warning
 Nature: Quiet
 - Powder Snow
 - Leer
+
+=== TRAINER_SNOW_R1_3_KAI ===
+Name: KAI
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Swinub
+Level: 4
+Ability: Snow Cloak
+Nature: Adamant
+- Tackle
+- Mud-Slap
