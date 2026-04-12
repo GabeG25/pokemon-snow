@@ -242,7 +242,7 @@ def _clean(cell: str) -> str | None:
     if cell in ("", "—", "-"):
         return None
     cell = cell.replace("**", "")  # strip markdown bold markers
-    cell = re.sub(r"\s*\*?\((?:A[12]|HA\s*#\d+|CEO-allowed)\)\*?", "", cell)  # strip annotations
+    cell = re.sub(r"\s*\*?\((?:A[12]|HA\s*#\d+|CEO[^)]*)\)\*?", "", cell)  # strip annotations
     cell = cell.strip()
     return cell if cell else None
 
