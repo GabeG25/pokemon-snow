@@ -57,9 +57,10 @@ OPPONENTS_H = REPO_ROOT / "include" / "constants" / "opponents.h"
 AI_SUITE_FULL = "Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices"
 
 CLASS_FALLBACKS = {
-    "Boarder": "Hiker",  # validated 2026-04-11 commit 592e85b064
-    "Skier": "Hiker",    # probed 2026-04-11 R2 --commit attempt, compiler suggested HIKER
-    "Miner": "Hiker",    # probed 2026-04-11 R2 --commit attempt, compiler suggested HIKER
+    "Boarder": "Hiker",          # validated 2026-04-11 commit 592e85b064
+    "Skier": "Hiker",            # probed 2026-04-11 R2 --commit attempt, compiler suggested HIKER
+    "Miner": "Hiker",            # probed 2026-04-11 R2 --commit attempt, compiler suggested HIKER
+    "Scientist": "Scientist Frlg",  # no Emerald Scientist; FRLG variant has class + pic
 }
 
 # Grunt team name → engine team name. Derives Class/Pic/Music:
@@ -69,6 +70,7 @@ GRUNT_TEAM_FALLBACK = {
 }
 
 CLASS_GENDER_DEFAULTS = {
+    # Spec class names (pre-fallback)
     "Youngster": "Male",
     "Lass": "Female",
     "Hiker": "Male",
@@ -88,11 +90,27 @@ CLASS_GENDER_DEFAULTS = {
     "Ace Trainer": "Male",
     "Pokémon Ranger": "Male",
     "Special Agent": "Male",
+    "Tycoon": "Male",
+    "Pokémon Tycoon": "Male",
+    # Post-fallback resolved names (needed because gender lookup uses emit_class)
+    "Scientist Frlg": "Male",
 }
 
 TRAINER_HEADER_RE = re.compile(
     r"^###\s+R(\d+)-(\d+)\s+—\s+(.+?)\s+\|\s+(\d+)\s+Pokémon(?:\s*\|.*)?\s*$"
 )
+
+# Matches tag-double headers. Four known variants in v17:
+#   R5-5/6 — Team Veil Grunts | 3 Pokémon each | TAG DOUBLE BATTLE
+#   R6-7 — Skier Ivy & Boarder Hale | TAG DOUBLE BATTLE | 3 + 3 Pokémon
+#   R12-6 — Special Agent Slade & Special Agent Quinn | TAG DOUBLE BATTLE | 3 + 3 Pokémon
+#   R14-8 — Sailor Marek & Sailor Halden | TAG DOUBLE BATTLE | 4 + 4 Pokémon | **R14 PEAK**
+TAG_DOUBLE_HEADER_RE = re.compile(
+    r"^###\s+R(\d+)-([\d/]+)\s+—\s+(.+?)\s+\|.*TAG DOUBLE BATTLE.*$"
+)
+
+# Matches bold sub-labels within a tag-double block: **Grunt 5:** or **Skier Ivy:**
+TAG_SUB_LABEL_RE = re.compile(r"^\*\*(.+?):\*\*\s*$")
 
 
 @dataclass
@@ -168,13 +186,132 @@ def _clean(cell: str) -> str | None:
     if cell in ("", "—", "-"):
         return None
     cell = cell.replace("**", "")  # strip markdown bold markers
-    cell = re.sub(r"\s*\((?:A[12]|HA\s*#\d+)\)", "", cell)  # strip ability slot annotations like (A1), (HA #29)
-    return cell
+    cell = re.sub(r"\s*\*?\((?:A[12]|HA\s*#\d+|CEO-allowed)\)\*?", "", cell)  # strip annotations
+    cell = cell.strip()
+    return cell if cell else None
 
 
 def parse_table_row(row_line: str) -> list[str | None]:
     cells = [c.strip() for c in row_line.strip().strip("|").split("|")]
     return [_clean(c) for c in cells]
+
+
+def _parse_mon_table(lines: list[str], start: int, n: int,
+                     route: int, index: int, name: str) -> tuple[list[Mon], int]:
+    """Parse a markdown table of Pokémon starting at line `start`.
+    Returns (list of Mon, next line index after table).
+    Handles both 10-column (no EVs) and 11-column (with EVs) tables."""
+    j = start
+    while j < n and lines[j].strip() == "":
+        j += 1
+    if j >= n or not lines[j].lstrip().startswith("|"):
+        raise ValueError(f"R{route}-{index} {name}: no table found")
+    # Detect column count from header row
+    header_cells = [c.strip() for c in lines[j].strip().strip("|").split("|")]
+    has_evs = any(c.strip().lower() == "evs" for c in header_cells)
+    j += 1  # skip header row
+    if j >= n or not lines[j].lstrip().startswith("|"):
+        raise ValueError(f"R{route}-{index} {name}: no separator row")
+    j += 1  # skip separator row
+    mons: list[Mon] = []
+    while j < n and lines[j].lstrip().startswith("|"):
+        cells = parse_table_row(lines[j])
+        min_cols = 11 if has_evs else 10
+        if len(cells) < min_cols:
+            raise ValueError(
+                f"R{route}-{index} {name}: row has {len(cells)} cells, expected {min_cols}"
+            )
+        species = cells[1]
+        if species is None:
+            raise ValueError(f"R{route}-{index} {name}: species is empty in row")
+        try:
+            level = int(cells[2])
+        except (TypeError, ValueError):
+            raise ValueError(
+                f"R{route}-{index} {name}: invalid level '{cells[2]}' — "
+                f"expected integer"
+            )
+        nature = cells[3]
+        if nature is None:
+            raise ValueError(f"R{route}-{index} {name}: nature is empty in row")
+        ability = cells[4]
+        if has_evs:
+            evs = cells[5]
+            item = cells[6]
+            moves = [c for c in cells[7:11] if c is not None]
+        else:
+            evs = None
+            item = cells[5]
+            moves = [c for c in cells[6:10] if c is not None]
+        if not moves:
+            raise ValueError(f"R{route}-{index} {name}: zero moves parsed")
+        mons.append(
+            Mon(species=species, level=level, nature=nature,
+                ability=ability, item=item, moves=moves, evs=evs)
+        )
+        j += 1
+    return mons, j
+
+
+def _parse_tag_double(lines: list[str], start: int, n: int,
+                      route: int, index_str: str, label: str,
+                      ) -> tuple[list[Trainer], int]:
+    """Parse a tag-double block (two sub-labeled trainers under one ### header).
+    Returns (list of 2 Trainers, next line index after block)."""
+    # Determine if grunt variant (R5-5/6) or named variant (R6-7)
+    is_grunt_double = "&" not in label
+
+    if is_grunt_double:
+        # Indices explicit in header: "5/6"
+        indices = [int(x) for x in index_str.split("/")]
+        if len(indices) != 2:
+            raise ValueError(f"R{route}-{index_str}: expected 2 indices in grunt tag-double")
+    else:
+        # Named variant: single index in header, second trainer is index+1
+        base_idx = int(index_str)
+        indices = [base_idx, base_idx + 1]
+
+    # Find the two sub-label sections
+    j = start + 1
+    sub_trainers: list[Trainer] = []
+    found_labels = 0
+
+    while j < n and found_labels < 2:
+        sub_m = TAG_SUB_LABEL_RE.match(lines[j].strip())
+        if sub_m:
+            sub_label = sub_m.group(1).strip()
+            idx = indices[found_labels]
+
+            if is_grunt_double:
+                # Sub-label like "Grunt 5" — these are Team Veil grunts
+                klass = "Team Veil"
+                trainer_name = "Grunt"
+                is_grunt = True
+                team = "Veil"
+            else:
+                # Sub-label like "Skier Ivy" or "Agent Slade"
+                klass, trainer_name = split_class_and_name(sub_label)
+                is_grunt = False
+                team = None
+
+            mons, j = _parse_mon_table(lines, j + 1, n, route, idx, trainer_name)
+            sub_trainers.append(
+                Trainer(route=route, index=idx, klass=klass, name=trainer_name,
+                        is_grunt=is_grunt, team=team, mons=mons)
+            )
+            found_labels += 1
+        else:
+            j += 1
+            # Safety: don't scan past the next ### header
+            if j < n and lines[j].startswith("### "):
+                break
+
+    if found_labels != 2:
+        raise ValueError(
+            f"R{route}-{index_str}: expected 2 sub-labels in tag-double block, "
+            f"found {found_labels}"
+        )
+    return sub_trainers, j
 
 
 def parse_spec(spec_text: str, route_filter: int | None = None) -> list[Trainer]:
@@ -183,6 +320,20 @@ def parse_spec(spec_text: str, route_filter: int | None = None) -> list[Trainer]
     i = 0
     n = len(lines)
     while i < n:
+        # Try tag-double header first (more specific match)
+        td_m = TAG_DOUBLE_HEADER_RE.match(lines[i])
+        if td_m:
+            route = int(td_m.group(1))
+            index_str = td_m.group(2)
+            label = td_m.group(3)
+            if route_filter is not None and route != route_filter:
+                i += 1
+                continue
+            pair, i = _parse_tag_double(lines, i, n, route, index_str, label)
+            trainers.extend(pair)
+            continue
+
+        # Try single-trainer header
         m = TRAINER_HEADER_RE.match(lines[i])
         if not m:
             i += 1
@@ -199,45 +350,7 @@ def parse_spec(spec_text: str, route_filter: int | None = None) -> list[Trainer]
             i += 1
             continue
 
-        j = i + 1
-        while j < n and lines[j].strip() == "":
-            j += 1
-        if j >= n or not lines[j].lstrip().startswith("|"):
-            raise ValueError(f"R{route}-{index} {name}: no table after header")
-        j += 1  # skip header row
-        if j >= n or not lines[j].lstrip().startswith("|"):
-            raise ValueError(f"R{route}-{index} {name}: no separator row")
-        j += 1  # skip separator row
-        mons: list[Mon] = []
-        while j < n and lines[j].lstrip().startswith("|"):
-            cells = parse_table_row(lines[j])
-            if len(cells) < 10:
-                raise ValueError(
-                    f"R{route}-{index} {name}: row has {len(cells)} cells, expected 10"
-                )
-            species = cells[1]
-            if species is None:
-                raise ValueError(f"R{route}-{index} {name}: species is empty in row")
-            try:
-                level = int(cells[2])
-            except (TypeError, ValueError):
-                raise ValueError(
-                    f"R{route}-{index} {name}: invalid level '{cells[2]}' — "
-                    f"expected integer"
-                )
-            nature = cells[3]
-            if nature is None:
-                raise ValueError(f"R{route}-{index} {name}: nature is empty in row")
-            ability = cells[4]
-            item = cells[5]
-            moves = [c for c in cells[6:10] if c is not None]
-            if not moves:
-                raise ValueError(f"R{route}-{index} {name}: zero moves parsed")
-            mons.append(
-                Mon(species=species, level=level, nature=nature,
-                    ability=ability, item=item, moves=moves)
-            )
-            j += 1
+        mons, i = _parse_mon_table(lines, i + 1, n, route, index, name)
         if len(mons) != expected_count:
             raise ValueError(
                 f"R{route}-{index} {name}: header says {expected_count} mons, "
@@ -247,7 +360,6 @@ def parse_spec(spec_text: str, route_filter: int | None = None) -> list[Trainer]
             Trainer(route=route, index=index, klass=klass, name=name,
                     is_grunt=is_grunt, team=team, mons=mons)
         )
-        i = j
     return trainers
 
 
@@ -267,8 +379,16 @@ def parse_double_battles(spec_text: str) -> set[tuple[int, int]]:
     out: set[tuple[int, int]] = set()
     for m in DOUBLE_LINE_RE.finditer(section):
         route = int(m.group(1))
-        for idx_str in m.group(2).split("/"):
-            out.add((route, int(idx_str)))
+        idx_parts = m.group(2).split("/")
+        if len(idx_parts) == 2:
+            # Explicit pair like "5/6" — both indices listed
+            for idx_str in idx_parts:
+                out.add((route, int(idx_str)))
+        else:
+            # Single index like "7" — named pair, implicit N and N+1
+            base = int(idx_parts[0])
+            out.add((route, base))
+            out.add((route, base + 1))
     return out
 
 
@@ -304,9 +424,13 @@ def emit_trainer(t: Trainer, double_battles: set[tuple[int, int]]) -> str:
         block = [
             species_line,
             f"Level: {mon.level}",
+        ]
+        if mon.evs:
+            block.append(f"EVs: {mon.evs}")
+        block.extend([
             f"Ability: {mon.ability}",
             f"Nature: {mon.nature}",
-        ]
+        ])
         block.extend(f"- {mv}" for mv in mon.moves)
         mon_blocks.append("\n".join(block))
     return "\n".join(header) + "\n\n" + "\n\n".join(mon_blocks)
