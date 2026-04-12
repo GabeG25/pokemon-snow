@@ -325,10 +325,17 @@ def _parse_tag_double(lines: list[str], start: int, n: int,
         indices = [int(x) for x in index_str.split("/")]
         if len(indices) != 2:
             raise ValueError(f"R{route}-{index_str}: expected 2 indices in grunt tag-double")
+        header_pairs = None
     else:
         # Named variant: single index in header, second trainer is index+1
         base_idx = int(index_str)
         indices = [base_idx, base_idx + 1]
+        # Extract class+name from HEADER (not sub-labels, which may abbreviate)
+        # Header label is like "Skier Ivy & Boarder Hale" or "Special Agent Slade & Special Agent Quinn"
+        pair_strs = [p.strip() for p in label.split("&")]
+        if len(pair_strs) != 2:
+            raise ValueError(f"R{route}-{index_str}: expected 2 trainers in header, got {len(pair_strs)}")
+        header_pairs = [split_class_and_name(p) for p in pair_strs]
 
     # Find the two sub-label sections
     j = start + 1
@@ -338,7 +345,6 @@ def _parse_tag_double(lines: list[str], start: int, n: int,
     while j < n and found_labels < 2:
         sub_m = TAG_SUB_LABEL_RE.match(lines[j].strip())
         if sub_m:
-            sub_label = sub_m.group(1).strip()
             idx = indices[found_labels]
 
             if is_grunt_double:
@@ -348,8 +354,8 @@ def _parse_tag_double(lines: list[str], start: int, n: int,
                 is_grunt = True
                 team = "Veil"
             else:
-                # Sub-label like "Skier Ivy" or "Agent Slade"
-                klass, trainer_name = split_class_and_name(sub_label)
+                # Use header-derived class+name (sub-labels may abbreviate)
+                klass, trainer_name = header_pairs[found_labels]
                 is_grunt = False
                 team = None
 
