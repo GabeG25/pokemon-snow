@@ -30,8 +30,14 @@ OPPONENTS_H = REPO_ROOT / "include" / "constants" / "opponents.h"
 
 # 8-flag AI suite for boss trainers
 AI_SUITE_BOSS = ("Check Bad Move / Try To Faint / Check Viability / "
-                 "Smart Switching / Smart Mon Choices / Setup First Turn / "
+                 "Smart Switching / Smart Mon Choices / Force Setup First Turn / "
                  "Ace Pokemon / Omniscient")
+
+# Custom items in v17 that don't exist in pokeemerald-expansion yet.
+# Map to closest available item until real items are implemented.
+ITEM_FALLBACKS = {
+    "Permafrost Shard": "Sitrus Berry",  # F27 Tyrell's custom item, defer to art session
+}
 
 # Boss character → trainer class/pic/music/gender mapping.
 # Pics use vanilla Emerald characters as fallbacks until real sprites ship.
@@ -285,7 +291,8 @@ def emit_boss(t: BossTrainer) -> str:
     for mon in t.mons:
         species_line = mon.species
         if mon.item:
-            species_line += f" @ {mon.item}"
+            item = ITEM_FALLBACKS.get(mon.item, mon.item)
+            species_line += f" @ {item}"
         block = [
             species_line,
             f"Level: {mon.level}",
