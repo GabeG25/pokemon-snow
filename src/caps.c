@@ -7,17 +7,20 @@
 
 u32 GetCurrentLevelCap(void)
 {
+    // Snow zone caps from v17 §21 Zone Cap Progression Table.
+    // Badge-gated only; facility escalation (F18→73, F22→79, F27→89,
+    // F28→92, F30→95) needs scripted flag triggers added later.
     static const u32 sLevelCapFlagMap[][2] =
     {
-        {FLAG_BADGE01_GET, 15},
-        {FLAG_BADGE02_GET, 19},
-        {FLAG_BADGE03_GET, 24},
-        {FLAG_BADGE04_GET, 29},
-        {FLAG_BADGE05_GET, 31},
-        {FLAG_BADGE06_GET, 33},
-        {FLAG_BADGE07_GET, 42},
-        {FLAG_BADGE08_GET, 46},
-        {FLAG_IS_CHAMPION, 58},
+        {FLAG_BADGE01_GET, 15},  // Zone 1: pre-Gym 1 Silvan
+        {FLAG_BADGE02_GET, 23},  // Zone 2: post-Gym 1, pre-Gym 2 Cedar
+        {FLAG_BADGE03_GET, 30},  // Zone 3: post-Gym 2, pre-Gym 3 Copper
+        {FLAG_BADGE04_GET, 40},  // Zone 4: post-Gym 3, pre-Gym 4 Fran
+        {FLAG_BADGE05_GET, 50},  // Zone 5: post-Gym 4, pre-Gym 5 Marina
+        {FLAG_BADGE06_GET, 59},  // Zone 6: post-Gym 5, pre-Gym 6 Priyo
+        {FLAG_BADGE07_GET, 66},  // Zone 7: post-Gym 6, pre-Gym 7 Erin
+        {FLAG_BADGE08_GET, 72},  // Zone 8a: post-Gym 7, pre-Gym 8 Scorch
+        {FLAG_IS_CHAMPION, 95},  // Post-Gym 8 → League entry cap
     };
 
     u32 i;
