@@ -17909,3 +17909,228 @@ Nature: Bold
 - Dazzling Gleam
 - Yawn
 - Calm Mind
+
+=== TRAINER_SNOW_R8_1_VIVIAN ===
+Name: VIVIAN
+Class: Lady
+Pic: Lady
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Skiploom
+Level: 36
+Ability: Chlorophyll
+Nature: Jolly
+- Acrobatics
+- Bullet Seed
+- Sleep Powder
+- Leech Seed
+
+Nidorina
+Level: 37
+Ability: Poison Point
+Nature: Modest
+- Sludge Bomb
+- Earth Power
+- Toxic Spikes
+- Super Fang
+
+Bellossom @ Oran Berry
+Level: 37
+Ability: Chlorophyll
+Nature: Modest
+- Giga Drain
+- Dazzling Gleam
+- Synthesis
+- Quiver Dance
+
+Azumarill @ Oran Berry
+Level: 38
+Ability: Huge Power
+Nature: Adamant
+- Play Rough
+- Aqua Tail
+- Aqua Jet
+- Brick Break
+
+=== TRAINER_SNOW_R8_2_TESSA ===
+Name: TESSA
+Class: Guitarist
+Pic: Guitarist
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Ninetales
+Level: 36
+Ability: Flash Fire
+Nature: Timid
+- Flamethrower
+- Will-O-Wisp
+- Hex
+- Confuse Ray
+
+Altaria @ Oran Berry
+Level: 37
+Ability: Natural Cure
+Nature: Modest
+- Dragon Pulse
+- Moonblast
+- Sing
+- Flamethrower
+
+Sigilyph @ Oran Berry
+Level: 38
+Ability: Magic Guard
+Nature: Timid
+- Air Slash
+- Psychic
+- Shadow Ball
+- Light Screen
+
+=== TRAINER_SNOW_R8_3_WREN ===
+Name: WREN
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Venomoth @ Oran Berry
+Level: 37
+Ability: Tinted Lens
+Nature: Timid
+- Bug Buzz
+- Sludge Bomb
+- Sleep Powder
+- Quiver Dance
+
+Galvantula @ Oran Berry
+Level: 38
+Ability: Compound Eyes
+Nature: Timid
+- Thunder
+- Bug Buzz
+- Sticky Web
+- Energy Ball
+
+=== TRAINER_SNOW_R8_4_DECLAN ===
+Name: DECLAN
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Growlithe
+Level: 36
+Ability: Intimidate
+Nature: Jolly
+- Flare Blitz
+- Crunch
+- Close Combat
+- Morning Sun
+
+Quagsire @ Oran Berry
+Level: 37
+Ability: Water Absorb
+Nature: Relaxed
+- Earthquake
+- Scald
+- Yawn
+- Recover
+
+Persian @ Oran Berry
+Level: 38
+Ability: Technician
+Nature: Jolly
+- Fake Out
+- Bite
+- Aerial Ace
+- Slash
+
+=== TRAINER_SNOW_R8_5_CLAIRE ===
+Name: CLAIRE
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Wigglytuff
+Level: 36
+Ability: Competitive
+Nature: Bold
+- Dazzling Gleam
+- Hyper Voice
+- Sing
+- Charm
+
+Clefable @ Oran Berry
+Level: 37
+Ability: Magic Guard
+Nature: Bold
+- Moonblast
+- Flamethrower
+- Calm Mind
+- Moonlight
+
+Froslass @ Oran Berry
+Level: 38
+Ability: Snow Cloak
+Nature: Timid
+- Ice Beam
+- Shadow Ball
+- Thunderbolt
+- Will-O-Wisp
+
+=== TRAINER_SNOW_R8_6_ROOK ===
+Name: ROOK
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Zorua
+Level: 36
+Ability: Illusion
+Nature: Timid
+- Night Daze
+- Extrasensory
+- U-turn
+- Nasty Plot
+
+Krokorok
+Level: 37
+Ability: Intimidate
+Nature: Jolly
+- Earthquake
+- Crunch
+- Fire Fang
+- Taunt
+
+Dusclops @ Oran Berry
+Level: 37
+Ability: Pressure
+Nature: Relaxed
+- Night Shade
+- Will-O-Wisp
+- Pain Split
+- Confuse Ray
+
+Absol @ Oran Berry
+Level: 38
+Ability: Super Luck
+Nature: Adamant
+- Night Slash
+- Play Rough
+- Psycho Cut
+- Sucker Punch
