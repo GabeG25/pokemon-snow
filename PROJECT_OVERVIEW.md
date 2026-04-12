@@ -47,26 +47,22 @@ Eviolite pre-evo exception: trainer Pokémon can hold Eviolite only if the speci
 Trade evolution via held-item config toggle: species that normally require trade evolution use an in-engine toggle instead, preserving the evolution trigger without multiplayer dependency
 
 Implementation State
-This section is living — update as routes ship. Last updated: 2026-04-12 post-R3.
+This section is living — update as routes ship. Last updated: 2026-04-12 post-all-trainers.
 Shipped (data layer, compiled into ROM):
 
-R1: 3 trainers, 4 Pokémon (Powderpath Trail intro)
-R2: 4 trainers, 8 Pokémon
-R3: 5 trainers, 14 Pokémon including first Team Veil Grunt and first held-item batch (Oran Berry on 5 mons)
-Total: 12 trainers, 25 Pokémon as ROM data
+R1(3) R2(4) R3(5) R5(6) R6(8) R7(5) R8(6) R9(8) R10(8) R11(6) R12(7) R13(9) R14(9) R15(9) DI(5)
+Total: 98 trainers, ~340 Pokémon as ROM data. ALL v17 §20 route trainers shipped.
 
 Engine state:
 
 MAX_TRAINERS_COUNT_EMERALD expanded from 864 to 1024 (flag-ceiling expansion committed as save-breaking change)
-TRAINERS_COUNT_EMERALD equals 867 (12 Snow trainers plus 855 vanilla Emerald trainers retained)
-157 flag slots free for remaining ~81 route trainers
+TRAINERS_COUNT_EMERALD equals 953 (98 Snow trainers plus 855 vanilla Emerald trainers retained)
+71 flag slots free
 SaveBlock1 sizeof equals 15,588 bytes, budget 15,872, headroom 284 bytes
 Build compiles clean via make -j$(nproc) using devkitARM under WSL Ubuntu
 
-Not yet shipped — design exists in v17, awaiting port:
+Not yet shipped — design exists in v17, awaiting implementation:
 
-R5 through R15: ~81 trainers across 11 routes
-Driftrock Isle (off-route Swimmer encounters)
 317-species Pokédex data files
 Custom Hidden Abilities (104 species)
 Custom learnsets
@@ -81,7 +77,7 @@ Item distribution across maps (Dragonforge Dept. Store inventory, Frostbreak Lod
 Music, art, sound beyond vanilla Emerald
 Balance playtesting (blocked until at least R1 through R5 has map wiring)
 
-Rough completeness: ~15% toward a fully playable build. Trainer data porting is ~30% complete but is the mechanical portion; the unknowns are map wiring, scripting, and species data.
+Rough completeness: ~20% toward a fully playable build. Trainer data is 100% complete (98/98 route trainers). The remaining work is species data, map wiring, boss fights, scripting, and art.
 Tool Architecture
 The core tool is tools/snow_port/port_trainers.py — reads the v17 design archive and emits ROM data with full safety rails. Currently ~650 lines.
 What the tool does:
