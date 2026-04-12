@@ -1,4 +1,4 @@
-markdown# Pokémon Snow — Project Files Map
+# Pokémon Snow — Project Files Map
 
 Every location that matters for Pokémon Snow, what lives there, and how Claude Code should treat it. Read this when you need to locate a file or understand what a path represents. Keep in sync with the actual filesystem — update this file when locations change or new ones are added.
 
