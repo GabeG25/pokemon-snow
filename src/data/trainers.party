@@ -17720,3 +17720,192 @@ Nature: Jolly
 - Play Rough
 - Brick Break
 - Crunch
+
+=== TRAINER_SNOW_R7_1_HARLAN ===
+Name: HARLAN
+Class: Collector
+Pic: Collector
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Murkrow
+Level: 31
+Ability: Super Luck
+Nature: Jolly
+- Night Slash
+- Wing Attack
+- Haze
+- Taunt
+
+Larvesta
+Level: 32
+Ability: Flame Body
+Nature: Modest
+- Bug Bite
+- Flame Charge
+- Leech Life
+- String Shot
+
+Monferno @ Oran Berry
+Level: 32
+Ability: Blaze
+Nature: Jolly
+- Flame Wheel
+- Mach Punch
+- Rock Smash
+- Acrobatics
+
+Porygon @ Oran Berry
+Level: 33
+Ability: Download
+Nature: Modest
+- Tri Attack
+- Psybeam
+- Recover
+- Agility
+
+=== TRAINER_SNOW_R7_2_COREY ===
+Name: COREY
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Mightyena
+Level: 32
+Ability: Intimidate
+Nature: Adamant
+- Crunch
+- Swagger
+- Scary Face
+- Roar
+
+Nidorino
+Level: 32
+Ability: Poison Point
+Nature: Jolly
+- Poison Jab
+- Double Kick
+- Sucker Punch
+- Toxic Spikes
+
+Flaaffy @ Oran Berry
+Level: 33
+Ability: Static
+Nature: Modest
+- Discharge
+- Confuse Ray
+- Cotton Spore
+- Thunder Wave
+
+Swoobat @ Oran Berry
+Level: 34
+Ability: Simple
+Nature: Timid
+- Air Slash
+- Psyshock
+- Calm Mind
+- Roost
+
+=== TRAINER_SNOW_R7_3_OPAL ===
+Name: OPAL
+Class: Scientist Frlg
+Pic: Scientist Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Xatu
+Level: 32
+Ability: Synchronize
+Nature: Timid
+- Psychic
+- Air Slash
+- Night Shade
+- U-turn
+
+Mawile @ Oran Berry
+Level: 33
+Ability: Intimidate
+Nature: Adamant
+- Iron Head
+- Play Rough
+- Sucker Punch
+- Swords Dance
+
+Duosion
+Level: 33
+Ability: Magic Guard
+Nature: Quiet
+- Psyshock
+- Shadow Ball
+- Recover
+- Acid Armor
+
+Metang @ Oran Berry
+Level: 34
+Ability: Clear Body
+Nature: Adamant
+- Meteor Mash
+- Zen Headbutt
+- Bullet Punch
+- Agility
+
+=== TRAINER_SNOW_R7_4_BRENNA ===
+Name: BRENNA
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Piloswine @ Chesto Berry
+Level: 35
+Ability: Thick Fat
+Nature: Adamant
+- Icicle Crash
+- Bulldoze
+- Curse
+- Rest
+
+=== TRAINER_SNOW_R7_5_LUMI ===
+Name: LUMI
+Class: Painter Frlg
+Pic: Painter Frlg
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Togetic
+Level: 33
+Ability: Serene Grace
+Nature: Calm
+- Air Slash
+- Extrasensory
+- Yawn
+- Ancient Power
+
+Corsola @ Oran Berry
+Level: 34
+Ability: Natural Cure
+Nature: Bold
+- Scald
+- Icy Wind
+- Mirror Coat
+- Brine
+
+Musharna @ Oran Berry
+Level: 35
+Ability: Synchronize
+Nature: Bold
+- Psychic
+- Dazzling Gleam
+- Yawn
+- Calm Mind
