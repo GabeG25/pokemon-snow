@@ -353,7 +353,7 @@ WARNING_COMMENT_RE = re.compile(
     r"(there is only space for )(\d+)( additional trainers)"
 )
 LAST_TRAINER_DEFINE_RE = re.compile(
-    r"^#define (TRAINER_[A-Z0-9_]+)(\s+)(\d+)\s*$", re.MULTILINE
+    r"^#define (TRAINER_[A-Z0-9_]+)(\s+)(\d+)[ \t]*$", re.MULTILINE
 )
 
 
