@@ -429,6 +429,7 @@ static const struct LevelUpMove sFearowLevelUpLearnset[] = {
     LEVEL_UP_MOVE(36, MOVE_ROOST),
     LEVEL_UP_MOVE(41, MOVE_DRILL_PECK),
     LEVEL_UP_MOVE(45, MOVE_DRILL_RUN),
+        LEVEL_UP_MOVE( 1, MOVE_DUAL_WINGBEAT),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_SPEAROW
@@ -1003,6 +1004,8 @@ static const struct LevelUpMove sZubatLevelUpLearnset[] = {
     LEVEL_UP_MOVE(45, MOVE_CONFUSE_RAY),
     LEVEL_UP_MOVE(50, MOVE_AIR_SLASH),
     LEVEL_UP_MOVE(55, MOVE_LEECH_LIFE),
+        LEVEL_UP_MOVE( 1, MOVE_CROSS_CHOP),
+        LEVEL_UP_MOVE( 1, MOVE_GUNK_SHOT),
     LEVEL_UP_END
 };
 
@@ -1021,6 +1024,8 @@ static const struct LevelUpMove sGolbatLevelUpLearnset[] = {
     LEVEL_UP_MOVE(55, MOVE_CONFUSE_RAY),
     LEVEL_UP_MOVE(62, MOVE_AIR_SLASH),
     LEVEL_UP_MOVE(69, MOVE_LEECH_LIFE),
+        LEVEL_UP_MOVE( 1, MOVE_CROSS_CHOP),
+        LEVEL_UP_MOVE( 1, MOVE_GUNK_SHOT),
     LEVEL_UP_END
 };
 
@@ -1044,6 +1049,8 @@ static const struct LevelUpMove sCrobatLevelUpLearnset[] = {
     LEVEL_UP_MOVE(55, MOVE_CONFUSE_RAY),
     LEVEL_UP_MOVE(62, MOVE_AIR_SLASH),
     LEVEL_UP_MOVE(69, MOVE_LEECH_LIFE),
+        LEVEL_UP_MOVE( 1, MOVE_CROSS_CHOP),
+        LEVEL_UP_MOVE( 1, MOVE_GUNK_SHOT),
     LEVEL_UP_END
 };
 #endif //P_GEN_2_CROSS_EVOS
@@ -1297,6 +1304,7 @@ static const struct LevelUpMove sMeowthLevelUpLearnset[] = {
     LEVEL_UP_MOVE(36, MOVE_SLASH),
     LEVEL_UP_MOVE(40, MOVE_NASTY_PLOT),
     LEVEL_UP_MOVE(44, MOVE_PLAY_ROUGH),
+        LEVEL_UP_MOVE( 1, MOVE_GUARD_SWAP),
     LEVEL_UP_END
 };
 
@@ -1316,6 +1324,7 @@ static const struct LevelUpMove sPersianLevelUpLearnset[] = {
     LEVEL_UP_MOVE(42, MOVE_SLASH),
     LEVEL_UP_MOVE(48, MOVE_NASTY_PLOT),
     LEVEL_UP_MOVE(54, MOVE_PLAY_ROUGH),
+        LEVEL_UP_MOVE( 1, MOVE_GUARD_SWAP),
     LEVEL_UP_END
 };
 
@@ -1524,6 +1533,8 @@ static const struct LevelUpMove sGrowlitheLevelUpLearnset[] = {
     LEVEL_UP_MOVE(48, MOVE_PLAY_ROUGH),
     LEVEL_UP_MOVE(52, MOVE_REVERSAL),
     LEVEL_UP_MOVE(56, MOVE_FLARE_BLITZ),
+        LEVEL_UP_MOVE( 1, MOVE_BURN_UP),
+        LEVEL_UP_MOVE( 1, MOVE_SACRED_FIRE),
     LEVEL_UP_END
 };
 
@@ -1545,6 +1556,8 @@ static const struct LevelUpMove sArcanineLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_FLAME_WHEEL),
     LEVEL_UP_MOVE( 1, MOVE_TAKE_DOWN),
     LEVEL_UP_MOVE( 5, MOVE_FLAMETHROWER),
+        LEVEL_UP_MOVE( 1, MOVE_BURN_UP),
+        LEVEL_UP_MOVE( 1, MOVE_SACRED_FIRE),
     LEVEL_UP_END
 };
 
@@ -1621,6 +1634,8 @@ static const struct LevelUpMove sPoliwhirlLevelUpLearnset[] = {
     LEVEL_UP_MOVE(48, MOVE_HYDRO_PUMP),
     LEVEL_UP_MOVE(56, MOVE_BELLY_DRUM),
     LEVEL_UP_MOVE(66, MOVE_DOUBLE_EDGE),
+        LEVEL_UP_MOVE( 1, MOVE_BATON_PASS),
+        LEVEL_UP_MOVE( 1, MOVE_JET_PUNCH),
     LEVEL_UP_END
 };
 
@@ -1638,6 +1653,8 @@ static const struct LevelUpMove sPoliwrathLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_BODY_SLAM),
     LEVEL_UP_MOVE( 1, MOVE_BUBBLE_BEAM),
     LEVEL_UP_MOVE( 1, MOVE_HYPNOSIS),
+        LEVEL_UP_MOVE( 1, MOVE_BATON_PASS),
+        LEVEL_UP_MOVE( 1, MOVE_JET_PUNCH),
     LEVEL_UP_END
 };
 
@@ -2270,6 +2287,7 @@ static const struct LevelUpMove sMagnezoneLevelUpLearnset[] = {
     LEVEL_UP_MOVE(52, MOVE_LIGHT_SCREEN),
     LEVEL_UP_MOVE(58, MOVE_LOCK_ON),
     LEVEL_UP_MOVE(64, MOVE_ZAP_CANNON),
+        LEVEL_UP_MOVE( 1, MOVE_OVERHEAT),
     LEVEL_UP_END
 };
 #endif //P_GEN_4_CROSS_EVOS
@@ -2521,6 +2539,7 @@ static const struct LevelUpMove sShellderLevelUpLearnset[] = {
     LEVEL_UP_MOVE(40, MOVE_ICE_BEAM),
     LEVEL_UP_MOVE(44, MOVE_SHELL_SMASH),
     LEVEL_UP_MOVE(48, MOVE_HYDRO_PUMP),
+        LEVEL_UP_MOVE( 1, MOVE_WATER_SHURIKEN),
     LEVEL_UP_END
 };
 
@@ -2543,6 +2562,7 @@ static const struct LevelUpMove sCloysterLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_LEER),
     LEVEL_UP_MOVE( 1, MOVE_TACKLE),
     LEVEL_UP_MOVE( 5, MOVE_RAZOR_SHELL),
+        LEVEL_UP_MOVE( 1, MOVE_WATER_SHURIKEN),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_SHELLDER
@@ -2759,6 +2779,7 @@ static const struct LevelUpMove sVoltorbLevelUpLearnset[] = {
     LEVEL_UP_MOVE(41, MOVE_EXPLOSION),
     LEVEL_UP_MOVE(46, MOVE_GYRO_BALL),
     LEVEL_UP_MOVE(50, MOVE_MIRROR_COAT),
+        LEVEL_UP_MOVE( 1, MOVE_TRICK_ROOM),
     LEVEL_UP_END
 };
 
@@ -2781,6 +2802,7 @@ static const struct LevelUpMove sElectrodeLevelUpLearnset[] = {
     LEVEL_UP_MOVE(47, MOVE_EXPLOSION),
     LEVEL_UP_MOVE(54, MOVE_GYRO_BALL),
     LEVEL_UP_MOVE(58, MOVE_MIRROR_COAT),
+        LEVEL_UP_MOVE( 1, MOVE_TRICK_ROOM),
     LEVEL_UP_END
 };
 
@@ -3792,6 +3814,7 @@ static const struct LevelUpMove sMagmarLevelUpLearnset[] = {
     LEVEL_UP_MOVE(52, MOVE_SUNNY_DAY),
     LEVEL_UP_MOVE(58, MOVE_FIRE_BLAST),
     LEVEL_UP_MOVE(64, MOVE_HYPER_BEAM),
+        LEVEL_UP_MOVE( 1, MOVE_ARMOR_CANNON),
     LEVEL_UP_END
 };
 
@@ -3812,6 +3835,8 @@ static const struct LevelUpMove sMagmortarLevelUpLearnset[] = {
     LEVEL_UP_MOVE(52, MOVE_SUNNY_DAY),
     LEVEL_UP_MOVE(58, MOVE_FIRE_BLAST),
     LEVEL_UP_MOVE(64, MOVE_HYPER_BEAM),
+        LEVEL_UP_MOVE( 1, MOVE_AURA_SPHERE),
+        LEVEL_UP_MOVE( 1, MOVE_ARMOR_CANNON),
     LEVEL_UP_END
 };
 #endif //P_GEN_4_CROSS_EVOS
@@ -3992,6 +4017,8 @@ static const struct LevelUpMove sEeveeLevelUpLearnset[] = {
     LEVEL_UP_MOVE(45, MOVE_CHARM),
     LEVEL_UP_MOVE(50, MOVE_DOUBLE_EDGE),
     LEVEL_UP_MOVE(55, MOVE_LAST_RESORT),
+        LEVEL_UP_MOVE( 1, MOVE_SPIKY_SHIELD),
+        LEVEL_UP_MOVE( 1, MOVE_AIR_CUTTER),
     LEVEL_UP_END
 };
 
@@ -4020,6 +4047,7 @@ static const struct LevelUpMove sVaporeonLevelUpLearnset[] = {
     LEVEL_UP_MOVE(45, MOVE_ACID_ARMOR),
     LEVEL_UP_MOVE(50, MOVE_HYDRO_PUMP),
     LEVEL_UP_MOVE(55, MOVE_LAST_RESORT),
+        LEVEL_UP_MOVE( 1, MOVE_RECOVER),
     LEVEL_UP_END
 };
 
@@ -4048,6 +4076,8 @@ static const struct LevelUpMove sJolteonLevelUpLearnset[] = {
     LEVEL_UP_MOVE(45, MOVE_AGILITY),
     LEVEL_UP_MOVE(50, MOVE_THUNDER),
     LEVEL_UP_MOVE(55, MOVE_LAST_RESORT),
+        LEVEL_UP_MOVE( 1, MOVE_SPIKY_SHIELD),
+        LEVEL_UP_MOVE( 1, MOVE_AIR_CUTTER),
     LEVEL_UP_END
 };
 
@@ -4131,6 +4161,8 @@ static const struct LevelUpMove sUmbreonLevelUpLearnset[] = {
     LEVEL_UP_MOVE(45, MOVE_SCREECH),
     LEVEL_UP_MOVE(50, MOVE_MEAN_LOOK),
     LEVEL_UP_MOVE(55, MOVE_LAST_RESORT),
+        LEVEL_UP_MOVE( 1, MOVE_PARTING_SHOT),
+        LEVEL_UP_MOVE( 1, MOVE_FOLLOW_ME),
     LEVEL_UP_END
 };
 #endif //P_GEN_2_CROSS_EVOS
@@ -4238,6 +4270,8 @@ static const struct LevelUpMove sPorygonLevelUpLearnset[] = {
     LEVEL_UP_MOVE(50, MOVE_DOUBLE_EDGE),
     LEVEL_UP_MOVE(55, MOVE_LOCK_ON),
     LEVEL_UP_MOVE(60, MOVE_ZAP_CANNON),
+        LEVEL_UP_MOVE( 1, MOVE_BOOMBURST),
+        LEVEL_UP_MOVE( 1, MOVE_FICKLE_BEAM),
     LEVEL_UP_END
 };
 
@@ -4258,6 +4292,8 @@ static const struct LevelUpMove sPorygon2LevelUpLearnset[] = {
     LEVEL_UP_MOVE(50, MOVE_LOCK_ON),
     LEVEL_UP_MOVE(55, MOVE_ZAP_CANNON),
     LEVEL_UP_MOVE(60, MOVE_HYPER_BEAM),
+        LEVEL_UP_MOVE( 1, MOVE_BOOMBURST),
+        LEVEL_UP_MOVE( 1, MOVE_FICKLE_BEAM),
     LEVEL_UP_END
 };
 
@@ -4281,6 +4317,8 @@ static const struct LevelUpMove sPorygonZLevelUpLearnset[] = {
     LEVEL_UP_MOVE(55, MOVE_LOCK_ON),
     LEVEL_UP_MOVE(60, MOVE_ZAP_CANNON),
     LEVEL_UP_MOVE(65, MOVE_HYPER_BEAM),
+        LEVEL_UP_MOVE( 1, MOVE_BOOMBURST),
+        LEVEL_UP_MOVE( 1, MOVE_FICKLE_BEAM),
     LEVEL_UP_END
 };
 #endif //P_GEN_4_CROSS_EVOS
@@ -4753,6 +4791,7 @@ static const struct LevelUpMove sCyndaquilLevelUpLearnset[] = {
     LEVEL_UP_MOVE(55, MOVE_DOUBLE_EDGE),
     LEVEL_UP_MOVE(58, MOVE_OVERHEAT),
     LEVEL_UP_MOVE(64, MOVE_ERUPTION),
+        LEVEL_UP_MOVE( 1, MOVE_BURN_UP),
     LEVEL_UP_END
 };
 
@@ -4773,6 +4812,7 @@ static const struct LevelUpMove sQuilavaLevelUpLearnset[] = {
     LEVEL_UP_MOVE(64, MOVE_DOUBLE_EDGE),
     LEVEL_UP_MOVE(68, MOVE_OVERHEAT),
     LEVEL_UP_MOVE(75, MOVE_ERUPTION),
+        LEVEL_UP_MOVE( 1, MOVE_BURN_UP),
     LEVEL_UP_END
 };
 
@@ -4794,6 +4834,7 @@ static const struct LevelUpMove sTyphlosionLevelUpLearnset[] = {
     LEVEL_UP_MOVE(56, MOVE_INFERNO),
     LEVEL_UP_MOVE(61, MOVE_ROLLOUT),
     LEVEL_UP_MOVE(74, MOVE_OVERHEAT),
+        LEVEL_UP_MOVE( 1, MOVE_BURN_UP),
     LEVEL_UP_END
 };
 
@@ -4838,6 +4879,7 @@ static const struct LevelUpMove sTotodileLevelUpLearnset[] = {
     LEVEL_UP_MOVE(41, MOVE_AQUA_TAIL),
     LEVEL_UP_MOVE(45, MOVE_SUPERPOWER),
     LEVEL_UP_MOVE(50, MOVE_HYDRO_PUMP),
+        LEVEL_UP_MOVE( 1, MOVE_FISHIOUS_REND),
     LEVEL_UP_END
 };
 
@@ -4856,6 +4898,7 @@ static const struct LevelUpMove sCroconawLevelUpLearnset[] = {
     LEVEL_UP_MOVE(47, MOVE_AQUA_TAIL),
     LEVEL_UP_MOVE(50, MOVE_SUPERPOWER),
     LEVEL_UP_MOVE(55, MOVE_HYDRO_PUMP),
+        LEVEL_UP_MOVE( 1, MOVE_FISHIOUS_REND),
     LEVEL_UP_END
 };
 
@@ -4875,6 +4918,7 @@ static const struct LevelUpMove sFeraligatrLevelUpLearnset[] = {
     LEVEL_UP_MOVE(59, MOVE_AQUA_TAIL),
     LEVEL_UP_MOVE(65, MOVE_SUPERPOWER),
     LEVEL_UP_MOVE(70, MOVE_HYDRO_PUMP),
+        LEVEL_UP_MOVE( 1, MOVE_FISHIOUS_REND),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_TOTODILE
@@ -5059,6 +5103,9 @@ static const struct LevelUpMove sChinchouLevelUpLearnset[] = {
     LEVEL_UP_MOVE(36, MOVE_FLAIL),
     LEVEL_UP_MOVE(40, MOVE_TAKE_DOWN),
     LEVEL_UP_MOVE(44, MOVE_HYDRO_PUMP),
+        LEVEL_UP_MOVE( 1, MOVE_WATER_SPOUT),
+        LEVEL_UP_MOVE( 1, MOVE_TAIL_GLOW),
+        LEVEL_UP_MOVE( 1, MOVE_SIGNAL_BEAM),
     LEVEL_UP_END
 };
 
@@ -5080,6 +5127,9 @@ static const struct LevelUpMove sLanturnLevelUpLearnset[] = {
     LEVEL_UP_MOVE(42, MOVE_FLAIL),
     LEVEL_UP_MOVE(48, MOVE_TAKE_DOWN),
     LEVEL_UP_MOVE(54, MOVE_HYDRO_PUMP),
+        LEVEL_UP_MOVE( 1, MOVE_WATER_SPOUT),
+        LEVEL_UP_MOVE( 1, MOVE_TAIL_GLOW),
+        LEVEL_UP_MOVE( 1, MOVE_SIGNAL_BEAM),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_CHINCHOU
@@ -5208,6 +5258,8 @@ static const struct LevelUpMove sMareepLevelUpLearnset[] = {
     LEVEL_UP_MOVE(39, MOVE_DAZZLING_GLEAM),
     LEVEL_UP_MOVE(43, MOVE_LIGHT_SCREEN),
     LEVEL_UP_MOVE(46, MOVE_THUNDER),
+        LEVEL_UP_MOVE( 1, MOVE_DRACO_METEOR),
+        LEVEL_UP_MOVE( 1, MOVE_HYDRO_PUMP),
     LEVEL_UP_END
 };
 
@@ -5227,6 +5279,8 @@ static const struct LevelUpMove sFlaaffyLevelUpLearnset[] = {
     LEVEL_UP_MOVE(47, MOVE_DAZZLING_GLEAM),
     LEVEL_UP_MOVE(52, MOVE_LIGHT_SCREEN),
     LEVEL_UP_MOVE(56, MOVE_THUNDER),
+        LEVEL_UP_MOVE( 1, MOVE_DRACO_METEOR),
+        LEVEL_UP_MOVE( 1, MOVE_HYDRO_PUMP),
     LEVEL_UP_END
 };
 
@@ -5251,6 +5305,8 @@ static const struct LevelUpMove sAmpharosLevelUpLearnset[] = {
     LEVEL_UP_MOVE(51, MOVE_DAZZLING_GLEAM),
     LEVEL_UP_MOVE(57, MOVE_LIGHT_SCREEN),
     LEVEL_UP_MOVE(62, MOVE_THUNDER),
+        LEVEL_UP_MOVE( 1, MOVE_DRACO_METEOR),
+        LEVEL_UP_MOVE( 1, MOVE_HYDRO_PUMP),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_MAREEP
@@ -5521,6 +5577,8 @@ static const struct LevelUpMove sYanmaLevelUpLearnset[] = {
     LEVEL_UP_MOVE(49, MOVE_U_TURN),
     LEVEL_UP_MOVE(54, MOVE_AIR_SLASH),
     LEVEL_UP_MOVE(57, MOVE_BUG_BUZZ),
+        LEVEL_UP_MOVE( 1, MOVE_BOOMBURST),
+        LEVEL_UP_MOVE( 1, MOVE_QUIVER_DANCE),
     LEVEL_UP_END
 };
 
@@ -5542,6 +5600,8 @@ static const struct LevelUpMove sYanmegaLevelUpLearnset[] = {
     LEVEL_UP_MOVE(43, MOVE_SLASH),
     LEVEL_UP_MOVE(46, MOVE_SCREECH),
     LEVEL_UP_MOVE(49, MOVE_U_TURN),
+        LEVEL_UP_MOVE( 1, MOVE_BOOMBURST),
+        LEVEL_UP_MOVE( 1, MOVE_QUIVER_DANCE),
     LEVEL_UP_END
 };
 #endif //P_GEN_4_CROSS_EVOS
@@ -5649,6 +5709,8 @@ static const struct LevelUpMove sHonchkrowLevelUpLearnset[] = {
     LEVEL_UP_MOVE(45, MOVE_FOUL_PLAY),
     LEVEL_UP_MOVE(55, MOVE_DARK_PULSE),
     LEVEL_UP_MOVE(65, MOVE_COMEUPPANCE),
+        LEVEL_UP_MOVE( 1, MOVE_BOLT_BEAK),
+        LEVEL_UP_MOVE( 1, MOVE_RAGING_FURY),
     LEVEL_UP_END
 };
 #endif //P_GEN_4_CROSS_EVOS
@@ -5806,6 +5868,8 @@ static const struct LevelUpMove sForretressLevelUpLearnset[] = {
     LEVEL_UP_MOVE(42, MOVE_IRON_DEFENSE),
     LEVEL_UP_MOVE(46, MOVE_GYRO_BALL),
     LEVEL_UP_MOVE(50, MOVE_DOUBLE_EDGE),
+        LEVEL_UP_MOVE( 1, MOVE_BANEFUL_BUNKER),
+        LEVEL_UP_MOVE( 1, MOVE_POWDER),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_PINECO
@@ -6045,6 +6109,7 @@ static const struct LevelUpMove sHeracrossLevelUpLearnset[] = {
     LEVEL_UP_MOVE(50, MOVE_SWORDS_DANCE),
     LEVEL_UP_MOVE(55, MOVE_MEGAHORN),
     LEVEL_UP_MOVE(60, MOVE_CLOSE_COMBAT),
+        LEVEL_UP_MOVE( 1, MOVE_BULLET_PUNCH),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_HERACROSS
@@ -6233,6 +6298,8 @@ static const struct LevelUpMove sSlugmaLevelUpLearnset[] = {
     LEVEL_UP_MOVE(43, MOVE_RECOVER),
     LEVEL_UP_MOVE(48, MOVE_FLAMETHROWER),
     LEVEL_UP_MOVE(50, MOVE_EARTH_POWER),
+        LEVEL_UP_MOVE( 1, MOVE_BURN_UP),
+        LEVEL_UP_MOVE( 1, MOVE_TRICK_ROOM),
     LEVEL_UP_END
 };
 
@@ -6253,6 +6320,8 @@ static const struct LevelUpMove sMagcargoLevelUpLearnset[] = {
     LEVEL_UP_MOVE(43, MOVE_BODY_SLAM),
     LEVEL_UP_MOVE(47, MOVE_RECOVER),
     LEVEL_UP_MOVE(54, MOVE_FLAMETHROWER),
+        LEVEL_UP_MOVE( 1, MOVE_BURN_UP),
+        LEVEL_UP_MOVE( 1, MOVE_TRICK_ROOM),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_SLUGMA
@@ -6503,6 +6572,7 @@ static const struct LevelUpMove sHoundourLevelUpLearnset[] = {
     LEVEL_UP_MOVE(49, MOVE_CRUNCH),
     LEVEL_UP_MOVE(52, MOVE_NASTY_PLOT),
     LEVEL_UP_MOVE(56, MOVE_INFERNO),
+        LEVEL_UP_MOVE( 1, MOVE_FIERY_WRATH),
     LEVEL_UP_END
 };
 
@@ -6524,6 +6594,7 @@ static const struct LevelUpMove sHoundoomLevelUpLearnset[] = {
     LEVEL_UP_MOVE(50, MOVE_FLAMETHROWER),
     LEVEL_UP_MOVE(56, MOVE_CRUNCH),
     LEVEL_UP_MOVE(62, MOVE_INFERNO),
+        LEVEL_UP_MOVE( 1, MOVE_FIERY_WRATH),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_HOUNDOUR
@@ -6733,6 +6804,7 @@ static const struct LevelUpMove sLarvitarLevelUpLearnset[] = {
     LEVEL_UP_MOVE(36, MOVE_THRASH),
     LEVEL_UP_MOVE(39, MOVE_SANDSTORM),
     LEVEL_UP_MOVE(42, MOVE_HYPER_BEAM),
+        LEVEL_UP_MOVE( 1, MOVE_ENDEAVOR),
     LEVEL_UP_END
 };
 
@@ -6754,6 +6826,7 @@ static const struct LevelUpMove sPupitarLevelUpLearnset[] = {
     LEVEL_UP_MOVE(42, MOVE_THRASH),
     LEVEL_UP_MOVE(47, MOVE_SANDSTORM),
     LEVEL_UP_MOVE(52, MOVE_HYPER_BEAM),
+        LEVEL_UP_MOVE( 1, MOVE_ENDEAVOR),
     LEVEL_UP_END
 };
 
@@ -6780,6 +6853,7 @@ static const struct LevelUpMove sTyranitarLevelUpLearnset[] = {
     LEVEL_UP_MOVE(47, MOVE_SANDSTORM),
     LEVEL_UP_MOVE(52, MOVE_HYPER_BEAM),
     LEVEL_UP_MOVE(59, MOVE_GIGA_IMPACT),
+        LEVEL_UP_MOVE( 1, MOVE_ENDEAVOR),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_LARVITAR
@@ -6861,6 +6935,9 @@ static const struct LevelUpMove sTreeckoLevelUpLearnset[] = {
     LEVEL_UP_MOVE(33, MOVE_SCREECH),
     LEVEL_UP_MOVE(36, MOVE_ENDEAVOR),
     LEVEL_UP_MOVE(39, MOVE_LEAF_STORM),
+        LEVEL_UP_MOVE( 1, MOVE_POWER_GEM),
+        LEVEL_UP_MOVE( 1, MOVE_GLARE),
+        LEVEL_UP_MOVE( 1, MOVE_DRAGON_ENERGY),
     LEVEL_UP_END
 };
 
@@ -6884,6 +6961,9 @@ static const struct LevelUpMove sGrovyleLevelUpLearnset[] = {
     LEVEL_UP_MOVE(45, MOVE_SCREECH),
     LEVEL_UP_MOVE(50, MOVE_ENDEAVOR),
     LEVEL_UP_MOVE(55, MOVE_LEAF_STORM),
+        LEVEL_UP_MOVE( 1, MOVE_POWER_GEM),
+        LEVEL_UP_MOVE( 1, MOVE_GLARE),
+        LEVEL_UP_MOVE( 1, MOVE_DRAGON_ENERGY),
     LEVEL_UP_END
 };
 
@@ -6908,6 +6988,9 @@ static const struct LevelUpMove sSceptileLevelUpLearnset[] = {
     LEVEL_UP_MOVE(42, MOVE_SCREECH),
     LEVEL_UP_MOVE(49, MOVE_ENDEAVOR),
     LEVEL_UP_MOVE(56, MOVE_LEAF_STORM),
+        LEVEL_UP_MOVE( 1, MOVE_POWER_GEM),
+        LEVEL_UP_MOVE( 1, MOVE_GLARE),
+        LEVEL_UP_MOVE( 1, MOVE_DRAGON_ENERGY),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_TREECKO
@@ -6929,6 +7012,8 @@ static const struct LevelUpMove sTorchicLevelUpLearnset[] = {
     LEVEL_UP_MOVE(33, MOVE_FEATHER_DANCE),
     LEVEL_UP_MOVE(36, MOVE_REVERSAL),
     LEVEL_UP_MOVE(39, MOVE_FLARE_BLITZ),
+        LEVEL_UP_MOVE( 1, MOVE_V_CREATE),
+        LEVEL_UP_MOVE( 1, MOVE_BRAVE_BIRD),
     LEVEL_UP_END
 };
 
@@ -6951,6 +7036,7 @@ static const struct LevelUpMove sCombuskenLevelUpLearnset[] = {
     LEVEL_UP_MOVE(45, MOVE_BULK_UP),
     LEVEL_UP_MOVE(50, MOVE_REVERSAL),
     LEVEL_UP_MOVE(55, MOVE_FLARE_BLITZ),
+        LEVEL_UP_MOVE( 1, MOVE_V_CREATE),
     LEVEL_UP_END
 };
 
@@ -6975,6 +7061,7 @@ static const struct LevelUpMove sBlazikenLevelUpLearnset[] = {
     LEVEL_UP_MOVE(49, MOVE_REVERSAL),
     LEVEL_UP_MOVE(56, MOVE_FLARE_BLITZ),
     LEVEL_UP_MOVE(63, MOVE_BRAVE_BIRD),
+        LEVEL_UP_MOVE( 1, MOVE_V_CREATE),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_TORCHIC
@@ -6996,6 +7083,8 @@ static const struct LevelUpMove sMudkipLevelUpLearnset[] = {
     LEVEL_UP_MOVE(33, MOVE_SCREECH),
     LEVEL_UP_MOVE(36, MOVE_ENDEAVOR),
     LEVEL_UP_MOVE(39, MOVE_HYDRO_PUMP),
+        LEVEL_UP_MOVE( 1, MOVE_WAVE_CRASH),
+        LEVEL_UP_MOVE( 1, MOVE_SHORE_UP),
     LEVEL_UP_END
 };
 
@@ -7016,6 +7105,8 @@ static const struct LevelUpMove sMarshtompLevelUpLearnset[] = {
     LEVEL_UP_MOVE(45, MOVE_SCREECH),
     LEVEL_UP_MOVE(50, MOVE_ENDEAVOR),
     LEVEL_UP_MOVE(55, MOVE_HYDRO_PUMP),
+        LEVEL_UP_MOVE( 1, MOVE_WAVE_CRASH),
+        LEVEL_UP_MOVE( 1, MOVE_SHORE_UP),
     LEVEL_UP_END
 };
 
@@ -7039,6 +7130,8 @@ static const struct LevelUpMove sSwampertLevelUpLearnset[] = {
     LEVEL_UP_MOVE(49, MOVE_SCREECH),
     LEVEL_UP_MOVE(56, MOVE_ENDEAVOR),
     LEVEL_UP_MOVE(63, MOVE_HYDRO_PUMP),
+        LEVEL_UP_MOVE( 1, MOVE_WAVE_CRASH),
+        LEVEL_UP_MOVE( 1, MOVE_SHORE_UP),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_MUDKIP
@@ -7628,6 +7721,7 @@ static const struct LevelUpMove sShroomishLevelUpLearnset[] = {
     LEVEL_UP_MOVE(33, MOVE_TOXIC),
     LEVEL_UP_MOVE(36, MOVE_SEED_BOMB),
     LEVEL_UP_MOVE(40, MOVE_SPORE),
+        LEVEL_UP_MOVE( 1, MOVE_TROP_KICK),
     LEVEL_UP_END
 };
 
@@ -7651,6 +7745,7 @@ static const struct LevelUpMove sBreloomLevelUpLearnset[] = {
     LEVEL_UP_MOVE(44, MOVE_SEED_BOMB),
     LEVEL_UP_MOVE(50, MOVE_DYNAMIC_PUNCH),
     LEVEL_UP_MOVE(55, MOVE_FOCUS_PUNCH),
+        LEVEL_UP_MOVE( 1, MOVE_TROP_KICK),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_SHROOMISH
@@ -8281,6 +8376,7 @@ static const struct LevelUpMove sRoseliaLevelUpLearnset[] = {
     LEVEL_UP_MOVE(50, MOVE_AROMATHERAPY),
     LEVEL_UP_MOVE(55, MOVE_INGRAIN),
     LEVEL_UP_MOVE(60, MOVE_PETAL_DANCE),
+        LEVEL_UP_MOVE( 1, MOVE_SLEEP_POWDER),
     LEVEL_UP_END
 };
 
@@ -8305,6 +8401,7 @@ static const struct LevelUpMove sRoseradeLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_GROWTH),
     LEVEL_UP_MOVE( 1, MOVE_STUN_SPORE),
     LEVEL_UP_MOVE( 1, MOVE_WORRY_SEED),
+        LEVEL_UP_MOVE( 1, MOVE_SLEEP_POWDER),
     LEVEL_UP_END
 };
 #endif //P_GEN_4_CROSS_EVOS
@@ -9009,6 +9106,9 @@ static const struct LevelUpMove sArmaldoLevelUpLearnset[] = {
     LEVEL_UP_MOVE(36, MOVE_ROCK_BLAST),
     LEVEL_UP_MOVE(43, MOVE_PROTECT),
     LEVEL_UP_MOVE(48, MOVE_X_SCISSOR),
+        LEVEL_UP_MOVE( 1, MOVE_FIRST_IMPRESSION),
+        LEVEL_UP_MOVE( 1, MOVE_HEAD_SMASH),
+        LEVEL_UP_MOVE( 1, MOVE_CRABHAMMER),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_ANORITH
@@ -9140,6 +9240,7 @@ static const struct LevelUpMove sDuskullLevelUpLearnset[] = {
     LEVEL_UP_MOVE(36, MOVE_CURSE),
     LEVEL_UP_MOVE(40, MOVE_SHADOW_BALL),
     LEVEL_UP_MOVE(44, MOVE_FUTURE_SIGHT),
+        LEVEL_UP_MOVE( 1, MOVE_DRAIN_PUNCH),
     LEVEL_UP_END
 };
 
@@ -9163,6 +9264,7 @@ static const struct LevelUpMove sDusclopsLevelUpLearnset[] = {
     LEVEL_UP_MOVE(36, MOVE_CURSE),
     LEVEL_UP_MOVE(42, MOVE_SHADOW_BALL),
     LEVEL_UP_MOVE(48, MOVE_FUTURE_SIGHT),
+        LEVEL_UP_MOVE( 1, MOVE_DRAIN_PUNCH),
     LEVEL_UP_END
 };
 
@@ -9188,6 +9290,8 @@ static const struct LevelUpMove sDusknoirLevelUpLearnset[] = {
     LEVEL_UP_MOVE(42, MOVE_SHADOW_BALL),
     LEVEL_UP_MOVE(48, MOVE_FUTURE_SIGHT),
     LEVEL_UP_MOVE(54, MOVE_DESTINY_BOND),
+        LEVEL_UP_MOVE( 1, MOVE_LAST_RESPECTS),
+        LEVEL_UP_MOVE( 1, MOVE_DRAIN_PUNCH),
     LEVEL_UP_END
 };
 #endif //P_GEN_4_CROSS_EVOS
@@ -9331,6 +9435,7 @@ static const struct LevelUpMove sFroslassLevelUpLearnset[] = {
     LEVEL_UP_MOVE(54, MOVE_AURORA_VEIL),
     LEVEL_UP_MOVE(61, MOVE_SHADOW_BALL),
     LEVEL_UP_MOVE(68, MOVE_BLIZZARD),
+        LEVEL_UP_MOVE( 1, MOVE_LAST_RESPECTS),
     LEVEL_UP_END
 };
 #endif //P_GEN_4_CROSS_EVOS
@@ -10029,6 +10134,7 @@ static const struct LevelUpMove sEmpoleonLevelUpLearnset[] = {
     LEVEL_UP_MOVE(52, MOVE_DRILL_PECK),
     LEVEL_UP_MOVE(59, MOVE_HYDRO_PUMP),
     LEVEL_UP_MOVE(66, MOVE_WAVE_CRASH),
+        LEVEL_UP_MOVE( 1, MOVE_AIR_CUTTER),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_PIPLUP
@@ -10047,6 +10153,8 @@ static const struct LevelUpMove sStarlyLevelUpLearnset[] = {
     LEVEL_UP_MOVE(33, MOVE_AGILITY),
     LEVEL_UP_MOVE(37, MOVE_BRAVE_BIRD),
     LEVEL_UP_MOVE(41, MOVE_FINAL_GAMBIT),
+        LEVEL_UP_MOVE( 1, MOVE_OUTRAGE),
+        LEVEL_UP_MOVE( 1, MOVE_TAILWIND),
     LEVEL_UP_END
 };
 
@@ -10063,6 +10171,8 @@ static const struct LevelUpMove sStaraviaLevelUpLearnset[] = {
     LEVEL_UP_MOVE(38, MOVE_AGILITY),
     LEVEL_UP_MOVE(43, MOVE_BRAVE_BIRD),
     LEVEL_UP_MOVE(48, MOVE_FINAL_GAMBIT),
+        LEVEL_UP_MOVE( 1, MOVE_OUTRAGE),
+        LEVEL_UP_MOVE( 1, MOVE_TAILWIND),
     LEVEL_UP_END
 };
 
@@ -10080,6 +10190,8 @@ static const struct LevelUpMove sStaraptorLevelUpLearnset[] = {
     LEVEL_UP_MOVE(41, MOVE_AGILITY),
     LEVEL_UP_MOVE(49, MOVE_BRAVE_BIRD),
     LEVEL_UP_MOVE(57, MOVE_FINAL_GAMBIT),
+        LEVEL_UP_MOVE( 1, MOVE_OUTRAGE),
+        LEVEL_UP_MOVE( 1, MOVE_TAILWIND),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_STARLY
@@ -10797,6 +10909,7 @@ static const struct LevelUpMove sSpiritombLevelUpLearnset[] = {
     LEVEL_UP_MOVE(50, MOVE_DARK_PULSE),
     LEVEL_UP_MOVE(55, MOVE_HYPNOSIS),
     LEVEL_UP_MOVE(60, MOVE_DREAM_EATER),
+        LEVEL_UP_MOVE( 1, MOVE_ASTRAL_BARRAGE),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_SPIRITOMB
@@ -10921,6 +11034,7 @@ static const struct LevelUpMove sHippopotasLevelUpLearnset[] = {
     LEVEL_UP_MOVE(44, MOVE_DOUBLE_EDGE),
     LEVEL_UP_MOVE(48, MOVE_FISSURE),
     LEVEL_UP_MOVE(52, MOVE_SLACK_OFF),
+        LEVEL_UP_MOVE( 1, MOVE_WILD_CHARGE),
     LEVEL_UP_END
 };
 
@@ -10943,6 +11057,7 @@ static const struct LevelUpMove sHippowdonLevelUpLearnset[] = {
     LEVEL_UP_MOVE(50, MOVE_DOUBLE_EDGE),
     LEVEL_UP_MOVE(56, MOVE_FISSURE),
     LEVEL_UP_MOVE(62, MOVE_SLACK_OFF),
+        LEVEL_UP_MOVE( 1, MOVE_WILD_CHARGE),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_HIPPOPOTAS
@@ -10967,6 +11082,8 @@ static const struct LevelUpMove sSkorupiLevelUpLearnset[] = {
     LEVEL_UP_MOVE(42, MOVE_X_SCISSOR),
     LEVEL_UP_MOVE(45, MOVE_ACUPRESSURE),
     LEVEL_UP_MOVE(48, MOVE_CRUNCH),
+        LEVEL_UP_MOVE( 1, MOVE_JAW_LOCK),
+        LEVEL_UP_MOVE( 1, MOVE_FIRST_IMPRESSION),
     LEVEL_UP_END
 };
 
@@ -10992,6 +11109,8 @@ static const struct LevelUpMove sDrapionLevelUpLearnset[] = {
     LEVEL_UP_MOVE(44, MOVE_X_SCISSOR),
     LEVEL_UP_MOVE(49, MOVE_ACUPRESSURE),
     LEVEL_UP_MOVE(54, MOVE_CRUNCH),
+        LEVEL_UP_MOVE( 1, MOVE_JAW_LOCK),
+        LEVEL_UP_MOVE( 1, MOVE_FIRST_IMPRESSION),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_SKORUPI
@@ -11012,6 +11131,7 @@ static const struct LevelUpMove sCroagunkLevelUpLearnset[] = {
     LEVEL_UP_MOVE(40, MOVE_NASTY_PLOT),
     LEVEL_UP_MOVE(44, MOVE_SLUDGE_BOMB),
     LEVEL_UP_MOVE(48, MOVE_BELCH),
+        LEVEL_UP_MOVE( 1, MOVE_DIRE_CLAW),
     LEVEL_UP_END
 };
 
@@ -11030,6 +11150,7 @@ static const struct LevelUpMove sToxicroakLevelUpLearnset[] = {
     LEVEL_UP_MOVE(42, MOVE_NASTY_PLOT),
     LEVEL_UP_MOVE(48, MOVE_SLUDGE_BOMB),
     LEVEL_UP_MOVE(54, MOVE_BELCH),
+        LEVEL_UP_MOVE( 1, MOVE_DIRE_CLAW),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_CROAGUNK
@@ -11104,6 +11225,8 @@ static const struct LevelUpMove sSnoverLevelUpLearnset[] = {
     LEVEL_UP_MOVE(41, MOVE_WOOD_HAMMER),
     LEVEL_UP_MOVE(45, MOVE_BLIZZARD),
     LEVEL_UP_MOVE(50, MOVE_SHEER_COLD),
+        LEVEL_UP_MOVE( 1, MOVE_SPIKY_SHIELD),
+        LEVEL_UP_MOVE( 1, MOVE_SUPERPOWER),
     LEVEL_UP_END
 };
 
@@ -11122,6 +11245,8 @@ static const struct LevelUpMove sAbomasnowLevelUpLearnset[] = {
     LEVEL_UP_MOVE(43, MOVE_WOOD_HAMMER),
     LEVEL_UP_MOVE(49, MOVE_BLIZZARD),
     LEVEL_UP_MOVE(56, MOVE_SHEER_COLD),
+        LEVEL_UP_MOVE( 1, MOVE_SPIKY_SHIELD),
+        LEVEL_UP_MOVE( 1, MOVE_SUPERPOWER),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_SNOVER
@@ -11557,6 +11682,7 @@ static const struct LevelUpMove sTepigLevelUpLearnset[] = {
     LEVEL_UP_MOVE(37, MOVE_HEAD_SMASH),
     LEVEL_UP_MOVE(39, MOVE_ROAR),
     LEVEL_UP_MOVE(43, MOVE_FLARE_BLITZ),
+        LEVEL_UP_MOVE( 1, MOVE_CROSS_CHOP),
     LEVEL_UP_END
 };
 
@@ -11577,6 +11703,8 @@ static const struct LevelUpMove sPigniteLevelUpLearnset[] = {
     LEVEL_UP_MOVE(44, MOVE_HEAD_SMASH),
     LEVEL_UP_MOVE(47, MOVE_ROAR),
     LEVEL_UP_MOVE(52, MOVE_FLARE_BLITZ),
+        LEVEL_UP_MOVE( 1, MOVE_CLOSE_COMBAT),
+        LEVEL_UP_MOVE( 1, MOVE_CROSS_CHOP),
     LEVEL_UP_END
 };
 
@@ -11598,6 +11726,8 @@ static const struct LevelUpMove sEmboarLevelUpLearnset[] = {
     LEVEL_UP_MOVE(50, MOVE_HEAD_SMASH),
     LEVEL_UP_MOVE(55, MOVE_ROAR),
     LEVEL_UP_MOVE(62, MOVE_FLARE_BLITZ),
+        LEVEL_UP_MOVE( 1, MOVE_CLOSE_COMBAT),
+        LEVEL_UP_MOVE( 1, MOVE_CROSS_CHOP),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_TEPIG
@@ -11856,6 +11986,9 @@ static const struct LevelUpMove sSimisageLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_LICK),
     LEVEL_UP_MOVE( 1, MOVE_FURY_SWIPES),
     LEVEL_UP_MOVE( 1, MOVE_SEED_BOMB),
+        LEVEL_UP_MOVE( 1, MOVE_FAKE_OUT),
+        LEVEL_UP_MOVE( 1, MOVE_SOLAR_BLADE),
+        LEVEL_UP_MOVE( 1, MOVE_STONE_EDGE),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_PANSAGE
@@ -11886,6 +12019,7 @@ static const struct LevelUpMove sSimisearLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_LICK),
     LEVEL_UP_MOVE( 1, MOVE_FURY_SWIPES),
     LEVEL_UP_MOVE( 1, MOVE_FLAME_BURST),
+        LEVEL_UP_MOVE( 1, MOVE_AMNESIA),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_PANSEAR
@@ -11916,6 +12050,7 @@ static const struct LevelUpMove sSimipourLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_LICK),
     LEVEL_UP_MOVE( 1, MOVE_FURY_SWIPES),
     LEVEL_UP_MOVE( 1, MOVE_SCALD),
+        LEVEL_UP_MOVE( 1, MOVE_MUD_SHOT),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_PANPOUR
@@ -12063,6 +12198,8 @@ static const struct LevelUpMove sRoggenrolaLevelUpLearnset[] = {
     LEVEL_UP_MOVE(36, MOVE_SANDSTORM),
     LEVEL_UP_MOVE(40, MOVE_STONE_EDGE),
     LEVEL_UP_MOVE(44, MOVE_EXPLOSION),
+        LEVEL_UP_MOVE( 1, MOVE_OUTRAGE),
+        LEVEL_UP_MOVE( 1, MOVE_HEAD_SMASH),
     LEVEL_UP_END
 };
 
@@ -12082,6 +12219,8 @@ static const struct LevelUpMove sBoldoreLevelUpLearnset[] = {
     LEVEL_UP_MOVE(42, MOVE_SANDSTORM),
     LEVEL_UP_MOVE(48, MOVE_STONE_EDGE),
     LEVEL_UP_MOVE(54, MOVE_EXPLOSION),
+        LEVEL_UP_MOVE( 1, MOVE_OUTRAGE),
+        LEVEL_UP_MOVE( 1, MOVE_HEAD_SMASH),
     LEVEL_UP_END
 };
 
@@ -12100,6 +12239,8 @@ static const struct LevelUpMove sGigalithLevelUpLearnset[] = {
     LEVEL_UP_MOVE(42, MOVE_SANDSTORM),
     LEVEL_UP_MOVE(48, MOVE_STONE_EDGE),
     LEVEL_UP_MOVE(54, MOVE_EXPLOSION),
+        LEVEL_UP_MOVE( 1, MOVE_OUTRAGE),
+        LEVEL_UP_MOVE( 1, MOVE_HEAD_SMASH),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_ROGGENROLA
@@ -12765,6 +12906,7 @@ static const struct LevelUpMove sDarumakaGalarLevelUpLearnset[] = {
     LEVEL_UP_MOVE(40, MOVE_BLIZZARD),
     LEVEL_UP_MOVE(44, MOVE_THRASH),
     LEVEL_UP_MOVE(48, MOVE_SUPERPOWER),
+        LEVEL_UP_MOVE( 1, MOVE_FLARE_BLITZ),
     LEVEL_UP_END
 };
 
@@ -12785,6 +12927,7 @@ static const struct LevelUpMove sDarmanitanGalarLevelUpLearnset[] = {
     LEVEL_UP_MOVE(44, MOVE_BLIZZARD),
     LEVEL_UP_MOVE(50, MOVE_THRASH),
     LEVEL_UP_MOVE(56, MOVE_SUPERPOWER),
+        LEVEL_UP_MOVE( 1, MOVE_FLARE_BLITZ),
     LEVEL_UP_END
 };
 #endif //P_GALARIAN_FORMS
@@ -13368,6 +13511,7 @@ static const struct LevelUpMove sReuniclusLevelUpLearnset[] = {
     LEVEL_UP_MOVE(48, MOVE_SKILL_SWAP),
     LEVEL_UP_MOVE(56, MOVE_FUTURE_SIGHT),
     LEVEL_UP_MOVE(64, MOVE_WONDER_ROOM),
+        LEVEL_UP_MOVE( 1, MOVE_PSYCHO_BOOST),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_SOLOSIS
@@ -13483,6 +13627,7 @@ static const struct LevelUpMove sDeerlingLevelUpLearnset[] = {
     LEVEL_UP_MOVE(32, MOVE_CHARM),
     LEVEL_UP_MOVE(37, MOVE_DOUBLE_EDGE),
     LEVEL_UP_MOVE(42, MOVE_SOLAR_BEAM),
+        LEVEL_UP_MOVE( 1, MOVE_OBSTRUCT),
     LEVEL_UP_END
 };
 
@@ -13501,6 +13646,8 @@ static const struct LevelUpMove sSawsbuckLevelUpLearnset[] = {
     LEVEL_UP_MOVE(36, MOVE_CHARM),
     LEVEL_UP_MOVE(44, MOVE_DOUBLE_EDGE),
     LEVEL_UP_MOVE(52, MOVE_SOLAR_BEAM),
+        LEVEL_UP_MOVE( 1, MOVE_AXE_KICK),
+        LEVEL_UP_MOVE( 1, MOVE_OBSTRUCT),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_DEERLING
@@ -13642,6 +13789,7 @@ static const struct LevelUpMove sJellicentLevelUpLearnset[] = {
     LEVEL_UP_MOVE(43, MOVE_HYDRO_PUMP),
     LEVEL_UP_MOVE(48, MOVE_DESTINY_BOND),
     LEVEL_UP_MOVE(54, MOVE_WATER_SPOUT),
+        LEVEL_UP_MOVE( 1, MOVE_STRENGTH_SAP),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_FRILLISH
@@ -13702,6 +13850,7 @@ static const struct LevelUpMove sGalvantulaLevelUpLearnset[] = {
     LEVEL_UP_MOVE(44, MOVE_SCREECH),
     LEVEL_UP_MOVE(50, MOVE_GASTRO_ACID),
     LEVEL_UP_MOVE(56, MOVE_BUG_BUZZ),
+        LEVEL_UP_MOVE( 1, MOVE_SLEEP_POWDER),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_JOLTIK
@@ -13899,6 +14048,7 @@ static const struct LevelUpMove sLitwickLevelUpLearnset[] = {
     LEVEL_UP_MOVE(48, MOVE_PAIN_SPLIT),
     LEVEL_UP_MOVE(52, MOVE_OVERHEAT),
     LEVEL_UP_MOVE(56, MOVE_MEMENTO),
+        LEVEL_UP_MOVE( 1, MOVE_BURN_UP),
     LEVEL_UP_END
 };
 
@@ -13919,6 +14069,7 @@ static const struct LevelUpMove sLampentLevelUpLearnset[] = {
     LEVEL_UP_MOVE(52, MOVE_PAIN_SPLIT),
     LEVEL_UP_MOVE(58, MOVE_OVERHEAT),
     LEVEL_UP_MOVE(64, MOVE_MEMENTO),
+        LEVEL_UP_MOVE( 1, MOVE_BURN_UP),
     LEVEL_UP_END
 };
 
@@ -13939,6 +14090,8 @@ static const struct LevelUpMove sChandelureLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_OVERHEAT),
     LEVEL_UP_MOVE( 1, MOVE_HEX),
     LEVEL_UP_MOVE( 1, MOVE_INFERNO),
+        LEVEL_UP_MOVE( 1, MOVE_BURN_UP),
+        LEVEL_UP_MOVE( 1, MOVE_INFERNAL_PARADE),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_LITWICK
@@ -14029,6 +14182,9 @@ static const struct LevelUpMove sCubchooLevelUpLearnset[] = {
     LEVEL_UP_MOVE(36, MOVE_REST),
     LEVEL_UP_MOVE(39, MOVE_BLIZZARD),
     LEVEL_UP_MOVE(42, MOVE_SHEER_COLD),
+        LEVEL_UP_MOVE( 1, MOVE_JET_PUNCH),
+        LEVEL_UP_MOVE( 1, MOVE_ICE_HAMMER),
+        LEVEL_UP_MOVE( 1, MOVE_CLOSE_COMBAT),
     LEVEL_UP_END
 };
 
@@ -14053,6 +14209,9 @@ static const struct LevelUpMove sBearticLevelUpLearnset[] = {
     LEVEL_UP_MOVE(41, MOVE_BLIZZARD),
     LEVEL_UP_MOVE(46, MOVE_SHEER_COLD),
     LEVEL_UP_MOVE(51, MOVE_SUPERPOWER),
+        LEVEL_UP_MOVE( 1, MOVE_JET_PUNCH),
+        LEVEL_UP_MOVE( 1, MOVE_ICE_HAMMER),
+        LEVEL_UP_MOVE( 1, MOVE_CLOSE_COMBAT),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_CUBCHOO
@@ -14078,6 +14237,10 @@ static const struct LevelUpMove sCryogonalLevelUpLearnset[] = {
     LEVEL_UP_MOVE(52, MOVE_ACID_ARMOR),
     LEVEL_UP_MOVE(56, MOVE_SOLAR_BEAM),
     LEVEL_UP_MOVE(60, MOVE_SHEER_COLD),
+        LEVEL_UP_MOVE( 1, MOVE_HYDRO_PUMP),
+        LEVEL_UP_MOVE( 1, MOVE_HURRICANE),
+        LEVEL_UP_MOVE( 1, MOVE_TRICK_ROOM),
+        LEVEL_UP_MOVE( 1, MOVE_SIGNAL_BEAM),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_CRYOGONAL
@@ -14289,6 +14452,9 @@ static const struct LevelUpMove sPawniardLevelUpLearnset[] = {
     LEVEL_UP_MOVE(55, MOVE_IRON_HEAD),
     LEVEL_UP_MOVE(60, MOVE_SWORDS_DANCE),
     LEVEL_UP_MOVE(65, MOVE_GUILLOTINE),
+        LEVEL_UP_MOVE( 1, MOVE_FALSE_SURRENDER),
+        LEVEL_UP_MOVE( 1, MOVE_BULLET_PUNCH),
+        LEVEL_UP_MOVE( 1, MOVE_OBSTRUCT),
     LEVEL_UP_END
 };
 
@@ -14309,6 +14475,9 @@ static const struct LevelUpMove sBisharpLevelUpLearnset[] = {
     LEVEL_UP_MOVE(57, MOVE_IRON_HEAD),
     LEVEL_UP_MOVE(64, MOVE_SWORDS_DANCE),
     LEVEL_UP_MOVE(71, MOVE_GUILLOTINE),
+        LEVEL_UP_MOVE( 1, MOVE_FALSE_SURRENDER),
+        LEVEL_UP_MOVE( 1, MOVE_BULLET_PUNCH),
+        LEVEL_UP_MOVE( 1, MOVE_OBSTRUCT),
     LEVEL_UP_END
 };
 
@@ -14543,6 +14712,7 @@ static const struct LevelUpMove sZweilousLevelUpLearnset[] = {
     LEVEL_UP_MOVE(54, MOVE_DRAGON_RUSH),
     LEVEL_UP_MOVE(60, MOVE_NASTY_PLOT),
     LEVEL_UP_MOVE(66, MOVE_OUTRAGE),
+        LEVEL_UP_MOVE( 1, MOVE_HEAD_SMASH),
     LEVEL_UP_END
 };
 
@@ -14567,6 +14737,7 @@ static const struct LevelUpMove sHydreigonLevelUpLearnset[] = {
     LEVEL_UP_MOVE(60, MOVE_NASTY_PLOT),
     LEVEL_UP_MOVE(68, MOVE_OUTRAGE),
     LEVEL_UP_MOVE(76, MOVE_HYPER_BEAM),
+        LEVEL_UP_MOVE( 1, MOVE_NIGHT_DAZE),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_DEINO
@@ -14585,6 +14756,8 @@ static const struct LevelUpMove sLarvestaLevelUpLearnset[] = {
     LEVEL_UP_MOVE(54, MOVE_AMNESIA),
     LEVEL_UP_MOVE(60, MOVE_DOUBLE_EDGE),
     LEVEL_UP_MOVE(66, MOVE_FLARE_BLITZ),
+        LEVEL_UP_MOVE( 1, MOVE_BURN_UP),
+        LEVEL_UP_MOVE( 1, MOVE_MORNING_SUN),
     LEVEL_UP_END
 };
 
@@ -14611,6 +14784,7 @@ static const struct LevelUpMove sVolcaronaLevelUpLearnset[] = {
     LEVEL_UP_MOVE(62, MOVE_HURRICANE),
     LEVEL_UP_MOVE(70, MOVE_FIRE_BLAST),
     LEVEL_UP_MOVE(78, MOVE_RAGE_POWDER),
+        LEVEL_UP_MOVE( 1, MOVE_BURN_UP),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_LARVESTA
