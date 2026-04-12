@@ -16929,3 +16929,110 @@ Nature: Adamant
 - Powder Snow
 - Growl
 - Icy Wind
+
+=== TRAINER_SNOW_R2_1_BRETT ===
+Name: BRETT
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Poochyena
+Level: 8
+Ability: Rattled
+Nature: Adamant
+- Tackle
+- Howl
+- Sand Attack
+- Bite
+
+Starly
+Level: 8
+Ability: Keen Eye
+Nature: Jolly
+- Tackle
+- Growl
+- Quick Attack
+
+=== TRAINER_SNOW_R2_2_FINN ===
+Name: FINN
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Meowth
+Level: 9
+Ability: Technician
+Nature: Jolly
+- Scratch
+- Growl
+- Bite
+- Fake Out
+
+Swinub
+Level: 9
+Ability: Snow Cloak
+Nature: Adamant
+- Tackle
+- Mud-Slap
+- Powder Snow
+- Endure
+
+=== TRAINER_SNOW_R2_3_MILA ===
+Name: MILA
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Snorunt
+Level: 10
+Ability: Ice Body
+Nature: Timid
+- Powder Snow
+- Leer
+- Double Team
+- Icy Wind
+
+=== TRAINER_SNOW_R2_4_GUS ===
+Name: GUS
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Geodude
+Level: 9
+Ability: Rock Head
+Nature: Adamant
+- Tackle
+- Defense Curl
+- Rock Polish
+- Rollout
+
+Roggenrola
+Level: 10
+Ability: Sturdy
+Nature: Brave
+- Tackle
+- Harden
+- Sand Attack
+- Headbutt
+
+Woobat
+Level: 11
+Ability: Unaware
+Nature: Timid
+- Confusion
+- Gust
+- Attract
+- Heart Stamp
