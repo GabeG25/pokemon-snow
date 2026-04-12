@@ -1337,7 +1337,7 @@
 #define FLAG_UNUSED_0x4FF                                           0x4FF // Unused Flag
 
 // Trainer Flags
-// Trainer flags occupy 0x500 - 0x8FF (MAX_TRAINERS_COUNT_EMERALD = 1024)
+// Trainer flags occupy 0x500 - 0x93F (MAX_TRAINERS_COUNT_EMERALD = 1088)
 // See constants/opponents.h. The values there + FLAG_TRAINER_FLAG_START are the flag IDs
 
 #define TRAINER_FLAGS_START                                         0x500
