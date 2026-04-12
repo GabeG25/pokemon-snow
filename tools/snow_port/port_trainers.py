@@ -62,6 +62,12 @@ CLASS_FALLBACKS = {
     "Miner": "Hiker",    # probed 2026-04-11 R2 --commit attempt, compiler suggested HIKER
 }
 
+# Grunt team name → engine team name. Derives Class/Pic/Music:
+#   Class: "Team {resolved}"   Pic: "{resolved} Grunt M"   Music: "{resolved}"
+GRUNT_TEAM_FALLBACK = {
+    "Veil": "Magma",  # Team Veil is design-archive only; pre-loaded to Magma (closest evil-team asset in pokeemerald-expansion). Revisit when real Team Veil class assets ship.
+}
+
 CLASS_GENDER_DEFAULTS = {
     "Youngster": "Male",
     "Lass": "Female",
@@ -73,7 +79,7 @@ CLASS_GENDER_DEFAULTS = {
 }
 
 TRAINER_HEADER_RE = re.compile(
-    r"^###\s+R(\d+)-(\d+)\s+—\s+(.+?)\s+\|\s+(\d+)\s+Pokémon\s*$"
+    r"^###\s+R(\d+)-(\d+)\s+—\s+(.+?)\s+\|\s+(\d+)\s+Pokémon(?:\s*\|.*)?\s*$"
 )
 
 
@@ -93,14 +99,35 @@ class Trainer:
     index: int
     klass: str  # canonical class from spec (pre-fallback)
     name: str
+    is_grunt: bool = False
+    team: str | None = None  # e.g. "Veil" for Team Veil Grunt
     mons: list[Mon] = field(default_factory=list)
 
     @property
     def emit_class(self) -> str:
+        if self.is_grunt:
+            t = GRUNT_TEAM_FALLBACK.get(self.team, self.team)
+            return f"Team {t}"
         return CLASS_FALLBACKS.get(self.klass, self.klass)
 
     @property
+    def emit_pic(self) -> str:
+        if self.is_grunt:
+            t = GRUNT_TEAM_FALLBACK.get(self.team, self.team)
+            return f"{t} Grunt M"
+        return self.emit_class
+
+    @property
+    def emit_music(self) -> str:
+        if self.is_grunt:
+            t = GRUNT_TEAM_FALLBACK.get(self.team, self.team)
+            return t
+        return self.gender
+
+    @property
     def gender(self) -> str:
+        if self.is_grunt:
+            return "Male"  # CEO-approved default 2026-04-12. Spec silent on grunt gender. Revisit per-grunt when real Veil assets ship.
         return CLASS_GENDER_DEFAULTS.get(self.emit_class, "Male")
 
     @property
@@ -144,6 +171,8 @@ def parse_spec(spec_text: str, route_filter: int | None = None) -> list[Trainer]
         label = m.group(3)
         expected_count = int(m.group(4))
         klass, name = split_class_and_name(label)
+        is_grunt = name == "Grunt" and klass.startswith("Team ")
+        team = klass.split(" ", 1)[1] if is_grunt else None
 
         if route_filter is not None and route != route_filter:
             i += 1
@@ -184,7 +213,8 @@ def parse_spec(spec_text: str, route_filter: int | None = None) -> list[Trainer]
                 f"parsed {len(mons)}"
             )
         trainers.append(
-            Trainer(route=route, index=index, klass=klass, name=name, mons=mons)
+            Trainer(route=route, index=index, klass=klass, name=name,
+                    is_grunt=is_grunt, team=team, mons=mons)
         )
         i = j
     return trainers
@@ -229,9 +259,9 @@ def emit_trainer(t: Trainer, double_battles: set[tuple[int, int]]) -> str:
         f"=== {t.constant} ===",
         f"Name: {t.name.upper()}",
         f"Class: {t.emit_class}",
-        f"Pic: {t.emit_class}",
+        f"Pic: {t.emit_pic}",
         f"Gender: {t.gender}",
-        f"Music: {t.gender}",
+        f"Music: {t.emit_music}",
         f"Double Battle: {'Yes' if is_double else 'No'}",
         f"AI: {AI_SUITE_FULL}",
     ]
