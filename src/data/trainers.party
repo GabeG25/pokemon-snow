@@ -18800,3 +18800,219 @@ Nature: Brave
 - Earthquake
 - Heavy Slam
 - Curse
+
+=== TRAINER_SNOW_R11_1_VERA ===
+Name: VERA
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Nidorina @ Sitrus Berry
+Level: 50
+Ability: Poison Point
+Nature: Modest
+- Sludge Bomb
+- Earth Power
+- Crunch
+- Super Fang
+
+Roselia @ Sitrus Berry
+Level: 51
+Ability: Natural Cure
+Nature: Calm
+- Giga Drain
+- Sludge Bomb
+- Synthesis
+- Toxic Spikes
+
+Vulpix @ Lum Berry
+Level: 51
+Ability: Flash Fire
+Nature: Timid
+- Flamethrower
+- Will-O-Wisp
+- Hex
+- Confuse Ray
+
+Glaceon @ Wise Glasses
+Level: 52
+Ability: Snow Cloak
+Nature: Modest
+- Ice Beam
+- Shadow Ball
+- Water Pulse
+- Mirror Coat
+
+=== TRAINER_SNOW_R11_2_TUCKER ===
+Name: TUCKER
+Class: Sailor
+Pic: Sailor
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Staraptor @ Sitrus Berry
+Level: 50
+Ability: Intimidate
+Nature: Jolly
+- Brave Bird
+- Close Combat
+- U-turn
+- Quick Attack
+
+Breloom @ Coba Berry
+Level: 51
+Ability: Effect Spore
+Nature: Adamant
+- Mach Punch
+- Seed Bomb
+- Rock Tomb
+- Spore
+
+Ampharos @ Sitrus Berry
+Level: 52
+Ability: Static
+Nature: Modest
+- Thunderbolt
+- Dragon Pulse
+- Power Gem
+- Cotton Guard
+
+=== TRAINER_SNOW_R11_3_CYPRESS ===
+Name: CYPRESS
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Larvesta @ Sitrus Berry
+Level: 50
+Ability: Flame Body
+Nature: Modest
+- Bug Buzz
+- Flamethrower
+- Morning Sun
+- String Shot
+
+Scolipede @ Lum Berry
+Level: 51
+Ability: Poison Point
+Nature: Jolly
+- Megahorn
+- Poison Jab
+- Rock Slide
+- Swords Dance
+
+Drapion @ Sitrus Berry
+Level: 51
+Ability: Battle Armor
+Nature: Adamant
+- Night Slash
+- Cross Poison
+- Earthquake
+- Aqua Tail
+
+Yanmega @ Wise Glasses
+Level: 52
+Ability: Speed Boost
+Nature: Modest
+- Bug Buzz
+- Air Slash
+- Psychic
+- Detect
+
+=== TRAINER_SNOW_R11_4_NINA ===
+Name: NINA
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Mawile @ Sitrus Berry
+Level: 52
+Ability: Sheer Force
+Nature: Adamant
+- Iron Head
+- Play Rough
+- Sucker Punch
+- Swords Dance
+
+=== TRAINER_SNOW_R11_5_CADE ===
+Name: CADE
+Class: Dragon Tamer
+Pic: Dragon Tamer
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Seadra @ Scope Lens
+Level: 50
+Ability: Sniper
+Nature: Modest
+- Dragon Pulse
+- Ice Beam
+- Hydro Pump
+- Focus Energy
+
+Tropius @ Yache Berry
+Level: 51
+Ability: Chlorophyll
+Nature: Brave
+- Leaf Blade
+- Fly
+- Earthquake
+- Dragon Dance
+
+Lapras @ Sitrus Berry
+Level: 52
+Ability: Water Absorb
+Nature: Calm
+- Ice Beam
+- Surf
+- Thunderbolt
+- Sing
+
+=== TRAINER_SNOW_R11_6_ODETTE ===
+Name: ODETTE
+Class: Lady
+Pic: Lady
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Kirlia @ Eviolite
+Level: 50
+Ability: Trace
+Nature: Timid
+- Psychic
+- Dazzling Gleam
+- Calm Mind
+- Draining Kiss
+
+Vulpix-Alola @ Lum Berry
+Level: 51
+Ability: Snow Cloak
+Nature: Timid
+- Ice Beam
+- Extrasensory
+- Encore
+- Disable
+
+Fearow @ Muscle Band
+Level: 52
+Ability: Keen Eye
+Nature: Jolly
+- Drill Run
+- Return
+- U-turn
+- Roost
