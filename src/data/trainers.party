@@ -18134,3 +18134,327 @@ Nature: Adamant
 - Play Rough
 - Psycho Cut
 - Sucker Punch
+
+=== TRAINER_SNOW_R9_1_JONAS ===
+Name: JONAS
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Corsola
+Level: 42
+Ability: Natural Cure
+Nature: Bold
+- Scald
+- Power Gem
+- Recover
+- Toxic
+
+Stunfisk @ Sitrus Berry
+Level: 43
+Ability: Static
+Nature: Bold
+- Discharge
+- Earth Power
+- Scald
+- Yawn
+
+Sharpedo @ Lum Berry
+Level: 44
+Ability: Rough Skin
+Nature: Jolly
+- Crunch
+- Waterfall
+- Ice Fang
+- Poison Fang
+
+=== TRAINER_SNOW_R9_2_STERLING ===
+Name: STERLING
+Class: Gentleman
+Pic: Gentleman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Cradily @ Sitrus Berry
+Level: 42
+Ability: Adaptability
+Nature: Calm
+- Giga Drain
+- Ancient Power
+- Toxic
+- Recover
+
+Porygon2 @ Sitrus Berry
+Level: 42
+Ability: Download
+Nature: Modest
+- Tri Attack
+- Psychic
+- Thunderbolt
+- Recover
+
+Carracosta @ Rindo Berry
+Level: 43
+Ability: Solid Rock
+Nature: Adamant
+- Waterfall
+- Rock Slide
+- Earthquake
+- Shell Smash
+
+Dragonair @ Lum Berry
+Level: 43
+Ability: Marvel Scale
+Nature: Calm
+- Dragon Pulse
+- Ice Beam
+- Thunder Wave
+- Aqua Tail
+
+Eelektross @ Sitrus Berry
+Level: 44
+Ability: Levitate
+Nature: Modest
+- Thunderbolt
+- Flamethrower
+- Giga Drain
+- U-turn
+
+=== TRAINER_SNOW_R9_3_VINCE ===
+Name: VINCE
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Cloyster @ Sitrus Berry
+Level: 43
+Ability: Skill Link
+Nature: Jolly
+- Icicle Spear
+- Rock Blast
+- Razor Shell
+- Shell Smash
+
+Starmie @ Wise Glasses
+Level: 44
+Ability: Natural Cure
+Nature: Timid
+- Hydro Pump
+- Psychic
+- Ice Beam
+- Recover
+
+=== TRAINER_SNOW_R9_4_BURKE ===
+Name: BURKE
+Class: Sailor
+Pic: Sailor
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Machoke
+Level: 42
+Ability: Guts
+Nature: Adamant
+- Close Combat
+- Knock Off
+- Rock Slide
+- Bullet Punch
+
+Pelipper @ Damp Rock
+Level: 43
+Ability: Drizzle
+Nature: Bold
+- Scald
+- Hurricane
+- U-turn
+- Roost
+
+Kingler @ Muscle Band
+Level: 43
+Ability: Shell Armor
+Nature: Jolly
+- Crabhammer
+- Rock Slide
+- X-Scissor
+- Agility
+
+Golurk @ Sitrus Berry
+Level: 44
+Ability: Iron Fist
+Nature: Adamant
+- Shadow Punch
+- Earthquake
+- Ice Punch
+- Drain Punch
+
+=== TRAINER_SNOW_R9_5_MARSH ===
+Name: MARSH
+Class: Sailor
+Pic: Sailor
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Tentacruel @ Sitrus Berry
+Level: 42
+Ability: Liquid Ooze
+Nature: Timid
+- Sludge Wave
+- Scald
+- Toxic Spikes
+- Rapid Spin
+
+Fraxure @ Lum Berry
+Level: 43
+Ability: Mold Breaker
+Nature: Jolly
+- Dragon Claw
+- Poison Jab
+- Rock Slide
+- Dragon Dance
+
+Electrode @ Air Balloon
+Level: 44
+Ability: Aftermath
+Nature: Timid
+- Thunderbolt
+- Volt Switch
+- Foul Play
+- Light Screen
+
+=== TRAINER_SNOW_R9_6_IRIS ===
+Name: IRIS
+Class: Painter Frlg
+Pic: Painter Frlg
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Lanturn @ Sitrus Berry
+Level: 42
+Ability: Volt Absorb
+Nature: Bold
+- Scald
+- Discharge
+- Confuse Ray
+- Thunder Wave
+
+Lampent @ Wise Glasses
+Level: 42
+Ability: Flash Fire
+Nature: Modest
+- Flamethrower
+- Shadow Ball
+- Energy Ball
+- Will-O-Wisp
+
+Hippowdon @ Smooth Rock
+Level: 43
+Ability: Sand Stream
+Nature: Impish
+- Earthquake
+- Rock Slide
+- Yawn
+- Slack Off
+
+Lilligant @ Sitrus Berry
+Level: 44
+Ability: Own Tempo
+Nature: Modest
+- Quiver Dance
+- Petal Dance
+- Sleep Powder
+- Giga Drain
+
+=== TRAINER_SNOW_R9_7_CORAL ===
+Name: CORAL
+Class: Swimmer F
+Pic: Swimmer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Relicanth
+Level: 48
+Ability: Rock Head
+Nature: Adamant
+- Head Smash
+- Waterfall
+- Earthquake
+- Yawn
+
+Alomomola @ Sitrus Berry
+Level: 49
+Ability: Regenerator
+Nature: Bold
+- Scald
+- Mirror Coat
+- Wish
+- Protect
+
+Beartic @ Lum Berry
+Level: 50
+Ability: Intimidate
+Nature: Adamant
+- Icicle Crash
+- Superpower
+- Aqua Jet
+- Swords Dance
+
+=== TRAINER_SNOW_R9_8_TROY ===
+Name: TROY
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Jellicent @ Sitrus Berry
+Level: 48
+Ability: Water Absorb
+Nature: Bold
+- Scald
+- Shadow Ball
+- Recover
+- Will-O-Wisp
+
+Walrein
+Level: 49
+Ability: Thick Fat
+Nature: Bold
+- Ice Beam
+- Surf
+- Yawn
+- Rest
+
+Seismitoad @ Sitrus Berry
+Level: 49
+Ability: Poison Touch
+Nature: Modest
+- Earth Power
+- Scald
+- Sludge Wave
+- Stealth Rock
+
+Ludicolo @ Lum Berry
+Level: 50
+Ability: Swift Swim
+Nature: Modest
+- Rain Dance
+- Giga Drain
+- Scald
+- Ice Beam

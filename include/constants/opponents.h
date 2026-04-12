@@ -897,12 +897,20 @@
 #define TRAINER_SNOW_R8_4_DECLAN            889
 #define TRAINER_SNOW_R8_5_CLAIRE            890
 #define TRAINER_SNOW_R8_6_ROOK              891
+#define TRAINER_SNOW_R9_1_JONAS             892
+#define TRAINER_SNOW_R9_2_STERLING          893
+#define TRAINER_SNOW_R9_3_VINCE             894
+#define TRAINER_SNOW_R9_4_BURKE             895
+#define TRAINER_SNOW_R9_5_MARSH             896
+#define TRAINER_SNOW_R9_6_IRIS              897
+#define TRAINER_SNOW_R9_7_CORAL             898
+#define TRAINER_SNOW_R9_8_TROY              899
 
-// NOTE: Because each Trainer uses a flag to determine when they are defeated, there is only space for 132 additional trainers before trainer flag space overflows
+// NOTE: Because each Trainer uses a flag to determine when they are defeated, there is only space for 124 additional trainers before trainer flag space overflows
 //       More space can be made by shifting flags around in constants/flags.h or changing how trainer flags are handled
 //       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
 
-#define TRAINERS_COUNT_EMERALD     892
+#define TRAINERS_COUNT_EMERALD     900
 #define MAX_TRAINERS_COUNT_EMERALD 1024
 
 #if IS_FRLG
