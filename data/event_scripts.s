@@ -125,6 +125,8 @@ gStdScripts::
 gStdScripts_End::
 
 
+	@ Snow shared scripts
+	.include "data/scripts/snow_mart.inc"
 	@ Snow maps
 	.include "data/maps/DawnflakeTown/scripts.inc"
 	.include "data/maps/PowderpathVillage/scripts.inc"
