@@ -15372,7 +15372,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         .pp = 20,
         .target = TARGET_SELECTED,
         .priority = 1,
-        .category = B_UPDATED_MOVE_DATA >= GEN_7 ? DAMAGE_CATEGORY_SPECIAL : DAMAGE_CATEGORY_PHYSICAL,
+        .category = DAMAGE_CATEGORY_PHYSICAL, // Snow: always physical per v17 §4 global mechanic
         .argument = {
             .speciesPowerOverride.species = SPECIES_GRENINJA_ASH,
             .speciesPowerOverride.power = 20,
