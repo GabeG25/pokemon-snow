@@ -42,7 +42,7 @@ static enum ItemEffect TryDoublePrize(enum BattlerId battler)
 
     if (IsOnPlayerSide(battler) && !gBattleStruct->moneyMultiplierItem)
     {
-        gBattleStruct->moneyMultiplier *= 2;
+        gBattleStruct->moneyMultiplier *= 3; // Snow: Amulet Coin triples prize money (v17 §16)
         gBattleStruct->moneyMultiplierItem = TRUE;
     }
 
