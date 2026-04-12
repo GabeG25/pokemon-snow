@@ -11,12 +11,12 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_DAWNFLAKE_TOWN",
+      "map": "MAP_SNOW_ROUTE1",
       "offset": 0,
       "direction": "down"
     },
     {
-      "map": "MAP_SNOW_ROUTE1",
+      "map": "MAP_SNOW_ROUTE2",
       "offset": 0,
       "direction": "up"
     }
