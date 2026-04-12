@@ -56,6 +56,18 @@ OPPONENTS_H = REPO_ROOT / "include" / "constants" / "opponents.h"
 
 AI_SUITE_FULL = "Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices"
 
+# v17 spec uses "Alolan Sandshrew" but trainerproc needs "Sandshrew-Alola" to
+# generate SPECIES_SANDSHREW_ALOLA. This table remaps spec species names to
+# engine species names. Applied in _clean_species() after general _clean().
+SPECIES_REMAP = {
+    "Alolan Sandshrew": "Sandshrew-Alola",
+    "Alolan Sandslash": "Sandslash-Alola",
+    "Alolan Vulpix": "Vulpix-Alola",
+    "Alolan Ninetales": "Ninetales-Alola",
+    "Galarian Darumaka": "Darumaka-Galar",
+    "Galarian Darmanitan": "Darmanitan-Galar",
+}
+
 CLASS_FALLBACKS = {
     "Boarder": "Hiker",          # validated 2026-04-11 commit 592e85b064
     "Skier": "Hiker",            # probed 2026-04-11 R2 --commit attempt, compiler suggested HIKER
@@ -224,6 +236,7 @@ def _parse_mon_table(lines: list[str], start: int, n: int,
         species = cells[1]
         if species is None:
             raise ValueError(f"R{route}-{index} {name}: species is empty in row")
+        species = SPECIES_REMAP.get(species, species)
         try:
             level = int(cells[2])
         except (TypeError, ValueError):
