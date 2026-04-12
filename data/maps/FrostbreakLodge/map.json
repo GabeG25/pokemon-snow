@@ -11,12 +11,12 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_IRONFROST_CITY",
+      "map": "MAP_SNOW_ROUTE7",
       "offset": 0,
-      "direction": "right"
+      "direction": "down"
     },
     {
-      "map": "MAP_IRONFROST_CAVE_B2B3",
+      "map": "MAP_SNOW_ROUTE8",
       "offset": 0,
       "direction": "up"
     }
@@ -25,7 +25,7 @@
   "warp_events": [],
   "coord_events": [],
   "bg_events": [],
-  "id": "MAP_IRONFROST_CAVE_B1",
-  "name": "IronfrostCaveB1",
-  "map_type": "MAP_TYPE_UNDERGROUND"
+  "id": "MAP_FROSTBREAK_LODGE",
+  "name": "FrostbreakLodge",
+  "map_type": "MAP_TYPE_TOWN"
 }
