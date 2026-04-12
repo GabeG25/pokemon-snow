@@ -74,7 +74,8 @@
     "gMapGroup_IndoorFiveIslandRoute_Frlg",
     "gMapGroup_IndoorTwoIslandRoute_Frlg",
     "gMapGroup_IndoorSixIslandRoute_Frlg",
-    "gMapGroup_IndoorSevenIslandRoute_Frlg"
+    "gMapGroup_IndoorSevenIslandRoute_Frlg",
+    "gMapGroup_Snow"
   ],
   "gMapGroup_TownsAndRoutes": [
     "PetalburgCity",
@@ -1160,5 +1161,32 @@
   ],
   "gMapGroup_IndoorSevenIslandRoute_Frlg": [
     "SevenIsland_SevaultCanyon_House_Frlg"
+  ],
+  "gMapGroup_Snow": [
+    "DawnflakeTown",
+    "PowderpathVillage",
+    "SnowRoute1",
+    "SnowRoute2",
+    "IcespireTown",
+    "SnowRoute3",
+    "SnowRoute4",
+    "PinegroveCity",
+    "SnowRoute5",
+    "SnowRoute6",
+    "SnowRoute7",
+    "SnowRoute8",
+    "SnowRoute9",
+    "IceharborCity",
+    "DriftrockIsle",
+    "SnowRoute10",
+    "SnowRoute11",
+    "SnowRoute12",
+    "SolaceTown",
+    "SnowRoute13",
+    "SnowRoute14",
+    "SnowRoute15",
+    "IronfrostCaveB1",
+    "IronfrostCaveB2B3",
+    "SnowVictoryRoad"
   ]
 }
