@@ -19998,3 +19998,381 @@ Nature: Timid
 - Psychic
 - Ice Beam
 - Recover
+
+=== TRAINER_SNOW_R15_1_BRINEY ===
+Name: BRINEY
+Class: Sailor
+Pic: Sailor
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Sudowoodo @ Sitrus Berry
+Level: 64
+Ability: Sturdy
+Nature: Adamant
+- Wood Hammer
+- Stone Edge
+- Earthquake
+- Sucker Punch
+
+Relicanth @ Rock Gem
+Level: 65
+Ability: Rock Head
+Nature: Adamant
+- Head Smash
+- Waterfall
+- Earthquake
+- Yawn
+
+Poliwrath @ Mystic Water
+Level: 66
+Ability: Water Veil
+Nature: Adamant
+- Waterfall
+- Brick Break
+- Ice Punch
+- Bulk Up
+
+=== TRAINER_SNOW_R15_2_AHAB ===
+Name: AHAB
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Politoed @ Damp Rock
+Level: 64
+Ability: Water Absorb
+Nature: Bold
+- Rain Dance
+- Surf
+- Encore
+- Toxic
+
+Tentacruel @ Black Sludge
+Level: 66
+Ability: Liquid Ooze
+Nature: Bold
+- Hydro Pump
+- Sludge Wave
+- Ice Beam
+- Toxic Spikes
+
+=== TRAINER_SNOW_R15_3_COUSTEAU ===
+Name: COUSTEAU
+Class: Gentleman
+Pic: Gentleman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Cranidos @ Eviolite
+Level: 66
+Ability: Mold Breaker
+Nature: Adamant
+- Head Smash
+- Earthquake
+- Zen Headbutt
+- Crunch
+
+Metang @ Steel Gem
+Level: 66
+Ability: Iron Fist
+Nature: Adamant
+- Meteor Mash
+- Bullet Punch
+- Zen Headbutt
+- Earthquake
+
+Exeggutor @ Sitrus Berry
+Level: 66
+Ability: Harvest
+Nature: Modest
+- Solar Beam
+- Psychic
+- Sleep Powder
+- Leech Seed
+
+Pupitar @ Eviolite
+Level: 67
+Ability: Shed Skin
+Nature: Adamant
+- Rock Slide
+- Earthquake
+- Crunch
+- Dragon Dance
+
+=== TRAINER_SNOW_R15_4_HADLEY ===
+Name: HADLEY
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Quagsire @ Sitrus Berry
+Level: 66
+Ability: Water Absorb
+Nature: Relaxed
+- Earthquake
+- Scald
+- Yawn
+- Recover
+
+Sealeo @ Eviolite
+Level: 66
+Ability: Thick Fat
+Nature: Bold
+- Surf
+- Ice Beam
+- Yawn
+- Encore
+
+Jellicent @ Mystic Water
+Level: 67
+Ability: Water Absorb
+Nature: Bold
+- Scald
+- Shadow Ball
+- Recover
+- Will-O-Wisp
+
+=== TRAINER_SNOW_R15_5_VOLT ===
+Name: VOLT
+Class: Sailor
+Pic: Sailor
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Sigilyph @ Wise Glasses
+Level: 66
+Ability: Magic Guard
+Nature: Timid
+- Psychic
+- Air Slash
+- Heat Wave
+- Roost
+
+Stunfisk @ Rocky Helmet
+Level: 66
+Ability: Static
+Nature: Bold
+- Discharge
+- Earth Power
+- Yawn
+- Pain Split
+
+Ampharos @ Magnet
+Level: 67
+Ability: Static
+Nature: Modest
+- Thunderbolt
+- Focus Blast
+- Power Gem
+- Cotton Guard
+
+=== TRAINER_SNOW_R15_6_QUINT ===
+Name: QUINT
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Frillish @ Eviolite
+Level: 66
+Ability: Water Absorb
+Nature: Bold
+- Scald
+- Shadow Ball
+- Will-O-Wisp
+- Recover
+
+Beartic @ Ice Gem
+Level: 67
+Ability: Snow Cloak
+Nature: Adamant
+- Icicle Crash
+- Aqua Jet
+- Superpower
+- Swords Dance
+
+Seismitoad @ Ground Gem
+Level: 67
+Ability: Poison Touch
+Nature: Modest
+- Earth Power
+- Sludge Wave
+- Scald
+- Stealth Rock
+
+Sharpedo @ Mystic Water
+Level: 67
+Ability: Speed Boost
+Nature: Adamant
+- Crunch
+- Waterfall
+- Ice Fang
+- Protect
+
+Lumineon @ Wise Glasses
+Level: 68
+Ability: Prism Armor
+Nature: Modest
+- Hydro Pump
+- Ice Beam
+- U-turn
+- Tailwind
+
+=== TRAINER_SNOW_R15_7_NORI ===
+Name: NORI
+Class: Swimmer F
+Pic: Swimmer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Cloyster @ Mystic Water
+Level: 66
+Ability: Skill Link
+Nature: Adamant
+- Icicle Spear
+- Rock Blast
+- Razor Shell
+- Ice Shard
+
+Azumarill @ Mystic Water
+Level: 66
+Ability: Huge Power
+Nature: Adamant
+- Play Rough
+- Aqua Jet
+- Waterfall
+- Belly Drum
+
+Cryogonal @ Never-Melt Ice
+Level: 67
+Ability: Levitate
+Nature: Timid
+- Ice Beam
+- Hydro Pump
+- Recover
+- Hurricane
+
+Lanturn @ Wise Glasses
+Level: 67
+Ability: Volt Absorb
+Nature: Modest
+- Surf
+- Thunderbolt
+- Ice Beam
+- Volt Switch
+
+=== TRAINER_SNOW_R15_8_TRITON ===
+Name: TRITON
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Corsola @ Sitrus Berry
+Level: 66
+Ability: Natural Cure
+Nature: Bold
+- Power Gem
+- Earth Power
+- Recover
+- Toxic
+
+Walrein @ Sitrus Berry
+Level: 67
+Ability: Thick Fat
+Nature: Bold
+- Surf
+- Ice Beam
+- Encore
+- Protect
+
+Eelektrik @ Magnet
+Level: 67
+Ability: Levitate
+Nature: Adamant
+- Wild Charge
+- Crunch
+- Drain Punch
+- Coil
+
+Dragonair @ Eviolite
+Level: 68
+Ability: Shed Skin
+Nature: Modest
+- Dragon Pulse
+- Thunderbolt
+- Ice Beam
+- Aqua Tail
+
+=== TRAINER_SNOW_R15_9_NEMO ===
+Name: NEMO
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Seadra @ Eviolite
+Level: 66
+Ability: Sniper
+Nature: Modest
+- Hydro Pump
+- Dragon Pulse
+- Ice Beam
+- Agility
+
+Marill @ Eviolite
+Level: 67
+Ability: Huge Power
+Nature: Adamant
+- Aqua Jet
+- Play Rough
+- Knock Off
+- Belly Drum
+
+Ludicolo @ Damp Rock
+Level: 67
+Ability: Swift Swim
+Nature: Modest
+- Rain Dance
+- Surf
+- Giga Drain
+- Ice Beam
+
+Glalie @ Ice Gem
+Level: 67
+Ability: Refrigerate
+Nature: Adamant
+- Return
+- Explosion
+- Ice Shard
+- Earthquake
+
+Samurott @ Mystic Water
+Level: 68
+Ability: Torrent
+Nature: Adamant
+- Razor Shell
+- Megahorn
+- Aqua Jet
+- Sacred Sword
