@@ -74,7 +74,10 @@
 #define FLAG_SNOW_BEAT_F7_CRASH              0x34
 #define FLAG_SNOW_BEAT_F8_ASHER              0x35
 #define FLAG_SNOW_BEAT_F10_AUTUMN            0x36
-#define FLAG_UNUSED_0x037    0x37 // Unused Flag
+#define FLAG_SNOW_BEAT_F13_MARINA            0x37
+#define FLAG_SNOW_BEAT_F16_PRIYO             0x38
+#define FLAG_SNOW_BEAT_F17_ERIN              0x39
+#define FLAG_SNOW_BEAT_F23_SCORCH            0x3A
 #define FLAG_UNUSED_0x02A    0x2A // Unused Flag
 #define FLAG_UNUSED_0x02B    0x2B // Unused Flag
 #define FLAG_UNUSED_0x02C    0x2C // Unused Flag
