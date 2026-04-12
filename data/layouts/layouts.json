@@ -9323,6 +9323,316 @@
       "border_filepath": "data/layouts/OneIsland_KindleRoad_EmberSpa_Frlg/border.bin",
       "blockdata_filepath": "data/layouts/OneIsland_KindleRoad_EmberSpa_Frlg/map.bin",
       "layout_version": "frlg"
+    },
+    {
+      "id": "LAYOUT_DAWNFLAKE_TOWN",
+      "name": "DawnflakeTown_Layout",
+      "width": 20,
+      "height": 15,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/DawnflakeTown/border.bin",
+      "blockdata_filepath": "data/layouts/DawnflakeTown/map.bin"
+    },
+    {
+      "id": "LAYOUT_POWDERPATH_VILLAGE",
+      "name": "PowderpathVillage_Layout",
+      "width": 20,
+      "height": 15,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/PowderpathVillage/border.bin",
+      "blockdata_filepath": "data/layouts/PowderpathVillage/map.bin"
+    },
+    {
+      "id": "LAYOUT_SNOW_ROUTE1",
+      "name": "SnowRoute1_Layout",
+      "width": 20,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_EverGrande",
+      "border_filepath": "data/layouts/SnowRoute1/border.bin",
+      "blockdata_filepath": "data/layouts/SnowRoute1/map.bin"
+    },
+    {
+      "id": "LAYOUT_SNOW_ROUTE2",
+      "name": "SnowRoute2_Layout",
+      "width": 20,
+      "height": 25,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_EverGrande",
+      "border_filepath": "data/layouts/SnowRoute2/border.bin",
+      "blockdata_filepath": "data/layouts/SnowRoute2/map.bin"
+    },
+    {
+      "id": "LAYOUT_ICESPIRE_TOWN",
+      "name": "IcespireTown_Layout",
+      "width": 20,
+      "height": 15,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Rustboro",
+      "border_filepath": "data/layouts/IcespireTown/border.bin",
+      "blockdata_filepath": "data/layouts/IcespireTown/map.bin"
+    },
+    {
+      "id": "LAYOUT_SNOW_ROUTE3",
+      "name": "SnowRoute3_Layout",
+      "width": 25,
+      "height": 35,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Fortree",
+      "border_filepath": "data/layouts/SnowRoute3/border.bin",
+      "blockdata_filepath": "data/layouts/SnowRoute3/map.bin"
+    },
+    {
+      "id": "LAYOUT_SNOW_ROUTE4",
+      "name": "SnowRoute4_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Fortree",
+      "border_filepath": "data/layouts/SnowRoute4/border.bin",
+      "blockdata_filepath": "data/layouts/SnowRoute4/map.bin"
+    },
+    {
+      "id": "LAYOUT_PINEGROVE_CITY",
+      "name": "PinegroveCity_Layout",
+      "width": 20,
+      "height": 15,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Rustboro",
+      "border_filepath": "data/layouts/PinegroveCity/border.bin",
+      "blockdata_filepath": "data/layouts/PinegroveCity/map.bin"
+    },
+    {
+      "id": "LAYOUT_SNOW_ROUTE5",
+      "name": "SnowRoute5_Layout",
+      "width": 20,
+      "height": 25,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/SnowRoute5/border.bin",
+      "blockdata_filepath": "data/layouts/SnowRoute5/map.bin"
+    },
+    {
+      "id": "LAYOUT_IRONFROST_CITY",
+      "name": "IronfrostCity_Layout",
+      "width": 25,
+      "height": 15,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Mauville",
+      "border_filepath": "data/layouts/IronfrostCity/border.bin",
+      "blockdata_filepath": "data/layouts/IronfrostCity/map.bin"
+    },
+    {
+      "id": "LAYOUT_SNOW_ROUTE6",
+      "name": "SnowRoute6_Layout",
+      "width": 25,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_EverGrande",
+      "border_filepath": "data/layouts/SnowRoute6/border.bin",
+      "blockdata_filepath": "data/layouts/SnowRoute6/map.bin"
+    },
+    {
+      "id": "LAYOUT_SNOW_ROUTE7",
+      "name": "SnowRoute7_Layout",
+      "width": 25,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_EverGrande",
+      "border_filepath": "data/layouts/SnowRoute7/border.bin",
+      "blockdata_filepath": "data/layouts/SnowRoute7/map.bin"
+    },
+    {
+      "id": "LAYOUT_FROSTBREAK_LODGE",
+      "name": "FrostbreakLodge_Layout",
+      "width": 15,
+      "height": 12,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Fallarbor",
+      "border_filepath": "data/layouts/FrostbreakLodge/border.bin",
+      "blockdata_filepath": "data/layouts/FrostbreakLodge/map.bin"
+    },
+    {
+      "id": "LAYOUT_SNOW_ROUTE8",
+      "name": "SnowRoute8_Layout",
+      "width": 25,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_EverGrande",
+      "border_filepath": "data/layouts/SnowRoute8/border.bin",
+      "blockdata_filepath": "data/layouts/SnowRoute8/map.bin"
+    },
+    {
+      "id": "LAYOUT_DREAMURS_TOWN",
+      "name": "DreamursTown_Layout",
+      "width": 20,
+      "height": 15,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Fallarbor",
+      "border_filepath": "data/layouts/DreamursTown/border.bin",
+      "blockdata_filepath": "data/layouts/DreamursTown/map.bin"
+    },
+    {
+      "id": "LAYOUT_SNOW_ROUTE9",
+      "name": "SnowRoute9_Layout",
+      "width": 25,
+      "height": 25,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_EverGrande",
+      "border_filepath": "data/layouts/SnowRoute9/border.bin",
+      "blockdata_filepath": "data/layouts/SnowRoute9/map.bin"
+    },
+    {
+      "id": "LAYOUT_ICEHARBOR_CITY",
+      "name": "IceharborCity_Layout",
+      "width": 25,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Slateport",
+      "border_filepath": "data/layouts/IceharborCity/border.bin",
+      "blockdata_filepath": "data/layouts/IceharborCity/map.bin"
+    },
+    {
+      "id": "LAYOUT_DRIFTROCK_ISLE",
+      "name": "DriftrockIsle_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_EverGrande",
+      "border_filepath": "data/layouts/DriftrockIsle/border.bin",
+      "blockdata_filepath": "data/layouts/DriftrockIsle/map.bin"
+    },
+    {
+      "id": "LAYOUT_SNOW_ROUTE10",
+      "name": "SnowRoute10_Layout",
+      "width": 20,
+      "height": 25,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/SnowRoute10/border.bin",
+      "blockdata_filepath": "data/layouts/SnowRoute10/map.bin"
+    },
+    {
+      "id": "LAYOUT_SNOW_ROUTE11",
+      "name": "SnowRoute11_Layout",
+      "width": 25,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_EverGrande",
+      "border_filepath": "data/layouts/SnowRoute11/border.bin",
+      "blockdata_filepath": "data/layouts/SnowRoute11/map.bin"
+    },
+    {
+      "id": "LAYOUT_DRAGONFORGE_CITY",
+      "name": "DragonforgeCity_Layout",
+      "width": 25,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Mauville",
+      "border_filepath": "data/layouts/DragonforgeCity/border.bin",
+      "blockdata_filepath": "data/layouts/DragonforgeCity/map.bin"
+    },
+    {
+      "id": "LAYOUT_SNOW_ROUTE12",
+      "name": "SnowRoute12_Layout",
+      "width": 20,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_EverGrande",
+      "border_filepath": "data/layouts/SnowRoute12/border.bin",
+      "blockdata_filepath": "data/layouts/SnowRoute12/map.bin"
+    },
+    {
+      "id": "LAYOUT_SOLACE_TOWN",
+      "name": "SolaceTown_Layout",
+      "width": 20,
+      "height": 15,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Fallarbor",
+      "border_filepath": "data/layouts/SolaceTown/border.bin",
+      "blockdata_filepath": "data/layouts/SolaceTown/map.bin"
+    },
+    {
+      "id": "LAYOUT_SNOW_ROUTE13",
+      "name": "SnowRoute13_Layout",
+      "width": 25,
+      "height": 35,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Fortree",
+      "border_filepath": "data/layouts/SnowRoute13/border.bin",
+      "blockdata_filepath": "data/layouts/SnowRoute13/map.bin"
+    },
+    {
+      "id": "LAYOUT_SNOW_ROUTE14",
+      "name": "SnowRoute14_Layout",
+      "width": 25,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Lavaridge",
+      "border_filepath": "data/layouts/SnowRoute14/border.bin",
+      "blockdata_filepath": "data/layouts/SnowRoute14/map.bin"
+    },
+    {
+      "id": "LAYOUT_SNOW_ROUTE15",
+      "name": "SnowRoute15_Layout",
+      "width": 25,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Lavaridge",
+      "border_filepath": "data/layouts/SnowRoute15/border.bin",
+      "blockdata_filepath": "data/layouts/SnowRoute15/map.bin"
+    },
+    {
+      "id": "LAYOUT_PYRESPIRE_CITY",
+      "name": "PyrespireCity_Layout",
+      "width": 25,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Sootopolis",
+      "border_filepath": "data/layouts/PyrespireCity/border.bin",
+      "blockdata_filepath": "data/layouts/PyrespireCity/map.bin"
+    },
+    {
+      "id": "LAYOUT_SNOW_VICTORY_ROAD",
+      "name": "SnowVictoryRoad_Layout",
+      "width": 25,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/SnowVictoryRoad/border.bin",
+      "blockdata_filepath": "data/layouts/SnowVictoryRoad/map.bin"
+    },
+    {
+      "id": "LAYOUT_POKEMON_LEAGUE",
+      "name": "PokemonLeague_Layout",
+      "width": 20,
+      "height": 15,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_EverGrande",
+      "border_filepath": "data/layouts/PokemonLeague/border.bin",
+      "blockdata_filepath": "data/layouts/PokemonLeague/map.bin"
+    },
+    {
+      "id": "LAYOUT_IRONFROST_CAVE_B1",
+      "name": "IronfrostCaveB1_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/IronfrostCaveB1/border.bin",
+      "blockdata_filepath": "data/layouts/IronfrostCaveB1/map.bin"
+    },
+    {
+      "id": "LAYOUT_IRONFROST_CAVE_B2_B3",
+      "name": "IronfrostCaveB2B3_Layout",
+      "width": 25,
+      "height": 25,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/IronfrostCaveB2B3/border.bin",
+      "blockdata_filepath": "data/layouts/IronfrostCaveB2B3/map.bin"
     }
   ]
 }
