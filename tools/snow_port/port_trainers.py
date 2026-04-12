@@ -1,0 +1,616 @@
+#!/usr/bin/env python3
+"""
+port_trainers.py — Pokémon Snow trainer porting pipeline.
+
+Reads Section 20 of design-archive/POKEMON_SNOW_RESUME_HANDOFF_v17.md and
+emits trainerproc blocks into src/data/trainers.party plus flag #defines into
+include/constants/opponents.h. Replaces the manual 3-trainers-per-session
+porting workflow validated during the R1 arc.
+
+LOCKED CONTRACT (CEO-confirmed 2026-04-11, post R1 arc):
+
+  1. v17 §20 is canonical. The shipped trainers.party is the source of truth
+     for the *current* state, but is allowed to be wrong when it contradicts
+     v17. The R1 normalization commit (4a0e279864) backfilled R1-1/R1-2 AI
+     lines from probing-phase 1-flag residue to the spec-mandated 5-flag
+     suite. From now on, the parser hard-codes the 5-flag AI as the universal
+     default — no --ai-level flag, no per-trainer override. v17 §20 line 3402
+     "Smart AI on all" is the global rule. If a future v17 entry implies
+     otherwise, the parser raises rather than silently degrading.
+
+  2. Round-trip semantic: --route R1 --dry-run must produce output that is
+     byte-identical to the current shipped R1 trainer blocks (HEAD 4a0e279864,
+     post-normalization). The 4-commit R1 history was a probing artifact;
+     the tool emits the final consolidated state in one shot. Going forward:
+     one commit per route batch. Round-trip mode is auto-detected: if a route
+     already has blocks in trainers.party, --dry-run runs the validator; if
+     not, --dry-run runs the preview emitter.
+
+  3. opponents.h side-effect is dormant on already-shipped routes. R1's
+     4 flags are already present in opponents.h (R1 shipped green, ROM
+     compiles → proof). Re-emitting them would double-insert and corrupt
+     the file. Round-trip mode (--route R1 on a shipped route) skips the
+     opponents.h emitter entirely and only diffs trainers.party. The
+     opponents.h logic activates only with --commit on R2+.
+
+Future-you reading this in 3 months: if you're tempted to add an --ai-level
+flag, re-read decision #1. If you're tempted to make round-trip diff against
+4 separate commits, re-read decision #2. If you're tempted to let the
+opponents.h emitter run on R1, re-read decision #3.
+"""
+
+import argparse
+import difflib
+import hashlib
+import os
+import re
+import subprocess
+import sys
+from dataclasses import dataclass, field
+from pathlib import Path
+
+REPO_ROOT = Path(__file__).resolve().parents[2]
+SPEC_PATH = REPO_ROOT / "design-archive" / "POKEMON_SNOW_RESUME_HANDOFF_v17.md"
+TRAINERS_PARTY = REPO_ROOT / "src" / "data" / "trainers.party"
+OPPONENTS_H = REPO_ROOT / "include" / "constants" / "opponents.h"
+
+AI_SUITE_FULL = "Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices"
+
+CLASS_FALLBACKS = {
+    "Boarder": "Hiker",  # validated 2026-04-11 commit 592e85b064
+    "Skier": "Hiker",    # probed 2026-04-11 R2 --commit attempt, compiler suggested HIKER
+    "Miner": "Hiker",    # probed 2026-04-11 R2 --commit attempt, compiler suggested HIKER
+}
+
+CLASS_GENDER_DEFAULTS = {
+    "Youngster": "Male",
+    "Lass": "Female",
+    "Hiker": "Male",
+    "Boarder": "Male",
+    "Skier": "Female",
+    "Miner": "Male",
+    "Bug Catcher": "Male",
+}
+
+TRAINER_HEADER_RE = re.compile(
+    r"^###\s+R(\d+)-(\d+)\s+—\s+(.+?)\s+\|\s+(\d+)\s+Pokémon\s*$"
+)
+
+
+@dataclass
+class Mon:
+    species: str
+    level: int
+    nature: str
+    ability: str
+    item: str | None
+    moves: list[str]
+
+
+@dataclass
+class Trainer:
+    route: int
+    index: int
+    klass: str  # canonical class from spec (pre-fallback)
+    name: str
+    mons: list[Mon] = field(default_factory=list)
+
+    @property
+    def emit_class(self) -> str:
+        return CLASS_FALLBACKS.get(self.klass, self.klass)
+
+    @property
+    def gender(self) -> str:
+        return CLASS_GENDER_DEFAULTS.get(self.emit_class, "Male")
+
+    @property
+    def constant(self) -> str:
+        return f"TRAINER_SNOW_R{self.route}_{self.index}_{self.name.upper()}"
+
+
+# Assumes trainer names are single-token. Multi-word names (e.g., "Mary Ann")
+# will be misparsed — the last token will be taken as the full name and earlier
+# tokens absorbed into the class. v17 has no multi-word names through R10 as of
+# 2026-04-11. Revisit if a future entry breaks this.
+def split_class_and_name(header_label: str) -> tuple[str, str]:
+    parts = header_label.strip().split()
+    return " ".join(parts[:-1]), parts[-1]
+
+
+def _clean(cell: str) -> str | None:
+    cell = cell.strip()
+    if cell in ("", "—", "-"):
+        return None
+    return cell
+
+
+def parse_table_row(row_line: str) -> list[str | None]:
+    cells = [c.strip() for c in row_line.strip().strip("|").split("|")]
+    return [_clean(c) for c in cells]
+
+
+def parse_spec(spec_text: str, route_filter: int | None = None) -> list[Trainer]:
+    lines = spec_text.splitlines()
+    trainers: list[Trainer] = []
+    i = 0
+    n = len(lines)
+    while i < n:
+        m = TRAINER_HEADER_RE.match(lines[i])
+        if not m:
+            i += 1
+            continue
+        route = int(m.group(1))
+        index = int(m.group(2))
+        label = m.group(3)
+        expected_count = int(m.group(4))
+        klass, name = split_class_and_name(label)
+
+        if route_filter is not None and route != route_filter:
+            i += 1
+            continue
+
+        j = i + 1
+        while j < n and lines[j].strip() == "":
+            j += 1
+        if j >= n or not lines[j].lstrip().startswith("|"):
+            raise ValueError(f"R{route}-{index} {name}: no table after header")
+        j += 1  # skip header row
+        if j >= n or not lines[j].lstrip().startswith("|"):
+            raise ValueError(f"R{route}-{index} {name}: no separator row")
+        j += 1  # skip separator row
+        mons: list[Mon] = []
+        while j < n and lines[j].lstrip().startswith("|"):
+            cells = parse_table_row(lines[j])
+            if len(cells) < 10:
+                raise ValueError(
+                    f"R{route}-{index} {name}: row has {len(cells)} cells, expected 10"
+                )
+            species = cells[1]
+            level = int(cells[2])
+            nature = cells[3]
+            ability = cells[4]
+            item = cells[5]
+            moves = [c for c in cells[6:10] if c is not None]
+            if not moves:
+                raise ValueError(f"R{route}-{index} {name}: zero moves parsed")
+            mons.append(
+                Mon(species=species, level=level, nature=nature,
+                    ability=ability, item=item, moves=moves)
+            )
+            j += 1
+        if len(mons) != expected_count:
+            raise ValueError(
+                f"R{route}-{index} {name}: header says {expected_count} mons, "
+                f"parsed {len(mons)}"
+            )
+        trainers.append(
+            Trainer(route=route, index=index, klass=klass, name=name, mons=mons)
+        )
+        i = j
+    return trainers
+
+
+# Parses the tag-double list at v17 §20 lines 459-463. Handles the "R5-5/6"
+# syntax that fans out to (5,5) and (5,6). Dormant for R1/R2/R3 (no doubles).
+DOUBLE_LINE_RE = re.compile(r"^-\s+\*\*R(\d+)-([\d/]+)\b", re.MULTILINE)
+
+
+def parse_double_battles(spec_text: str) -> set[tuple[int, int]]:
+    start = spec_text.find("### Tag double battles")
+    if start == -1:
+        return set()
+    end = spec_text.find("\n### ", start + 1)
+    if end == -1:
+        end = len(spec_text)
+    section = spec_text[start:end]
+    out: set[tuple[int, int]] = set()
+    for m in DOUBLE_LINE_RE.finditer(section):
+        route = int(m.group(1))
+        for idx_str in m.group(2).split("/"):
+            out.add((route, int(idx_str)))
+    return out
+
+
+def assert_spec_compliance(trainers: list[Trainer]) -> None:
+    """Per locked decision #1: every parsed trainer must be eligible for the
+    universal 5-flag AI suite. There is currently no spec carve-out, so this
+    is a placeholder that exists to fail loudly if a future v17 entry
+    introduces per-trainer AI variation that the parser does not handle."""
+    for _t in trainers:
+        pass
+
+
+# ─── Emitter ──────────────────────────────────────────────────────────────────
+
+
+def emit_trainer(t: Trainer, double_battles: set[tuple[int, int]]) -> str:
+    is_double = (t.route, t.index) in double_battles
+    header = [
+        f"=== {t.constant} ===",
+        f"Name: {t.name.upper()}",
+        f"Class: {t.emit_class}",
+        f"Pic: {t.emit_class}",
+        f"Gender: {t.gender}",
+        f"Music: {t.gender}",
+        f"Double Battle: {'Yes' if is_double else 'No'}",
+        f"AI: {AI_SUITE_FULL}",
+    ]
+    mon_blocks: list[str] = []
+    for mon in t.mons:
+        species_line = mon.species
+        if mon.item:
+            species_line += f" @ {mon.item}"
+        block = [
+            species_line,
+            f"Level: {mon.level}",
+            f"Ability: {mon.ability}",
+            f"Nature: {mon.nature}",
+        ]
+        block.extend(f"- {mv}" for mv in mon.moves)
+        mon_blocks.append("\n".join(block))
+    return "\n".join(header) + "\n\n" + "\n\n".join(mon_blocks)
+
+
+# ─── Round-trip validator ────────────────────────────────────────────────────
+
+
+# Anchored to column 0, line-bounded. Terminates at next ^=== header or EOF.
+def _shipped_block_re(route: int) -> re.Pattern:
+    return re.compile(
+        rf"^=== TRAINER_SNOW_R{route}_(\d+)_[A-Z0-9_]+ ===.*?(?=^=== |\Z)",
+        re.MULTILINE | re.DOTALL,
+    )
+
+
+def extract_shipped_blocks(route: int, party_text: str) -> dict[int, str]:
+    out: dict[int, str] = {}
+    for m in _shipped_block_re(route).finditer(party_text):
+        idx = int(m.group(1))
+        out[idx] = m.group(0).rstrip()
+    return out
+
+
+def round_trip_validate(route: int, parsed: list[Trainer],
+                        double_battles: set[tuple[int, int]],
+                        party_text: str) -> int:
+    shipped = extract_shipped_blocks(route, party_text)
+    if len(parsed) != len(shipped):
+        print(
+            f"R{route} round-trip: COUNT MISMATCH — parsed {len(parsed)} trainers, "
+            f"extracted {len(shipped)} shipped blocks. Round-trip is meaningless.",
+            file=sys.stderr,
+        )
+        print(f"  parsed indices:    {sorted(t.index for t in parsed)}", file=sys.stderr)
+        print(f"  shipped indices:   {sorted(shipped.keys())}", file=sys.stderr)
+        return 2
+
+    mismatches: list[tuple[Trainer, str, str]] = []
+    for t in parsed:
+        emitted = emit_trainer(t, double_battles).rstrip()
+        ship = shipped.get(t.index)
+        if ship is None:
+            mismatches.append((t, "<MISSING from shipped file>", emitted))
+            continue
+        if emitted != ship:
+            mismatches.append((t, ship, emitted))
+
+    if not mismatches:
+        print(f"R{route} round-trip: PASS ({len(parsed)} trainers byte-identical)")
+        return 0
+
+    print(
+        f"R{route} round-trip: FAIL ({len(mismatches)}/{len(parsed)} trainers diverge)",
+        file=sys.stderr,
+    )
+    first_t, first_ship, first_emit = mismatches[0]
+    diff_lines = list(
+        difflib.unified_diff(
+            first_ship.splitlines(),
+            first_emit.splitlines(),
+            fromfile=f"shipped/R{first_t.route}-{first_t.index}_{first_t.name}",
+            tofile=f"emitted/R{first_t.route}-{first_t.index}_{first_t.name}",
+            n=3,
+            lineterm="",
+        )
+    )
+    for line in diff_lines:
+        print(line, file=sys.stderr)
+    if len(diff_lines) > 50:
+        for i, (s, e) in enumerate(
+            zip(first_ship.splitlines(), first_emit.splitlines()), 1
+        ):
+            if s != e:
+                print(
+                    f"\nFirst mismatch in R{first_t.route}-{first_t.index} "
+                    f"{first_t.name} block, line {i}:\n"
+                    f"  shipped: {s!r}\n  emitted: {e!r}",
+                    file=sys.stderr,
+                )
+                break
+    if len(mismatches) > 1:
+        print(
+            f"\n(+{len(mismatches) - 1} more diverging trainer(s); "
+            f"fix the first and re-run)",
+            file=sys.stderr,
+        )
+    return 1
+
+
+# ─── Commit mode ─────────────────────────────────────────────────────────────
+
+# opponents.h column-aligned define style. Slot column is 44 (matches NOEL,
+# MARIELA, and the rest of the file). Set by the c0fd8e830c normalization
+# commit. If a name is too long to fit before column 44, fall back to one space.
+DEFINE_SLOT_COLUMN = 44
+
+COUNT_LINE_RE = re.compile(
+    r"^(#define TRAINERS_COUNT_EMERALD\s+)(\d+)\s*$", re.MULTILINE
+)
+MAX_LINE_RE = re.compile(
+    r"^#define MAX_TRAINERS_COUNT_EMERALD\s+(\d+)\s*$", re.MULTILINE
+)
+WARNING_COMMENT_RE = re.compile(
+    r"(there is only space for )(\d+)( additional trainers)"
+)
+LAST_TRAINER_DEFINE_RE = re.compile(
+    r"^#define (TRAINER_[A-Z0-9_]+)(\s+)(\d+)\s*$", re.MULTILINE
+)
+
+
+def format_define_line(name: str, slot: int) -> str:
+    prefix = f"#define {name}"
+    padding = max(1, DEFINE_SLOT_COLUMN - len(prefix))
+    return f"{prefix}{' ' * padding}{slot}"
+
+
+def md5_file(path: Path) -> str:
+    return hashlib.md5(path.read_bytes()).hexdigest()
+
+
+def assert_clean_tree() -> None:
+    unstaged = subprocess.run(
+        ["git", "diff", "--quiet"], cwd=REPO_ROOT
+    ).returncode
+    staged = subprocess.run(
+        ["git", "diff", "--cached", "--quiet"], cwd=REPO_ROOT
+    ).returncode
+    if unstaged != 0 or staged != 0:
+        raise SystemExit(
+            "FATAL: working tree has uncommitted changes to tracked files. "
+            "Commit or stash before running --commit."
+        )
+
+
+def read_current_count(opponents_text: str) -> int:
+    m = COUNT_LINE_RE.search(opponents_text)
+    if not m:
+        raise SystemExit("FATAL: could not locate TRAINERS_COUNT_EMERALD line")
+    return int(m.group(2))
+
+
+def read_max_count(opponents_text: str) -> int:
+    m = MAX_LINE_RE.search(opponents_text)
+    if not m:
+        raise SystemExit("FATAL: could not locate MAX_TRAINERS_COUNT_EMERALD line")
+    return int(m.group(1))
+
+
+def read_warning_remaining(opponents_text: str) -> int:
+    m = WARNING_COMMENT_RE.search(opponents_text)
+    if not m:
+        raise SystemExit("FATAL: could not locate ceiling warning comment")
+    return int(m.group(2))
+
+
+def append_trainer_blocks(parsed: list[Trainer],
+                          double_battles: set[tuple[int, int]]) -> None:
+    party_text = TRAINERS_PARTY.read_text(encoding="utf-8")
+    body = party_text.rstrip("\n")  # preserve no-trailing-newline rule
+    new_blocks = "\n\n".join(emit_trainer(t, double_battles) for t in parsed)
+    new_text = body + "\n\n" + new_blocks
+    TRAINERS_PARTY.write_text(new_text, encoding="utf-8")
+
+
+def update_opponents_h(parsed: list[Trainer], current_count: int,
+                       max_count: int) -> tuple[int, int]:
+    text = OPPONENTS_H.read_text(encoding="utf-8")
+
+    # Find the LAST existing trainer-region #define (above the warning comment).
+    # The warning comment splits the file: trainer defines above, count line
+    # below. We insert immediately after the last trainer define above the
+    # comment, preserving the file's region structure (locked by c0fd8e830c).
+    warning_start = text.find("// NOTE: Because each Trainer uses a flag")
+    if warning_start == -1:
+        raise SystemExit("FATAL: could not locate ceiling warning comment block")
+    region_above = text[:warning_start]
+    last_match = None
+    for m in LAST_TRAINER_DEFINE_RE.finditer(region_above):
+        last_match = m
+    if last_match is None:
+        raise SystemExit("FATAL: no existing trainer #define lines above warning")
+
+    new_lines = [
+        format_define_line(t.constant, current_count + i)
+        for i, t in enumerate(parsed)
+    ]
+    insertion = "\n" + "\n".join(new_lines)
+    insert_at = last_match.end()  # end of last existing trainer define line
+    text = text[:insert_at] + insertion + text[insert_at:]
+
+    new_count = current_count + len(parsed)
+    new_remaining = max_count - new_count
+
+    # Update count line — preserve exact prefix whitespace (5 spaces).
+    text, n_count = COUNT_LINE_RE.subn(
+        lambda m: f"{m.group(1)}{new_count}", text, count=1
+    )
+    if n_count != 1:
+        raise SystemExit("FATAL: count-line substitution did not match exactly once")
+
+    # Update warning comment number.
+    text, n_warn = WARNING_COMMENT_RE.subn(
+        lambda m: f"{m.group(1)}{new_remaining}{m.group(3)}", text, count=1
+    )
+    if n_warn != 1:
+        raise SystemExit("FATAL: warning-comment substitution did not match exactly once")
+
+    OPPONENTS_H.write_text(text, encoding="utf-8")
+
+    # Verify post-write by re-reading and grepping the new values.
+    verify = OPPONENTS_H.read_text(encoding="utf-8")
+    if read_current_count(verify) != new_count:
+        raise SystemExit(
+            f"FATAL: post-write count verification failed "
+            f"(expected {new_count}, got {read_current_count(verify)})"
+        )
+    if read_warning_remaining(verify) != new_remaining:
+        raise SystemExit(
+            f"FATAL: post-write warning verification failed "
+            f"(expected {new_remaining}, got {read_warning_remaining(verify)})"
+        )
+    return new_count, new_remaining
+
+
+def commit_batch(route: int, parsed: list[Trainer],
+                 double_battles: set[tuple[int, int]]) -> int:
+    print("# COMMIT MODE — performing writes")
+    print(f"# Route: R{route}, batch size: {len(parsed)} trainers, "
+          f"{sum(len(t.mons) for t in parsed)} Pokémon\n")
+
+    assert_clean_tree()
+    print("[1/9] clean-tree check: PASS")
+
+    opponents_text = OPPONENTS_H.read_text(encoding="utf-8")
+    current_count = read_current_count(opponents_text)
+    max_count = read_max_count(opponents_text)
+    print(f"[2/9] read opponents.h: count={current_count}, MAX={max_count}")
+
+    if current_count + len(parsed) > max_count:
+        remaining = max_count - current_count
+        raise SystemExit(
+            f"FATAL: ceiling exceeded. {len(parsed)} trainers requested, "
+            f"only {remaining} slots remain ({current_count}/{max_count}). "
+            f"Expand flag space before continuing."
+        )
+    print(f"[3/9] ceiling check: PASS "
+          f"({current_count} + {len(parsed)} = {current_count + len(parsed)} ≤ {max_count})")
+
+    pre_party_md5 = md5_file(TRAINERS_PARTY)
+    pre_opp_md5 = md5_file(OPPONENTS_H)
+    print(f"[4/9] pre-write MD5:")
+    print(f"      trainers.party  {pre_party_md5}")
+    print(f"      opponents.h     {pre_opp_md5}")
+
+    append_trainer_blocks(parsed, double_battles)
+    print(f"[5/9] appended {len(parsed)} trainer blocks to trainers.party")
+
+    new_count, new_remaining = update_opponents_h(parsed, current_count, max_count)
+    print(f"[6/9] updated opponents.h: "
+          f"count {current_count}→{new_count}, warning {new_remaining} slots remaining")
+
+    post_party_md5 = md5_file(TRAINERS_PARTY)
+    post_opp_md5 = md5_file(OPPONENTS_H)
+    print(f"[7/9] post-write MD5:")
+    print(f"      trainers.party  {post_party_md5}")
+    print(f"      opponents.h     {post_opp_md5}")
+
+    print(f"[8/9] running make -j{os.cpu_count()} ...")
+    build = subprocess.run(
+        ["make", f"-j{os.cpu_count()}"],
+        cwd=REPO_ROOT,
+        capture_output=True,
+        text=True,
+    )
+    if build.returncode != 0:
+        print("[8/9] BUILD FAILED — last 30 lines of stderr:", file=sys.stderr)
+        for line in build.stderr.splitlines()[-30:]:
+            print(line, file=sys.stderr)
+        print("\nWrites are NOT rolled back. Inspect, fix, and re-run as needed.",
+              file=sys.stderr)
+        return 1
+    print("[8/9] build: PASS")
+
+    rom_md5 = md5_file(REPO_ROOT / "pokeemerald.gba")
+    names_csv = ", ".join(t.name.title() for t in parsed)
+    n_mons = sum(len(t.mons) for t in parsed)
+    print(f"\n[9/9] pokeemerald.gba MD5: {rom_md5}")
+    print(f"\n# Suggested commit message (CEO confirms separately, no auto-commit):\n")
+    print(f"R{route} batch port: {names_csv} "
+          f"({len(parsed)} trainers, {n_mons} Pokémon) - via port_trainers.py")
+    print()
+    return 0
+
+
+# ─── CLI ─────────────────────────────────────────────────────────────────────
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description="Port Snow trainers from v17 spec.")
+    ap.add_argument("--route", type=int, help="Port only this route number (e.g. 2)")
+    ap.add_argument("--all", action="store_true",
+                    help="Port all routes from start-flag")
+    ap.add_argument("--start-flag", type=int, default=None,
+                    help="Override flag start (default: current TRAINERS_COUNT_EMERALD)")
+    ap.add_argument("--dry-run", action="store_true", default=True,
+                    help="Print only, no writes (default)")
+    ap.add_argument("--commit", action="store_true",
+                    help="Required to actually modify files")
+    ap.add_argument("--dump-parsed", action="store_true",
+                    help="Dump parsed trainer dict and exit (parser-only mode)")
+    args = ap.parse_args()
+
+    if not SPEC_PATH.exists():
+        print(f"FATAL: spec not found at {SPEC_PATH}", file=sys.stderr)
+        return 2
+    if args.route is None and not args.all:
+        print("FATAL: pass --route N or --all", file=sys.stderr)
+        return 2
+
+    spec_text = SPEC_PATH.read_text(encoding="utf-8")
+    trainers = parse_spec(spec_text, route_filter=args.route)
+    assert_spec_compliance(trainers)
+    double_battles = parse_double_battles(spec_text)
+
+    if args.dump_parsed:
+        for t in trainers:
+            doubled = (t.route, t.index) in double_battles
+            print(f"=== R{t.route}-{t.index} {t.klass} {t.name} "
+                  f"(emit_class={t.emit_class}, gender={t.gender}, "
+                  f"double={doubled}, constant={t.constant}) ===")
+            for k, mon in enumerate(t.mons, 1):
+                print(f"  [{k}] {mon.species} Lv{mon.level} {mon.nature} "
+                      f"{mon.ability} item={mon.item} moves={mon.moves}")
+        print(f"\nParsed {len(trainers)} trainers, "
+              f"{sum(len(t.mons) for t in trainers)} Pokémon.")
+        return 0
+
+    party_text = TRAINERS_PARTY.read_text(encoding="utf-8")
+    shipped_blocks = extract_shipped_blocks(args.route, party_text) if args.route else {}
+    route_already_shipped = bool(shipped_blocks)
+
+    if args.commit:
+        if route_already_shipped:
+            print(
+                f"FATAL: --commit refused — R{args.route} already shipped "
+                f"({len(shipped_blocks)} blocks present in trainers.party). "
+                f"Re-emitting would double-insert.",
+                file=sys.stderr,
+            )
+            return 2
+        return commit_batch(args.route, trainers, double_battles)
+
+    # Dry-run mode. Auto-detect: shipped route → round-trip; new route → preview.
+    if route_already_shipped:
+        return round_trip_validate(args.route, trainers, double_battles, party_text)
+
+    # Preview emit for a not-yet-shipped route.
+    print(f"# Preview emit for R{args.route} ({len(trainers)} trainers, "
+          f"{sum(len(t.mons) for t in trainers)} Pokémon)\n")
+    for t in trainers:
+        print(emit_trainer(t, double_battles))
+        print()
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
