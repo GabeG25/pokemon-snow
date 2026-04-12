@@ -69,10 +69,21 @@ SPECIES_REMAP = {
 }
 
 CLASS_FALLBACKS = {
-    "Boarder": "Hiker",          # validated 2026-04-11 commit 592e85b064
-    "Skier": "Hiker",            # probed 2026-04-11 R2 --commit attempt, compiler suggested HIKER
-    "Miner": "Hiker",            # probed 2026-04-11 R2 --commit attempt, compiler suggested HIKER
-    "Scientist": "Scientist Frlg",  # no Emerald Scientist; FRLG variant has class + pic
+    # Mountain/outdoor classes → Hiker (validated commits 592e85b064, 43ffd4cfb2)
+    "Boarder": "Hiker",
+    "Skier": "Hiker",
+    "Miner": "Hiker",
+    # FRLG variant remaps (class exists only as _FRLG in engine)
+    "Scientist": "Scientist Frlg",
+    "Painter": "Painter Frlg",      # probed R7 build — TRAINER_CLASS_PAINTER undeclared
+    # Name remaps (same class, different string in engine)
+    "Ace Trainer": "Cooltrainer",    # Gen 5+ name → Gen 3 name
+    "Pokémon Ranger": "Pkmn Ranger", # full name → engine abbreviation
+    # Creative fallbacks (no engine equivalent exists)
+    "Musician": "Guitarist",         # closest musical performer class
+    "Special Agent": "Cooltrainer",  # elite operative → elite trainer
+    "Tycoon": "Gentleman",           # wealthy trainer archetype
+    "Pokémon Tycoon": "Gentleman",   # same
 }
 
 # Grunt team name → engine team name. Derives Class/Pic/Music:
@@ -106,6 +117,13 @@ CLASS_GENDER_DEFAULTS = {
     "Pokémon Tycoon": "Male",
     # Post-fallback resolved names (needed because gender lookup uses emit_class)
     "Scientist Frlg": "Male",
+    "Painter Frlg": "Female",
+    "Cooltrainer": "Male",
+    "Pkmn Ranger": "Male",
+    "Guitarist": "Male",
+    "Gentleman": "Male",
+    "Swimmer M": "Male",
+    "Swimmer F": "Female",
 }
 
 TRAINER_HEADER_RE = re.compile(
@@ -120,6 +138,24 @@ TRAINER_HEADER_RE = re.compile(
 TAG_DOUBLE_HEADER_RE = re.compile(
     r"^###\s+R(\d+)-([\d/]+)\s+—\s+(.+?)\s+\|.*TAG DOUBLE BATTLE.*$"
 )
+
+# Classes where the engine uses gendered class names (e.g., "Swimmer M"/"Swimmer F").
+# The spec uses the ungendered name; gender is derived from trainer name.
+GENDERED_CLASS_NAMES = {
+    "Swimmer": {"M": "Swimmer M", "F": "Swimmer F"},
+}
+# Male trainer names for gendered classes. Names not listed default to Female.
+GENDERED_CLASS_MALE_NAMES = {
+    "Swimmer": {"Troy", "Flynn", "Triton", "Nemo"},
+}
+
+# Classes where the Pic string differs from the Class string. Most classes use
+# Pic == Class, but gendered classes and name-remap classes need overrides.
+# Value is a format string with {gender} placeholder for M/F substitution.
+PIC_OVERRIDE = {
+    "Cooltrainer": "Cooltrainer {gender}",       # gendered pics
+    "Pkmn Ranger": "Pokemon Ranger {gender}",    # class name != pic name + gendered
+}
 
 # Matches bold sub-labels within a tag-double block: **Grunt 5:** or **Skier Ivy:**
 TAG_SUB_LABEL_RE = re.compile(r"^\*\*(.+?):\*\*\s*$")
@@ -151,14 +187,22 @@ class Trainer:
         if self.is_grunt:
             t = GRUNT_TEAM_FALLBACK.get(self.team, self.team)
             return f"Team {t}"
-        return CLASS_FALLBACKS.get(self.klass, self.klass)
+        resolved = CLASS_FALLBACKS.get(self.klass, self.klass)
+        if resolved in GENDERED_CLASS_NAMES:
+            g = "M" if self.name in GENDERED_CLASS_MALE_NAMES.get(resolved, set()) else "F"
+            return GENDERED_CLASS_NAMES[resolved][g]
+        return resolved
 
     @property
     def emit_pic(self) -> str:
         if self.is_grunt:
             t = GRUNT_TEAM_FALLBACK.get(self.team, self.team)
             return f"{t} Grunt M"
-        return self.emit_class
+        ec = self.emit_class
+        if ec in PIC_OVERRIDE:
+            g = "M" if self.gender == "Male" else "F"
+            return PIC_OVERRIDE[ec].format(gender=g)
+        return ec
 
     @property
     def emit_music(self) -> str:
@@ -214,9 +258,11 @@ def _parse_mon_table(lines: list[str], start: int, n: int,
     Returns (list of Mon, next line index after table).
     Handles both 10-column (no EVs) and 11-column (with EVs) tables."""
     j = start
-    while j < n and lines[j].strip() == "":
+    # Skip blank lines and non-table text (e.g., italic annotations like
+    # "*Accessible only after obtaining Surf*") until we find a | table row.
+    while j < n and not lines[j].lstrip().startswith("|"):
         j += 1
-    if j >= n or not lines[j].lstrip().startswith("|"):
+    if j >= n:
         raise ValueError(f"R{route}-{index} {name}: no table found")
     # Detect column count from header row
     header_cells = [c.strip() for c in lines[j].strip().strip("|").split("|")]
