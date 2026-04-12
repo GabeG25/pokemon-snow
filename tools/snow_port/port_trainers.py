@@ -128,13 +128,14 @@ CLASS_GENDER_DEFAULTS = {
     "Swimmer F": "Female",
 }
 
-# Matches both "R{N}-{M}" and "DI-{M}" route headers.
-# Group 1: route identifier (digits for R-routes, "DI" for Driftrock Isle)
+# Matches "R{N}-{M}", "DI-{M}", and "VR-{M}" route headers.
+# Group 1: route identifier (digits for R-routes, None for DI/VR)
 # Group 2: trainer index within route
 # Group 3: class + name label
 # Group 4: Pokémon count
+VR_ROUTE_NUM = 200  # synthetic route number for Victory Road
 TRAINER_HEADER_RE = re.compile(
-    r"^###\s+(?:R(\d+)|DI)-(\d+)\s+—\s+(.+?)\s+\|\s+(\d+)\s+Pokémon(?:\s*\|.*)?\s*$"
+    r"^###\s+(?:R(\d+)|(DI|VR))-(\d+)\s+—\s+(.+?)\s+\|\s+(\d+)\s+Pokémon(?:\s*\|.*)?\s*$"
 )
 
 # Matches tag-double headers. Four known variants in v17:
@@ -235,7 +236,11 @@ class Trainer:
 
     @property
     def route_label(self) -> str:
-        return "DI" if self.route == DI_ROUTE_NUM else f"R{self.route}"
+        if self.route == DI_ROUTE_NUM:
+            return "DI"
+        if self.route == VR_ROUTE_NUM:
+            return "VR"
+        return f"R{self.route}"
 
     @property
     def constant(self) -> str:
@@ -417,10 +422,15 @@ def parse_spec(spec_text: str, route_filter: int | None = None) -> list[Trainer]
         if not m:
             i += 1
             continue
-        route = int(m.group(1)) if m.group(1) else DI_ROUTE_NUM
-        index = int(m.group(2))
-        label = m.group(3)
-        expected_count = int(m.group(4))
+        if m.group(1):
+            route = int(m.group(1))
+        elif m.group(2) == "VR":
+            route = VR_ROUTE_NUM
+        else:
+            route = DI_ROUTE_NUM
+        index = int(m.group(3))
+        label = m.group(4)
+        expected_count = int(m.group(5))
         klass, name = split_class_and_name(label)
         is_grunt = name == "Grunt" and klass.startswith("Team ")
         team = klass.split(" ", 1)[1] if is_grunt else None
@@ -837,6 +847,8 @@ def main() -> int:
     if args.route is not None:
         if args.route.upper() == "DI":
             route_num = DI_ROUTE_NUM
+        elif args.route.upper() == "VR":
+            route_num = VR_ROUTE_NUM
         else:
             try:
                 route_num = int(args.route)
