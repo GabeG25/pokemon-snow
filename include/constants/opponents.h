@@ -958,12 +958,69 @@
 #define TRAINER_SNOW_DI_3_FLYNN             950
 #define TRAINER_SNOW_DI_4_TARA              951
 #define TRAINER_SNOW_DI_5_HEATH             952
+#define TRAINER_SNOW_F1_ASHER_A             953
+#define TRAINER_SNOW_F1_ASHER_B             954
+#define TRAINER_SNOW_F1_ASHER_C             955
+#define TRAINER_SNOW_F2_AUTUMN_A            956
+#define TRAINER_SNOW_F2_AUTUMN_B            957
+#define TRAINER_SNOW_F2_AUTUMN_C            958
+#define TRAINER_SNOW_F3_SILVAN              959
+#define TRAINER_SNOW_F4_ASHER_A             960
+#define TRAINER_SNOW_F4_ASHER_B             961
+#define TRAINER_SNOW_F4_ASHER_C             962
+#define TRAINER_SNOW_F5_AUTUMN_A            963
+#define TRAINER_SNOW_F5_AUTUMN_B            964
+#define TRAINER_SNOW_F5_AUTUMN_C            965
+#define TRAINER_SNOW_F6_CEDAR               966
+#define TRAINER_SNOW_F7_CRASH               967
+#define TRAINER_SNOW_F8_ASHER_A             968
+#define TRAINER_SNOW_F8_ASHER_B             969
+#define TRAINER_SNOW_F8_ASHER_C             970
+#define TRAINER_SNOW_F9_COPPER              971
+#define TRAINER_SNOW_F10_AUTUMN_A           972
+#define TRAINER_SNOW_F10_AUTUMN_B           973
+#define TRAINER_SNOW_F10_AUTUMN_C           974
+#define TRAINER_SNOW_F11_FRAN               975
+#define TRAINER_SNOW_F12_MIKA               976
+#define TRAINER_SNOW_F13_MARINA             977
+#define TRAINER_SNOW_F14_ASHER_A            978
+#define TRAINER_SNOW_F14_ASHER_B            979
+#define TRAINER_SNOW_F14_ASHER_C            980
+#define TRAINER_SNOW_F15_AUTUMN_A           981
+#define TRAINER_SNOW_F15_AUTUMN_B           982
+#define TRAINER_SNOW_F15_AUTUMN_C           983
+#define TRAINER_SNOW_F16_PRIYO              984
+#define TRAINER_SNOW_F17_ERIN               985
+#define TRAINER_SNOW_F18_AUTUMN_A           986
+#define TRAINER_SNOW_F18_AUTUMN_B           987
+#define TRAINER_SNOW_F18_AUTUMN_C           988
+#define TRAINER_SNOW_F19_MIKA               989
+#define TRAINER_SNOW_F20_XENON              990
+#define TRAINER_SNOW_F21_ASHER_A            991
+#define TRAINER_SNOW_F21_ASHER_B            992
+#define TRAINER_SNOW_F21_ASHER_C            993
+#define TRAINER_SNOW_F22_TYRELL             994
+#define TRAINER_SNOW_F23_SCORCH             995
+#define TRAINER_SNOW_F24_CRASH              996
+#define TRAINER_SNOW_F25_MIKA               997
+#define TRAINER_SNOW_F26_XENON              998
+#define TRAINER_SNOW_F27_TYRELL             999
+#define TRAINER_SNOW_F28_PROF               1000
+#define TRAINER_SNOW_F29_CRASH              1001
+#define TRAINER_SNOW_F30_ASHER_A            1002
+#define TRAINER_SNOW_F30_ASHER_B            1003
+#define TRAINER_SNOW_F30_ASHER_C            1004
+#define TRAINER_SNOW_F31_E4                 1005
+#define TRAINER_SNOW_F32_E4                 1006
+#define TRAINER_SNOW_F33_E4                 1007
+#define TRAINER_SNOW_F34_E4                 1008
+#define TRAINER_SNOW_F35_CHAMPION           1009
 
-// NOTE: Because each Trainer uses a flag to determine when they are defeated, there is only space for 71 additional trainers before trainer flag space overflows
+// NOTE: Because each Trainer uses a flag to determine when they are defeated, there is only space for 14 additional trainers before trainer flag space overflows
 //       More space can be made by shifting flags around in constants/flags.h or changing how trainer flags are handled
 //       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
 
-#define TRAINERS_COUNT_EMERALD     953
+#define TRAINERS_COUNT_EMERALD     1010
 #define MAX_TRAINERS_COUNT_EMERALD 1024
 
 #if IS_FRLG

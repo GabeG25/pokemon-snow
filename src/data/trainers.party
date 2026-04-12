@@ -20601,3 +20601,3321 @@ Nature: Jolly
 - Psycho Cut
 - Night Slash
 - Swords Dance
+
+=== TRAINER_SNOW_F1_ASHER_A ===
+Name: ASHER
+Class: Rival
+Pic: Brendan
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Torchic
+Level: 5
+Ability: Blaze
+Nature: Adamant
+- Scratch
+- Growl
+
+=== TRAINER_SNOW_F1_ASHER_B ===
+Name: ASHER
+Class: Rival
+Pic: Brendan
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Mudkip
+Level: 5
+Ability: Torrent
+Nature: Adamant
+- Tackle
+- Growl
+
+=== TRAINER_SNOW_F1_ASHER_C ===
+Name: ASHER
+Class: Rival
+Pic: Brendan
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Treecko
+Level: 5
+Ability: Overgrow
+Nature: Timid
+- Pound
+- Leer
+
+=== TRAINER_SNOW_F2_AUTUMN_A ===
+Name: AUTUMN
+Class: Rival
+Pic: May
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Sentret
+Level: 5
+Ability: Keen Eye
+Nature: Jolly
+- Scratch
+- Foresight
+- Quick Attack
+
+Mudkip @ Oran Berry
+Level: 7
+Ability: Torrent
+Nature: Adamant
+- Tackle
+- Growl
+- Mud-Slap
+
+=== TRAINER_SNOW_F2_AUTUMN_B ===
+Name: AUTUMN
+Class: Rival
+Pic: May
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Sentret
+Level: 5
+Ability: Keen Eye
+Nature: Jolly
+- Scratch
+- Foresight
+- Quick Attack
+
+Treecko @ Oran Berry
+Level: 7
+Ability: Overgrow
+Nature: Timid
+- Pound
+- Leer
+- Absorb
+
+=== TRAINER_SNOW_F2_AUTUMN_C ===
+Name: AUTUMN
+Class: Rival
+Pic: May
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Sentret
+Level: 5
+Ability: Keen Eye
+Nature: Jolly
+- Scratch
+- Foresight
+- Quick Attack
+
+Torchic @ Oran Berry
+Level: 7
+Ability: Blaze
+Nature: Adamant
+- Scratch
+- Growl
+- Focus Energy
+
+=== TRAINER_SNOW_F3_SILVAN ===
+Name: SILVAN
+Class: Leader
+Pic: Leader Roxanne
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Snover @ Icy Rock
+Level: 11
+Ability: Snow Warning
+Nature: Quiet
+- Razor Leaf
+- Icy Wind
+- Leer
+- Mist
+
+Cubchoo @ Oran Berry
+Level: 11
+Ability: Snow Cloak
+Nature: Adamant
+- Icy Wind
+- Return
+- Growl
+- Bide
+
+Shellder @ Oran Berry
+Level: 12
+Ability: Shell Armor
+Nature: Adamant
+- Icicle Spear
+- Water Gun
+- Withdraw
+- Protect
+
+Swinub @ Oran Berry
+Level: 12
+Ability: Snow Cloak
+Nature: Modest
+- Mud-Slap
+- Icy Wind
+- Endure
+- Tackle
+
+Snorunt @ Oran Berry
+Level: 13
+Ability: Ice Body
+Nature: Timid
+- Icy Wind
+- Bite
+- Double Team
+- Protect
+
+Piplup @ Sitrus Berry
+Level: 15
+Ability: Slush Rush
+Nature: Modest
+- Icy Wind
+- Water Gun
+- Peck
+- Work Up
+
+=== TRAINER_SNOW_F4_ASHER_A ===
+Name: ASHER
+Class: Rival
+Pic: Brendan
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Poochyena
+Level: 16
+Ability: Rattled
+Nature: Adamant
+- Bite
+- Howl
+- Taunt
+- Sand-Attack
+
+Zubat
+Level: 16
+Ability: Inner Focus
+Nature: Jolly
+- Wing Attack
+- Poison Fang
+- Supersonic
+- Leech Life
+
+Meowth
+Level: 18
+Ability: Technician
+Nature: Jolly
+- Fake Out
+- Bite
+- Scratch
+- Aerial Ace
+
+Combusken @ Sitrus Berry
+Level: 20
+Ability: Blaze
+Nature: Adamant
+- Double Kick
+- Ember
+- Bulk Up
+- Leer
+
+=== TRAINER_SNOW_F4_ASHER_B ===
+Name: ASHER
+Class: Rival
+Pic: Brendan
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Poochyena
+Level: 16
+Ability: Rattled
+Nature: Adamant
+- Bite
+- Howl
+- Taunt
+- Sand-Attack
+
+Zubat
+Level: 16
+Ability: Inner Focus
+Nature: Jolly
+- Wing Attack
+- Poison Fang
+- Supersonic
+- Leech Life
+
+Meowth
+Level: 18
+Ability: Technician
+Nature: Jolly
+- Fake Out
+- Bite
+- Scratch
+- Aerial Ace
+
+Marshtomp @ Sitrus Berry
+Level: 20
+Ability: Torrent
+Nature: Adamant
+- Mud Shot
+- Water Gun
+- Rock Throw
+- Bide
+
+=== TRAINER_SNOW_F4_ASHER_C ===
+Name: ASHER
+Class: Rival
+Pic: Brendan
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Poochyena
+Level: 16
+Ability: Rattled
+Nature: Adamant
+- Bite
+- Howl
+- Taunt
+- Sand-Attack
+
+Zubat
+Level: 16
+Ability: Inner Focus
+Nature: Jolly
+- Wing Attack
+- Poison Fang
+- Supersonic
+- Leech Life
+
+Meowth
+Level: 18
+Ability: Technician
+Nature: Jolly
+- Fake Out
+- Bite
+- Scratch
+- Aerial Ace
+
+Grovyle @ Sitrus Berry
+Level: 20
+Ability: Overgrow
+Nature: Timid
+- Mega Drain
+- Quick Attack
+- Fury Cutter
+- Pursuit
+
+=== TRAINER_SNOW_F5_AUTUMN_A ===
+Name: AUTUMN
+Class: Rival
+Pic: May
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Furret
+Level: 18
+Ability: Keen Eye
+Nature: Jolly
+- Quick Attack
+- Headbutt
+- Thunder Wave
+- Amnesia
+
+Eevee
+Level: 18
+Ability: Anticipation
+Nature: Calm
+- Quick Attack
+- Work Up
+- Baton Pass
+- Swift
+
+Pansear
+Level: 18
+Ability: Blaze
+Nature: Naive
+- Incinerate
+- Bite
+- Fury Swipes
+- Hone Claws
+
+Marshtomp @ Sitrus Berry
+Level: 21
+Ability: Torrent
+Nature: Adamant
+- Mud Shot
+- Water Gun
+- Rock Throw
+- Bide
+
+=== TRAINER_SNOW_F5_AUTUMN_B ===
+Name: AUTUMN
+Class: Rival
+Pic: May
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Furret
+Level: 18
+Ability: Keen Eye
+Nature: Jolly
+- Quick Attack
+- Headbutt
+- Thunder Wave
+- Amnesia
+
+Eevee
+Level: 18
+Ability: Anticipation
+Nature: Calm
+- Quick Attack
+- Work Up
+- Baton Pass
+- Swift
+
+Panpour
+Level: 18
+Ability: Torrent
+Nature: Modest
+- Water Gun
+- Bite
+- Fury Swipes
+- Hone Claws
+
+Grovyle @ Sitrus Berry
+Level: 21
+Ability: Overgrow
+Nature: Timid
+- Mega Drain
+- Quick Attack
+- Fury Cutter
+- Pursuit
+
+=== TRAINER_SNOW_F5_AUTUMN_C ===
+Name: AUTUMN
+Class: Rival
+Pic: May
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Furret
+Level: 18
+Ability: Keen Eye
+Nature: Jolly
+- Quick Attack
+- Headbutt
+- Thunder Wave
+- Amnesia
+
+Eevee
+Level: 18
+Ability: Anticipation
+Nature: Calm
+- Quick Attack
+- Work Up
+- Baton Pass
+- Swift
+
+Pansage
+Level: 18
+Ability: Overgrow
+Nature: Adamant
+- Vine Whip
+- Bite
+- Fury Swipes
+- Hone Claws
+
+Combusken @ Sitrus Berry
+Level: 21
+Ability: Blaze
+Nature: Adamant
+- Double Kick
+- Ember
+- Bulk Up
+- Leer
+
+=== TRAINER_SNOW_F6_CEDAR ===
+Name: CEDAR
+Class: Leader
+Pic: Leader Brawly
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Bayleef @ Light Clay
+Level: 19
+Ability: Effect Spore
+Nature: Bold
+- Reflect
+- Light Screen
+- Giga Drain
+- Body Slam
+
+Deerling @ Oran Berry
+Level: 19
+Ability: Serene Grace
+Nature: Jolly
+- Headbutt
+- Razor Leaf
+- Leech Seed
+- Charm
+
+Lombre @ Oran Berry
+Level: 20
+Ability: Rain Dish
+Nature: Calm
+- Bubble Beam
+- Fake Out
+- Rain Dance
+- Protect
+
+Nuzleaf @ Oran Berry
+Level: 20
+Ability: Early Bird
+Nature: Careful
+- Giga Drain
+- Feint Attack
+- Fake Out
+- Rest
+
+Sudowoodo @ Sitrus Berry
+Level: 21
+Ability: Rock Head
+Nature: Adamant
+- Rock Tomb
+- Wood Hammer
+- Low Kick
+- Curse
+
+Carnivine @ Miracle Seed
+Level: 23
+Ability: Levitate
+Nature: Quiet
+- Giga Drain
+- Bite
+- Leech Seed
+- Sleep Powder
+
+=== TRAINER_SNOW_F7_CRASH ===
+Name: CRASH
+Class: Pkmn Trainer 1
+Pic: Wally
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Cryogonal @ Sitrus Berry
+Level: 24
+Ability: Levitate
+Nature: Mild
+- Aurora Beam
+- Rapid Spin
+- Confuse Ray
+- Recover
+
+Cubchoo @ Occa Berry
+Level: 23
+Ability: Rattled
+Nature: Adamant
+- Ice Punch
+- Slash
+- Ice Shard
+- Charm
+
+Poliwhirl @ Rindo Berry
+Level: 25
+Ability: Water Absorb
+Nature: Adamant
+- Bubble Beam
+- Ice Punch
+- Wake-Up Slap
+- Hypnosis
+
+Pignite @ Assault Vest
+Level: 27
+Ability: Thick Fat
+Nature: Adamant
+- Flame Charge
+- Brick Break
+- Rock Tomb
+- Bulldoze
+
+=== TRAINER_SNOW_F8_ASHER_A ===
+Name: ASHER
+Class: Rival
+Pic: Brendan
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Mightyena @ Black Glasses
+Level: 25
+Ability: Moxie
+Nature: Adamant
+- Crunch
+- Poison Fang
+- Taunt
+- Scary Face
+
+Golbat @ Poison Gem
+Level: 26
+Ability: Inner Focus
+Nature: Jolly
+- Poison Fang
+- Acrobatics
+- Confuse Ray
+- Screech
+
+Shroomish @ Toxic Orb
+Level: 25
+Ability: Poison Heal
+Nature: Adamant
+- Bullet Seed
+- Protect
+- Leech Seed
+- Spore
+
+Shellder @ Eviolite
+Level: 26
+Ability: Skill Link
+Nature: Jolly
+- Razor Shell
+- Icicle Spear
+- Spike Cannon
+- Toxic
+
+Whirlipede @ Lum Berry
+Level: 27
+Ability: Speed Boost
+Nature: Careful
+- Steamroller
+- Poison Tail
+- Protect
+- Rest
+
+Combusken @ Sitrus Berry
+Level: 29
+Ability: Blaze
+Nature: Adamant
+- Fire Punch
+- Brick Break
+- Mach Punch
+- Bulk Up
+
+=== TRAINER_SNOW_F8_ASHER_B ===
+Name: ASHER
+Class: Rival
+Pic: Brendan
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Mightyena @ Black Glasses
+Level: 25
+Ability: Moxie
+Nature: Adamant
+- Crunch
+- Poison Fang
+- Taunt
+- Scary Face
+
+Golbat @ Poison Gem
+Level: 26
+Ability: Inner Focus
+Nature: Jolly
+- Poison Fang
+- Acrobatics
+- Confuse Ray
+- Screech
+
+Shroomish @ Toxic Orb
+Level: 25
+Ability: Poison Heal
+Nature: Adamant
+- Bullet Seed
+- Protect
+- Leech Seed
+- Spore
+
+Shellder @ Eviolite
+Level: 26
+Ability: Skill Link
+Nature: Jolly
+- Razor Shell
+- Icicle Spear
+- Spike Cannon
+- Toxic
+
+Whirlipede @ Lum Berry
+Level: 27
+Ability: Speed Boost
+Nature: Careful
+- Steamroller
+- Poison Tail
+- Protect
+- Rest
+
+Marshtomp @ Sitrus Berry
+Level: 29
+Ability: Torrent
+Nature: Adamant
+- Muddy Water
+- Bulldoze
+- Rock Slide
+- Amnesia
+
+=== TRAINER_SNOW_F8_ASHER_C ===
+Name: ASHER
+Class: Rival
+Pic: Brendan
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Mightyena @ Black Glasses
+Level: 25
+Ability: Moxie
+Nature: Adamant
+- Crunch
+- Poison Fang
+- Taunt
+- Scary Face
+
+Golbat @ Poison Gem
+Level: 26
+Ability: Inner Focus
+Nature: Jolly
+- Poison Fang
+- Acrobatics
+- Confuse Ray
+- Screech
+
+Shroomish @ Toxic Orb
+Level: 25
+Ability: Poison Heal
+Nature: Adamant
+- Bullet Seed
+- Protect
+- Leech Seed
+- Spore
+
+Shellder @ Eviolite
+Level: 26
+Ability: Skill Link
+Nature: Jolly
+- Razor Shell
+- Icicle Spear
+- Spike Cannon
+- Toxic
+
+Whirlipede @ Lum Berry
+Level: 27
+Ability: Speed Boost
+Nature: Careful
+- Steamroller
+- Poison Tail
+- Protect
+- Rest
+
+Grovyle @ Sitrus Berry
+Level: 29
+Ability: Overgrow
+Nature: Timid
+- Giga Drain
+- Dragon Breath
+- Acrobatics
+- Thunder Punch
+
+=== TRAINER_SNOW_F9_COPPER ===
+Name: COPPER
+Class: Leader
+Pic: Leader Wattson
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Boldore @ Chople Berry
+Level: 27
+Ability: Sturdy
+Nature: Adamant
+- Rock Slide
+- Heavy Slam
+- Body Press
+- Stealth Rock
+
+Lairon @ Focus Sash
+Level: 27
+Ability: Heavy Metal
+Nature: Impish
+- Heavy Slam
+- Rock Tomb
+- Dragon Tail
+- Protect
+
+Golbat @ Wise Glasses
+Level: 26
+Ability: Inner Focus
+Nature: Timid
+- Air Slash
+- Sludge Bomb
+- Giga Drain
+- Nasty Plot
+
+Skarmory @ Sitrus Berry
+Level: 28
+Ability: Mirror Armor
+Nature: Adamant
+- Steel Wing
+- Aerial Ace
+- Night Slash
+- Spikes
+
+Forretress @ Normal Gem
+Level: 28
+Ability: Sturdy
+Nature: Relaxed
+- Gyro Ball
+- Bug Bite
+- Counter
+- Selfdestruct
+
+Bastiodon @ Lum Berry
+Level: 30
+Ability: Sturdy
+Nature: Calm
+- Flash Cannon
+- Ancient Power
+- Toxic
+- Rest
+
+=== TRAINER_SNOW_F10_AUTUMN_A ===
+Name: AUTUMN
+Class: Rival
+Pic: May
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Furret @ Silk Scarf
+Level: 35
+Ability: Keen Eye
+Nature: Jolly
+- Giga Impact
+- Dig
+- U-turn
+- Coil
+
+Espeon @ Twisted Spoon
+Level: 36
+Ability: Magic Bounce
+Nature: Calm
+- Psybeam
+- Shadow Ball
+- Calm Mind
+- Morning Sun
+
+Togetic @ Eviolite
+Level: 36
+Ability: Serene Grace
+Nature: Calm
+- Air Slash
+- Extrasensory
+- Ancient Power
+- Wish
+
+Simisear @ Sitrus Berry
+Level: 36
+Ability: Blaze
+Nature: Naive
+- Blaze Kick
+- Crunch
+- Acrobatics
+- Tickle
+
+Swampert @ Sitrus Berry
+Level: 38
+Ability: Torrent
+Nature: Adamant
+- Muddy Water
+- Bulldoze
+- Rock Slide
+- Amnesia
+
+=== TRAINER_SNOW_F10_AUTUMN_B ===
+Name: AUTUMN
+Class: Rival
+Pic: May
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Furret @ Silk Scarf
+Level: 35
+Ability: Keen Eye
+Nature: Jolly
+- Giga Impact
+- Dig
+- U-turn
+- Coil
+
+Espeon @ Twisted Spoon
+Level: 36
+Ability: Magic Bounce
+Nature: Calm
+- Psybeam
+- Shadow Ball
+- Calm Mind
+- Morning Sun
+
+Togetic @ Eviolite
+Level: 36
+Ability: Serene Grace
+Nature: Calm
+- Air Slash
+- Extrasensory
+- Ancient Power
+- Wish
+
+Simipour @ Sitrus Berry
+Level: 36
+Ability: Torrent
+Nature: Modest
+- Scald
+- Crunch
+- Acrobatics
+- Tickle
+
+Sceptile @ Sitrus Berry
+Level: 38
+Ability: Overgrow
+Nature: Timid
+- Giga Drain
+- Dragon Breath
+- Acrobatics
+- Thunder Punch
+
+=== TRAINER_SNOW_F10_AUTUMN_C ===
+Name: AUTUMN
+Class: Rival
+Pic: May
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Furret @ Silk Scarf
+Level: 35
+Ability: Keen Eye
+Nature: Jolly
+- Giga Impact
+- Dig
+- U-turn
+- Coil
+
+Espeon @ Twisted Spoon
+Level: 36
+Ability: Magic Bounce
+Nature: Calm
+- Psybeam
+- Shadow Ball
+- Calm Mind
+- Morning Sun
+
+Togetic @ Eviolite
+Level: 36
+Ability: Serene Grace
+Nature: Calm
+- Air Slash
+- Extrasensory
+- Ancient Power
+- Wish
+
+Simisage @ Sitrus Berry
+Level: 36
+Ability: Overgrow
+Nature: Adamant
+- Seed Bomb
+- Crunch
+- Acrobatics
+- Tickle
+
+Blaziken @ Sitrus Berry
+Level: 38
+Ability: Blaze
+Nature: Adamant
+- Fire Punch
+- Brick Break
+- Mach Punch
+- Bulk Up
+
+=== TRAINER_SNOW_F11_FRAN ===
+Name: FRAN
+Class: Leader
+Pic: Leader Flannery
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Musharna @ Kasib Berry
+Level: 38
+Ability: Synchronize
+Nature: Quiet
+- Psychic
+- Trick Room
+- Calm Mind
+- Moonlight
+
+Togetic @ Eviolite
+Level: 37
+Ability: Serene Grace
+Nature: Bold
+- Nasty Plot
+- Baton Pass
+- Yawn
+- Encore
+
+Wigglytuff @ Leftovers
+Level: 36
+Ability: Pixilate
+Nature: Brave
+- Body Slam
+- Last Resort
+
+Clefable @ Life Orb
+Level: 36
+Ability: Magic Guard
+Nature: Modest
+- Dazzling Gleam
+- Mystical Fire
+- Water Pulse
+- Magical Leaf
+
+Azumarill @ Assault Vest
+Level: 37
+Ability: Huge Power
+Nature: Adamant
+- Waterfall
+- Play Rough
+- Brick Break
+- Aqua Jet
+
+Gardevoir @ Focus Sash
+Level: 40
+Ability: Trace
+Nature: Modest
+- Psychic
+- Moonblast
+- Focus Blast
+- Wish
+
+=== TRAINER_SNOW_F12_MIKA ===
+Name: MIKA
+Class: Pkmn Trainer 1
+Pic: May
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Cryogonal @ Normal Gem
+Level: 45
+Ability: Levitate
+Nature: Lonely
+- Ice Beam
+- Recover
+- Explosion
+
+Swoobat @ Focus Sash
+Level: 46
+Ability: Simple
+Nature: Timid
+- Stored Power
+- Air Slash
+- Charge Beam
+- Calm Mind
+
+Mismagius @ Focus Sash
+Level: 44
+Ability: Levitate
+Nature: Modest
+- Shadow Ball
+- Future Sight
+- Mystical Fire
+- Destiny Bond
+
+Alomomola @ Water Gem
+Level: 45
+Ability: Regenerator
+Nature: Impish
+- Liquidation
+- Wish
+- Calm Mind
+- Baton Pass
+
+Toxicroak @ Payapa Berry
+Level: 46
+Ability: Dry Skin
+Nature: Jolly
+- Poison Jab
+- Drain Punch
+- Sucker Punch
+- Toxic
+
+Froslass @ Focus Sash
+Level: 48
+Ability: Cursed Body
+Nature: Timid
+- Ice Beam
+- Shadow Ball
+- Thunder
+- Protect
+
+=== TRAINER_SNOW_F13_MARINA ===
+Name: MARINA
+Class: Leader
+Pic: Leader Winona
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Politoed @ Damp Rock
+Level: 46
+Ability: Drizzle
+Nature: Bold
+- Scald
+- Hypnosis
+- Perish Song
+- Whirlpool
+
+Lanturn @ Leftovers
+Level: 46
+Ability: Volt Absorb
+Nature: Bold
+- Scald
+- Thunder
+- Dazzling Gleam
+- Confuse Ray
+
+Relicanth @ Rindo Berry
+Level: 47
+Ability: Swift Swim
+Nature: Adamant
+- Aqua Tail
+- Head Smash
+- Yawn
+- Rain Dance
+
+Carracosta @ Assault Vest
+Level: 47
+Ability: Solid Rock
+Nature: Adamant
+- Razor Shell
+- Rock Slide
+- Superpower
+- Iron Head
+
+Samurott @ Life Orb
+Level: 48
+Ability: Torrent
+Nature: Naive
+- Scald
+- Megahorn
+- Dig
+- Aqua Jet
+
+Sharpedo @ Life Orb
+Level: 50
+Ability: Speed Boost
+Nature: Adamant
+- Liquidation
+- Crunch
+- Close Combat
+- Protect
+
+=== TRAINER_SNOW_F14_ASHER_A ===
+Name: ASHER
+Class: Rival
+Pic: Brendan
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Persian @ Wide Lens
+Level: 53
+Ability: Technician
+Nature: Jolly
+- Fake Out
+- Fury Swipes
+- Metal Claw
+- U-turn
+
+Golbat @ Eviolite
+Level: 53
+Ability: Inner Focus
+Nature: Jolly
+- Fly
+- Leech Life
+- Toxic
+- Protect
+
+Breloom @ Toxic Orb
+Level: 54
+Ability: Poison Heal
+Nature: Adamant
+- Seed Bomb
+- Mach Punch
+- Leech Seed
+- Spore
+
+Cloyster @ Focus Sash
+Level: 54
+Ability: Skill Link
+Nature: Jolly
+- Icicle Spear
+- Rock Blast
+- Spike Cannon
+- Shell Smash
+
+Absol @ Focus Sash
+Level: 54
+Ability: Super Luck
+Nature: Adamant
+- Night Slash
+- Psycho Cut
+- Play Rough
+- Perish Song
+
+Blaziken @ Expert Belt
+Level: 56
+Ability: Blaze
+Nature: Adamant
+- Blaze Kick
+- Power-Up Punch
+- Thunder Punch
+- Feather Dance
+
+=== TRAINER_SNOW_F14_ASHER_B ===
+Name: ASHER
+Class: Rival
+Pic: Brendan
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Persian @ Wide Lens
+Level: 53
+Ability: Technician
+Nature: Jolly
+- Fake Out
+- Fury Swipes
+- Metal Claw
+- U-turn
+
+Golbat @ Eviolite
+Level: 53
+Ability: Inner Focus
+Nature: Jolly
+- Fly
+- Leech Life
+- Toxic
+- Protect
+
+Breloom @ Toxic Orb
+Level: 54
+Ability: Poison Heal
+Nature: Adamant
+- Seed Bomb
+- Mach Punch
+- Leech Seed
+- Spore
+
+Cloyster @ Focus Sash
+Level: 54
+Ability: Skill Link
+Nature: Jolly
+- Icicle Spear
+- Rock Blast
+- Spike Cannon
+- Shell Smash
+
+Absol @ Focus Sash
+Level: 54
+Ability: Super Luck
+Nature: Adamant
+- Night Slash
+- Psycho Cut
+- Play Rough
+- Perish Song
+
+Swampert @ Leftovers
+Level: 56
+Ability: Torrent
+Nature: Adamant
+- Waterfall
+- Earthquake
+- Poison Jab
+- Protect
+
+=== TRAINER_SNOW_F14_ASHER_C ===
+Name: ASHER
+Class: Rival
+Pic: Brendan
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Persian @ Wide Lens
+Level: 53
+Ability: Technician
+Nature: Jolly
+- Fake Out
+- Fury Swipes
+- Metal Claw
+- U-turn
+
+Golbat @ Eviolite
+Level: 53
+Ability: Inner Focus
+Nature: Jolly
+- Fly
+- Leech Life
+- Toxic
+- Protect
+
+Breloom @ Toxic Orb
+Level: 54
+Ability: Poison Heal
+Nature: Adamant
+- Seed Bomb
+- Mach Punch
+- Leech Seed
+- Spore
+
+Cloyster @ Focus Sash
+Level: 54
+Ability: Skill Link
+Nature: Jolly
+- Icicle Spear
+- Rock Blast
+- Spike Cannon
+- Shell Smash
+
+Absol @ Focus Sash
+Level: 54
+Ability: Super Luck
+Nature: Adamant
+- Night Slash
+- Psycho Cut
+- Play Rough
+- Perish Song
+
+Sceptile @ Bright Powder
+Level: 56
+Ability: Overgrow
+Nature: Timid
+- Energy Ball
+- Dragon Pulse
+- Vacuum Wave
+- Double Team
+
+=== TRAINER_SNOW_F15_AUTUMN_A ===
+Name: AUTUMN
+Class: Rival
+Pic: May
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Furret @ Muscle Band
+Level: 54
+Ability: Keen Eye
+Nature: Jolly
+- Giga Impact
+- Play Rough
+- Knock Off
+- Coil
+
+Nidoqueen @ Black Sludge
+Level: 55
+Ability: Sheer Force
+Nature: Modest
+- Earth Power
+- Thunderbolt
+- Ice Beam
+- Flamethrower
+
+Espeon @ Red Card
+Level: 55
+Ability: Magic Bounce
+Nature: Calm
+- Psyshock
+- Shadow Ball
+- Calm Mind
+- Morning Sun
+
+Togekiss @ Leftovers
+Level: 55
+Ability: Serene Grace
+Nature: Calm
+- Air Slash
+- Dazzling Gleam
+- Aura Sphere
+- Yawn
+
+Simisear @ Sitrus Berry
+Level: 54
+Ability: Blaze
+Nature: Naive
+- Flamethrower
+- Knock Off
+- Superpower
+- Amnesia
+
+Swampert @ Leftovers
+Level: 57
+Ability: Torrent
+Nature: Adamant
+- Waterfall
+- Earthquake
+- Ice Punch
+- Protect
+
+=== TRAINER_SNOW_F15_AUTUMN_B ===
+Name: AUTUMN
+Class: Rival
+Pic: May
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Furret @ Muscle Band
+Level: 54
+Ability: Keen Eye
+Nature: Jolly
+- Giga Impact
+- Play Rough
+- Knock Off
+- Coil
+
+Nidoqueen @ Black Sludge
+Level: 55
+Ability: Sheer Force
+Nature: Modest
+- Earth Power
+- Thunderbolt
+- Ice Beam
+- Flamethrower
+
+Espeon @ Red Card
+Level: 55
+Ability: Magic Bounce
+Nature: Calm
+- Psyshock
+- Shadow Ball
+- Calm Mind
+- Morning Sun
+
+Togekiss @ Leftovers
+Level: 55
+Ability: Serene Grace
+Nature: Calm
+- Air Slash
+- Dazzling Gleam
+- Aura Sphere
+- Yawn
+
+Simipour @ Sitrus Berry
+Level: 54
+Ability: Torrent
+Nature: Modest
+- Scald
+- Ice Beam
+- Mud Shot
+- Nasty Plot
+
+Sceptile @ Bright Powder
+Level: 57
+Ability: Overgrow
+Nature: Timid
+- Energy Ball
+- Dragon Pulse
+- Vacuum Wave
+- Double Team
+
+=== TRAINER_SNOW_F15_AUTUMN_C ===
+Name: AUTUMN
+Class: Rival
+Pic: May
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Furret @ Muscle Band
+Level: 54
+Ability: Keen Eye
+Nature: Jolly
+- Giga Impact
+- Play Rough
+- Knock Off
+- Coil
+
+Nidoqueen @ Black Sludge
+Level: 55
+Ability: Sheer Force
+Nature: Modest
+- Earth Power
+- Thunderbolt
+- Ice Beam
+- Flamethrower
+
+Espeon @ Red Card
+Level: 55
+Ability: Magic Bounce
+Nature: Calm
+- Psyshock
+- Shadow Ball
+- Calm Mind
+- Morning Sun
+
+Togekiss @ Leftovers
+Level: 55
+Ability: Serene Grace
+Nature: Calm
+- Air Slash
+- Dazzling Gleam
+- Aura Sphere
+- Yawn
+
+Simisage @ Sitrus Berry
+Level: 54
+Ability: Overgrow
+Nature: Adamant
+- Seed Bomb
+- Rock Slide
+- Drain Punch
+- Fake Out
+
+Blaziken @ Expert Belt
+Level: 57
+Ability: Blaze
+Nature: Adamant
+- Blaze Kick
+- Power-Up Punch
+- Thunder Punch
+- Feather Dance
+
+=== TRAINER_SNOW_F16_PRIYO ===
+Name: PRIYO
+Class: Leader
+Pic: Leader Norman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Zweilous @ Zoom Lens
+Level: 55
+Ability: Hustle
+Nature: Brave
+- Outrage
+- Crunch
+- Zen Headbutt
+- Head Smash
+
+Druddigon @ Life Orb
+Level: 56
+Ability: Sheer Force
+Nature: Adamant
+- Dragon Claw
+- Iron Head
+- Thunder Punch
+- Glare
+
+Dragonair @ Flame Orb
+Level: 56
+Ability: Marvel Scale
+Nature: Calm
+- Draco Meteor
+- Toxic
+- Light Screen
+- Protect
+
+Haxorus @ Focus Sash
+Level: 57
+Ability: Mold Breaker
+Nature: Jolly
+- Dragon Claw
+- Earthquake
+- Close Combat
+- Dragon Dance
+
+Serperior @ Lum Berry
+Level: 57
+Ability: Contrary
+Nature: Timid
+- Leaf Storm
+- Draco Meteor
+- Wring Out
+- Glare
+
+Salamence @ Dragon Gem
+Level: 59
+Ability: Intimidate
+Nature: Adamant
+- Outrage
+- Fly
+- Draco Meteor
+- Roost
+
+=== TRAINER_SNOW_F17_ERIN ===
+Name: ERIN
+Class: Leader
+Pic: Leader Juan
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Mamoswine @ Focus Sash
+Level: 62
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Thick Fat
+Nature: Impish
+- Earthquake
+- Icicle Crash
+- Fissure
+- Stomping Tantrum
+
+Stunfisk @ Quick Claw
+Level: 63
+EVs: 252 Def / 252 SpD / 4 HP
+Ability: Opportunist
+Nature: Bold
+- Earth Power
+- Thunderbolt
+- Sludge Wave
+- Yawn
+
+Torterra @ Light Clay
+Level: 63
+EVs: 252 Atk / 252 SpD / 4 Def
+Ability: Tera Shell
+Nature: Adamant
+- Earthquake
+- Wood Hammer
+- Reflect
+- Light Screen
+
+Swampert @ Rindo Berry
+Level: 64
+EVs: 252 Def / 252 SpD / 4 HP
+Ability: Sheer Force
+Nature: Relaxed
+- Liquidation
+- Hammer Arm
+- Counter
+- Mirror Coat
+
+Krookodile @ Assault Vest
+Level: 65
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Intimidate
+Nature: Jolly
+- Earthquake
+- Crunch
+- Dragon Claw
+- Power-Up Punch
+
+Claydol @ Leftovers
+Level: 66
+EVs: 252 HP / 128 Def / 128 SpD
+Ability: Levitate
+Nature: Adamant
+- Earthquake
+- Explosion
+- Wonder Room
+- Cosmic Power
+
+=== TRAINER_SNOW_F18_AUTUMN_A ===
+Name: AUTUMN
+Class: Rival
+Pic: May
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Espeon @ Leftovers
+Level: 68
+EVs: 252 HP / 252 SpA / 4 SpD
+Ability: Magic Bounce
+Nature: Calm
+- Psychic
+- Calm Mind
+- Substitute
+- Morning Sun
+
+Furret @ Choice Band
+Level: 68
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Keen Eye
+Nature: Jolly
+- Explosion
+
+Nidoqueen @ Life Orb
+Level: 69
+EVs: 252 SpA / 252 HP / 4 SpD
+Ability: Sheer Force
+Nature: Modest
+- Earth Power
+- Thunder
+- Blizzard
+- Fire Blast
+
+Togekiss @ Assault Vest
+Level: 71
+EVs: 252 HP / 252 Def / 4 SpD
+Ability: Serene Grace
+Nature: Calm
+- Air Slash
+- Moonblast
+- Tri Attack
+- Water Pulse
+
+Simisear @ Bright Powder
+Level: 69
+EVs: 252 SpA / 252 Spe / 4 Atk
+Ability: Blaze
+Nature: Naive
+- Fire Blast
+- Grass Knot
+- Superpower
+- Yawn
+
+Swampert @ Rindo Berry
+Level: 72
+EVs: 252 Atk / 128 Def / 128 SpD
+Ability: Torrent
+Nature: Adamant
+- Liquidation
+- Earthquake
+- Body Press
+- Avalanche
+
+=== TRAINER_SNOW_F18_AUTUMN_B ===
+Name: AUTUMN
+Class: Rival
+Pic: May
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Espeon @ Leftovers
+Level: 68
+EVs: 252 HP / 252 SpA / 4 SpD
+Ability: Magic Bounce
+Nature: Calm
+- Psychic
+- Calm Mind
+- Substitute
+- Morning Sun
+
+Furret @ Choice Band
+Level: 68
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Keen Eye
+Nature: Jolly
+- Explosion
+
+Nidoqueen @ Life Orb
+Level: 69
+EVs: 252 SpA / 252 HP / 4 SpD
+Ability: Sheer Force
+Nature: Modest
+- Earth Power
+- Thunder
+- Blizzard
+- Fire Blast
+
+Togekiss @ Assault Vest
+Level: 71
+EVs: 252 HP / 252 Def / 4 SpD
+Ability: Serene Grace
+Nature: Calm
+- Air Slash
+- Moonblast
+- Tri Attack
+- Water Pulse
+
+Simipour @ Wide Lens
+Level: 69
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Torrent
+Nature: Modest
+- Hydro Pump
+- Blizzard
+- Focus Blast
+- Nasty Plot
+
+Sceptile @ White Herb
+Level: 72
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Overgrow
+Nature: Timid
+- Leaf Storm
+- Dragon Pulse
+- Thunderbolt
+- Vacuum Wave
+
+=== TRAINER_SNOW_F18_AUTUMN_C ===
+Name: AUTUMN
+Class: Rival
+Pic: May
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Espeon @ Leftovers
+Level: 68
+EVs: 252 HP / 252 SpA / 4 SpD
+Ability: Magic Bounce
+Nature: Calm
+- Psychic
+- Calm Mind
+- Substitute
+- Morning Sun
+
+Furret @ Choice Band
+Level: 68
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Keen Eye
+Nature: Jolly
+- Explosion
+
+Nidoqueen @ Life Orb
+Level: 69
+EVs: 252 SpA / 252 HP / 4 SpD
+Ability: Sheer Force
+Nature: Modest
+- Earth Power
+- Thunder
+- Blizzard
+- Fire Blast
+
+Togekiss @ Assault Vest
+Level: 71
+EVs: 252 HP / 252 Def / 4 SpD
+Ability: Serene Grace
+Nature: Calm
+- Air Slash
+- Moonblast
+- Tri Attack
+- Water Pulse
+
+Simisage @ Heat Rock
+Level: 69
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Overgrow
+Nature: Adamant
+- Solar Blade
+- Drain Punch
+- Stone Edge
+- Sunny Day
+
+Blaziken @ Air Balloon
+Level: 72
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Blaze
+Nature: Adamant
+- Flare Blitz
+- Close Combat
+- Thunder Punch
+- Overheat
+
+=== TRAINER_SNOW_F19_MIKA ===
+Name: MIKA
+Class: Pkmn Trainer 1
+Pic: May
+Gender: Female
+Music: Female
+Double Battle: Yes
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Cryogonal @ Light Clay
+Level: 70
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Levitate
+Nature: Lonely
+- Explosion
+- Light Screen
+- Reflect
+- Confuse Ray
+
+Mismagius @ Damp Rock
+Level: 71
+EVs: 252 SpA / 252 Spe / 4 SpD
+Ability: Levitate
+Nature: Modest
+- Ominous Wind
+- Thunder
+- Icy Wind
+- Rain Dance
+
+Swoobat @ Focus Sash
+Level: 71
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Simple
+Nature: Timid
+- Stored Power
+- Amnesia
+- Calm Mind
+- Roost
+
+Vaporeon @ Leftovers
+Level: 72
+EVs: 252 HP / 252 Def / 4 SpA
+Ability: Water Absorb
+Nature: Bold
+- Surf
+- Shadow Ball
+- Wish
+- Protect
+
+Toxicroak @ Life Orb
+Level: 72
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Dry Skin
+Nature: Jolly
+- Cross Chop
+- Cross Poison
+- Earthquake
+- Fake Out
+
+Froslass @ Focus Sash
+Level: 73
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Cursed Body
+Nature: Timid
+- Blizzard
+- Thunder
+- Nasty Plot
+- Protect
+
+=== TRAINER_SNOW_F20_XENON ===
+Name: XENON
+Class: Pkmn Trainer 1
+Pic: Brendan
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Electrode @ Focus Sash
+Level: 73
+EVs: 252 Spe / 252 SpA / 4 Atk
+Ability: Aftermath
+Nature: Naive
+- Electro Ball
+- Explosion
+- Mirror Coat
+- Taunt
+
+Porygon2 @ Eviolite
+Level: 73
+EVs: 252 HP / 128 Def / 128 SpD
+Ability: Download
+Nature: Modest
+- Tri Attack
+- Trick Room
+- Toxic
+- Recover
+
+Umbreon @ Leftovers
+Level: 74
+EVs: 252 HP / 252 Def / 4 SpD
+Ability: Synchronize
+Nature: Careful
+- Foul Play
+- Toxic
+- Wish
+- Protect
+
+Metagross @ Assault Vest
+Level: 74
+EVs: 252 Atk / 252 HP / 4 SpD
+Ability: Clear Body
+Nature: Adamant
+- Meteor Mash
+- Psycho Cut
+- Earthquake
+- Hammer Arm
+
+Magnezone @ Air Balloon
+Level: 75
+EVs: 252 SpA / 252 HP / 4 SpD
+Ability: Sturdy
+Nature: Modest
+- Thunder
+- Flash Cannon
+- Volt Switch
+- Trick Room
+
+Reuniclus @ Life Orb
+Level: 76
+EVs: 252 HP / 252 SpA / 4 Def
+Ability: Regenerator
+Nature: Quiet
+- Psychic
+- Energy Ball
+- Flash Cannon
+- Focus Blast
+
+=== TRAINER_SNOW_F21_ASHER_A ===
+Name: ASHER
+Class: Rival
+Pic: Brendan
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Absol @ Scope Lens
+Level: 70
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Super Luck
+Nature: Adamant
+- Night Slash
+- Psycho Cut
+- Shadow Claw
+- Shadow Sneak
+
+Persian @ Normal Gem
+Level: 70
+EVs: 252 Atk / 252 Spe / 4 Def
+Ability: Technician
+Nature: Jolly
+- Covet
+- Bite
+- U-turn
+- Fake Out
+
+Breloom @ Toxic Orb
+Level: 72
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Poison Heal
+Nature: Adamant
+- Drain Punch
+- Spore
+- Leech Seed
+- Protect
+
+Cloyster @ White Herb
+Level: 72
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Skill Link
+Nature: Jolly
+- Shell Smash
+- Icicle Spear
+- Rock Blast
+- Liquidation
+
+Magmortar @ Wise Glasses
+Level: 72
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Mega Launcher
+Nature: Modest
+- Flamethrower
+- Aura Sphere
+- Dragon Pulse
+- Dark Pulse
+
+Blaziken @ Electric Gem
+Level: 74
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Speed Boost
+Nature: Adamant
+- Flare Blitz
+- Close Combat
+- Thunder Punch
+- Protect
+
+=== TRAINER_SNOW_F21_ASHER_B ===
+Name: ASHER
+Class: Rival
+Pic: Brendan
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Absol @ Scope Lens
+Level: 70
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Super Luck
+Nature: Adamant
+- Night Slash
+- Psycho Cut
+- Shadow Claw
+- Shadow Sneak
+
+Persian @ Normal Gem
+Level: 70
+EVs: 252 Atk / 252 Spe / 4 Def
+Ability: Technician
+Nature: Jolly
+- Covet
+- Bite
+- U-turn
+- Fake Out
+
+Breloom @ Toxic Orb
+Level: 72
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Poison Heal
+Nature: Adamant
+- Drain Punch
+- Spore
+- Leech Seed
+- Protect
+
+Cloyster @ White Herb
+Level: 72
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Skill Link
+Nature: Jolly
+- Shell Smash
+- Icicle Spear
+- Rock Blast
+- Liquidation
+
+Magmortar @ Wise Glasses
+Level: 72
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Mega Launcher
+Nature: Modest
+- Flamethrower
+- Aura Sphere
+- Dragon Pulse
+- Dark Pulse
+
+Swampert @ Leftovers
+Level: 74
+EVs: 252 Atk / 252 HP / 4 Spe
+Ability: Sheer Force
+Nature: Adamant
+- Liquidation
+- Earthquake
+- Poison Jab
+- Substitute
+
+=== TRAINER_SNOW_F21_ASHER_C ===
+Name: ASHER
+Class: Rival
+Pic: Brendan
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Absol @ Scope Lens
+Level: 70
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Super Luck
+Nature: Adamant
+- Night Slash
+- Psycho Cut
+- Shadow Claw
+- Shadow Sneak
+
+Persian @ Normal Gem
+Level: 70
+EVs: 252 Atk / 252 Spe / 4 Def
+Ability: Technician
+Nature: Jolly
+- Covet
+- Bite
+- U-turn
+- Fake Out
+
+Breloom @ Toxic Orb
+Level: 72
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Poison Heal
+Nature: Adamant
+- Drain Punch
+- Spore
+- Leech Seed
+- Protect
+
+Cloyster @ White Herb
+Level: 72
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Skill Link
+Nature: Jolly
+- Shell Smash
+- Icicle Spear
+- Rock Blast
+- Liquidation
+
+Magmortar @ Wise Glasses
+Level: 72
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Mega Launcher
+Nature: Modest
+- Flamethrower
+- Aura Sphere
+- Dragon Pulse
+- Dark Pulse
+
+Sceptile @ Expert Belt
+Level: 74
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Protean
+Nature: Timid
+- Thunderbolt
+- Dragon Pulse
+- Focus Blast
+- Shed Tail
+
+=== TRAINER_SNOW_F22_TYRELL ===
+Name: TYRELL
+Class: Pkmn Trainer 1
+Pic: Wally
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Archeops @ Rock Gem
+Level: 73
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Defeatist
+Nature: Jolly
+- Stone Edge
+- Acrobatics
+- U-turn
+- Tailwind
+
+Arcanine @ Life Orb
+Level: 74
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Intimidate
+Nature: Jolly
+- Flare Blitz
+- Play Rough
+- Wild Charge
+- Extreme Speed
+
+Drapion @ Assault Vest
+Level: 74
+EVs: 252 SpD / 252 Spe / 4 Atk
+Ability: Battle Armor
+Nature: Jolly
+- Gunk Shot
+- Crunch
+- Leech Life
+- Fell Stinger
+
+Feraligatr @ Muscle Band
+Level: 75
+EVs: 252 Atk / 252 Spe / 4 Def
+Ability: Strong Jaw
+Nature: Adamant
+- Liquidation
+- Crunch
+- Psychic Fangs
+- Ice Fang
+
+Roserade @ Focus Sash
+Level: 75
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Prankster
+Nature: Modest
+- Giga Drain
+- Leech Seed
+- Toxic
+- Protect
+
+Zoroark @ Focus Sash
+Level: 77
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Illusion
+Nature: Timid
+- Night Daze
+- Psychic
+- Flamethrower
+- Nasty Plot
+
+=== TRAINER_SNOW_F23_SCORCH ===
+Name: SCORCH
+Class: Leader
+Pic: Leader Flannery
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Torkoal @ Heat Rock
+Level: 75
+EVs: 252 HP / 252 SpD / 4 Def
+Ability: Drought
+Nature: Quiet
+- Inferno
+- Solar Beam
+- Body Press
+- Iron Defense
+
+Exeggutor @ Tanga Berry
+Level: 75
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Chlorophyll
+Nature: Modest
+- Solar Beam
+- Future Sight
+- Sleep Powder
+- Synthesis
+
+Chandelure @ Fire Gem
+Level: 76
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Levitate
+Nature: Timid
+- Burn Up
+- Shadow Ball
+- Focus Blast
+- Minimize
+
+Darmanitan @ Leftovers
+Level: 76
+EVs: 252 SpA / 128 Def / 128 SpD
+Ability: Zen Mode
+Nature: Modest
+- Flamethrower
+- Psychic
+- Substitute
+- Protect
+
+Infernape @ Life Orb
+Level: 77
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Unseen Fist
+Nature: Jolly
+- Flare Blitz
+- Close Combat
+- Wild Charge
+- U-turn
+
+Typhlosion @ Choice Specs
+Level: 79
+EVs: 252 SpA / 252 Spe / 4 Def
+Ability: Berserk
+Nature: Timid
+- Eruption
+- Extrasensory
+- Solar Beam
+- Focus Blast
+
+=== TRAINER_SNOW_F24_CRASH ===
+Name: CRASH
+Class: Pkmn Trainer 1
+Pic: Wally
+Gender: Male
+Music: Male
+Double Battle: Yes
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Cryogonal @ Assault Vest
+Level: 80
+EVs: 252 SpA / 252 Spe / 4 SpD
+Ability: Levitate
+Nature: Mild
+- Blizzard
+- Hydro Pump
+- Signal Beam
+- Icy Wind
+
+Beartic @ Focus Sash
+Level: 80
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Intimidate
+Nature: Adamant
+- Avalanche
+- Close Combat
+- Aqua Jet
+- Protect
+
+Nidoking @ Life Orb
+Level: 80
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Sheer Force
+Nature: Timid
+- Sludge Bomb
+- Earth Power
+- Thunderbolt
+- Protect
+
+Gigalith @ Red Card
+Level: 80
+EVs: 252 Atk / 252 Def / 4 HP
+Ability: Solid Rock
+Nature: Brave
+- Rock Slide
+- Body Press
+- Explosion
+- Curse
+
+Poliwrath @ Blunder Policy
+Level: 81
+EVs: 252 Atk / 252 Spe / 4 SpD
+Ability: Water Absorb
+Nature: Adamant
+- Dynamic Punch
+- Waterfall
+- Baton Pass
+- Hypnosis
+
+Emboar @ Choice Band
+Level: 82
+EVs: 252 Atk / 252 HP / 4 Spe
+Ability: Reckless
+Nature: Adamant
+- Flare Blitz
+- Close Combat
+- Wild Charge
+- Head Smash
+
+=== TRAINER_SNOW_F25_MIKA ===
+Name: MIKA
+Class: Pkmn Trainer 1
+Pic: May
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Cryogonal @ Normal Gem
+Level: 81
+EVs: 252 HP / 252 Spe / 4 SpD
+Ability: Levitate
+Nature: Lonely
+- Freeze-Dry
+- Recover
+- Toxic
+- Explosion
+
+Mismagius @ Choice Scarf
+Level: 81
+EVs: 252 SpA / 252 Spe / 4 SpD
+Ability: Levitate
+Nature: Modest
+- Shadow Ball
+- Dazzling Gleam
+- Mystical Fire
+- Energy Ball
+
+Vaporeon @ Leftovers
+Level: 81
+EVs: 252 HP / 252 Def / 4 SpA
+Ability: Water Absorb
+Nature: Bold
+- Hydro Pump
+- Ice Beam
+- Yawn
+- Recover
+
+Swoobat @ Focus Sash
+Level: 81
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Simple
+Nature: Timid
+- Stored Power
+- Giga Drain
+- Nasty Plot
+- Calm Mind
+
+Toxicroak @ Life Orb
+Level: 82
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Dry Skin
+Nature: Jolly
+- Dire Claw
+- Drain Punch
+- X-Scissor
+- Swords Dance
+
+Froslass @ Focus Sash
+Level: 83
+EVs: 252 SpA / 252 Spe / 4 Atk
+Ability: Cursed Body
+Nature: Timid
+- Blizzard
+- Last Respects
+- Focus Blast
+- Destiny Bond
+
+=== TRAINER_SNOW_F26_XENON ===
+Name: XENON
+Class: Pkmn Trainer 1
+Pic: Brendan
+Gender: Male
+Music: Male
+Double Battle: Yes
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Electrode @ Focus Sash
+Level: 82
+EVs: 252 Spe / 252 SpA / 4 HP
+Ability: Aftermath
+Nature: Naive
+- Electro Ball
+- Ice Beam
+- Volt Switch
+- Trick Room
+
+Porygon-Z @ Choice Scarf
+Level: 82
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Download
+Nature: Modest
+- Boomburst
+- Dazzling Gleam
+- Dark Pulse
+- Fickle Beam
+
+Umbreon @ Toxic Orb
+Level: 83
+EVs: 252 HP / 252 Def / 4 SpD
+Ability: Synchronize
+Nature: Careful
+- Trick
+- Wish
+- Parting Shot
+- Follow Me
+
+Metagross @ Choice Band
+Level: 83
+EVs: 252 Atk / 252 SpD / 4 HP
+Ability: Clear Body
+Nature: Adamant
+- Meteor Mash
+- Psychic Fangs
+- Earthquake
+- Explosion
+
+Magnezone @ Power Herb
+Level: 84
+EVs: 252 SpA / 252 HP / 4 SpD
+Ability: Sturdy
+Nature: Modest
+- Electro Shot
+- Flash Cannon
+- Overheat
+- Protect
+
+Reuniclus @ White Herb
+Level: 85
+EVs: 252 HP / 252 SpA / 4 Def
+Ability: Regenerator
+Nature: Quiet
+- Psycho Boost
+- Dark Pulse
+- Focus Blast
+- Trick Room
+
+=== TRAINER_SNOW_F27_TYRELL ===
+Name: TYRELL
+Class: Pkmn Trainer 1
+Pic: Wally
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Zoroark @ Bright Powder
+Level: 87
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Illusion
+Nature: Timid
+- Night Daze
+- Psychic
+- Focus Blast
+- Nasty Plot
+
+Archeops @ Ground Gem
+Level: 85
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Defeatist
+Nature: Jolly
+- Stone Edge
+- Acrobatics
+- Earthquake
+- U-turn
+
+Arcanine @ Choice Band
+Level: 85
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Intimidate
+Nature: Jolly
+- Sacred Fire
+- Close Combat
+- Wild Charge
+- Extreme Speed
+
+Feraligatr @ Life Orb
+Level: 86
+EVs: 252 Atk / 252 Spe / 4 Def
+Ability: Strong Jaw
+Nature: Adamant
+- Fishious Rend
+- Crunch
+- Psychic Fangs
+- Ice Fang
+
+Roserade @ Focus Sash
+Level: 86
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Prankster
+Nature: Modest
+- Leaf Storm
+- Sludge Bomb
+- Sleep Powder
+- Toxic Spikes
+
+Kyurem @ Sitrus Berry
+Level: 88
+EVs: 252 Atk / 252 SpA / 4 Spe
+Ability: Pressure
+Nature: Serious
+- Blizzard
+- Outrage
+- Fusion Flare
+- Fusion Bolt
+
+=== TRAINER_SNOW_F28_PROF ===
+Name: PROF
+Class: Pkmn Trainer 1
+Pic: Brendan
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Abomasnow @ Occa Berry
+Level: 85
+EVs: 252 SpA / 252 HP / 4 SpD
+Ability: Snow Warning
+Nature: Modest
+- Blizzard
+- Frenzy Plant
+- Superpower
+- Spiky Shield
+
+Staraptor @ Choice Scarf
+Level: 85
+EVs: 252 HP / 252 Spe / 4 SpD
+Ability: Intimidate
+Nature: Jolly
+- Final Gambit
+
+Fearow @ Scope Lens
+Level: 86
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Sniper
+Nature: Jolly
+- Dual Wingbeat
+- Slash
+- Drill Run
+- U-turn
+
+Seismitoad @ Rindo Berry
+Level: 86
+EVs: 252 SpA / 252 HP / 4 Spe
+Ability: Merciless
+Nature: Modest
+- Muddy Water
+- Earth Power
+- Venoshock
+- Toxic
+
+Sawsbuck @ Life Orb
+Level: 88
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Serene Grace
+Nature: Jolly
+- Horn Leech
+- Body Slam
+- Axe Kick
+- Obstruct
+
+Hippowdon @ Quick Claw
+Level: 89
+EVs: 252 HP / 252 SpD / 4 Def
+Ability: Earth Eater
+Nature: Careful
+- Earthquake
+- Wild Charge
+- Ice Fang
+- Slack Off
+
+=== TRAINER_SNOW_F29_CRASH ===
+Name: CRASH
+Class: Pkmn Trainer 1
+Pic: Wally
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Cryogonal @ Zoom Lens
+Level: 86
+EVs: 252 SpA / 252 SpD / 4 HP
+Ability: Levitate
+Nature: Mild
+- Blizzard
+- Hydro Pump
+- Hurricane
+- Trick Room
+
+Gigalith @ Custap Berry
+Level: 86
+EVs: 252 Atk / 252 HP / 4 Def
+Ability: Solid Rock
+Nature: Brave
+- Head Smash
+- Earthquake
+- Outrage
+- Explosion
+
+Beartic @ Focus Sash
+Level: 86
+EVs: 252 Atk / 252 HP / 4 Spe
+Ability: Intimidate
+Nature: Adamant
+- Ice Hammer
+- Close Combat
+- Jet Punch
+- Swords Dance
+
+Nidoking @ Life Orb
+Level: 86
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Sheer Force
+Nature: Timid
+- Sludge Wave
+- Earth Power
+- Shadow Ball
+- Thunder
+
+Poliwrath @ Sitrus Berry
+Level: 88
+EVs: 252 Atk / 252 HP / 4 SpD
+Ability: Water Absorb
+Nature: Adamant
+- Jet Punch
+- Drain Punch
+- Earthquake
+- Belly Drum
+
+Emboar @ Choice Band
+Level: 89
+EVs: 252 Atk / 252 HP / 4 Def
+Ability: Reckless
+Nature: Adamant
+- Flare Blitz
+- Cross Chop
+- Head Smash
+- Wild Charge
+
+=== TRAINER_SNOW_F30_ASHER_A ===
+Name: ASHER
+Class: Rival
+Pic: Brendan
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Persian @ Focus Sash
+Level: 91
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Technician
+Nature: Jolly
+- Fake Out
+- Bite
+- Aerial Ace
+- Guard Swap
+
+Crobat @ Black Sludge
+Level: 91
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Inner Focus
+Nature: Jolly
+- Gunk Shot
+- Brave Bird
+- Cross Chop
+- Substitute
+
+Breloom @ Toxic Orb
+Level: 91
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Poison Heal
+Nature: Adamant
+- Trop Kick
+- Drain Punch
+- Spore
+- Swords Dance
+
+Cloyster @ White Herb
+Level: 91
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Skill Link
+Nature: Jolly
+- Water Shuriken
+- Icicle Spear
+- Rock Blast
+- Shell Smash
+
+Magmortar @ Choice Specs
+Level: 91
+EVs: 252 SpA / 252 Spe / 4 SpD
+Ability: Mega Launcher
+Nature: Modest
+- Armor Cannon
+- Aura Sphere
+- Dragon Pulse
+- Dark Pulse
+
+Blaziken @ Life Orb
+Level: 92
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Speed Boost
+Nature: Adamant
+- V-Create
+- Close Combat
+- Brave Bird
+- Protect
+
+=== TRAINER_SNOW_F30_ASHER_B ===
+Name: ASHER
+Class: Rival
+Pic: Brendan
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Persian @ Focus Sash
+Level: 91
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Technician
+Nature: Jolly
+- Fake Out
+- Bite
+- Aerial Ace
+- Guard Swap
+
+Crobat @ Black Sludge
+Level: 91
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Inner Focus
+Nature: Jolly
+- Gunk Shot
+- Brave Bird
+- Cross Chop
+- Substitute
+
+Breloom @ Toxic Orb
+Level: 91
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Poison Heal
+Nature: Adamant
+- Trop Kick
+- Drain Punch
+- Spore
+- Swords Dance
+
+Cloyster @ White Herb
+Level: 91
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Skill Link
+Nature: Jolly
+- Water Shuriken
+- Icicle Spear
+- Rock Blast
+- Shell Smash
+
+Magmortar @ Choice Specs
+Level: 91
+EVs: 252 SpA / 252 Spe / 4 SpD
+Ability: Mega Launcher
+Nature: Modest
+- Armor Cannon
+- Aura Sphere
+- Dragon Pulse
+- Dark Pulse
+
+Swampert @ Life Orb
+Level: 92
+EVs: 252 Atk / 252 HP / 4 Spe
+Ability: Sheer Force
+Nature: Adamant
+- Wave Crash
+- Earthquake
+- Ice Punch
+- Shore Up
+
+=== TRAINER_SNOW_F30_ASHER_C ===
+Name: ASHER
+Class: Rival
+Pic: Brendan
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Persian @ Focus Sash
+Level: 91
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Technician
+Nature: Jolly
+- Fake Out
+- Bite
+- Aerial Ace
+- Guard Swap
+
+Crobat @ Black Sludge
+Level: 91
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Inner Focus
+Nature: Jolly
+- Gunk Shot
+- Brave Bird
+- Cross Chop
+- Substitute
+
+Breloom @ Toxic Orb
+Level: 91
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Poison Heal
+Nature: Adamant
+- Trop Kick
+- Drain Punch
+- Spore
+- Swords Dance
+
+Cloyster @ White Herb
+Level: 91
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Skill Link
+Nature: Jolly
+- Water Shuriken
+- Icicle Spear
+- Rock Blast
+- Shell Smash
+
+Magmortar @ Choice Specs
+Level: 91
+EVs: 252 SpA / 252 Spe / 4 SpD
+Ability: Mega Launcher
+Nature: Modest
+- Armor Cannon
+- Aura Sphere
+- Dragon Pulse
+- Dark Pulse
+
+Sceptile @ White Herb
+Level: 92
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Protean
+Nature: Timid
+- Leaf Storm
+- Dragon Pulse
+- Power Gem
+- Glare
+
+=== TRAINER_SNOW_F31_E4 ===
+Name: E4
+Class: Pkmn Trainer 1
+Pic: Brendan
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Forretress @ Custap Berry
+Level: 95
+EVs: 252 Atk / 252 Def / 4 HP
+Ability: Sturdy
+Nature: Brave
+- Explosion
+- Baneful Bunker
+- Powder
+- Stealth Rock
+
+Galvantula @ Focus Sash
+Level: 95
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Stakeout
+Nature: Timid
+- Thunderbolt
+- Bug Buzz
+- Sticky Web
+- Sleep Powder
+
+Yanmega @ Focus Sash
+Level: 95
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Aerilate
+Nature: Modest
+- Boomburst
+- Bug Buzz
+- Ancient Power
+- Quiver Dance
+
+Heracross @ Flame Orb
+Level: 95
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Guts
+Nature: Adamant
+- Megahorn
+- Close Combat
+- Facade
+- Bullet Punch
+
+Scolipede @ Black Sludge
+Level: 95
+EVs: 252 Atk / 252 Spe / 4 Def
+Ability: Speed Boost
+Nature: Adamant
+- Lunge
+- Cross Poison
+- Earthquake
+- Protect
+
+Armaldo @ Assault Vest
+Level: 95
+EVs: 252 Atk / 128 Def / 128 SpD
+Ability: Filter
+Nature: Adamant
+- First Impression
+- Head Smash
+- Crabhammer
+- Earthquake
+
+=== TRAINER_SNOW_F32_E4 ===
+Name: E4
+Class: Pkmn Trainer 1
+Pic: Brendan
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Honchkrow @ Scope Lens
+Level: 95
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Super Luck
+Nature: Jolly
+- Night Slash
+- Brave Bird
+- Bolt Beak
+- Raging Fury
+
+Bisharp @ Focus Sash
+Level: 95
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Defiant
+Nature: Jolly
+- False Surrender
+- Bullet Punch
+- Swords Dance
+- Obstruct
+
+Drapion @ Assault Vest
+Level: 95
+EVs: 252 Atk / 252 Spe / 4 SpD
+Ability: Anger Point
+Nature: Adamant
+- Jaw Lock
+- Gunk Shot
+- First Impression
+- Aqua Tail
+
+Umbreon @ Leftovers
+Level: 95
+EVs: 252 HP / 128 Def / 128 SpD
+Ability: Synchronize
+Nature: Impish
+- Toxic
+- Wish
+- Parting Shot
+- Protect
+
+Houndoom @ Focus Sash
+Level: 95
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Berserk
+Nature: Timid
+- Fire Blast
+- Fiery Wrath
+- Energy Ball
+- Will-O-Wisp
+
+Hydreigon @ Life Orb
+Level: 95
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Levitate
+Nature: Timid
+- Night Daze
+- Dragon Pulse
+- Heat Wave
+- Flash Cannon
+
+=== TRAINER_SNOW_F33_E4 ===
+Name: E4
+Class: Pkmn Trainer 1
+Pic: Brendan
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Spiritomb @ Bright Powder
+Level: 95
+EVs: 252 SpA / 252 HP / 4 Atk
+Ability: Shadow Shield
+Nature: Quiet
+- Astral Barrage
+- Assurance
+- Flash Cannon
+- Calm Mind
+
+Dusclops @ Eviolite
+Level: 95
+EVs: 252 Def / 252 SpD / 4 HP
+Ability: Pressure
+Nature: Relaxed
+- Night Shade
+- Trick Room
+- Taunt
+- Pain Split
+
+Chandelure @ Life Orb
+Level: 95
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Levitate
+Nature: Timid
+- Flamethrower
+- Infernal Parade
+- Energy Ball
+- Minimize
+
+Jellicent @ Leftovers
+Level: 95
+EVs: 252 SpA / 252 Def / 4 HP
+Ability: Merciless
+Nature: Bold
+- Water Spout
+- Hex
+- Toxic
+- Strength Sap
+
+Mismagius @ Focus Sash
+Level: 95
+EVs: 252 SpA / 252 Spe / 4 SpD
+Ability: Levitate
+Nature: Timid
+- Destiny Bond
+- Thunderbolt
+- Ice Beam
+- Nasty Plot
+
+Dusknoir @ Assault Vest
+Level: 95
+EVs: 252 Atk / 252 Def / 4 SpD
+Ability: Cursed Body
+Nature: Impish
+- Last Respects
+- Foul Play
+- Poison Jab
+- Drain Punch
+
+=== TRAINER_SNOW_F34_E4 ===
+Name: E4
+Class: Pkmn Trainer 1
+Pic: Brendan
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Pelipper @ Focus Sash
+Level: 95
+EVs: 252 SpA / 252 Spe / 4 Def
+Ability: Drizzle
+Nature: Timid
+- Hydro Pump
+- Hurricane
+- Volt Switch
+- Tailwind
+
+Magneton @ Eviolite
+Level: 95
+EVs: 252 SpA / 252 HP / 4 Def
+Ability: Analytic
+Nature: Quiet
+- Thunder
+- Tri Attack
+- Volt Switch
+- Light Screen
+
+Lanturn @ Leftovers
+Level: 95
+EVs: 252 HP / 252 Spe / 4 SpA
+Ability: Drizzle
+Nature: Timid
+- Thunder
+- Water Spout
+- Signal Beam
+- Tail Glow
+
+Ampharos @ White Herb
+Level: 95
+EVs: 252 SpA / 252 SpD / 4 HP
+Ability: Volt Absorb
+Nature: Modest
+- Thunder
+- Draco Meteor
+- Hydro Pump
+- Cotton Guard
+
+Eelektross @ Power Herb
+Level: 95
+EVs: 252 SpA / 128 Def / 128 SpD
+Ability: Levitate
+Nature: Modest
+- Electro Shot
+- Flamethrower
+- Volt Switch
+- Recover
+
+Jolteon @ Scope Lens
+Level: 95
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Sniper
+Nature: Timid
+- Thunder
+- Energy Ball
+- Air Cutter
+- Spiky Shield
+
+=== TRAINER_SNOW_F35_CHAMPION ===
+Name: CHAMPION
+Class: Pkmn Trainer 1
+Pic: Brendan
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+
+Staraptor @ Focus Sash
+Level: 100
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Gale Wings
+Nature: Adamant
+- Brave Bird
+- Outrage
+- Close Combat
+- Tailwind
+
+Tyranitar @ Chople Berry
+Level: 100
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Earth Eater
+Nature: Jolly
+- Stone Edge
+- Knock Off
+- Earthquake
+- Dragon Dance
+
+Snorlax @ Lum Berry
+Level: 100
+EVs: 252 HP / 252 SpD / 4 Atk
+Ability: Stamina
+Nature: Careful
+- Body Slam
+- Yawn
+- Curse
+- Rest
+
+Sceptile @ Choice Specs
+Level: 100
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Protean
+Nature: Timid
+- Energy Ball
+- Dragon Energy
+- Sludge Bomb
+- Focus Blast
+
+Empoleon @ Assault Vest
+Level: 100
+EVs: 252 Def / 252 SpA / 4 HP
+Ability: Lightning Rod
+Nature: Modest
+- Hydro Pump
+- Flash Cannon
+- Frost Breath
+- Air Cutter
+
+Volcarona @ Charti Berry
+Level: 100
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Multiscale
+Nature: Timid
+- Fiery Dance
+- Giga Drain
+- Psychic
+- Quiver Dance
