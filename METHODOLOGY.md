@@ -77,6 +77,8 @@ git log --all --oneline -- <file> for file history
 When investigating why a file is in a particular state, git log --all --oneline -- <file> shows every commit that touched it across all branches. git log -p -- <file> shows the full diff of every change. These are the primary tools for "how did this file get this way?"
 find and ls -la before assuming file state
 When Claude Code says "I'll check tools/snow_port/port_trainers.py" — first verify the file exists at that path. ls -la tools/snow_port/ confirms. A missing file means either the path is wrong or the repo state is unexpected; both are halt conditions.
+event_scripts.s include ordering matters
+When adding new .include directives for map scripts to data/event_scripts.s, place them NEAR THE BEGINNING of the map-scripts section (after the @ comment header, before the vanilla map includes), not at the end. The pokeemerald build pipeline processes event_scripts.s through a multi-stage pipe chain (preproc → cpp → preproc → as). Includes placed at the end of the file (~line 1018+) can be silently truncated by pipe buffer limitations — the preprocessing stages produce correct output but the final assembler never receives the content. This was discovered when 25 Snow map scripts.inc includes placed after the FRLG maps all produced "undefined reference to MapScripts" linker errors despite the preproc stage correctly resolving them. Moving the includes to line 128 (before PetalburgCity) fixed all 25 errors immediately. Clean builds (make clean && make) do not resolve this — the truncation is inherent to the pipe chain at that file size.
 Commit Message Standards
 Every commit message has a subject line (≤72 chars) and, for non-trivial changes, a body.
 Subject format: type(scope): summary

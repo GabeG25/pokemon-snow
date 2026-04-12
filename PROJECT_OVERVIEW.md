@@ -47,7 +47,7 @@ Eviolite pre-evo exception: trainer Pokémon can hold Eviolite only if the speci
 Trade evolution via held-item config toggle: species that normally require trade evolution use an in-engine toggle instead, preserving the evolution trigger without multiplayer dependency
 
 Implementation State
-This section is living — update as routes ship. Last updated: 2026-04-12 post-all-trainers.
+This section is living — update as routes ship. Last updated: 2026-04-12 post-encounters.
 Shipped (data layer, compiled into ROM):
 
 Route trainers: R1(3) R2(4) R3(5) R5(6) R6(8) R7(5) R8(6) R9(8) R10(8) R11(6) R12(7) R13(9) R14(9) R15(9) DI(5) VR(8) = 106 trainers
@@ -69,6 +69,13 @@ Shipped (species data layer):
 2x crit damage, physical Water Shuriken, trade evo native in expansion
 Gallade Sharpness already handled by pokeemerald-expansion GEN_9 guard
 
+Shipped (map infrastructure + wild encounters):
+
+25 map stubs created with minimal map.json + scripts.inc — registered in gMapGroup_Snow
+Wild encounter tables for all 25 locations injected into wild_encounters.json (23 land, 7 water, 8 fishing)
+~120 unique species across all encounter tables, levels from 2-4 (Dawnflake) through 82-86 (Victory Road)
+Includes regional forms: Alolan Vulpix/Sandshrew/Sandslash, Galarian Darumaka
+
 Not yet shipped — design exists in v17, awaiting implementation:
 
 317-species full Pokédex data files (base stats, types beyond what's already in expansion)
@@ -76,16 +83,21 @@ Not yet shipped — design exists in v17, awaiting implementation:
 
 Not yet started:
 
-Map wiring — every trainer currently exists only as a data structure. None can be encountered in-game until map data references them (Porymap or hex editing, event scripting, sight ranges)
+Map wiring — 25 stub maps exist but use placeholder layouts. Real tile painting, event placement, sight ranges, and map connections require Porymap
 NPC scripting — dialog, rival encounters, Team Veil story cutscenes, Kyurem confrontation
 Real Team Veil / Boarder / Skier / Miner class sprites (currently using Magma / Hiker fallbacks)
 Item distribution across maps (Dragonforge Dept. Store inventory, Frostbreak Lodge, 22 designed hidden items)
 Music, art, sound beyond vanilla Emerald
 Balance playtesting (blocked until at least R1 through R5 has map wiring)
 
-Rough completeness: ~35% toward a fully playable build. All trainer data (163 route + 57 boss = 220 entries), custom HAs (167 species), and custom learnsets (198 moves) are shipped. The remaining work is map wiring, wild encounter tables, NPC scripting, facility grunts, and art.
+Rough completeness: ~38% toward a fully playable build. All trainer data (220 entries), custom HAs (167 species), custom learnsets (198 moves), and wild encounters (25 locations) are shipped. The remaining work is map wiring (tiles/events/connections), NPC scripting, facility grunts, and art.
 Tool Architecture
-The core tool is tools/snow_port/port_trainers.py — reads the v17 design archive and emits ROM data with full safety rails. Currently ~650 lines.
+The core tools are in tools/snow_port/:
+port_trainers.py (~870 lines) — route/DI/VR trainers with tag-doubles
+port_boss_fights.py (~460 lines) — boss fight data with variant support
+port_species_ha.py (~430 lines) — custom Hidden Abilities
+port_species_learnsets.py (~365 lines) — custom learnset additions
+port_wild_encounters.py (~530 lines) — wild encounter tables + map stub creation
 What the tool does:
 
 Parses section 20 of v17 (route trainer specs, markdown tables)
