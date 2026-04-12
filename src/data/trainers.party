@@ -18458,3 +18458,345 @@ Nature: Modest
 - Giga Drain
 - Scald
 - Ice Beam
+
+=== TRAINER_SNOW_R10_1_HANK ===
+Name: HANK
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Torkoal
+Level: 49
+Ability: Drought
+Nature: Bold
+- Lava Plume
+- Body Press
+- Yawn
+- Stealth Rock
+
+Aggron @ Sitrus Berry
+Level: 50
+Ability: Sturdy
+Nature: Adamant
+- Iron Head
+- Rock Slide
+- Earthquake
+- Dragon Tail
+
+Glalie @ Sitrus Berry
+Level: 50
+Ability: Ice Body
+Nature: Timid
+- Ice Beam
+- Frost Breath
+- Crunch
+- Shadow Ball
+
+Lucario @ Lum Berry
+Level: 51
+Ability: Inner Focus
+Nature: Jolly
+- Close Combat
+- Crunch
+- Bullet Punch
+- Swords Dance
+
+=== TRAINER_SNOW_R10_2_LYRA ===
+Name: LYRA
+Class: Scientist Frlg
+Pic: Scientist Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Magneton @ Air Balloon
+Level: 49
+Ability: Sturdy
+Nature: Modest
+- Thunderbolt
+- Flash Cannon
+- Volt Switch
+- Tri Attack
+
+Houndoom @ Sitrus Berry
+Level: 50
+Ability: Flash Fire
+Nature: Timid
+- Flamethrower
+- Dark Pulse
+- Sludge Bomb
+- Nasty Plot
+
+Darmanitan-Galar
+Level: 50
+Ability: Gorilla Tactics
+Nature: Jolly
+- Icicle Crash
+- Flare Blitz
+- Earthquake
+- U-turn
+
+Espeon @ Lum Berry
+Level: 51
+Ability: Magic Bounce
+Nature: Timid
+- Psychic
+- Shadow Ball
+- Dazzling Gleam
+- Calm Mind
+
+=== TRAINER_SNOW_R10_3_NASH ===
+Name: NASH
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Probopass @ Sitrus Berry
+Level: 49
+Ability: Sturdy
+Nature: Calm
+- Power Gem
+- Flash Cannon
+- Thunder Wave
+- Explosion
+
+Magmar @ Wise Glasses
+Level: 50
+Ability: Vital Spirit
+Nature: Modest
+- Flamethrower
+- Thunderbolt
+- Psychic
+- Confuse Ray
+
+Claydol @ Sitrus Berry
+Level: 51
+Ability: Levitate
+Nature: Calm
+- Psychic
+- Earth Power
+- Shadow Ball
+- Light Screen
+
+=== TRAINER_SNOW_R10_4_GRIMM ===
+Name: GRIMM
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Weavile
+Level: 50
+Ability: Pressure
+Nature: Jolly
+- Night Slash
+- Ice Shard
+- Low Kick
+- Swords Dance
+
+Honchkrow @ Sitrus Berry
+Level: 51
+Ability: Super Luck
+Nature: Adamant
+- Night Slash
+- Brave Bird
+- Sucker Punch
+- Roost
+
+=== TRAINER_SNOW_R10_5_ZARA ===
+Name: ZARA
+Class: Dragon Tamer
+Pic: Dragon Tamer
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Druddigon @ Muscle Band
+Level: 49
+Ability: Sheer Force
+Nature: Adamant
+- Dragon Claw
+- Fire Punch
+- Rock Slide
+- Scary Face
+
+Kingdra @ Wise Glasses
+Level: 50
+Ability: Sniper
+Nature: Modest
+- Hydro Pump
+- Dragon Pulse
+- Ice Beam
+- Focus Energy
+
+Zweilous @ Sitrus Berry
+Level: 50
+Ability: Hustle
+Nature: Brave
+- Crunch
+- Dragon Rush
+- Body Slam
+- Work Up
+
+Shelgon @ Sitrus Berry
+Level: 50
+Ability: Rock Head
+Nature: Adamant
+- Double-Edge
+- Dragon Claw
+- Fire Fang
+- Protect
+
+Haxorus @ Lum Berry
+Level: 51
+Ability: Mold Breaker
+Nature: Jolly
+- Dragon Claw
+- Close Combat
+- Poison Jab
+- Dragon Dance
+
+=== TRAINER_SNOW_R10_6_FELIX ===
+Name: FELIX
+Class: Scientist Frlg
+Pic: Scientist Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Metang @ Sitrus Berry
+Level: 49
+Ability: Clear Body
+Nature: Adamant
+- Meteor Mash
+- Zen Headbutt
+- Earthquake
+- Sunny Day
+
+Exeggutor @ Sitrus Berry
+Level: 50
+Ability: Chlorophyll
+Nature: Modest
+- Psychic
+- Giga Drain
+- Sleep Powder
+- Leech Seed
+
+Cryogonal
+Level: 51
+Ability: Levitate
+Nature: Timid
+- Ice Beam
+- Freeze-Dry
+- Rapid Spin
+- Recover
+
+=== TRAINER_SNOW_R10_7_SAGE ===
+Name: SAGE
+Class: Collector
+Pic: Collector
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Spiritomb @ Sitrus Berry
+Level: 49
+Ability: Pressure
+Nature: Calm
+- Shadow Ball
+- Dark Pulse
+- Will-O-Wisp
+- Calm Mind
+
+Rampardos
+Level: 50
+Ability: Mold Breaker
+Nature: Adamant
+- Head Smash
+- Earthquake
+- Zen Headbutt
+- Rock Polish
+
+Pupitar @ Passho Berry
+Level: 50
+Ability: Shed Skin
+Nature: Adamant
+- Rock Slide
+- Crunch
+- Earthquake
+- Dragon Dance
+
+Heracross @ Toxic Orb
+Level: 51
+Ability: Guts
+Nature: Adamant
+- Megahorn
+- Close Combat
+- Facade
+- Knock Off
+
+=== TRAINER_SNOW_R10_8_BOONE ===
+Name: BOONE
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Skarmory
+Level: 49
+Ability: Sturdy
+Nature: Impish
+- Brave Bird
+- Iron Head
+- Spikes
+- Whirlwind
+
+Forretress
+Level: 49
+Ability: Sturdy
+Nature: Relaxed
+- Gyro Ball
+- Bug Bite
+- Rapid Spin
+- Explosion
+
+Piloswine @ Sitrus Berry
+Level: 50
+Ability: Thick Fat
+Nature: Adamant
+- Earthquake
+- Icicle Crash
+- Ice Shard
+- Rock Slide
+
+Machamp
+Level: 50
+Ability: No Guard
+Nature: Adamant
+- Dynamic Punch
+- Stone Edge
+- Knock Off
+- Bullet Punch
+
+Gigalith @ Sitrus Berry
+Level: 51
+Ability: Sturdy
+Nature: Brave
+- Stone Edge
+- Earthquake
+- Heavy Slam
+- Curse
