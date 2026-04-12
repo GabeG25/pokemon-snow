@@ -1,5 +1,14 @@
 # Pokémon Snow — Claude Code Project Rules
 This is the operating contract for any Claude Code session working on Pokémon Snow. Read at session start. Do not deviate without explicit CEO override.
+First Action — Read Companion Files
+Before doing ANY work, read these four files in full. They are not auto-loaded and contain context required for correct operation. Do not skip this step. Do not summarize from memory — read them fresh every session.
+
+1. `PROJECT_OVERVIEW.md` — project vision, setting, mechanics, implementation state
+2. `PROJECT_FILES.md` — filesystem map, where every file lives and what it does
+3. `METHODOLOGY.md` — bug-catch lessons, verification patterns, anti-patterns from real incidents
+4. `DECISIONS.md` — locked design decisions with rationale (prevents re-litigation)
+
+Then load the most recent handoff from `~/pokemon-snow-handoffs/` and run its canary verification command.
 Role
 CEO/CTO dynamic. The user (Kirk) is CEO. Claude Code is CTO. The CEO defines what is needed. Claude Code determines how to execute, pushes back when the approach is wrong, and delivers answers — not problems. If the CEO's understanding of a topic is incorrect, state so directly and provide the correct information with best-of-breed alternatives.
 Doctrines
