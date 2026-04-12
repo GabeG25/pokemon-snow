@@ -1,10 +1,21 @@
 #!/usr/bin/env python3
-"""Generate detailed map layouts for all Snow locations.
-Each map designed from v17 spec descriptions with correct geography,
-buildings, terrain features, and item placement areas.
+"""Detailed layouts for all Snow locations from CEO synopses + v17 spec.
 
-Boralyss flows NORTH to SOUTH: snowy north → tropical south.
-Dawnflake Town is northernmost. Player exits south."""
+Key design rules:
+- Towns: 1-2 small intentional grass patches only (NOT wall-to-wall)
+- Routes: sparse varied grass patches with some MANDATORY sections on path
+- R1: mandatory grass area for Autumn catching tutorial
+- Dawnflake: grass in far corners, player can't enter without Pokémon
+- Powderpath: fenced grass with tree-border + single gate opening
+- Pinegrove: CRATER design with slopes leading down to center PokéCenter
+- Ironfrost: mining/industrial (rock formations, constructions)
+- Dreamurs: fairy/dreamy vibe
+- Iceharbor: medium port, cargo bays, half-frozen water
+- Dragonforge: LARGEST city, Facility Alpha visible, decorative buildings
+- Solace: rural agricultural, monuments, hidden Anti-Veil base
+- Pyrespire: 2nd largest, Facility Beta, tropical vibe
+- Move Tutors per v17 §15: Icespire/Ironfrost/Iceharbor/Dragonforge/Pyrespire
+"""
 
 import json, struct, math, random
 from pathlib import Path
@@ -12,55 +23,30 @@ from pathlib import Path
 random.seed(2026)
 REPO = Path(__file__).resolve().parent.parent.parent
 
-# ═══ METATILE ENCODING ═══
 def T(meta, col=0, elv=3):
     return meta | (col << 10) | (elv << 12)
 
-# Ground (elev 3, passable)
-GR  = T(0x001)  # Short grass ground
-GR2 = T(0x004)  # Alt ground
-TG  = T(0x00D)  # Tall grass (ENCOUNTERS)
-LG  = T(0x015)  # Long grass (ENCOUNTERS)
+# Ground tiles
+GR  = T(0x001); GR2 = T(0x004)
+TG  = T(0x00D); LG  = T(0x015)
+# Path tiles
+PC  = T(0x1D9); PL = T(0x1D8); PR = T(0x1DA)
+PT  = T(0x1D1); PB = T(0x1E1)
+# Trees (impassable)
+TTL = T(0x1D4,1,0); TTR = T(0x1D5,1,0)
+TBL = T(0x1DC,1,0); TBR = T(0x1DD,1,0)
+# Cliffs (impassable)
+CLD = T(0x075,1,0); CLM = T(0x073,1,0); CLL = T(0x071,1,0)
+RKG = T(0x079,1,0); RKR = T(0x07C,1,0)
+# Water
+WTR = T(0x170,elv=1)
+# Slope (for crater descent — animated muddy slope)
+SLP = T(0x0E8)  # Passable slope tile
+# Cave
+CFL = T(0x201); CF2 = T(0x211)
+CWL = T(0x211,1,0); CW2 = T(0x219,1,0); CW3 = T(0x209,1,0)
 
-# Path system (elev 3)
-PC  = T(0x1D9)  # Path center
-PL  = T(0x1D8)  # Path left edge
-PR  = T(0x1DA)  # Path right edge
-PT  = T(0x1D1)  # Path top edge
-PB  = T(0x1E1)  # Path bottom edge
-PTL = T(0x1D0)  # Corner top-left
-PTR = T(0x1D2)  # Corner top-right
-PBL = T(0x1E0)  # Corner bottom-left
-PBR = T(0x1E2)  # Corner bottom-right
-
-# Trees (2x2 blocks, impassable)
-TTL = T(0x1D4, 1, 0); TTR = T(0x1D5, 1, 0)
-TBL = T(0x1DC, 1, 0); TBR = T(0x1DD, 1, 0)
-# Tall grass under trees
-TGL = T(0x1C6); TGR = T(0x1C7)
-# Grass-tree edge
-GTL = T(0x1CE); GTR = T(0x1CF)
-
-# Cliffs/rocks (impassable)
-CLD = T(0x075, 1, 0)  # Dark cliff
-CLM = T(0x073, 1, 0)  # Medium cliff
-CLL = T(0x071, 1, 0)  # Light cliff
-RKG = T(0x079, 1, 0)  # Rock wall grass base
-RKR = T(0x07C, 1, 0)  # Rock wall rock base
-LDG = T(0x089, 1, 0)  # Ledge
-
-# Water (elev 1)
-WTR = T(0x170, elv=1)  # Calm water
-WTE = T(0x171, elv=1)  # Water edge
-
-# Cave (secondary tileset)
-CFL = T(0x201)          # Cave floor
-CF2 = T(0x211)          # Cave floor 2
-CWL = T(0x211, 1, 0)   # Cave wall
-CW2 = T(0x219, 1, 0)   # Cave wall 2
-CW3 = T(0x209, 1, 0)   # Cave wall 3
-
-# Buildings (Petalburg secondary tileset)
+# Buildings (Petalburg secondary)
 POKECENTER = [
     [T(0x26C), T(0x26D), T(0x26D), T(0x26E)],
     [T(0x274,1,0), T(0x275,1,0), T(0x275,1,0), T(0x276,1,0)],
@@ -81,65 +67,79 @@ HOUSE = [
 
 
 class M:
-    """Map grid with helper methods."""
-    def __init__(s, w, h, fill=GR):
-        s.w, s.h = w, h
-        s.g = [[fill]*w for _ in range(h)]
-    def s(s, x, y, t):
+    def __init__(s,w,h,fill=GR):
+        s.w,s.h=w,h; s.g=[[fill]*w for _ in range(h)]
+    def set(s,x,y,t):
         if 0<=x<s.w and 0<=y<s.h: s.g[y][x]=t
-    def r(s, x, y):
+    def get(s,x,y):
         return s.g[y][x] if 0<=x<s.w and 0<=y<s.h else 0
-    def rect(s, x1, y1, x2, y2, t):
+    def rect(s,x1,y1,x2,y2,t):
         for y in range(max(0,y1),min(s.h,y2+1)):
             for x in range(max(0,x1),min(s.w,x2+1)): s.g[y][x]=t
-    def bld(s, x, y, p):
+    def bld(s,x,y,p):
         for dy,row in enumerate(p):
-            for dx,t in enumerate(row): s.s(x+dx,y+dy,t)
-    def tree(s, x, y):
-        s.s(x,y,TTL); s.s(x+1,y,TTR); s.s(x,y+1,TBL); s.s(x+1,y+1,TBR)
-    def trees(s, t=2):
+            for dx,t in enumerate(row): s.set(x+dx,y+dy,t)
+    def tree(s,x,y):
+        s.set(x,y,TTL); s.set(x+1,y,TTR); s.set(x,y+1,TBL); s.set(x+1,y+1,TBR)
+    def border(s,t=2):
+        """Tree border around map."""
         for y in range(0,s.h,2):
             for x in range(0,s.w,2):
-                b = x<t*2 or x>=s.w-t*2 or y<t*2 or y>=s.h-t*2
-                if b: s.tree(x,y)
-    def path_v(s, x, y1, y2, w=3):
+                if x<t*2 or x>=s.w-t*2 or y<t*2 or y>=s.h-t*2:
+                    s.tree(x,y)
+    def path_v(s,cx,y1,y2,w=3):
         for y in range(min(y1,y2),max(y1,y2)+1):
-            for dx in range(-(w//2),w//2+1): s.s(x+dx,y,PC)
-    def path_h(s, y, x1, x2, w=3):
+            for dx in range(-(w//2),w//2+1): s.set(cx+dx,y,PC)
+    def path_h(s,cy,x1,x2,w=3):
         for x in range(min(x1,x2),max(x1,x2)+1):
-            for dy in range(-(w//2),w//2+1): s.s(x,y+dy,PC)
-    def wind_v(s, cx, y1, y2, w=3, amp=3, per=10):
+            for dy in range(-(w//2),w//2+1): s.set(x,cy+dy,PC)
+    def wind_v(s,cx,y1,y2,w=3,amp=3,per=10):
         for y in range(min(y1,y2),max(y1,y2)+1):
             off=int(amp*math.sin(y*2*math.pi/per))
-            for dx in range(-(w//2),w//2+1): s.s(cx+off+dx,y,PC)
-    def grass_o(s, cx, cy, rx, ry):
-        for y in range(s.h):
-            for x in range(s.w):
+            for dx in range(-(w//2),w//2+1): s.set(cx+off+dx,y,PC)
+    def grass_patch(s,cx,cy,rx,ry=None):
+        """Small patch of tall grass (sparse)."""
+        if ry is None: ry=rx
+        for y in range(max(0,cy-ry),min(s.h,cy+ry+1)):
+            for x in range(max(0,cx-rx),min(s.w,cx+rx+1)):
                 if ((x-cx)/max(rx,1))**2+((y-cy)/max(ry,1))**2<=1:
-                    if s.r(x,y) in (GR,GR2): s.s(x,y,TG)
-    def scat_trees(s, x1, y1, x2, y2, d=0.08):
-        for y in range(y1,y2-1,2):
-            for x in range(x1,x2-1,2):
-                if random.random()<d:
-                    if all(s.r(x+a,y+b) in (TG,GR,LG) for a in range(2) for b in range(2)):
-                        s.tree(x,y)
-    def ent_s(s, cx, w=5):
-        for x in range(cx-w//2,cx+w//2+1):
-            for y in range(s.h-4,s.h): s.s(x,y,GR)
-    def ent_n(s, cx, w=5):
-        for x in range(cx-w//2,cx+w//2+1):
-            for y in range(4): s.s(x,y,GR)
-    def ent_e(s, cy, w=3):
-        for y in range(cy-w//2,cy+w//2+1):
-            for x in range(s.w-4,s.w): s.s(x,y,GR)
-    def ent_w(s, cy, w=3):
-        for y in range(cy-w//2,cy+w//2+1):
-            for x in range(4): s.s(x,y,GR)
-    def clearing(s, cx, cy, rw=3, rh=1):
+                    if s.get(x,y) in (GR,GR2): s.set(x,y,TG)
+    def clearing(s,cx,cy,rw=3,rh=1):
         s.rect(cx-rw,cy-rh,cx+rw,cy+rh,GR)
-    def item_spot(s, x, y):
-        """Mark a visible item ball location."""
-        s.s(x,y,GR)
+    def item(s,x,y):
+        s.set(x,y,GR)
+    def fence_grass(s,cx,cy,rx,ry,gate_side='south'):
+        """Small grass area enclosed by trees, with gate opening."""
+        # Grass interior
+        s.rect(cx-rx,cy-ry,cx+rx,cy+ry,TG)
+        # Tree perimeter
+        for x in range(cx-rx-1,cx+rx+2,2):
+            s.tree(x,cy-ry-1)
+            s.tree(x,cy+ry)
+        for y in range(cy-ry-1,cy+ry+1,2):
+            s.tree(cx-rx-1,y)
+            s.tree(cx+rx+1,y)
+        # Gate opening
+        if gate_side=='south':
+            s.set(cx,cy+ry+1,GR); s.set(cx,cy+ry+2,GR)
+        elif gate_side=='north':
+            s.set(cx,cy-ry-1,GR); s.set(cx,cy-ry-2,GR)
+        elif gate_side=='west':
+            s.set(cx-rx-1,cy,GR); s.set(cx-rx-2,cy,GR)
+        elif gate_side=='east':
+            s.set(cx+rx+1,cy,GR); s.set(cx+rx+2,cy,GR)
+    def ent_s(s,cx,w=5):
+        for x in range(cx-w//2,cx+w//2+1):
+            for y in range(s.h-4,s.h): s.set(x,y,GR)
+    def ent_n(s,cx,w=5):
+        for x in range(cx-w//2,cx+w//2+1):
+            for y in range(4): s.set(x,y,GR)
+    def ent_e(s,cy,w=3):
+        for y in range(cy-w//2,cy+w//2+1):
+            for x in range(s.w-4,s.w): s.set(x,y,GR)
+    def ent_w(s,cy,w=3):
+        for y in range(cy-w//2,cy+w//2+1):
+            for x in range(4): s.set(x,y,GR)
     def to_bytes(s):
         o=bytearray()
         for row in s.g:
@@ -147,683 +147,852 @@ class M:
         return bytes(o)
 
 
-# ═══════════════════════════════════════════════════
-# ACT 1 — HEAVY SNOW ZONE (Northernmost)
-# ═══════════════════════════════════════════════════
+# ═══════════════════════════════════════════════════════════
+# ACT 1 — HEAVY SNOW ZONE
+# ═══════════════════════════════════════════════════════════
 
 def dawnflake_town():
-    """Northernmost town. 3 houses + Evergreen Lab. Exits SOUTH. Cozy."""
-    w,h = 30,26
+    """Quaint starting town. 3 houses (Player/Asher/Autumn) + Prof. Evergreen's Lab.
+    2 small grass patches in far corners (prompts player to catch Pokémon first).
+    No PokéCenter/Mart — it's just a tiny hamlet."""
+    w,h = 32,26
     m = M(w,h,GR)
-    m.trees(2)
+    m.border(2)
     cx = w//2
-    # Main path N-S (player walks south to leave)
+    # Main south exit path (vertical)
     m.path_v(cx, 4, h-1, 3)
-    # East-west residential path (upper third)
-    m.path_h(9, 5, w-6, 3)
-    # Player's house (northwest) — mom heals, Candy Box under bed
-    m.bld(5, 4, HOUSE)
-    m.path_v(7, 8, 9)
-    # Asher's house (north center)
-    m.bld(cx-2, 4, HOUSE)
-    m.path_v(cx, 8, 9)
-    # Autumn's house (northeast)
-    m.bld(w-9, 4, HOUSE)
-    m.path_v(w-7, 8, 9)
-    # Prof. Evergreen's Lab (south-center, larger — PokéCenter model as lab)
-    m.bld(cx-2, h-10, POKECENTER)
-    m.path_v(cx, h-10, h-6)
+    # Upper residential cross path
+    m.path_h(7, 6, w-7, 3)
+    # Player's house (northwest)
+    m.bld(5, 3, HOUSE)
+    m.path_v(7, 7, 8)
+    # Asher's house (north center-left)
+    m.bld(cx-5, 3, HOUSE)
+    m.path_v(cx-3, 7, 8)
+    # Autumn's house (north center-right)
+    m.bld(cx+2, 3, HOUSE)
+    m.path_v(cx+4, 7, 8)
+    # Prof. Evergreen's Lab (large, south-center — where player gets starter)
+    m.bld(cx-2, h-11, POKECENTER)
+    m.path_v(cx, h-7, h-6)
+    # Lower path to lab
     m.path_h(h-6, cx-2, cx+2, 3)
-    # Encounter grass patches (south and east)
-    m.grass_o(7, h-5, 3, 2)
-    m.grass_o(w-8, h-5, 3, 2)
-    m.grass_o(w-7, 14, 2, 3)
-    # South exit to R1
+    # 2 small grass patches in FAR corners (player can't enter without Pokémon)
+    m.grass_patch(4, h-6, 2, 1)      # Southwest corner patch (tiny)
+    m.grass_patch(w-5, h-6, 2, 1)    # Southeast corner patch (tiny)
+    # South exit
     m.ent_s(cx)
     return m,w,h
 
 def route1():
-    """Powderpath Trail. First route. Gentle snowy path south. 3 trainers."""
+    """Powderpath Trail. First route. MANDATORY grass for Autumn catching tutorial.
+    3 trainers: Noel, Elise, Kai. Autumn F2 at south end."""
     w,h = 24,42
     m = M(w,h,CLM)
-    m.rect(4,2,w-5,h-3,TG)
+    m.rect(3,2,w-4,h-3,GR)  # Walkable grass (NOT tall grass) — sparse placement
     cx = w//2
-    # Winding path south through snow
-    m.wind_v(cx, 0, h-1, 3, amp=3, per=12)
-    # Trainer clearings (3 trainers evenly spaced)
-    m.clearing(cx+1, 10, 3, 2)   # Noel (Youngster)
-    m.clearing(cx-1, 22, 3, 2)   # Elise (Lass)
-    m.clearing(cx+2, 33, 3, 2)   # Kai (Hiker)
-    # Scattered trees along edges
-    m.scat_trees(4,2,cx-3,h-3, 0.08)
-    m.scat_trees(cx+3,2,w-5,h-3, 0.08)
-    # F2 Autumn #1 area near south exit
+    # Winding path through the route
+    m.wind_v(cx, 0, h-1, 3, amp=2, per=14)
+    # MANDATORY grass section — Autumn catching tutorial
+    # Player MUST walk through this grass to continue south
+    m.rect(cx-2, 6, cx+2, 10, TG)   # Wide mandatory grass across path
+    # Autumn tutorial NPC spot (north edge of mandatory grass)
+    m.item(cx, 5)
+    # Additional sprinkled grass patches (optional encounters)
+    m.grass_patch(5, 15, 2, 2)
+    m.grass_patch(w-6, 18, 2, 1)
+    m.grass_patch(6, 24, 1, 2)
+    m.grass_patch(w-7, 27, 2, 2)
+    m.grass_patch(4, 32, 1, 1)
+    m.grass_patch(w-5, 34, 2, 1)
+    # Trainer clearings along path
+    m.clearing(cx-1, 14, 3, 1)   # Noel (Youngster)
+    m.clearing(cx+1, 22, 3, 1)   # Elise (Lass)
+    m.clearing(cx-1, 31, 3, 1)   # Kai (Hiker)
+    # F2 Autumn #1 battle area near south exit
     m.clearing(cx, h-7, 4, 2)
+    # Scattered single trees
+    for (x,y) in [(5,4),(w-6,7),(4,19),(w-5,21),(5,28),(w-6,36)]:
+        m.tree(x,y)
     m.ent_n(cx); m.ent_s(cx)
     return m,w,h
 
 def powderpath_village():
-    """Small hamlet between R1 and R2. Vanillite vendor. Rest stop."""
-    w,h = 26,20
+    """Quaint northern village. PokéCenter + Mart + 4-5 NPC houses.
+    Small fenced grass with gate. Intro to PC/Mart."""
+    w,h = 28,22
     m = M(w,h,GR)
-    m.trees(2)
+    m.border(2)
     cx = w//2
     m.path_v(cx, 0, h-1, 3)
-    m.path_h(h//2, 5, w-6, 3)
-    # PokéCenter (west side)
-    m.bld(5, 4, POKECENTER)
-    m.path_v(7, 8, h//2)
-    # Mart (east side)
-    m.bld(w-9, 5, MART)
-    m.path_v(w-7, 8, h//2)
-    # Vanillite vendor stand (small house, south-east)
-    m.bld(w-9, h-8, HOUSE)
-    m.path_v(w-7, h//2, h-8)
-    # Grass patches
-    m.grass_o(7, h-5, 3, 2)
-    m.grass_o(cx, h-4, 2, 2)
+    m.path_h(h//2-1, 4, w-5, 3)
+    # PokéCenter (northwest)
+    m.bld(4, 4, POKECENTER)
+    m.path_v(6, 8, h//2-1)
+    # Mart (northeast)
+    m.bld(w-8, 4, MART)
+    m.path_v(w-6, 7, h//2-1)
+    # NPC House 1 (west)
+    m.bld(4, h-8, HOUSE)
+    m.path_v(6, h//2-1, h-8)
+    # NPC House 2 (east)
+    m.bld(w-8, h-8, HOUSE)
+    m.path_v(w-6, h//2-1, h-8)
+    # NPC House 3 (south-center-left — Vanillite vendor)
+    m.bld(cx-6, h-8, HOUSE)
+    m.path_v(cx-4, h//2-1, h-8)
+    # NPC House 4 (south-center-right)
+    m.bld(cx+2, h-8, HOUSE)
+    m.path_v(cx+4, h//2-1, h-8)
+    # Fenced grass patch (upper center, between houses)
+    m.fence_grass(cx, 7, 2, 1, gate_side='south')
     m.ent_n(cx); m.ent_s(cx)
     return m,w,h
 
 def route2():
-    """Icespire Pass. Mountain climb, rocky narrows. 4 trainers. TM2 Hone Claws."""
+    """Icespire Pass. Mountain climb. 4 trainers. TM2 Hone Claws.
+    Sparse grass patches along path."""
     w,h = 24,38
     m = M(w,h,CLD)
-    # Narrow mountain pass carved from dark rock
-    m.rect(5,2,w-6,h-3,TG)
+    m.rect(4,2,w-5,h-3,GR)
     cx = w//2
-    # Winding path up the mountain (tighter amplitude)
     m.wind_v(cx, 0, h-1, 3, amp=2, per=8)
-    # Rocky outcrops narrowing the path
-    m.rect(5,8,9,11,CLM)    # West outcrop
-    m.rect(w-10,16,w-6,19,CLM)  # East outcrop
-    m.rect(5,24,9,27,CLM)   # Another west outcrop
-    # Trainer clearings (4 trainers)
-    m.clearing(cx, 7, 3, 1)    # Brett
-    m.clearing(cx+1, 15, 3, 1) # Finn
-    m.clearing(cx-1, 23, 3, 1) # Mila
-    m.clearing(cx, 31, 3, 1)   # Gus
-    # TM2 Hone Claws pickup spot
-    m.item_spot(cx+4, 20)
-    m.scat_trees(5,2,w-6,h-3, 0.04)
+    # Rocky outcrops narrowing the pass
+    m.rect(4,9,8,12,CLM)
+    m.rect(w-9,17,w-5,20,CLM)
+    m.rect(4,25,8,28,CLM)
+    # Sparse grass patches (not everywhere)
+    m.grass_patch(6, 5, 2, 1)
+    m.grass_patch(w-7, 13, 1, 2)
+    m.grass_patch(5, 21, 2, 1)
+    m.grass_patch(w-6, 30, 2, 1)
+    m.grass_patch(6, 34, 1, 1)
+    # Trainer clearings
+    m.clearing(cx, 7, 3, 1)     # Brett
+    m.clearing(cx+1, 15, 3, 1)  # Finn
+    m.clearing(cx-1, 23, 3, 1)  # Mila
+    m.clearing(cx, 31, 3, 1)    # Gus
+    # TM2 Hone Claws
+    m.item(cx+4, 20)
     m.ent_n(cx); m.ent_s(cx)
     return m,w,h
 
 def icespire_town():
-    """Mountain base town. Gym 1 (Silvan, Ice). PokéCenter + Gym + houses."""
-    w,h = 32,26
+    """First real explorable town. Gym 1 + Ice Cream Stand + PC + Mart + 6 NPC houses.
+    Roughneck Move Tutor. Pro-Veil winter culture town."""
+    w,h = 36,28
     m = M(w,h,GR)
-    m.trees(2)
+    m.border(2)
     cx = w//2
     m.path_v(cx, 0, h-1, 3)
-    m.path_h(h//2, 5, w-6, 3)
+    m.path_h(8, 5, w-6, 3)
+    m.path_h(h-8, 5, w-6, 3)
+    # Gym 1 (north-center, prominent)
+    m.bld(cx-2, 3, MART)
+    m.path_v(cx, 6, 8)
     # PokéCenter (northwest)
-    m.bld(5, 4, POKECENTER)
-    m.path_v(7, 8, h//2)
-    # Gym 1 building (northeast — Mart model as gym)
-    m.bld(w-9, 4, MART)
-    m.path_v(w-7, 7, h//2)
-    # Mart (southwest)
-    m.bld(5, h-7, MART)
-    m.path_v(7, h//2, h-7)
-    # House (southeast — Wide Lens NPC)
-    m.bld(w-9, h-8, HOUSE)
-    m.path_v(w-7, h//2, h-8)
-    # Grass encounters
-    m.grass_o(cx+5, 8, 2, 3)
-    m.grass_o(cx-4, h-5, 3, 2)
+    m.bld(5, 3, POKECENTER)
+    m.path_v(7, 7, 8)
+    # Mart (northeast)
+    m.bld(w-9, 3, MART)
+    m.path_v(w-7, 6, 8)
+    # Ice Cream Stand (center, small — HOUSE as placeholder)
+    m.bld(cx-2, h//2-1, HOUSE)
+    m.path_v(cx, h//2+3, h-8)
+    # NPC House 1 — Roughneck Move Tutor (south-west)
+    m.bld(5, h-7, HOUSE)
+    m.path_v(7, h-8, h-3)
+    # NPC House 2 (south, Wide Lens NPC)
+    m.bld(cx-8, h-7, HOUSE)
+    m.path_v(cx-6, h-8, h-3)
+    # NPC House 3 (south-center)
+    m.bld(cx+2, h-7, HOUSE)
+    m.path_v(cx+4, h-8, h-3)
+    # NPC House 4 (southeast)
+    m.bld(w-9, h-7, HOUSE)
+    m.path_v(w-7, h-8, h-3)
+    # NPC House 5 (west-mid)
+    m.bld(5, h//2-1, HOUSE)
+    m.path_h(h//2, 8, cx-2, 3)
+    # NPC House 6 (east-mid)
+    m.bld(w-9, h//2-1, HOUSE)
+    m.path_h(h//2, cx+2, w-9, 3)
+    # 1 small grass patch (southwest corner)
+    m.grass_patch(4, h-4, 1, 1)
     m.ent_n(cx); m.ent_s(cx)
     return m,w,h
 
 def route3():
-    """Pinehurst Woods. Dense forest gauntlet. 5 trainers. East branch to R4.
-    Veil Grunt at south exit. TM5 Protect + Bright Powder."""
+    """Pinehurst Woods. Forest gauntlet. 5 trainers (4 + Veil grunt).
+    East branch to R4. Sparse grass, TM5 Protect, Bright Powder."""
     w,h = 30,48
     m = M(w,h,TTL)
-    # Fill with tree canopy
     for y in range(0,h,2):
         for x in range(0,w,2): m.tree(x,y)
-    # Carve forest interior
-    m.rect(4,2,w-5,h-3,TG)
+    m.rect(4,2,w-5,h-3,GR)
     cx = w//2
-    # Winding forest path
-    m.wind_v(cx, 0, h-1, 3, amp=4, per=10)
-    # Dense scattered trees inside forest
-    m.scat_trees(4,2,w-5,h-3, 0.15)
-    # Trainer clearings (4 normal + 1 Veil Grunt at south)
-    m.clearing(cx+2, 8, 3, 2)    # Tate (Youngster)
-    m.clearing(cx-2, 16, 3, 2)   # Liam (Bug Catcher)
-    m.clearing(cx+1, 24, 3, 2)   # Faye (Lass)
-    m.clearing(cx-1, 32, 3, 2)   # Rowan (Bug Catcher)
-    m.clearing(cx, h-7, 4, 2)    # Veil Grunt blocks south exit
-    # East branch to R4 (side path)
+    m.wind_v(cx, 0, h-1, 3, amp=3, per=10)
+    # Sparse grass patches throughout forest
+    m.grass_patch(6, 6, 2, 1)
+    m.grass_patch(w-7, 10, 2, 2)
+    m.grass_patch(6, 18, 1, 2)
+    m.grass_patch(w-6, 22, 2, 1)
+    m.grass_patch(5, 28, 2, 1)
+    m.grass_patch(w-7, 34, 2, 2)
+    m.grass_patch(8, 40, 1, 1)
+    # Trainer clearings
+    m.clearing(cx+1, 8, 3, 1)
+    m.clearing(cx-2, 16, 3, 1)
+    m.clearing(cx+1, 24, 3, 1)
+    m.clearing(cx-1, 32, 3, 1)
+    m.clearing(cx, h-7, 4, 2)  # Veil grunt (south exit block)
+    # East branch to R4
     m.path_h(h//3, cx, w-1, 3)
     m.ent_e(h//3, 3)
-    # TM5 Protect pickup
-    m.item_spot(cx-5, 20)
-    # Bright Powder hidden
-    m.item_spot(8, 28)
+    # Items
+    m.item(cx-5, 20)  # TM5 Protect
+    m.item(8, 28)     # Bright Powder
+    # Scattered trees in grass areas
+    for (x,y) in [(8,5),(w-9,11),(7,17),(w-8,25),(6,33),(w-9,39)]:
+        m.tree(x,y)
     m.ent_n(cx); m.ent_s(cx)
     return m,w,h
 
 def route4():
-    """Timber Creek. Optional, no trainers. Creek feature. TM6 Toxic hidden."""
-    w,h = 24,24
+    """Timber Creek. Optional, no trainers. Creek + sparse grass. TM6 Toxic hidden."""
+    w,h = 26,24
     m = M(w,h,GR)
-    m.trees(2)
-    m.rect(4,4,w-5,h-5,TG)
+    m.border(2)
     cx = w//2
-    # Meandering creek through the area
+    # Creek runs through
     for y in range(2,h-2):
-        wx = cx+3 + int(2*math.sin(y*0.5))
-        m.s(wx,y,WTR); m.s(wx+1,y,WTR)
-    # Path alongside creek
+        wx = cx+3+int(2*math.sin(y*0.5))
+        m.set(wx,y,WTR); m.set(wx+1,y,WTR)
     m.path_v(cx-1, 2, h-3, 3)
-    # TM6 Toxic hidden spot
-    m.item_spot(cx-4, h//2)
-    m.scat_trees(4,4,cx-3,h-5, 0.1)
-    # West entrance only (connects to R3)
+    # Sparse grass patches
+    m.grass_patch(5, 5, 2, 2)
+    m.grass_patch(5, 12, 2, 1)
+    m.grass_patch(6, 18, 1, 2)
+    m.grass_patch(w-8, 7, 1, 1)
+    # Item: TM6 Toxic hidden
+    m.item(cx-4, h//2)
+    # Scattered trees
+    for (x,y) in [(7,4),(4,9),(7,15),(4,20)]:
+        m.tree(x,y)
+    # West entrance (connects to R3)
     m.ent_w(h//2, 3)
     return m,w,h
 
 def pinegrove_city():
-    """Forest town. Gym 2 (Cedar, Grass). PokéCenter + Mart + Gym. First fishing."""
-    w,h = 30,24
+    """CRATER CITY (Celestic-style). Stairs descend to center PokéCenter.
+    Gym 2 + Mart + 7 NPC houses + Move Relearner. Small ponds for fishing/surf."""
+    w,h = 34,30
     m = M(w,h,GR)
-    m.trees(2)
-    cx = w//2
-    m.path_v(cx, 0, h-1, 3)
-    m.path_h(h//2, 5, w-6, 3)
-    # PokéCenter (northwest)
-    m.bld(5, 4, POKECENTER)
-    m.path_v(7, 8, h//2)
-    # Gym 2 (northeast)
-    m.bld(w-9, 4, MART)
-    m.path_v(w-7, 7, h//2)
-    # Mart (southwest)
-    m.bld(5, h-8, MART)
-    m.path_v(7, h//2, h-8)
-    # House — fishing rod NPC / Toxic Orb NPC (southeast)
-    m.bld(w-9, h-8, HOUSE)
-    m.path_v(w-7, h//2, h-8)
-    # Fishing pond (south center)
-    m.rect(cx-3, h-7, cx+3, h-4, WTR)
-    # Grass
-    m.grass_o(cx, 7, 2, 2)
+    m.border(2)
+    cx,cy = w//2, h//2
+    # Crater rim (cliff walls ringing the city)
+    for y in range(3,h-3):
+        for x in range(3,w-3):
+            # Outer ring is higher ground (cliffs)
+            dist = max(abs(x-cx), abs(y-cy))
+            if dist >= 9:
+                m.set(x,y,CLM)
+    # Slope tiles descending into crater (muddy slopes = visual slope)
+    # North slope
+    for x in range(cx-2,cx+3):
+        m.set(x,5,SLP); m.set(x,6,SLP)
+    # South slope
+    for x in range(cx-2,cx+3):
+        m.set(x,h-7,SLP); m.set(x,h-6,SLP)
+    # East slope
+    for y in range(cy-2,cy+3):
+        m.set(w-7,y,SLP); m.set(w-6,y,SLP)
+    # West slope
+    for y in range(cy-2,cy+3):
+        m.set(5,y,SLP); m.set(6,y,SLP)
+    # Paths around the crater rim (upper level)
+    # Upper plaza (outside the crater)
+    # Inner crater floor (walkable grass)
+    m.rect(cx-7,cy-6,cx+7,cy+6,GR)
+    # Central PokéCenter (at bottom of crater)
+    m.bld(cx-2,cy-2,POKECENTER)
+    # Paths from slopes to center PC
+    m.path_v(cx, 7, cy-2)
+    m.path_v(cx, cy+2, h-7)
+    m.path_h(cy, 7, cx-2)
+    m.path_h(cy, cx+2, w-7)
+    # Gym 2 (upper-north, outside crater)
+    m.bld(cx-2, 3, MART)
+    m.path_v(cx, 6, 7)
+    # Mart (upper-west)
+    m.bld(5, 3, MART)
+    m.path_h(5, 8, cx-2, 3)
+    # NPC Houses around rim (7 houses)
+    m.bld(w-9, 3, HOUSE)    # 1: northeast rim
+    m.path_h(5, cx+2, w-9, 3)
+    m.bld(3, cy-2, HOUSE)    # 2: west rim — Move Relearner
+    m.bld(w-5, cy-2, HOUSE)  # 3: east rim
+    m.bld(5, h-7, HOUSE)     # 4: southwest rim
+    m.bld(w-9, h-7, HOUSE)   # 5: southeast rim
+    m.bld(cx-6, h-7, HOUSE)  # 6: south-center-left
+    m.bld(cx+2, h-7, HOUSE)  # 7: south-center-right
+    # Small fishing ponds (south side of rim area)
+    m.rect(cx-4,h-5,cx-2,h-4,WTR)
+    m.rect(cx+2,h-5,cx+4,h-4,WTR)
+    # 1 small grass patch on crater floor
+    m.grass_patch(cx-5, cy+2, 1, 1)
     m.ent_n(cx); m.ent_s(cx)
     return m,w,h
 
 def route5():
-    """Ironfrost Cave. Gauntlet cave. 2 trainers + 4 Veil Grunts + Crash boss.
-    TM9 Brick Break + Light Clay. Mining/industrial cave."""
-    w,h = 28,40
-    m = M(w,h,CWL)
-    # Carve main cavern
-    m.rect(4,2,w-5,h-3,CFL)
-    cx = w//2
-    # Central corridor
-    m.path_v(cx, 0, h-1, 3)
-    # Rock pillars creating rooms/corridors
-    m.rect(4,6,8,9,CW2)     # West pillar 1
-    m.rect(w-9,12,w-5,15,CW2)  # East pillar 2
-    m.rect(4,18,8,21,CW2)   # West pillar 3
-    m.rect(w-9,24,w-5,27,CW2)  # East pillar 4
-    # Side rooms/alcoves
-    m.rect(4,10,8,12,CF2)   # West alcove
-    m.rect(w-9,7,w-5,9,CF2) # East alcove
-    m.rect(4,28,8,30,CF2)   # Mining alcove
-    # Trainer/grunt clearings (6 encounters)
-    m.clearing(cx, 5, 3, 1)    # Knox (Hiker)
-    m.clearing(cx, 11, 3, 1)   # Lina (Scientist)
-    m.clearing(cx, 17, 3, 1)   # Veil Grunt 1
-    m.clearing(cx, 23, 3, 1)   # Veil Grunt 2
-    m.clearing(cx, 29, 3, 1)   # Veil Grunts 3+4 (tag double)
-    m.clearing(cx, h-6, 4, 2)  # F7 Crash boss area (wider)
-    # TM9 Brick Break
-    m.item_spot(6, 15)
-    # Light Clay hidden
-    m.item_spot(w-7, 20)
-    m.ent_n(cx); m.ent_s(cx)
-    return m,w,h
-
-def ironfrost_city():
-    """Industrial town. Gym 3 (Copper, Steel). Fossil Museum. Cave B1 entrance west."""
-    w,h = 34,26
-    m = M(w,h,GR)
-    m.trees(2)
-    cx = w//2
-    m.path_v(cx, 0, h-1, 3)
-    m.path_h(h//2, 5, w-6, 3)
-    # PokéCenter (north-center-left)
-    m.bld(6, 4, POKECENTER)
-    m.path_v(8, 8, h//2)
-    # Gym 3 (north-center-right)
-    m.bld(cx+2, 4, MART)
-    m.path_v(cx+4, 7, h//2)
-    # Mart (south-west)
-    m.bld(6, h-7, MART)
-    m.path_v(8, h//2, h-7)
-    # Fossil Museum (south-east, larger — PokéCenter model)
-    m.bld(w-10, h-8, POKECENTER)
-    m.path_v(w-8, h//2, h-8)
-    # HM Strength NPC house
-    m.bld(w-10, 4, HOUSE)
-    m.path_v(w-8, 8, h//2)
-    # Grass
-    m.grass_o(cx, h-4, 3, 2)
-    # West exit to Ironfrost Cave B1 (postgame)
-    m.ent_w(h//2, 3)
-    m.ent_n(cx); m.ent_s(cx)
-    return m,w,h
-
-
-# ═══════════════════════════════════════════════════
-# ACT 2 — TRANSITIONAL ZONE
-# ═══════════════════════════════════════════════════
-
-def route6():
-    """Glacier Lake. Central frozen lake with ring path. Ice puzzle area.
-    TM13 Ice Beam puzzle reward. Surf-gated Razor Claw. 8 trainers."""
-    w,h = 32,42
-    m = M(w,h,CLM)
-    m.rect(4,2,w-5,h-3,TG)
-    cx,cy = w//2, h//2
-    # Central frozen lake
-    for y in range(h):
-        for x in range(w):
-            if (x-cx)**2+(y-cy)**2 <= 49: m.s(x,y,WTR)
-    # Ring path around lake
-    for a in range(360):
-        r=math.radians(a)
-        for rad in range(8,10):
-            px,py = int(cx+rad*math.cos(r)), int(cy+rad*math.sin(r))
-            m.s(px,py,PC)
-    # Main N-S path on west side
-    m.path_v(cx-9, 0, h-1, 3)
-    # Connect main path to ring (east-west connectors)
-    m.path_h(cy-5, cx-9, cx-7, 3)
-    m.path_h(cy+5, cx-9, cx-7, 3)
-    # Ice puzzle area (northeast, elevated)
-    m.rect(cx+8, 4, w-5, 12, GR)
-    m.rect(cx+9, 5, w-6, 11, CLL)  # Ice puzzle tiles
-    m.item_spot(w-7, 8)  # TM13 Ice Beam reward
-    m.path_h(8, cx+5, cx+8, 3)  # Path to puzzle
-    # Surf-gated area (southeast)
-    m.rect(cx+6, cy+8, w-5, h-5, WTR)
-    m.item_spot(w-7, cy+10)  # Razor Claw (Surf-gated)
-    # Zoom Lens ground pickup
-    m.item_spot(cx-6, cy-3)
-    # Trainer clearings around the lake
-    for i,a in enumerate(range(0,360,45)):
-        r=math.radians(a)
-        tx,ty = int(cx+10*math.cos(r)), int(cy+10*math.sin(r))
-        m.clearing(tx,ty,2,1)
-    m.scat_trees(4,2,cx-10,h-3, 0.06)
-    m.ent_n(cx-9); m.ent_s(cx-9)
-    return m,w,h
-
-def frostbreak_lodge():
-    """Mountain rest stop. Specialty shop. Yanma gift. Shell Bell NPC."""
-    w,h = 22,18
-    m = M(w,h,GR)
-    m.trees(2)
-    cx = w//2
-    m.path_v(cx, 0, h-1, 3)
-    # Lodge building (center — larger, using PokéCenter model)
-    m.bld(cx-2, 4, POKECENTER)
-    m.path_v(cx, 8, h//2)
-    # Small house (Shell Bell NPC)
-    m.bld(5, h-8, HOUSE)
-    m.path_h(h//2, 5, cx, 3)
-    m.grass_o(w-7, h-5, 2, 2)
-    m.ent_n(cx); m.ent_s(cx)
-    return m,w,h
-
-def route7():
-    """Galetop Plateau. Elevated, breezy. 5 trainers. Berry bushes.
-    F10 Autumn #3. Postgame F29 Crash #3. 9 hidden berries."""
-    w,h = 28,40
-    m = M(w,h,CLM)
-    m.rect(4,2,w-5,h-3,TG)
-    cx = w//2
-    m.wind_v(cx, 0, h-1, 3, amp=4, per=11)
-    # Trainer clearings
-    for i,(dy,dx) in enumerate([(8,1),(16,-2),(24,0),(30,2),(36,-1)]):
-        m.clearing(cx+dx, dy, 3, 2)
-    # Berry bush area (west side, marked with ground tiles)
-    m.rect(5, 14, 9, 20, GR)
-    for y in range(15,20,2):
-        for x in range(6,9,2): m.item_spot(x,y)  # 9 berry spots
-    # F10 Autumn battle area
-    m.clearing(cx, h-8, 4, 2)
-    # Postgame F29 Crash area
-    m.clearing(5, 8, 3, 2)
-    m.scat_trees(4,2,w-5,h-3, 0.06)
-    m.ent_n(cx); m.ent_s(cx)
-    return m,w,h
-
-def route8():
-    """Dreamurs Valley. Valley with water. 6 trainers. TM17 Will-O-Wisp hidden."""
-    w,h = 28,40
-    m = M(w,h,CLM)
-    m.rect(4,2,w-5,h-3,TG)
-    cx = w//2
-    m.wind_v(cx, 0, h-1, 3, amp=3, per=9)
-    # Valley stream running east side
-    for y in range(6,h-6):
-        wx = cx+6+int(2*math.sin(y*0.3))
-        m.s(wx,y,WTR); m.s(wx+1,y,WTR)
-    # Trainer clearings
-    sp = (h-10)//6
-    for i in range(6):
-        ty = 5+i*sp
-        m.clearing(cx+int(2*math.sin(ty*0.7)), ty, 3, 1)
-    # TM17 Will-O-Wisp hidden (off main path)
-    m.item_spot(7, h//2+3)
-    m.scat_trees(4,2,cx-3,h-3, 0.06)
-    m.ent_n(cx); m.ent_s(cx)
-    return m,w,h
-
-def dreamurs_town():
-    """Fairy-themed town. Gym 4 (Fran, Fairy). Daycare. Deino egg."""
-    w,h = 28,22
-    m = M(w,h,GR)
-    m.trees(2)
-    cx = w//2
-    m.path_v(cx, 0, h-1, 3)
-    m.path_h(h//2, 5, w-6, 3)
-    # PokéCenter (northwest)
-    m.bld(5, 4, POKECENTER)
-    m.path_v(7, 8, h//2)
-    # Gym 4 (northeast)
-    m.bld(w-9, 4, MART)
-    m.path_v(w-7, 7, h//2)
-    # Daycare (south-west — larger building)
-    m.bld(5, h-8, POKECENTER)
-    m.path_v(7, h//2, h-8)
-    # House (Move Relearner, south-east)
-    m.bld(w-9, h-8, HOUSE)
-    m.path_v(w-7, h//2, h-8)
-    m.grass_o(cx, h-4, 2, 2)
-    m.ent_n(cx)
-    # East exit to R9 (coastal)
-    m.ent_e(h//2, 3)
-    return m,w,h
-
-def route9():
-    """Iceharbor Bay. Eastern coast. 8 trainers (2 Surf-gated). Fishing.
-    TM19 Shadow Ball."""
-    w,h = 30,36
-    m = M(w,h,CLM)
-    # Land on west, water on east (coastal)
-    split = w*3//5
-    m.rect(4,2,split-1,h-3,TG)
-    m.rect(split,2,w-3,h-3,WTR)
-    # Shore path
-    m.path_v(split-3, 0, h-1, 3)
-    # Irregular shoreline
-    for y in range(2,h-2):
-        off = int(1.5*math.sin(y*0.4))
-        m.s(split+off,y,GR); m.s(split+off-1,y,GR)
-    # Trainer clearings along shore (6 main)
-    sp = (h-10)//6
-    for i in range(6):
-        ty = 5+i*sp
-        m.clearing(split-5, ty, 3, 1)
-    # 2 Surf-gated swimmers (in water, east side)
-    m.clearing(w-8, h//3, 2, 1)    # Surf swimmer 1
-    m.clearing(w-8, 2*h//3, 2, 1)  # Surf swimmer 2
-    # TM19 Shadow Ball
-    m.item_spot(8, h//2)
-    m.scat_trees(4,2,split-5,h-3, 0.06)
-    # West entrance (from Dreamurs), east leads to Iceharbor
-    m.ent_w(h//2, 3)
-    m.ent_e(h//2, 3)
-    return m,w,h
-
-def iceharbor_city():
-    """Harbor city. Gym 5 (Marina, Water). Facility Delta. Surf to DI."""
-    w,h = 32,24
-    m = M(w,h,GR)
-    m.trees(2)
-    cx = w//2
-    m.path_v(cx, 4, h-1, 3)
-    m.path_h(h//2, 5, w-6, 3)
-    # Harbor water (east side)
-    m.rect(w-8, 4, w-5, h-5, WTR)
-    # PokéCenter (northwest)
-    m.bld(5, 4, POKECENTER)
-    m.path_v(7, 8, h//2)
-    # Gym 5 (center-north)
-    m.bld(cx-2, 4, MART)
-    m.path_v(cx, 7, h//2)
-    # Mart (southwest)
-    m.bld(5, h-7, MART)
-    m.path_v(7, h//2, h-7)
-    # Facility Delta entrance (south-east)
-    m.bld(w-12, h-8, POKECENTER)
-    m.path_h(h//2, cx, w-10, 3)
-    # Black Sludge NPC house
-    m.bld(cx+4, 4, HOUSE)
-    # Surf access east to Driftrock Isle
-    m.ent_e(h//2, 3)
-    # West entrance from R9, south to R10
-    m.ent_w(h//2, 3)
-    m.ent_s(cx)
-    return m,w,h
-
-def driftrock_isle():
-    """Optional island east of Iceharbor via Surf. 5 trainers. King's Rock.
-    Larvitar/Lapras rare encounters."""
-    w,h = 26,28
-    m = M(w,h,WTR)  # Surrounded by water
-    # Island landmass in center
-    for y in range(h):
-        for x in range(w):
-            if (x-w//2)**2+(y-h//2)**2 <= 100:
-                m.s(x,y,TG)
-    cx,cy = w//2, h//2
-    # Central path
-    m.path_v(cx, cy-7, cy+7, 3)
-    m.path_h(cy, cx-6, cx+6, 3)
-    # Trainer clearings (4 swimmers in water, 1 Ranger on island)
-    m.clearing(6, 6, 2, 1)     # Swimmer 1
-    m.clearing(w-7, 6, 2, 1)   # Swimmer 2
-    m.clearing(6, h-7, 2, 1)   # Swimmer 3
-    m.clearing(w-7, h-7, 2, 1) # Swimmer 4
-    m.clearing(cx, cy, 3, 2)   # Ranger Heath (center)
-    # Items
-    m.item_spot(cx+3, cy-3)  # King's Rock
-    m.item_spot(cx-4, cy+2)  # TM22 Bulk Up
-    m.scat_trees(cx-5,cy-5,cx+5,cy+5, 0.08)
-    # West exit (Surf back to Iceharbor)
-    m.ent_w(cy, 3)
-    return m,w,h
-
-def route10():
-    """Snowburn Path. Fire/ice dual cave. 8-trainer GAUNTLET (longest).
-    TM24 Overheat + Rocky Helmet + Flame Orb."""
+    """Ironfrost Cave. Gauntlet. 2 trainers + 4 grunts + Crash boss.
+    TM9 + Light Clay. Sparse encounter areas."""
     w,h = 28,42
     m = M(w,h,CWL)
     m.rect(4,2,w-5,h-3,CFL)
     cx = w//2
     m.path_v(cx, 0, h-1, 3)
-    # Rock pillars alternating sides (creates corridor feel)
+    # Rock pillars
+    m.rect(4,7,8,10,CW2)
+    m.rect(w-9,13,w-5,16,CW2)
+    m.rect(4,19,8,22,CW2)
+    m.rect(w-9,25,w-5,28,CW2)
+    # Side alcoves
+    m.rect(4,11,8,13,CF2)
+    m.rect(w-9,8,w-5,10,CF2)
+    m.rect(4,29,8,31,CF2)
+    # Trainer/grunt clearings
+    m.clearing(cx, 5, 3, 1)    # Knox
+    m.clearing(cx, 11, 3, 1)   # Lina
+    m.clearing(cx, 17, 3, 1)   # Grunt 1
+    m.clearing(cx, 23, 3, 1)   # Grunt 2
+    m.clearing(cx, 29, 3, 1)   # Grunts 3+4 tag
+    m.clearing(cx, h-7, 4, 2)  # Crash boss
+    # Items
+    m.item(6, 15)
+    m.item(w-7, 21)
+    m.ent_n(cx); m.ent_s(cx)
+    return m,w,h
+
+def ironfrost_city():
+    """Oreburgh-style mining/industrial. Winter-themed. Heavy mining equipment (rocks).
+    Gym 3 + PC + Mart + Fossil Revival + Fossil Gift NPC + 7 houses + Geologist Tutor."""
+    w,h = 38,28
+    m = M(w,h,GR)
+    m.border(2)
+    cx = w//2
+    m.path_v(cx, 0, h-1, 3)
+    m.path_h(9, 4, w-5, 3)
+    m.path_h(h-9, 4, w-5, 3)
+    # Mining/construction rock formations (decorative)
+    m.rect(3, h//2-1, 6, h//2+1, CLD)   # West mine pit
+    m.rect(w-6, h//2-1, w-3, h//2+1, CLM) # East mine pit
+    m.rect(cx-8, 12, cx-5, 14, CLM)      # Center construction
+    m.rect(cx+5, 14, cx+8, 16, CLD)      # Another pile
+    # Gym 3 (north-center, prominent)
+    m.bld(cx-2, 3, MART)
+    m.path_v(cx, 6, 9)
+    # PokéCenter (northwest)
+    m.bld(5, 3, POKECENTER)
+    m.path_v(7, 7, 9)
+    # Mart (northeast)
+    m.bld(w-9, 3, MART)
+    m.path_v(w-7, 6, 9)
+    # Fossil Revival Lab (west-mid, large — POKECENTER model)
+    m.bld(5, h//2-2, POKECENTER)
+    m.path_v(7, h//2+2, h-9)
+    # NPC House 1: Fossil Gift man (east-mid)
+    m.bld(w-9, h//2-2, HOUSE)
+    m.path_v(w-7, h//2+2, h-9)
+    # NPC House 2: Geologist Tutor (south-west)
+    m.bld(5, h-8, HOUSE)
+    m.path_v(7, h-8, h-3)
+    # NPC House 3 (south-center-left)
+    m.bld(cx-8, h-8, HOUSE)
+    m.path_v(cx-6, h-8, h-3)
+    # NPC House 4 (south-center)
+    m.bld(cx-2, h-8, HOUSE)
+    m.path_v(cx, h-8, h-3)
+    # NPC House 5 (south-center-right)
+    m.bld(cx+2, h-8, HOUSE)
+    m.path_v(cx+4, h-8, h-3)
+    # NPC House 6 (southeast)
+    m.bld(w-9, h-8, HOUSE)
+    m.path_v(w-7, h-8, h-3)
+    # NPC House 7 (west high)
+    m.bld(cx-8, 3, HOUSE)
+    m.path_v(cx-6, 7, 9)
+    # 1 small grass patch
+    m.grass_patch(w-5, h-4, 1, 1)
+    # West exit to Ironfrost Cave B1
+    m.ent_w(h//2, 3)
+    m.ent_n(cx); m.ent_s(cx)
+    return m,w,h
+
+
+# ═══════════════════════════════════════════════════════════
+# ACT 2 — TRANSITIONAL ZONE
+# ═══════════════════════════════════════════════════════════
+
+def route6():
+    """Glacier Lake. Central frozen lake, ring path. Ice puzzle area, Surf-gated."""
+    w,h = 34,42
+    m = M(w,h,CLM)
+    m.rect(4,2,w-5,h-3,GR)
+    cx,cy = w//2, h//2
+    # Central frozen lake
+    for y in range(h):
+        for x in range(w):
+            if (x-cx)**2+(y-cy)**2 <= 49: m.set(x,y,WTR)
+    # Ring path around lake
+    for a in range(0,360,2):
+        r=math.radians(a)
+        for rad in range(8,10):
+            px,py=int(cx+rad*math.cos(r)),int(cy+rad*math.sin(r))
+            m.set(px,py,PC)
+    # Main path west side
+    m.path_v(cx-10, 0, h-1, 3)
+    m.path_h(cy, cx-10, cx-8, 3)
+    # Ice puzzle area (NE, elevated plateau with TM13)
+    m.rect(cx+8, 4, w-5, 12, GR)
+    m.rect(cx+9, 5, w-6, 11, CLL)  # Ice tiles
+    m.item(w-7, 8)  # TM13 Ice Beam
+    # Surf-gated area (SE with Razor Claw)
+    m.rect(cx+6, cy+8, w-5, h-5, WTR)
+    m.item(w-7, cy+12)  # Razor Claw
+    # Trainer clearings around lake
+    for a in range(0,360,45):
+        r=math.radians(a)
+        tx,ty=int(cx+11*math.cos(r)),int(cy+11*math.sin(r))
+        m.clearing(tx,ty,2,1)
+    # Sparse grass patches
+    m.grass_patch(6, 6, 2, 1)
+    m.grass_patch(6, h-7, 2, 1)
+    m.grass_patch(cx-3, 4, 1, 1)
+    m.grass_patch(cx+3, h-5, 2, 1)
+    # Zoom Lens
+    m.item(cx-7, cy-4)
+    m.ent_n(cx-10); m.ent_s(cx-10)
+    return m,w,h
+
+def frostbreak_lodge():
+    """Small mountain rest stop. Large lodge (specialty shop). Shell Bell NPC. Yanma gift."""
+    w,h = 22,18
+    m = M(w,h,GR)
+    m.border(2)
+    cx = w//2
+    m.path_v(cx, 0, h-1, 3)
+    # Main Lodge (center — large POKECENTER model)
+    m.bld(cx-2, 4, POKECENTER)
+    m.path_v(cx, 8, h-4)
+    # Small house (Shell Bell NPC)
+    m.bld(5, h-8, HOUSE)
+    m.path_h(h-7, 7, cx-2, 3)
+    # NPC House (Yanma gift)
+    m.bld(w-8, h-8, HOUSE)
+    m.path_h(h-7, cx+2, w-8, 3)
+    m.ent_n(cx); m.ent_s(cx)
+    return m,w,h
+
+def route7():
+    """Galetop Plateau. 5 trainers. 9 hidden berries. F10 Autumn."""
+    w,h = 28,40
+    m = M(w,h,CLM)
+    m.rect(4,2,w-5,h-3,GR)
+    cx = w//2
+    m.wind_v(cx, 0, h-1, 3, amp=4, per=11)
+    # Berry bush area (west side)
+    m.rect(5, 14, 9, 22, GR)
+    for y in (15,17,19,21):
+        for x in (6,8): m.item(x,y)
+    # Trainer clearings
+    for (dy,dx) in [(8,1),(16,-2),(24,0),(30,2),(36,-1)]:
+        m.clearing(cx+dx, dy, 3, 1)
+    # F10 Autumn area (south)
+    m.clearing(cx, h-8, 4, 2)
+    # Postgame F29 Crash area (north)
+    m.clearing(5, 8, 3, 1)
+    # Sparse grass patches
+    m.grass_patch(w-7, 10, 2, 1)
+    m.grass_patch(w-8, 20, 1, 2)
+    m.grass_patch(w-6, 32, 2, 1)
+    m.ent_n(cx); m.ent_s(cx)
+    return m,w,h
+
+def route8():
+    """Dreamurs Valley. Misty Terrain valley with stream. 6 trainers."""
+    w,h = 28,38
+    m = M(w,h,CLM)
+    m.rect(4,2,w-5,h-3,GR)
+    cx = w//2
+    m.wind_v(cx, 0, h-1, 3, amp=3, per=9)
+    # Valley stream (east side)
+    for y in range(5,h-5):
+        wx = cx+6+int(2*math.sin(y*0.3))
+        m.set(wx,y,WTR); m.set(wx+1,y,WTR)
+    # Trainer clearings
+    for i in range(6):
+        ty = 5+i*((h-10)//6)
+        m.clearing(cx+int(2*math.sin(ty*0.7)), ty, 3, 1)
+    # TM17 Will-O-Wisp hidden
+    m.item(7, h//2+3)
+    # Sparse grass
+    m.grass_patch(6, 8, 2, 1)
+    m.grass_patch(6, 18, 1, 2)
+    m.grass_patch(6, 28, 2, 1)
+    m.grass_patch(cx-4, 14, 1, 1)
+    m.ent_n(cx); m.ent_s(cx)
+    return m,w,h
+
+def dreamurs_town():
+    """Mystical, dreamy, welcoming. Gym 4 + PC + Mart + Daycare + 5 NPC houses."""
+    w,h = 30,22
+    m = M(w,h,GR)
+    m.border(2)
+    cx = w//2
+    m.path_v(cx, 0, h-1, 3)
+    m.path_h(8, 5, w-6, 3)
+    m.path_h(h-8, 5, w-6, 3)
+    # Gym 4 (north-center)
+    m.bld(cx-2, 3, MART)
+    m.path_v(cx, 6, 8)
+    # PokéCenter (northwest)
+    m.bld(5, 3, POKECENTER)
+    m.path_v(7, 7, 8)
+    # Mart (northeast)
+    m.bld(w-9, 3, MART)
+    m.path_v(w-7, 6, 8)
+    # Daycare (southwest — large building)
+    m.bld(5, h-8, POKECENTER)
+    m.path_v(7, h-8, h-3)
+    # NPC Houses
+    m.bld(w-9, h-8, HOUSE)     # Move Relearner (south-east)
+    m.path_v(w-7, h-8, h-3)
+    m.bld(cx-6, h-8, HOUSE)    # NPC
+    m.path_v(cx-4, h-8, h-3)
+    m.bld(cx+2, h-8, HOUSE)    # NPC
+    m.path_v(cx+4, h-8, h-3)
+    m.bld(cx-8, 3, HOUSE)      # NPC
+    m.path_v(cx-6, 6, 8)
+    m.bld(cx+4, 3, HOUSE)      # NPC
+    m.path_v(cx+6, 6, 8)
+    # 1 grass patch
+    m.grass_patch(4, h-4, 1, 1)
+    m.ent_n(cx)
+    m.ent_e(h//2, 3)
+    return m,w,h
+
+def route9():
+    """Iceharbor Bay. Eastern coast — half-frozen ocean. 8 trainers (2 Surf-gated)."""
+    w,h = 34,34
+    m = M(w,h,CLM)
+    split = w*3//5
+    m.rect(4,2,split-1,h-3,GR)
+    m.rect(split,2,w-3,h-3,WTR)
+    # Partially frozen ice tiles in water (CLL for icy look)
+    for (x,y) in [(split+3,5),(split+5,10),(split+2,15),(split+6,20),(split+4,25),(split+7,12)]:
+        if 0<=x<w and 0<=y<h: m.set(x,y,CLL)
+    m.path_v(split-3, 0, h-1, 3)
+    # Irregular shoreline
+    for y in range(2,h-2):
+        off = int(1.5*math.sin(y*0.4))
+        m.set(split+off,y,GR); m.set(split+off-1,y,GR)
+    # Trainer clearings (6 main)
+    for i in range(6):
+        ty = 5+i*((h-10)//6)
+        m.clearing(split-5, ty, 3, 1)
+    # 2 Surf-gated swimmers
+    m.clearing(w-8, h//3, 2, 1)
+    m.clearing(w-8, 2*h//3, 2, 1)
+    # TM19 Shadow Ball
+    m.item(8, h//2)
+    # Sparse grass
+    m.grass_patch(7, 7, 2, 1)
+    m.grass_patch(9, 18, 1, 2)
+    m.grass_patch(6, 28, 2, 1)
+    m.ent_w(h//2, 3); m.ent_e(h//2, 3)
+    return m,w,h
+
+def iceharbor_city():
+    """Medium port city. Half-frozen harbor. PC + Mart + Gym 5 + Facility Delta +
+    cargo bays/warehouses + Sailor Tutor + 8 houses."""
+    w,h = 38,28
+    m = M(w,h,GR)
+    m.border(2)
+    cx = w//2
+    m.path_v(cx, 4, h-1, 3)
+    m.path_h(9, 5, w-6, 3)
+    m.path_h(h-9, 5, w-6, 3)
+    # Harbor water (east side) — half frozen
+    m.rect(w-10, 4, w-4, h-5, WTR)
+    # Ice chunks in harbor
+    for (x,y) in [(w-8,6),(w-6,10),(w-9,14),(w-5,18),(w-7,22)]:
+        m.set(x,y,CLL)
+    # Gym 5 (north-center)
+    m.bld(cx-2, 3, MART)
+    m.path_v(cx, 6, 9)
+    # PokéCenter (northwest)
+    m.bld(5, 3, POKECENTER)
+    m.path_v(7, 7, 9)
+    # Mart (north — west of center)
+    m.bld(cx-8, 3, MART)
+    m.path_v(cx-6, 6, 9)
+    # Facility Delta (south-west — large POKECENTER model)
+    m.bld(5, h-9, POKECENTER)
+    m.path_v(7, h-9, h-4)
+    # Cargo warehouse 1 (south — HOUSE as large cargo building)
+    m.bld(cx-7, h-9, HOUSE)
+    m.path_v(cx-5, h-9, h-4)
+    # Cargo warehouse 2 (south-center — Sailor Tutor)
+    m.bld(cx-1, h-9, HOUSE)
+    m.path_v(cx+1, h-9, h-4)
+    # NPC Houses 1-4
+    m.bld(cx-14, 3, HOUSE)
+    m.path_v(cx-12, 6, 9)
+    m.bld(5, h//2-1, HOUSE)
+    m.path_h(h//2+1, 8, cx-2, 3)
+    m.bld(cx-14, h-9, HOUSE)
+    m.path_v(cx-12, h-9, h-4)
+    # House: Black Sludge NPC
+    m.bld(cx+3, h//2-1, HOUSE)
+    m.path_h(h//2+1, cx+5, w-11, 3)
+    # East: Surf access to Driftrock Isle
+    m.ent_e(h//2, 3)
+    m.ent_w(h//2, 3)
+    m.ent_s(cx)
+    return m,w,h
+
+def driftrock_isle():
+    """Surf-accessible island. 5 trainers. King's Rock, TM22 Bulk Up."""
+    w,h = 26,28
+    m = M(w,h,WTR)
+    cx,cy = w//2, h//2
+    # Island landmass
+    for y in range(h):
+        for x in range(w):
+            if (x-cx)**2+(y-cy)**2 <= 100: m.set(x,y,GR)
+    m.path_v(cx, cy-7, cy+7, 3)
+    m.path_h(cy, cx-6, cx+6, 3)
+    # Trainer spots
+    m.clearing(6, 6, 2, 1)
+    m.clearing(w-7, 6, 2, 1)
+    m.clearing(6, h-7, 2, 1)
+    m.clearing(w-7, h-7, 2, 1)
+    m.clearing(cx, cy, 3, 2)  # Ranger Heath
+    # Items
+    m.item(cx+3, cy-3)
+    m.item(cx-4, cy+2)
+    # Sparse grass
+    m.grass_patch(cx-4, cy-4, 1, 1)
+    m.grass_patch(cx+4, cy+4, 2, 1)
+    m.ent_w(cy, 3)
+    return m,w,h
+
+def route10():
+    """Snowburn Path. Fire/ice dual cave. 8-trainer gauntlet. Longest."""
+    w,h = 28,42
+    m = M(w,h,CWL)
+    m.rect(4,2,w-5,h-3,CFL)
+    cx = w//2
+    m.path_v(cx, 0, h-1, 3)
+    # Alternating pillars
     for i in range(6):
         py = 5+i*6
-        if i%2==0:
-            m.rect(4,py,8,py+2,CW2)
-        else:
-            m.rect(w-9,py,w-5,py+2,CW2)
-    # Side rooms (fire/ice themed areas)
-    m.rect(4, h//4, 8, h//4+3, CF2)     # Ice alcove
-    m.rect(w-9, h//2, w-5, h//2+3, CF2) # Fire alcove
+        if i%2==0: m.rect(4,py,8,py+2,CW2)
+        else: m.rect(w-9,py,w-5,py+2,CW2)
+    # Side rooms
+    m.rect(4, h//4, 8, h//4+3, CF2)
+    m.rect(w-9, h//2, w-5, h//2+3, CF2)
     m.rect(4, 3*h//4, 8, 3*h//4+3, CF2)
-    # 8 trainer clearings (gauntlet)
-    sp = (h-10)//8
+    # 8 trainer clearings
     for i in range(8):
-        ty = 4+i*sp
+        ty = 4+i*((h-10)//8)
         m.clearing(cx, ty, 3, 1)
     # Items
-    m.item_spot(6, h//4+1)    # Rocky Helmet
-    m.item_spot(w-7, h//2+1)  # Flame Orb
-    m.item_spot(cx+4, h-8)    # TM24 Overheat
+    m.item(6, h//4+1)
+    m.item(w-7, h//2+1)
+    m.item(cx+4, h-8)
     m.ent_n(cx); m.ent_s(cx)
     return m,w,h
 
 def route11():
-    """Brightbloom Meadow. Beautiful flower meadow. 6 trainers. Last 0-EV route.
-    TM25 U-turn + TM26 Volt Switch. Expert Belt."""
-    w,h = 30,40
+    """Brightbloom Meadow. Flower meadow. 6 trainers. Last 0-EV route."""
+    w,h = 30,38
     m = M(w,h,CLM)
-    m.rect(4,2,w-5,h-3,TG)
+    m.rect(4,2,w-5,h-3,GR)
     cx = w//2
     m.wind_v(cx, 0, h-1, 3, amp=5, per=12)
-    # Flower patches (using long grass for variety)
-    m.rect(6,8,10,12,LG)
-    m.rect(w-11,16,w-7,20,LG)
-    m.rect(7,26,11,30,LG)
-    m.rect(w-11,32,w-7,36,LG)
+    # Flower patches
+    m.rect(6,8,9,11,LG)
+    m.rect(w-10,16,w-7,19,LG)
+    m.rect(7,26,10,29,LG)
     # Trainer clearings
-    sp = (h-10)//6
     for i in range(6):
-        ty = 5+i*sp
+        ty = 5+i*((h-10)//6)
         off = int(4*math.sin(ty*0.5))
-        m.clearing(cx+off, ty, 3, 2)
-    # F14 Asher #4 area near south
+        m.clearing(cx+off, ty, 3, 1)
+    # F14 Asher
     m.clearing(cx, h-8, 4, 2)
     # Items
-    m.item_spot(cx-6, 14)  # TM25 U-turn
-    m.item_spot(w-8, 24)   # TM26 Volt Switch hidden
-    m.item_spot(8, h-10)   # Expert Belt
-    m.scat_trees(4,2,w-5,h-3, 0.04)
+    m.item(cx-6, 14)
+    m.item(w-8, 24)
+    m.item(8, h-10)
+    # Sparse grass patches
+    m.grass_patch(6, 6, 1, 1)
+    m.grass_patch(w-6, 12, 2, 1)
+    m.grass_patch(8, 22, 1, 2)
     m.ent_n(cx); m.ent_s(cx)
     return m,w,h
 
 def dragonforge_city():
-    """Tech hub. Gym 6 (Priyo, Dragon). Department Store. THE REVEAL.
-    Porygon gift Lv30. Largest city."""
-    w,h = 36,28
+    """LARGEST CITY. Team Veil HQ Facility Alpha (visible, locked pre-Gym 8).
+    Gym 6 + PC (with Professor's Aide Tutor) + Department Store + 10+ houses + decorative buildings."""
+    w,h = 42,32
     m = M(w,h,GR)
-    m.trees(2)
+    m.border(2)
     cx = w//2
+    # Main N-S path
     m.path_v(cx, 0, h-1, 3)
-    m.path_h(h//3, 5, w-6, 3)
-    m.path_h(2*h//3, 5, w-6, 3)
-    # PokéCenter (northwest)
-    m.bld(5, 4, POKECENTER)
-    m.path_v(7, 8, h//3)
-    # Gym 6 (north-center-right)
-    m.bld(cx+4, 4, MART)
-    m.path_v(cx+6, 7, h//3)
-    # Mart (west)
-    m.bld(5, h//3+2, MART)
-    m.path_v(7, h//3, h//3+5)
-    # Department Store (east side — LARGE, two buildings)
-    m.bld(w-10, 4, POKECENTER)  # Main dept store
-    m.bld(w-10, 9, HOUSE)       # Dept store annex
-    m.path_v(w-8, 8, h//3)
-    # Porygon house (south-west)
-    m.bld(5, h-8, HOUSE)
-    m.path_v(7, 2*h//3, h-8)
-    # House (south-east, NPC area)
-    m.bld(w-10, h-8, HOUSE)
-    m.path_v(w-8, 2*h//3, h-8)
-    # HM2 Fly NPC area
-    m.bld(cx-2, h-8, HOUSE)
-    m.path_v(cx, 2*h//3, h-8)
+    # Multiple cross paths for large city
+    m.path_h(6, 4, w-5, 3)
+    m.path_h(h//2, 4, w-5, 3)
+    m.path_h(h-7, 4, w-5, 3)
+    # Facility Alpha (northeast — LARGE, uses multiple buildings combined)
+    m.bld(w-10, 3, POKECENTER)   # Main facility
+    m.bld(w-10, 8, HOUSE)         # Facility annex
+    m.path_v(w-8, 7, h//2)
+    # Gym 6 (north-center)
+    m.bld(cx-2, 3, MART)
+    m.path_v(cx, 6, 6)
+    # PokéCenter (northwest) — Professor's Aide tutor inside
+    m.bld(4, 3, POKECENTER)
+    m.path_v(6, 7, 6)
+    # Department Store (east, LARGE — 2 buildings stacked)
+    m.bld(w-10, h//2-2, POKECENTER)  # Main dept store
+    m.bld(w-10, h//2+3, HOUSE)       # Annex
+    m.path_v(w-8, h//2-2, h//2)
+    # Mart (west-mid)
+    m.bld(4, h//2-2, MART)
+    m.path_h(h//2, 8, cx-2, 3)
+    # 10 enterable NPC houses spread across the large city
+    # North row
+    m.bld(cx-10, 3, HOUSE); m.path_v(cx-8, 6, 6)
+    m.bld(cx+4, 3, HOUSE); m.path_v(cx+6, 6, 6)
+    # Mid row west
+    m.bld(11, h//2-2, HOUSE); m.path_v(13, h//2, h//2+1)
+    # Mid row center
+    m.bld(cx-6, h//2-2, HOUSE); m.path_v(cx-4, h//2, h//2+1)
+    m.bld(cx+2, h//2-2, HOUSE); m.path_v(cx+4, h//2, h//2+1)
+    # South row
+    m.bld(4, h-8, HOUSE); m.path_v(6, h-8, h-6)
+    m.bld(11, h-8, HOUSE); m.path_v(13, h-8, h-6)
+    m.bld(cx-5, h-8, HOUSE); m.path_v(cx-3, h-8, h-6)
+    m.bld(cx+3, h-8, HOUSE); m.path_v(cx+5, h-8, h-6)
+    m.bld(w-10, h-8, HOUSE); m.path_v(w-8, h-8, h-6)
+    # Decorative (non-enterable) large buildings — visual scale
+    # Use POKECENTER patterns as decoration for tall skyscraper feel
+    m.bld(18, 3, POKECENTER)          # Tall building 1
+    m.bld(cx-13, h//2+4, POKECENTER)  # Tall building 2
+    m.bld(28, h//2+4, POKECENTER)     # Tall building 3
     m.ent_n(cx); m.ent_s(cx)
     return m,w,h
 
 
-# ═══════════════════════════════════════════════════
+# ═══════════════════════════════════════════════════════════
 # ACT 3 — TROPICAL/VOLCANIC ZONE
-# ═══════════════════════════════════════════════════
+# ═══════════════════════════════════════════════════════════
 
 def route12():
-    """Memoria Passage. Ghost cave. Spiritomb side passage. First full-EV route.
-    7 trainers. TM35 Psychic. Reaper Cloth."""
+    """Memoria Passage. Ghost cave. Spiritomb side passage. 7 trainers. First full-EV."""
     w,h = 28,40
     m = M(w,h,CWL)
     m.rect(4,2,w-5,h-3,CFL)
     cx = w//2
     m.path_v(cx, 0, h-1, 3)
     # Cave rooms
-    m.rect(4,8,9,14,CF2)     # West chamber
-    m.rect(w-10,18,w-5,24,CF2)  # East chamber
+    m.rect(4,8,9,14,CF2)
+    m.rect(w-10,18,w-5,24,CF2)
     # Spiritomb side passage (west dead-end)
     m.rect(4,h//2-2,10,h//2+2,CF2)
-    m.item_spot(5, h//2)  # Spiritomb static location
+    m.item(5, h//2)
     # Rock pillars
     m.rect(4,16,7,17,CW2)
     m.rect(w-8,10,w-5,11,CW2)
     m.rect(4,28,7,29,CW2)
-    # Trainer clearings (7 trainers in 6 encounters, tag double at end)
+    # Trainer clearings
     for i,(ty,dx) in enumerate([(6,0),(12,2),(18,-2),(24,1),(30,-1),(36,0)]):
-        rw = 4 if i==5 else 3  # Wider for tag double
+        rw = 4 if i==5 else 3
         m.clearing(cx+dx, ty, rw, 1)
-    # Items
-    m.item_spot(cx+5, 20)  # TM35 Psychic
-    m.item_spot(7, 26)     # Reaper Cloth hidden
+    m.item(cx+5, 20)
+    m.item(7, 26)
     m.ent_n(cx); m.ent_s(cx)
     return m,w,h
 
 def solace_town():
-    """Desert-like anti-Veil town. Gym 7 (Erin, Ground)."""
-    w,h = 26,22
+    """Rural agricultural town. Kyurem relics. Gym 7 + PC + Mart + 5 houses +
+    secret Anti-Veil hideout."""
+    w,h = 28,22
     m = M(w,h,GR)
-    m.trees(2)
+    m.border(2)
     cx = w//2
     m.path_v(cx, 0, h-1, 3)
     m.path_h(h//2, 5, w-6, 3)
-    # PokéCenter
-    m.bld(5, 4, POKECENTER)
-    m.path_v(7, 8, h//2)
-    # Gym 7
-    m.bld(w-9, 4, MART)
-    m.path_v(w-7, 7, h//2)
-    # House (Dale NPC)
-    m.bld(5, h-8, HOUSE)
-    m.path_v(7, h//2, h-8)
-    m.grass_o(w-7, h-5, 2, 2)
-    m.grass_o(cx, h-4, 2, 2)
+    # PokéCenter (northwest)
+    m.bld(5, 3, POKECENTER)
+    m.path_v(7, 7, h//2)
+    # Gym 7 (northeast)
+    m.bld(w-9, 3, MART)
+    m.path_v(w-7, 6, h//2)
+    # Mart (north-center)
+    m.bld(cx-2, 3, MART)
+    m.path_v(cx, 6, h//2)
+    # Kyurem relic monument (center — using HOUSE as a stone monument)
+    m.bld(cx-2, h//2+1, HOUSE)
+    # NPC Houses
+    m.bld(5, h-8, HOUSE)       # Dale NPC
+    m.bld(cx-8, h-8, HOUSE)
+    m.bld(w-9, h-8, HOUSE)
+    m.bld(cx+4, h-8, HOUSE)
+    m.bld(cx-13, h//2-1, HOUSE)  # Secret Anti-Veil hideout (looks like normal house)
+    # 1 small grass patch
+    m.grass_patch(w-5, h-4, 1, 1)
     m.ent_n(cx); m.ent_s(cx)
     return m,w,h
 
 def route13():
-    """Verdant Jungle. Dense tropical. 9-trainer GAUNTLET (continuous with R14).
-    TM37 X-Scissor + TM38 Energy Ball. Scope Lens. Stream feature."""
+    """Verdant Jungle. Dense tropical. 9-trainer gauntlet (continues to R14)."""
     w,h = 32,50
     m = M(w,h,TTL)
     for y in range(0,h,2):
         for x in range(0,w,2): m.tree(x,y)
-    m.rect(4,2,w-5,h-3,TG)
+    m.rect(4,2,w-5,h-3,GR)
     cx = w//2
     m.wind_v(cx, 0, h-1, 3, amp=5, per=9)
     # Jungle stream (east side)
     for y in range(h//4, 3*h//4):
         wx = cx+7+int(2*math.sin(y*0.3))
-        m.s(wx,y,WTR); m.s(wx+1,y,WTR)
+        m.set(wx,y,WTR); m.set(wx+1,y,WTR)
     # 9 trainer clearings
-    sp = (h-10)//9
     for i in range(9):
-        ty = 4+i*sp
+        ty = 4+i*((h-10)//9)
         off = int(4*math.sin(ty*0.6))
         m.clearing(cx+off, ty, 3, 1)
     # Items
-    m.item_spot(cx-6, h//3)     # TM37 X-Scissor
-    m.item_spot(cx+5, 2*h//3)   # TM38 Energy Ball
-    m.item_spot(8, h//2)        # Scope Lens
-    m.scat_trees(4,2,w-5,h-3, 0.18)
+    m.item(cx-6, h//3)
+    m.item(cx+5, 2*h//3)
+    m.item(8, h//2)
+    # Sparse grass
+    m.grass_patch(6, 8, 2, 1)
+    m.grass_patch(w-7, 20, 1, 2)
+    m.grass_patch(7, 35, 2, 1)
     m.ent_n(cx); m.ent_s(cx)
     return m,w,h
 
 def route14():
-    """Cinderstone Path. Volcanic ash. 9 trainers (continuous from R13).
-    TM39 Rock Slide + TM40 Iron Head + TM41 Fire Blast. Magmarizer."""
+    """Cinderstone Path. Volcanic ash. 9 trainers (continues from R13)."""
     w,h = 30,42
     m = M(w,h,CLM)
-    m.rect(4,2,w-5,h-3,TG)
+    m.rect(4,2,w-5,h-3,GR)
     cx = w//2
     m.wind_v(cx, 0, h-1, 3, amp=3, per=7)
     # Volcanic rock formations
@@ -831,157 +1000,164 @@ def route14():
     m.rect(w-10,14,w-6,17,CLD)
     m.rect(6,22,10,25,CLD)
     m.rect(w-10,30,w-6,33,CLD)
-    # 9 trainer clearings (8 encounters, last is tag double)
-    sp = (h-10)//8
+    # 9 trainer clearings (8 encounters)
     for i in range(8):
-        ty = 4+i*sp
+        ty = 4+i*((h-10)//8)
         rw = 4 if i==7 else 3
         m.clearing(cx+int(2*math.sin(ty*0.5)), ty, rw, 1)
     # Items
-    m.item_spot(cx-5, 12)   # TM39 Rock Slide
-    m.item_spot(w-8, 20)    # TM40 Iron Head hidden
-    m.item_spot(cx+5, 28)   # TM41 Fire Blast
-    m.item_spot(8, h-10)    # Magmarizer hidden
-    m.scat_trees(4,2,w-5,h-3, 0.05)
-    m.ent_n(cx)
-    # West exit to R15 (volcanic lagoon)
-    m.ent_w(h//2, 3)
+    m.item(cx-5, 12)
+    m.item(w-8, 20)
+    m.item(cx+5, 28)
+    m.item(8, h-10)
+    # Sparse grass
+    m.grass_patch(w-7, 10, 1, 1)
+    m.grass_patch(6, 18, 2, 1)
+    m.grass_patch(w-6, 35, 1, 2)
+    m.ent_n(cx); m.ent_w(h//2, 3)
     return m,w,h
 
 def route15():
-    """Pyrespire Lagoon. Volcanic lagoon. FORK structure at mid-route.
-    F18 Autumn at fork. 9 trainers (3 Surf-gated). TM42 Solar Beam.
-    5 Type Gems. North fork → Research Outpost. South → Pyrespire City."""
+    """Pyrespire Lagoon. FORK structure. F18 Autumn at fork. 9 trainers (3 Surf-gated)."""
     w,h = 32,48
     m = M(w,h,CLM)
-    m.rect(4,2,w-5,h-3,TG)
+    m.rect(4,2,w-5,h-3,GR)
     cx = w//2
-    # Main path from east entrance (R14) to fork mid-route
-    m.path_h(6, 0, cx, 3)  # East entrance path
-    m.path_v(cx, 6, h//2-2, 3)  # Path south to fork
-    # === FORK at mid-point ===
-    fork_y = h//2
-    m.clearing(cx, fork_y-2, 5, 2)  # F18 Autumn battle area (at fork)
-    # North fork (dead-end → Research Outpost)
-    m.path_v(cx-6, fork_y-4, fork_y, 3)
-    m.rect(cx-9, fork_y-8, cx-4, fork_y-4, GR)  # Outpost area
-    m.bld(cx-9, fork_y-8, HOUSE)  # Research Outpost building
-    # South fork (continues to Pyrespire City)
-    m.path_v(cx, fork_y, h-1, 3)
-    # Pre-fork trainers (2)
-    m.clearing(cx-3, 10, 3, 1)  # Briney (Sailor)
-    m.clearing(cx+2, 16, 3, 1)  # Ahab (Fisherman)
-    # Post-fork trainers (4 main + 3 surf-gated)
-    m.clearing(cx, fork_y+6, 3, 1)   # Cousteau
-    m.clearing(cx-2, fork_y+12, 3, 1) # Hadley
-    m.clearing(cx+1, fork_y+18, 3, 1) # Volt
-    m.clearing(cx, h-8, 3, 1)         # Quint (mandatory gate)
-    # Lagoon water (south-east)
-    m.rect(cx+5, fork_y+4, w-5, h-5, WTR)
-    # 3 Surf-gated swimmers in lagoon
-    m.clearing(w-8, fork_y+8, 2, 1)
-    m.clearing(w-10, fork_y+14, 2, 1)
-    m.clearing(w-8, fork_y+20, 2, 1)
+    # East entrance path from R14
+    m.path_h(6, 0, cx, 3)
+    # Path south to fork
+    m.path_v(cx, 6, h//2-2, 3)
+    # Fork junction
+    fy = h//2
+    m.clearing(cx, fy-2, 5, 2)  # F18 Autumn battle area
+    # North fork to Research Outpost
+    m.path_v(cx-6, fy-4, fy, 3)
+    m.rect(cx-9, fy-8, cx-4, fy-4, GR)
+    m.bld(cx-9, fy-8, HOUSE)  # Research Outpost
+    # South fork to Pyrespire City
+    m.path_v(cx, fy, h-1, 3)
+    # Pre-fork trainers
+    m.clearing(cx-3, 10, 3, 1)
+    m.clearing(cx+2, 16, 3, 1)
+    # Post-fork trainers
+    m.clearing(cx, fy+6, 3, 1)
+    m.clearing(cx-2, fy+12, 3, 1)
+    m.clearing(cx+1, fy+18, 3, 1)
+    m.clearing(cx, h-8, 3, 1)  # Quint (mandatory gate)
+    # Lagoon water
+    m.rect(cx+5, fy+4, w-5, h-5, WTR)
+    # Surf swimmers
+    m.clearing(w-8, fy+8, 2, 1)
+    m.clearing(w-10, fy+14, 2, 1)
+    m.clearing(w-8, fy+20, 2, 1)
     # Items
-    m.item_spot(cx+3, fork_y+10)  # TM42 Solar Beam
-    # Type Gems scattered
-    m.item_spot(6, 12)
-    m.item_spot(w-8, fork_y-4)
-    m.item_spot(8, fork_y+8)
-    m.item_spot(cx-5, h-10)
-    m.item_spot(6, h-6)
-    m.scat_trees(4,2,cx-2,h-3, 0.06)
-    # East entrance (from R14)
-    m.ent_e(6, 3)
-    m.ent_s(cx)
+    m.item(cx+3, fy+10)
+    for (x,y) in [(6,12),(w-8,fy-4),(8,fy+8),(cx-5,h-10),(6,h-6)]:
+        m.item(x,y)
+    # Sparse grass
+    m.grass_patch(7, 20, 2, 1)
+    m.grass_patch(8, 35, 1, 2)
+    m.ent_e(6, 3); m.ent_s(cx)
     return m,w,h
 
 def pyrespire_city():
-    """Volcanic coastal city. Gym 8 (Scorch, Fire). Facility Beta.
-    Gen 5 Fossil Museum. Dragon Scale NPC."""
-    w,h = 34,26
+    """Second-largest city. Tropical vibe. Facility Beta. Gym 8 + PC + Mart +
+    Fossil Museum + Volcano Hermit Tutor + 9 houses + decorative buildings."""
+    w,h = 38,30
     m = M(w,h,GR)
-    m.trees(2)
+    m.border(2)
     cx = w//2
     m.path_v(cx, 0, h-1, 3)
-    m.path_h(h//2, 5, w-6, 3)
-    # PokéCenter (northwest)
-    m.bld(5, 4, POKECENTER)
-    m.path_v(7, 8, h//2)
+    m.path_h(6, 4, w-5, 3)
+    m.path_h(h//2, 4, w-5, 3)
+    m.path_h(h-7, 4, w-5, 3)
+    # Facility Beta (east — LARGE)
+    m.bld(w-10, 3, POKECENTER)
+    m.bld(w-10, 8, HOUSE)
+    m.path_v(w-8, 7, h//2)
     # Gym 8 (north-center)
-    m.bld(cx+2, 4, MART)
-    m.path_v(cx+4, 7, h//2)
-    # Mart (west)
-    m.bld(5, h-7, MART)
-    m.path_v(7, h//2, h-7)
-    # Facility Beta entrance (east)
-    m.bld(w-10, 4, POKECENTER)
-    m.path_v(w-8, 8, h//2)
-    # Fossil Museum Gen 5 (south-east)
-    m.bld(w-10, h-8, POKECENTER)
-    m.path_v(w-8, h//2, h-8)
-    # Dragon Scale NPC house
-    m.bld(cx-6, h-8, HOUSE)
-    m.path_v(cx-4, h//2, h-8)
+    m.bld(cx-2, 3, MART)
+    m.path_v(cx, 6, 6)
+    # PokéCenter (northwest)
+    m.bld(4, 3, POKECENTER)
+    m.path_v(6, 7, 6)
+    # Mart (north-center-west)
+    m.bld(cx-9, 3, MART)
+    m.path_v(cx-7, 6, 6)
+    # Fossil Museum (south-east)
+    m.bld(w-10, h-9, POKECENTER)
+    m.path_v(w-8, h-9, h-4)
+    # 9 enterable NPC houses
+    m.bld(11, 3, HOUSE); m.path_v(13, 6, 6)
+    m.bld(4, h//2-2, HOUSE); m.path_h(h//2, 8, cx-2, 3)
+    m.bld(cx-9, h//2-2, HOUSE)
+    m.bld(cx+3, h//2-2, HOUSE)  # Volcano Hermit Tutor
+    m.bld(cx+10, h//2-2, HOUSE)
+    m.bld(4, h-9, HOUSE); m.path_v(6, h-9, h-4)
+    m.bld(cx-9, h-9, HOUSE); m.path_v(cx-7, h-9, h-4)
+    m.bld(cx-2, h-9, HOUSE); m.path_v(cx, h-9, h-4)
+    m.bld(cx+4, h-9, HOUSE); m.path_v(cx+6, h-9, h-4)
+    # Decorative large buildings (tropical resort feel)
+    m.bld(18, 3, POKECENTER)
+    m.bld(cx-14, h-9, POKECENTER)
     m.ent_n(cx); m.ent_s(cx)
     return m,w,h
 
 def victory_road():
-    """20-chamber cave gauntlet. 8 Ace Trainers. F30 Asher Final.
-    Choice Band. PP Restore mid-sanctum."""
+    """Volcano interior labyrinth. 8 Ace Trainers in chambers. F30 Asher final."""
     w,h = 32,50
     m = M(w,h,CWL)
     m.rect(4,2,w-5,h-3,CFL)
     cx = w//2
     m.path_v(cx, 0, h-1, 3)
-    # Chamber-like rooms with corridor bottlenecks
+    # Chamber rooms
     for i in range(8):
         cy = 4 + i*5
-        # Wide chamber
         m.rect(6,cy,w-7,cy+3,CF2)
-        # Bottleneck between chambers
         if i < 7:
             m.rect(cx-2,cy+3,cx+2,cy+5,CFL)
-    # Rock pillars in chambers
+    # Pillars
     for i in range(0,8,2):
         cy = 4+i*5
         m.rect(6,cy,9,cy+1,CW2)
         m.rect(w-10,cy+1,w-7,cy+2,CW2)
-    # 8 trainer clearings (one per chamber)
+    # Trainer clearings
     for i in range(8):
-        cy = 5+i*5
-        m.clearing(cx, cy, 3, 1)
-    # F30 Asher Final chamber (south, larger)
+        m.clearing(cx, 5+i*5, 3, 1)
+    # F30 Asher final chamber
     m.rect(6,h-8,w-7,h-4,CF2)
     m.clearing(cx, h-6, 4, 2)
-    # Mid-sanctum PP restore (center)
+    # Mid-sanctum PP restore
     m.rect(cx-3,h//2-1,cx+3,h//2+1,CF2)
     # Choice Band
-    m.item_spot(w-8, 22)
+    m.item(w-8, 22)
     m.ent_n(cx); m.ent_s(cx)
     return m,w,h
 
 def pokemon_league():
-    """E4 + Champion. Arena entrance."""
+    """League Lobby (PC + Mart separate from recovery room). Arena entrance."""
     w,h = 28,22
     m = M(w,h,GR)
-    m.trees(2)
+    m.border(2)
     cx = w//2
     m.path_v(cx, 0, h-1, 3)
-    # League building (large, center)
+    # Arena entrance (center — large)
     m.bld(cx-2, 4, POKECENTER)
     m.path_v(cx, 8, h//2)
-    # PokéCenter (west)
+    # PokéCenter (west — Lobby)
     m.bld(5, 4, POKECENTER)
     m.path_h(8, 5, cx-2, 3)
-    # Mart (east)
+    # Mart (east — Lobby)
     m.bld(w-9, 5, MART)
     m.path_h(8, cx+2, w-9, 3)
+    # NPC houses (waiting area)
+    m.bld(5, h-8, HOUSE)
+    m.bld(w-9, h-8, HOUSE)
     m.ent_n(cx)
     return m,w,h
 
 def cave_b1():
-    """Ironfrost Basement B1. Postgame cave. Leftovers + Assault Vest."""
+    """Ironfrost B1. Leftovers + Assault Vest postgame items."""
     w,h = 28,28
     m = M(w,h,CWL)
     m.rect(4,2,w-5,h-3,CFL)
@@ -993,36 +1169,28 @@ def cave_b1():
         py = 5+i*8
         if i%2==0: m.rect(4,py,7,py+1,CW2)
         else: m.rect(w-8,py,w-5,py+1,CW2)
-    m.item_spot(6, h//3+2)    # Leftovers
-    m.item_spot(w-7, h//3+2)  # Assault Vest
+    m.item(6, h//3+2)
+    m.item(w-7, h//3+2)
     m.ent_n(cx); m.ent_s(cx)
     return m,w,h
 
 def cave_b2b3():
-    """Ironfrost Basement B2-B3. Deep cave. Kyurem static Lv83. Choice Specs."""
+    """Ironfrost B2-B3. Kyurem static + Choice Specs."""
     w,h = 30,34
     m = M(w,h,CWL)
     m.rect(4,2,w-5,h-3,CFL)
     cx = w//2
     m.path_v(cx, 0, h-1, 3)
-    # Deeper, more open cave
     m.rect(6,4,w-7,h-5,CF2)
-    # Kyurem chamber (south, large open area)
     m.rect(8,h-12,w-9,h-5,CFL)
-    m.clearing(cx, h-8, 5, 3)  # Kyurem static position
-    # Rock formations
+    m.clearing(cx, h-8, 5, 3)
     m.rect(4,8,8,10,CW2)
     m.rect(w-9,14,w-5,16,CW2)
     m.rect(4,20,8,22,CW2)
-    # Choice Specs
-    m.item_spot(w-8, 12)
+    m.item(w-8, 12)
     m.ent_n(cx)
     return m,w,h
 
-
-# ═══════════════════════════════════════════════════
-# BUILD ALL
-# ═══════════════════════════════════════════════════
 
 ALL = {
     "DawnflakeTown":      (dawnflake_town, "gTileset_Petalburg"),
