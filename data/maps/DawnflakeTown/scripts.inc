@@ -28,30 +28,35 @@ DawnflakeTown_EventScript_EvergreenPostRival::
 	release
 	end
 
+@ Asher F1: his ace has TYPE ADVANTAGE over player's starter
+@ Player Treecko(0) -> Asher Torchic (A) [Fire beats Grass]
+@ Player Torchic(1) -> Asher Mudkip  (B) [Water beats Fire]
+@ Player Mudkip (2) -> Asher Treecko (C) [Grass beats Water]
+
 DawnflakeTown_EventScript_Asher::
 	lock
 	faceplayer
 	goto_if_set FLAG_SNOW_BEAT_F1_ASHER, DawnflakeTown_EventScript_AsherDefeated
 	msgbox DawnflakeTown_Text_AsherChallenge, MSGBOX_DEFAULT
 	compare VAR_STARTER_MON, 0
-	goto_if_eq DawnflakeTown_EventScript_AsherBattleTorchic
+	goto_if_eq DawnflakeTown_EventScript_AsherVariantA
 	compare VAR_STARTER_MON, 1
-	goto_if_eq DawnflakeTown_EventScript_AsherBattleMudkip
+	goto_if_eq DawnflakeTown_EventScript_AsherVariantB
 	compare VAR_STARTER_MON, 2
-	goto_if_eq DawnflakeTown_EventScript_AsherBattleTreecko
+	goto_if_eq DawnflakeTown_EventScript_AsherVariantC
 	end
 
-DawnflakeTown_EventScript_AsherBattleTreecko::
+DawnflakeTown_EventScript_AsherVariantA::
 	trainerbattle_no_intro TRAINER_SNOW_F1_ASHER_A, DawnflakeTown_Text_AsherDefeat
 	goto DawnflakeTown_EventScript_AsherAfterBattle
 	end
 
-DawnflakeTown_EventScript_AsherBattleTorchic::
+DawnflakeTown_EventScript_AsherVariantB::
 	trainerbattle_no_intro TRAINER_SNOW_F1_ASHER_B, DawnflakeTown_Text_AsherDefeat
 	goto DawnflakeTown_EventScript_AsherAfterBattle
 	end
 
-DawnflakeTown_EventScript_AsherBattleMudkip::
+DawnflakeTown_EventScript_AsherVariantC::
 	trainerbattle_no_intro TRAINER_SNOW_F1_ASHER_C, DawnflakeTown_Text_AsherDefeat
 	goto DawnflakeTown_EventScript_AsherAfterBattle
 	end
@@ -98,14 +103,18 @@ DawnflakeTown_Text_EvergreenWaitForRival:
 	.string "for you outside.$"
 
 DawnflakeTown_Text_EvergreenHeadSouth:
-	.string "PROF. EVERGREEN: Head south on\n"
-	.string "Route 1 when you're ready.$"
+	.string "PROF. EVERGREEN: Head south to\n"
+	.string "Route 1 when you're ready.\p"
+	.string "Autumn is out there too - she'll\n"
+	.string "teach you about catching POKEMON.$"
 
 DawnflakeTown_Text_AsherChallenge:
 	.string "ASHER: So Evergreen gave you one\n"
 	.string "of his outsider POKEMON, huh?\p"
-	.string "Let's see if that warm-blooded thing\n"
-	.string "can handle a REAL Boralyss trainer!$"
+	.string "I picked one too - and mine has\n"
+	.string "the TYPE ADVANTAGE over yours!\p"
+	.string "Let's see if you can handle a REAL\n"
+	.string "Boralyss trainer!$"
 
 DawnflakeTown_Text_AsherDefeat:
 	.string "ASHER: What?! How did I lose?!$"
