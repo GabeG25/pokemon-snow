@@ -1,516 +1,638 @@
 #!/usr/bin/env python3
-"""Generate detailed map layouts for all Snow locations."""
-import json, struct, random, math
+"""Generate detailed map layouts for all Snow locations.
+Uses proper metatile encoding with correct elevation, collision,
+tree borders, buildings, and path systems from vanilla patterns."""
+
+import json, struct, math, random
 from pathlib import Path
 
 random.seed(2026)
 REPO = Path(__file__).resolve().parent.parent.parent
 
-# ═══ Metatile encoding: metatile_id | (collision << 10) | (elevation << 12) ═══
-def tile(meta, col=0, elv=3):
+# ═══════════════════════════════════════════════════
+# METATILE ENCODING
+# Format: metatile_id | (collision << 10) | (elevation << 12)
+# ═══════════════════════════════════════════════════
+def T(meta, col=0, elv=3):
     return meta | (col << 10) | (elv << 12)
 
-# Walkable ground tiles (elevation 3, passable)
-GRASS       = tile(0x001)  # 0x3001 — short grass, no encounters
-TALL_GRASS  = tile(0x00D)  # 0x300D — encounter grass
-LONG_GRASS  = tile(0x015)  # 0x3015 — long encounter grass
+# ═══ PRIMARY TILESET (General) — works with all secondary tilesets ═══
 
-# Water (elevation 1, passable)
-WATER       = tile(0x170, elv=1)  # 0x1170 — surfable water
+# Ground tiles (elevation 3, passable)
+GRASS        = T(0x001)  # Short grass, walkable, no encounters
+GRASS2       = T(0x004)  # Alternative ground
+TALL_GRASS   = T(0x00D)  # Encounter grass!
+LONG_GRASS   = T(0x015)  # Long encounter grass
+SIGN         = T(0x003)  # Sign/decoration tile
 
-# Impassable terrain (collision=1, elevation 0)
-CLIFF_DARK  = tile(0x075, col=1, elv=0)  # dark rock cliff
-CLIFF_MED   = tile(0x073, col=1, elv=0)  # medium rock
-CLIFF_LIGHT = tile(0x071, col=1, elv=0)  # light rock
-TREE_A      = tile(0x0C7, col=1, elv=0)  # tree trunk
-TREE_B      = tile(0x0C6, col=1, elv=0)  # tree canopy
-ROCK_WALL   = tile(0x079, col=1, elv=0)  # rock wall
+# Path system (elevation 3, passable) — forms connected walkways
+PATH_TL      = T(0x1D0)  # Path top-left corner
+PATH_T       = T(0x1D1)  # Path top edge
+PATH_TR      = T(0x1D2)  # Path top-right corner
+PATH_L       = T(0x1D8)  # Path left edge
+PATH_C       = T(0x1D9)  # Path center (main walkable)
+PATH_R       = T(0x1DA)  # Path right edge
+PATH_BL      = T(0x1E0)  # Path bottom-left corner
+PATH_B       = T(0x1E1)  # Path bottom edge
+PATH_BR      = T(0x1E2)  # Path bottom-right corner
 
-# Cave tiles (secondary tileset)
-CAVE_FLOOR  = tile(0x201)               # 0x3201 walkable cave
-CAVE_FLOOR2 = tile(0x211)               # 0x3211 cave floor variant
-CAVE_WALL   = tile(0x211, col=1, elv=0) # 0x0611 cave wall
-CAVE_WALL2  = tile(0x219, col=1, elv=0) # 0x0619 cave wall variant
-CAVE_WALL3  = tile(0x209, col=1, elv=0) # 0x0609 yet another wall
+# Tree tiles (2x2 blocks, impassable, elevation 0)
+TREE_TL      = T(0x1D4, col=1, elv=0)  # Tree top-left
+TREE_TR      = T(0x1D5, col=1, elv=0)  # Tree top-right
+TREE_BL      = T(0x1DC, col=1, elv=0)  # Tree bottom-left
+TREE_BR      = T(0x1DD, col=1, elv=0)  # Tree bottom-right
+# Tree edge variants
+TREE_ETL     = T(0x1E4, col=1, elv=0)  # Edge top-left
+TREE_ETR     = T(0x1E5, col=1, elv=0)  # Edge top-right
+TREE_EBL     = T(0x1E6, col=1, elv=0)  # Edge bottom-left corner
+TREE_EBR     = T(0x1E7, col=1, elv=0)  # Edge bottom-right corner
+TREE_EDL     = T(0x1D6, col=1, elv=0)  # Edge down-left
+TREE_EDR     = T(0x1D7, col=1, elv=0)  # Edge down-right
+# Tall grass + tree combo
+TGRASS_TL    = T(0x1C6)  # Tall grass under tree left
+TGRASS_TR    = T(0x1C7)  # Tall grass under tree right
+# Grass-tree transitions
+GTREE_L      = T(0x1CE)  # Grass-tree left transition
+GTREE_R      = T(0x1CF)  # Grass-tree right transition
 
-# Border tiles
-BORDER_GRASS = [GRASS, GRASS, GRASS, GRASS]
-BORDER_CAVE  = [CAVE_WALL, CAVE_WALL, CAVE_WALL, CAVE_WALL]
+# Water (elevation 1, passable/surfable)
+WATER        = T(0x170, elv=1)
+WATER_EDGE   = T(0x171, elv=1)
+
+# Rock/cliff (impassable)
+ROCK_GR      = T(0x079, col=1, elv=0)  # Rock wall grass base
+ROCK_RK      = T(0x07C, col=1, elv=0)  # Rock wall rock base
+CLIFF_DK     = T(0x075, col=1, elv=0)  # Dark cliff
+CLIFF_MD     = T(0x073, col=1, elv=0)  # Medium cliff
+CLIFF_LT     = T(0x071, col=1, elv=0)  # Light cliff
+LEDGE_T      = T(0x089, col=1, elv=0)  # Ledge top
+
+# Cave tiles (secondary tileset: gTileset_Cave)
+CAVE_FL      = T(0x201)               # Cave floor walkable
+CAVE_FL2     = T(0x211)               # Cave floor variant
+CAVE_WL      = T(0x211, col=1, elv=0) # Cave wall
+CAVE_WL2     = T(0x219, col=1, elv=0) # Cave wall variant
+CAVE_WL3     = T(0x209, col=1, elv=0) # Another wall
+
+# ═══ SECONDARY TILESET BUILDINGS (Petalburg) ═══
+# PokéCenter exterior (4 wide × 4 tall)
+POKECENTER = [
+    [T(0x26C), T(0x26D), T(0x26D), T(0x26E)],
+    [T(0x274, col=1, elv=0), T(0x275, col=1, elv=0), T(0x275, col=1, elv=0), T(0x276, col=1, elv=0)],
+    [T(0x27C, col=1, elv=0), T(0x27F, col=1, elv=0), T(0x27D, col=1, elv=0), T(0x27E, col=1, elv=0)],
+    [T(0x284, col=1, elv=0), T(0x287, col=1, elv=0), T(0x28F, col=1, elv=0), T(0x286, col=1, elv=0)],
+]
+# Mart exterior (4 wide × 3 tall)
+MART = [
+    [T(0x230, col=1, elv=0), T(0x231, col=1, elv=0), T(0x232, col=1, elv=0), T(0x233, col=1, elv=0)],
+    [T(0x238, col=1, elv=0), T(0x239, col=1, elv=0), T(0x23A, col=1, elv=0), T(0x23B, col=1, elv=0)],
+    [T(0x260, col=1, elv=0), T(0x241, col=1, elv=0), T(0x242, col=1, elv=0), T(0x243, col=1, elv=0)],
+]
+# House exterior (4 wide × 4 tall)
+HOUSE = [
+    [T(0x248), T(0x249), T(0x282), T(0x283)],
+    [T(0x250, col=1, elv=0), T(0x251, col=1, elv=0), T(0x252, col=1, elv=0), T(0x253, col=1, elv=0)],
+    [T(0x258, col=1, elv=0), T(0x259, col=1, elv=0), T(0x25A, col=1, elv=0), T(0x25B, col=1, elv=0)],
+    [T(0x260, col=1, elv=0), T(0x261, col=1, elv=0), T(0x262, col=1, elv=0), T(0x263, col=1, elv=0)],
+]
 
 
-class MapGrid:
-    def __init__(self, w, h, fill):
+class Map:
+    def __init__(self, w, h, fill=GRASS):
         self.w, self.h = w, h
-        self.grid = [[fill] * w for _ in range(h)]
+        self.g = [[fill]*w for _ in range(h)]
 
-    def set(self, x, y, t):
+    def s(self, x, y, t):
         if 0 <= x < self.w and 0 <= y < self.h:
-            self.grid[y][x] = t
+            self.g[y][x] = t
 
-    def get(self, x, y):
+    def r(self, x, y):
         if 0 <= x < self.w and 0 <= y < self.h:
-            return self.grid[y][x]
-        return None
+            return self.g[y][x]
+        return 0
 
-    def fill_rect(self, x1, y1, x2, y2, t):
+    def rect(self, x1, y1, x2, y2, t):
         for y in range(max(0,y1), min(self.h,y2+1)):
             for x in range(max(0,x1), min(self.w,x2+1)):
-                self.grid[y][x] = t
+                self.g[y][x] = t
 
-    def fill_circle(self, cx, cy, r, t):
+    def tree_border(self, thickness=2):
+        """Fill border with proper 2x2 tree pattern."""
+        for y in range(0, self.h, 2):
+            for x in range(0, self.w, 2):
+                in_border = (x < thickness*2 or x >= self.w - thickness*2 or
+                            y < thickness*2 or y >= self.h - thickness*2)
+                if in_border:
+                    self.s(x, y, TREE_TL); self.s(x+1, y, TREE_TR)
+                    self.s(x, y+1, TREE_BL); self.s(x+1, y+1, TREE_BR)
+
+    def tree_block(self, x, y):
+        """Place a single 2x2 tree."""
+        self.s(x,y,TREE_TL); self.s(x+1,y,TREE_TR)
+        self.s(x,y+1,TREE_BL); self.s(x+1,y+1,TREE_BR)
+
+    def place_building(self, x, y, pattern):
+        """Place a building from a pattern array."""
+        for dy, row in enumerate(pattern):
+            for dx, t in enumerate(row):
+                self.s(x+dx, y+dy, t)
+
+    def path_rect(self, x1, y1, x2, y2):
+        """Draw a path rectangle with proper edges."""
+        # Corners
+        self.s(x1, y1, PATH_TL); self.s(x2, y1, PATH_TR)
+        self.s(x1, y2, PATH_BL); self.s(x2, y2, PATH_BR)
+        # Edges
+        for x in range(x1+1, x2):
+            self.s(x, y1, PATH_T); self.s(x, y2, PATH_B)
+        for y in range(y1+1, y2):
+            self.s(x1, y, PATH_L); self.s(x2, y, PATH_R)
+        # Fill center
+        for y in range(y1+1, y2):
+            for x in range(x1+1, x2):
+                self.s(x, y, PATH_C)
+
+    def path_v(self, x, y1, y2, w=3):
+        """Vertical path with proper edges."""
+        self.path_rect(x-w//2, y1, x+w//2, y2)
+
+    def path_h(self, y, x1, x2, w=3):
+        """Horizontal path with proper edges."""
+        self.path_rect(x1, y-w//2, x2, y+w//2)
+
+    def grass_oval(self, cx, cy, rx, ry):
+        """Oval patch of encounter grass."""
         for y in range(self.h):
             for x in range(self.w):
-                if (x-cx)**2 + (y-cy)**2 <= r*r:
-                    self.grid[y][x] = t
+                dx, dy = (x-cx)/max(rx,1), (y-cy)/max(ry,1)
+                if dx*dx + dy*dy <= 1.0:
+                    cur = self.r(x, y)
+                    if cur == GRASS or cur == GRASS2:
+                        self.s(x, y, TALL_GRASS)
 
-    def path_v(self, x, y1, y2, width=3):
-        """Vertical path."""
-        for y in range(min(y1,y2), max(y1,y2)+1):
-            for dx in range(-(width//2), width//2+1):
-                self.set(x+dx, y, GRASS)
+    def scatter_trees(self, x1, y1, x2, y2, density=0.08):
+        """Scatter 2x2 trees, only on grass tiles."""
+        for y in range(y1, y2-1, 2):
+            for x in range(x1, x2-1, 2):
+                if random.random() < density:
+                    if all(self.r(x+dx,y+dy) in (TALL_GRASS, GRASS)
+                           for dx in range(2) for dy in range(2)):
+                        self.tree_block(x, y)
 
-    def path_h(self, y, x1, x2, width=3):
-        """Horizontal path."""
-        for x in range(min(x1,x2), max(x1,x2)+1):
-            for dy in range(-(width//2), width//2+1):
-                self.set(x, y+dy, GRASS)
+    def entrance_n(self, cx, w=5):
+        """Clear north entrance through tree border."""
+        for x in range(cx-w//2, cx+w//2+1):
+            for y in range(4):
+                self.s(x, y, GRASS)
 
-    def winding_path_v(self, start_x, y1, y2, width=3, amplitude=3, period=8):
-        """Vertical winding path."""
-        for y in range(min(y1,y2), max(y1,y2)+1):
-            offset = int(amplitude * math.sin(y * 2 * math.pi / period))
-            x = start_x + offset
-            for dx in range(-(width//2), width//2+1):
-                self.set(x+dx, y, GRASS)
+    def entrance_s(self, cx, w=5):
+        for x in range(cx-w//2, cx+w//2+1):
+            for y in range(self.h-4, self.h):
+                self.s(x, y, GRASS)
 
-    def grass_patch(self, cx, cy, rx, ry):
-        """Oval patch of tall grass."""
-        for y in range(self.h):
-            for x in range(self.w):
-                if ((x-cx)/max(rx,1))**2 + ((y-cy)/max(ry,1))**2 <= 1:
-                    if self.get(x,y) not in (WATER, CAVE_WALL, CAVE_WALL2, CAVE_WALL3):
-                        self.set(x, y, TALL_GRASS)
+    def entrance_e(self, cy, w=3):
+        for y in range(cy-w//2, cy+w//2+1):
+            for x in range(self.w-4, self.w):
+                self.s(x, y, GRASS)
 
-    def scatter_trees(self, x1, y1, x2, y2, density=0.15):
-        """Scatter trees in an area, preserving non-wall tiles."""
-        for y in range(max(0,y1), min(self.h,y2+1)):
-            for x in range(max(0,x1), min(self.w,x2+1)):
-                if self.get(x,y) == TALL_GRASS and random.random() < density:
-                    self.set(x, y, TREE_A)
-
-    def entrance_south(self, cx, width=5):
-        for x in range(cx-width//2, cx+width//2+1):
-            self.set(x, self.h-1, GRASS)
-            self.set(x, self.h-2, GRASS)
-
-    def entrance_north(self, cx, width=5):
-        for x in range(cx-width//2, cx+width//2+1):
-            self.set(x, 0, GRASS)
-            self.set(x, 1, GRASS)
+    def entrance_w(self, cy, w=3):
+        for y in range(cy-w//2, cy+w//2+1):
+            for x in range(4):
+                self.s(x, y, GRASS)
 
     def to_bytes(self):
         out = bytearray()
-        for row in self.grid:
+        for row in self.g:
             for t in row:
                 out += struct.pack("<H", t)
         return bytes(out)
 
 
-# ═══════════════════════════════════════════════════════════
-# ROUTE DESIGNS — Each route crafted individually
-# ═══════════════════════════════════════════════════════════
+# ═══════════════════════════════════════════════════
+# INDIVIDUAL MAP DESIGNS
+# ═══════════════════════════════════════════════════
 
-def design_dawnflake_town(w=24, h=18):
-    """Starting town. Open, welcoming. Small grass areas."""
-    m = MapGrid(w, h, GRASS)
-    # Tree border
-    m.fill_rect(0, 0, w-1, 0, TREE_B)
-    m.fill_rect(0, h-1, w-1, h-1, TREE_B)
-    for y in range(h):
-        m.set(0, y, TREE_A); m.set(w-1, y, TREE_A)
-    # Small grass patches (encounter areas)
-    m.grass_patch(5, 5, 3, 2)
-    m.grass_patch(w-6, 5, 3, 2)
-    m.grass_patch(w//2, h-5, 4, 2)
-    # Open center area (town square)
-    m.fill_rect(w//2-3, h//2-2, w//2+3, h//2+2, GRASS)
-    # Entrances (north to PowderpathVillage)
-    m.entrance_north(w//2)
-    m.entrance_south(w//2)
-    return m, w, h
-
-def design_powderpath_village(w=22, h=16):
-    """Small village with vendor. Cozy feel."""
-    m = MapGrid(w, h, GRASS)
-    m.fill_rect(0, 0, w-1, 0, TREE_B)
-    m.fill_rect(0, h-1, w-1, h-1, TREE_B)
-    for y in range(h):
-        m.set(0, y, TREE_A); m.set(w-1, y, TREE_A)
-    # Grass patches in corners
-    m.grass_patch(4, 4, 3, 2)
-    m.grass_patch(w-5, h-5, 3, 2)
-    # Central path
-    m.path_v(w//2, 0, h-1)
-    m.entrance_north(w//2)
-    m.entrance_south(w//2)
-    return m, w, h
-
-def design_route1(w=22, h=35):
-    """Powderpath Trail. First route — simple winding path, grass patches, 3 trainers."""
-    m = MapGrid(w, h, CLIFF_MED)
-    # Carve interior
-    m.fill_rect(2, 1, w-3, h-2, TALL_GRASS)
-    # Winding main path
-    m.winding_path_v(w//2, 0, h-1, width=3, amplitude=3, period=10)
-    # Additional grass-free clearings for trainer battles
-    m.fill_rect(w//2-2, 8, w//2+2, 10, GRASS)   # trainer 1 area
-    m.fill_rect(w//2-2, 18, w//2+2, 20, GRASS)  # trainer 2 area
-    m.fill_rect(w//2-2, 28, w//2+2, 30, GRASS)  # trainer 3 area
-    # Tree clusters for visual interest
-    m.scatter_trees(2, 1, 6, h-2, 0.2)
-    m.scatter_trees(w-7, 1, w-3, h-2, 0.2)
+def make_dawnflake_town():
+    """Starting town. PokéCenter, 2 houses, grass patches, welcoming feel."""
+    w, h = 28, 22
+    m = Map(w, h, GRASS)
+    m.tree_border(2)
+    # Main path running N-S through town
+    m.path_v(w//2, 0, h-1, 3)
+    # East-west cross path
+    m.path_h(h//2, 4, w-5, 3)
+    # PokéCenter (upper left area)
+    m.place_building(5, 5, POKECENTER)
+    m.path_rect(5, 9, 8, h//2)  # Path from PC to main road
+    # House 1 (upper right)
+    m.place_building(w-9, 5, HOUSE)
+    m.path_rect(w-9, 9, w-6, h//2)
+    # House 2 (lower right) — player's house
+    m.place_building(w-9, h-9, HOUSE)
+    m.path_rect(w-9, h//2, w-6, h-9)
+    # Grass patches for encounters
+    m.grass_oval(7, h-6, 3, 2)
+    m.grass_oval(w//2+5, 7, 2, 2)
+    m.grass_oval(5, h//2+4, 2, 2)
     # Entrances
-    m.entrance_north(w//2)
-    m.entrance_south(w//2)
+    m.entrance_n(w//2); m.entrance_s(w//2)
     return m, w, h
 
-def design_route2(w=22, h=30):
-    """Icespire Pass. Mountain pass — rockier, narrower path sections."""
-    m = MapGrid(w, h, CLIFF_DARK)
-    m.fill_rect(2, 1, w-3, h-2, TALL_GRASS)
-    # Narrower winding path
-    m.winding_path_v(w//2, 0, h-1, width=3, amplitude=2, period=7)
-    # Rocky outcrops creating bottlenecks
-    m.fill_rect(3, 7, 7, 9, CLIFF_MED)
-    m.fill_rect(w-8, 14, w-4, 16, CLIFF_MED)
-    m.fill_rect(4, 21, 8, 23, CLIFF_MED)
-    # Trainer clearing spots
-    m.fill_rect(w//2-2, 6, w//2+2, 7, GRASS)
-    m.fill_rect(w//2-2, 13, w//2+2, 14, GRASS)
-    m.fill_rect(w//2-2, 20, w//2+2, 21, GRASS)
-    m.fill_rect(w//2-2, 26, w//2+2, 27, GRASS)
-    m.entrance_north(w//2)
-    m.entrance_south(w//2)
+def make_powderpath_village():
+    """Small village with Vanillite vendor. Mart, house, grass."""
+    w, h = 24, 18
+    m = Map(w, h, GRASS)
+    m.tree_border(2)
+    # Main path N-S
+    m.path_v(w//2, 0, h-1, 3)
+    # Mart (left side)
+    m.place_building(5, 4, MART)
+    m.path_rect(5, 7, 8, h//2-1)
+    # House (right side)
+    m.place_building(w-9, 4, HOUSE)
+    m.path_rect(w-9, 8, w-6, h//2-1)
+    # Connect to main path
+    m.path_h(h//2-1, 8, w-6, 3)
+    # Grass patches
+    m.grass_oval(6, h-5, 3, 2)
+    m.grass_oval(w-7, h-5, 3, 2)
+    m.entrance_n(w//2); m.entrance_s(w//2)
     return m, w, h
 
-def design_icespire_town(w=24, h=18):
-    """First gym town. Larger than starting towns."""
-    m = MapGrid(w, h, GRASS)
-    m.fill_rect(0, 0, w-1, 0, CLIFF_DARK)
-    m.fill_rect(0, h-1, w-1, h-1, CLIFF_DARK)
+def make_route1():
+    """Powderpath Trail. Simple winding path, grass patches, 3 trainers."""
+    w, h = 24, 40
+    m = Map(w, h, GRASS)
+    m.tree_border(2)
+    # Fill interior with mix of grass and tall grass
+    m.rect(4, 4, w-5, h-5, TALL_GRASS)
+    # Winding main path
+    cx = w // 2
     for y in range(h):
-        m.set(0, y, CLIFF_DARK); m.set(w-1, y, CLIFF_DARK)
-    # Town grass patches
-    m.grass_patch(5, 5, 3, 3)
-    m.grass_patch(w-6, 5, 3, 3)
-    m.grass_patch(5, h-6, 3, 2)
-    m.grass_patch(w-6, h-6, 3, 2)
-    # Central plaza
-    m.fill_rect(w//2-4, h//2-3, w//2+4, h//2+3, GRASS)
-    m.entrance_north(w//2)
-    m.entrance_south(w//2)
-    return m, w, h
-
-def design_route3(w=28, h=40):
-    """Pinehurst Woods. Dense forest, winding path, scattered trees."""
-    m = MapGrid(w, h, TREE_A)
-    # Forest interior — mix of tall grass and clearings
-    m.fill_rect(2, 1, w-3, h-2, TALL_GRASS)
-    # Winding forest path
-    m.winding_path_v(w//2, 0, h-1, width=3, amplitude=4, period=9)
-    # Dense tree clusters throughout
-    m.scatter_trees(2, 1, w-3, h-2, 0.25)
-    # Clearings for trainers
-    for i, ty in enumerate([7, 14, 21, 28, 35]):
-        cx = w//2 + ((-3, 2, -2, 3, 0)[i])
-        m.fill_rect(cx-2, ty-1, cx+2, ty+1, GRASS)
-    # Side path to R4 (left exit)
-    m.path_h(h//3, 0, w//2-3)
-    for y in range(h//3-1, h//3+2):
-        m.set(0, y, GRASS)
-    m.entrance_north(w//2)
-    m.entrance_south(w//2)
-    return m, w, h
-
-def design_route4(w=24, h=22):
-    """Timber Creek. Optional route, no trainers, just wild encounters."""
-    m = MapGrid(w, h, TREE_A)
-    m.fill_rect(2, 1, w-3, h-2, TALL_GRASS)
-    # Meandering creek path
-    m.winding_path_v(w//2, 0, h-1, width=2, amplitude=3, period=6)
-    # Small water feature (creek)
-    for y in range(4, h-4):
-        wx = w//2 + 4 + int(2 * math.sin(y * 0.5))
-        m.set(wx, y, WATER); m.set(wx+1, y, WATER)
-    m.scatter_trees(2, 1, w-3, h-2, 0.18)
-    # Right entrance (connects back to R3)
-    for y in range(h//2-1, h//2+2):
-        m.set(w-1, y, GRASS); m.set(w-2, y, GRASS)
-    return m, w, h
-
-def design_town_generic(w=24, h=18, wall=CLIFF_DARK):
-    """Generic town template."""
-    m = MapGrid(w, h, GRASS)
-    m.fill_rect(0, 0, w-1, 0, wall)
-    m.fill_rect(0, h-1, w-1, h-1, wall)
-    for y in range(h):
-        m.set(0, y, wall); m.set(w-1, y, wall)
-    m.grass_patch(5, 5, 3, 2)
-    m.grass_patch(w-6, h-6, 3, 2)
-    m.entrance_north(w//2)
-    m.entrance_south(w//2)
-    return m, w, h
-
-def design_route5(w=24, h=30):
-    """Ironfrost Cave. First cave — corridors, openings, rock walls."""
-    m = MapGrid(w, h, CAVE_WALL)
-    # Main corridor
-    m.fill_rect(3, 1, w-4, h-2, CAVE_FLOOR)
-    # Rocky obstacles creating rooms
-    m.fill_rect(8, 6, 12, 8, CAVE_WALL2)
-    m.fill_rect(14, 13, 18, 15, CAVE_WALL2)
-    m.fill_rect(6, 20, 10, 22, CAVE_WALL2)
-    m.fill_rect(15, 24, 19, 26, CAVE_WALL2)
-    # Central path through rooms
-    m.path_v(w//2, 0, h-1, width=3)
-    # Side alcoves with cave floor
-    m.fill_rect(3, 10, 7, 12, CAVE_FLOOR2)
-    m.fill_rect(w-8, 17, w-4, 19, CAVE_FLOOR2)
-    # Trainer clearings
-    for ty in [5, 11, 17, 23, 27]:
-        m.fill_rect(w//2-2, ty, w//2+2, ty+1, CAVE_FLOOR)
-    m.entrance_north(w//2)
-    m.entrance_south(w//2)
-    return m, w, h
-
-def design_route6(w=28, h=35):
-    """Glacier Lake. Central lake with ring path."""
-    m = MapGrid(w, h, CLIFF_MED)
-    m.fill_rect(2, 1, w-3, h-2, TALL_GRASS)
-    # Central lake
-    m.fill_circle(w//2, h//2, 6, WATER)
-    # Ring path around lake
-    for angle in range(360):
-        rad = math.radians(angle)
-        for r in range(7, 9):
-            px = int(w//2 + r * math.cos(rad))
-            py = int(h//2 + r * math.sin(rad))
-            m.set(px, py, GRASS)
-    # Main path connecting N-S through the ring
-    m.path_v(w//2-7, 0, h-1, width=3)
-    m.path_h(h//2, w//2-9, w//2-5)
-    m.path_h(h//2, w//2+5, w//2+9)
-    # Trainer areas around the lake
-    for i, (tx, ty) in enumerate([(5, 8), (w-6, 12), (5, h-12), (w-6, h-8),
-                                   (w//2, 5), (w//2, h-6), (5, h//2), (w-6, h//2)]):
-        m.fill_rect(tx-1, ty-1, tx+1, ty, GRASS)
-    m.scatter_trees(2, 1, 8, h-2, 0.15)
-    m.scatter_trees(w-9, 1, w-3, h-2, 0.15)
-    m.entrance_north(w//2-7)
-    m.entrance_south(w//2-7)
-    return m, w, h
-
-def design_route_standard(w, h, n_trainers, amplitude=3, period=8):
-    """Standard outdoor route with winding path."""
-    m = MapGrid(w, h, CLIFF_MED)
-    m.fill_rect(2, 1, w-3, h-2, TALL_GRASS)
-    m.winding_path_v(w//2, 0, h-1, width=3, amplitude=amplitude, period=period)
-    # Trainer clearings evenly spaced
-    spacing = (h - 6) // max(n_trainers, 1)
-    for i in range(n_trainers):
-        ty = 3 + i * spacing
-        cx = w//2 + int(amplitude * math.sin(ty * 2 * math.pi / period))
-        m.fill_rect(cx-2, ty, cx+2, ty+1, GRASS)
-    m.scatter_trees(2, 1, w//2-4, h-2, 0.12)
-    m.scatter_trees(w//2+4, 1, w-3, h-2, 0.12)
-    m.entrance_north(w//2)
-    m.entrance_south(w//2)
-    return m, w, h
-
-def design_coastal(w, h, n_trainers):
-    """Coastal route — land on left, water on right."""
-    m = MapGrid(w, h, CLIFF_MED)
-    split = w * 3 // 5
-    m.fill_rect(2, 1, split-1, h-2, TALL_GRASS)
-    m.fill_rect(split, 1, w-2, h-2, WATER)
-    # Shoreline path
-    m.path_v(split-2, 0, h-1, width=3)
-    # Irregular shoreline
-    for y in range(1, h-1):
-        offset = int(2 * math.sin(y * 0.4))
+        off = int(3 * math.sin(y * 2 * math.pi / 12))
+        px = cx + off
         for dx in range(-1, 2):
-            m.set(split+offset+dx, y, WATER if dx > 0 else GRASS)
-    # Trainer areas
-    spacing = (h - 6) // max(n_trainers, 1)
-    for i in range(n_trainers):
-        ty = 3 + i * spacing
-        m.fill_rect(split-4, ty, split-1, ty+1, GRASS)
-    m.scatter_trees(2, 1, split//2, h-2, 0.1)
-    m.entrance_north(split-2)
-    m.entrance_south(split-2)
+            m.s(px+dx, y, PATH_C)
+        # Path edges
+        m.s(px-2, y, PATH_L); m.s(px+2, y, PATH_R)
+    # Trainer clearings (wider spots on path)
+    for ty in [10, 20, 30]:
+        cx_t = w//2 + int(3 * math.sin(ty * 2 * math.pi / 12))
+        m.rect(cx_t-3, ty-1, cx_t+3, ty+1, GRASS)
+        m.path_rect(cx_t-2, ty-1, cx_t+2, ty+1)
+    # Scatter some trees in grass areas
+    m.scatter_trees(4, 4, w//2-3, h-5, 0.06)
+    m.scatter_trees(w//2+3, 4, w-5, h-5, 0.06)
+    m.entrance_n(w//2); m.entrance_s(w//2)
     return m, w, h
 
-def design_cave_route(w, h, n_trainers):
-    """Cave interior with rooms and corridors."""
-    m = MapGrid(w, h, CAVE_WALL)
-    # Carve main corridor
-    m.fill_rect(3, 1, w-4, h-2, CAVE_FLOOR)
-    # Add wall pillars for visual interest
-    for i in range(4):
-        py = (h * (i+1)) // 5
-        # Alternating left/right obstacles
-        if i % 2 == 0:
-            m.fill_rect(3, py-1, 7, py+1, CAVE_WALL2)
+def make_route2():
+    """Icespire Pass. Rockier, narrow mountain pass."""
+    w, h = 24, 35
+    m = Map(w, h, CLIFF_DK)
+    # Narrower passage carved through rock
+    m.rect(4, 0, w-5, h-1, TALL_GRASS)
+    # Rocky outcrops narrowing the path
+    m.rect(4, 8, 8, 11, CLIFF_MD)
+    m.rect(w-9, 16, w-5, 19, CLIFF_MD)
+    m.rect(5, 24, 9, 27, CLIFF_MD)
+    # Winding path through the pass
+    cx = w // 2
+    for y in range(h):
+        off = int(2 * math.sin(y * 2 * math.pi / 10))
+        px = cx + off
+        for dx in range(-1, 2):
+            m.s(px+dx, y, PATH_C)
+        m.s(px-2, y, PATH_L); m.s(px+2, y, PATH_R)
+    # Trainer clearings
+    for ty in [6, 14, 22, 29]:
+        m.rect(cx-3, ty-1, cx+3, ty+1, GRASS)
+    m.entrance_n(w//2); m.entrance_s(w//2)
+    return m, w, h
+
+def make_icespire_town():
+    """First gym town. PokéCenter, Gym, houses."""
+    w, h = 28, 22
+    m = Map(w, h, GRASS)
+    m.tree_border(2)
+    m.path_v(w//2, 0, h-1, 3)
+    m.path_h(h//2, 4, w-5, 3)
+    # PokéCenter (top-left)
+    m.place_building(5, 4, POKECENTER)
+    m.path_rect(5, 8, 8, h//2)
+    # Gym placeholder (top-right, using Mart pattern as stand-in)
+    m.place_building(w-9, 4, MART)
+    m.path_rect(w-9, 7, w-6, h//2)
+    # House (bottom-left)
+    m.place_building(5, h-8, HOUSE)
+    m.path_rect(5, h//2, 8, h-8)
+    # Grass encounters
+    m.grass_oval(w-7, h-6, 3, 2)
+    m.grass_oval(w//2+4, 7, 2, 2)
+    m.entrance_n(w//2); m.entrance_s(w//2)
+    return m, w, h
+
+def make_route3():
+    """Pinehurst Woods. Dense forest, winding path, 5 trainers."""
+    w, h = 30, 44
+    m = Map(w, h, TREE_TL)
+    # Fill with tree pattern
+    for y in range(0, h, 2):
+        for x in range(0, w, 2):
+            m.tree_block(x, y)
+    # Carve forest interior
+    m.rect(4, 2, w-5, h-3, TALL_GRASS)
+    # Dense winding path
+    cx = w // 2
+    for y in range(h):
+        off = int(4 * math.sin(y * 2 * math.pi / 10))
+        px = cx + off
+        for dx in range(-1, 2):
+            m.s(px+dx, y, PATH_C)
+    # Trainer clearings
+    for i, ty in enumerate([8, 16, 24, 32, 39]):
+        off = int(3 * math.sin(ty * 0.5))
+        m.rect(cx+off-3, ty-1, cx+off+3, ty+1, GRASS)
+    # Scatter interior trees
+    m.scatter_trees(4, 2, w-5, h-3, 0.12)
+    # Side exit west to R4
+    m.entrance_w(h//3, 3)
+    m.path_h(h//3, 0, cx-2, 3)
+    m.entrance_n(w//2); m.entrance_s(w//2)
+    return m, w, h
+
+def make_route4():
+    """Timber Creek. Optional, no trainers, creek feature."""
+    w, h = 24, 24
+    m = Map(w, h, GRASS)
+    m.tree_border(2)
+    m.rect(4, 4, w-5, h-5, TALL_GRASS)
+    # Creek running through
+    for y in range(2, h-2):
+        wx = w//2 + 3 + int(2 * math.sin(y * 0.5))
+        m.s(wx, y, WATER); m.s(wx+1, y, WATER)
+    # Path alongside creek
+    for y in range(h):
+        m.s(w//2, y, PATH_C); m.s(w//2+1, y, PATH_C); m.s(w//2-1, y, PATH_C)
+    m.scatter_trees(4, 4, w//2-2, h-5, 0.1)
+    # East entrance only (connects back to R3)
+    m.entrance_e(h//2, 3)
+    return m, w, h
+
+def make_route5():
+    """Ironfrost Cave. Cave with corridors and rooms."""
+    w, h = 26, 34
+    m = Map(w, h, CAVE_WL)
+    # Main cavern
+    m.rect(4, 2, w-5, h-3, CAVE_FL)
+    # Rock pillars
+    for py in range(6, h-6, 5):
+        if py % 10 < 5:
+            m.rect(4, py, 8, py+2, CAVE_WL2)
         else:
-            m.fill_rect(w-8, py-1, w-4, py+1, CAVE_WALL2)
+            m.rect(w-9, py, w-5, py+2, CAVE_WL2)
     # Central path
-    m.path_v(w//2, 0, h-1, width=3)
+    cx = w // 2
+    for y in range(h):
+        for dx in range(-1, 2):
+            m.s(cx+dx, y, CAVE_FL2)
     # Side rooms
-    m.fill_rect(3, h//4, 7, h//4+3, CAVE_FLOOR2)
-    m.fill_rect(w-8, h*3//4-1, w-4, h*3//4+2, CAVE_FLOOR2)
-    # Trainer spots
-    spacing = (h - 6) // max(n_trainers, 1)
+    m.rect(4, h//4, 8, h//4+3, CAVE_FL2)
+    m.rect(w-9, h//2, w-5, h//2+3, CAVE_FL2)
+    m.rect(4, 3*h//4, 8, 3*h//4+3, CAVE_FL2)
+    # Trainer clearings
+    for ty in [5, 11, 17, 23, 28, 31]:
+        m.rect(cx-2, ty, cx+2, ty+1, CAVE_FL)
+    m.entrance_n(w//2); m.entrance_s(w//2)
+    return m, w, h
+
+def make_town_standard(w, h, has_pokecenter=True, has_mart=False, n_houses=1):
+    """Standard town template."""
+    m = Map(w, h, GRASS)
+    m.tree_border(2)
+    m.path_v(w//2, 0, h-1, 3)
+    m.path_h(h//2, 4, w-5, 3)
+    bx = 5
+    if has_pokecenter:
+        m.place_building(bx, 4, POKECENTER)
+        m.path_rect(bx, 8, bx+3, h//2)
+    if has_mart:
+        m.place_building(w-9, 4, MART)
+        m.path_rect(w-9, 7, w-6, h//2)
+    for i in range(n_houses):
+        hx = 5 + i * 8 if i < 2 else w-9
+        hy = h - 8
+        m.place_building(hx, hy, HOUSE)
+        m.path_rect(hx, h//2, hx+3, hy)
+    m.grass_oval(w-7, h-5, 2, 2)
+    m.grass_oval(5, h//2+3, 2, 2)
+    m.entrance_n(w//2); m.entrance_s(w//2)
+    return m, w, h
+
+def make_route6():
+    """Glacier Lake. Ring path around central lake."""
+    w, h = 30, 38
+    m = Map(w, h, CLIFF_MD)
+    m.rect(4, 2, w-5, h-3, TALL_GRASS)
+    # Central lake
+    cy, cx = h//2, w//2
+    for y in range(h):
+        for x in range(w):
+            if (x-cx)**2 + (y-cy)**2 <= 36:
+                m.s(x, y, WATER)
+    # Ring path around lake
+    for a in range(360):
+        r = math.radians(a)
+        for rad in range(7, 9):
+            px = int(cx + rad * math.cos(r))
+            py = int(cy + rad * math.sin(r))
+            m.s(px, py, PATH_C)
+    # N-S path on west side connecting to ring
+    m.path_v(cx-8, 0, h-1, 3)
+    m.path_h(cy, cx-8, cx-6, 3)
+    # Trainer clearings around the lake
+    for a in range(0, 360, 45):
+        r = math.radians(a)
+        tx = int(cx + 9 * math.cos(r))
+        ty = int(cy + 9 * math.sin(r))
+        m.rect(tx-1, ty-1, tx+1, ty, GRASS)
+    m.scatter_trees(4, 2, cx-9, h-3, 0.08)
+    m.scatter_trees(cx+9, 2, w-5, h-3, 0.08)
+    m.entrance_n(cx-8); m.entrance_s(cx-8)
+    return m, w, h
+
+def make_route_outdoor(w, h, n_trainers, amp=3, period=10):
+    """Generic outdoor route with winding path."""
+    m = Map(w, h, CLIFF_MD)
+    m.rect(4, 2, w-5, h-3, TALL_GRASS)
+    cx = w // 2
+    for y in range(h):
+        off = int(amp * math.sin(y * 2 * math.pi / period))
+        px = cx + off
+        for dx in range(-1, 2):
+            m.s(px+dx, y, PATH_C)
+        m.s(px-2, y, PATH_L); m.s(px+2, y, PATH_R)
+    sp = max(1, (h-8) // max(n_trainers, 1))
     for i in range(n_trainers):
-        ty = 3 + i * spacing
-        m.fill_rect(w//2-2, ty, w//2+2, ty+1, CAVE_FLOOR)
-    m.entrance_north(w//2)
-    m.entrance_south(w//2)
+        ty = 4 + i * sp
+        off = int(amp * math.sin(ty * 2 * math.pi / period))
+        m.rect(cx+off-3, ty-1, cx+off+3, ty+1, GRASS)
+    m.scatter_trees(4, 2, cx-4, h-3, 0.06)
+    m.scatter_trees(cx+4, 2, w-5, h-3, 0.06)
+    m.entrance_n(w//2); m.entrance_s(w//2)
+    return m, w, h
+
+def make_coastal(w, h, n_trainers):
+    """Coastal route with shore path."""
+    m = Map(w, h, CLIFF_MD)
+    split = w * 3 // 5
+    m.rect(4, 2, split-1, h-3, TALL_GRASS)
+    m.rect(split, 2, w-3, h-3, WATER)
+    # Irregular shoreline
+    for y in range(2, h-2):
+        off = int(1.5 * math.sin(y * 0.4))
+        m.s(split+off, y, GRASS)
+        m.s(split+off-1, y, GRASS)
+    # Shore path
+    for y in range(h):
+        m.s(split-3, y, PATH_C); m.s(split-2, y, PATH_C); m.s(split-1, y, PATH_C)
+    sp = max(1, (h-8) // max(n_trainers, 1))
+    for i in range(n_trainers):
+        ty = 4 + i * sp
+        m.rect(split-5, ty-1, split-1, ty+1, GRASS)
+    m.scatter_trees(4, 2, split-6, h-3, 0.06)
+    m.entrance_n(split-2); m.entrance_s(split-2)
+    return m, w, h
+
+def make_cave(w, h, n_trainers):
+    """Cave interior."""
+    m = Map(w, h, CAVE_WL)
+    m.rect(3, 2, w-4, h-3, CAVE_FL)
+    for i in range(3):
+        py = (h * (i+1)) // 4
+        if i % 2 == 0:
+            m.rect(3, py-1, 7, py+1, CAVE_WL2)
+        else:
+            m.rect(w-8, py-1, w-4, py+1, CAVE_WL2)
+    cx = w // 2
+    for y in range(h):
+        for dx in range(-1, 2): m.s(cx+dx, y, CAVE_FL2)
+    m.rect(3, h//4, 7, h//4+3, CAVE_FL2)
+    m.rect(w-8, 3*h//4-1, w-4, 3*h//4+2, CAVE_FL2)
+    sp = max(1, (h-8) // max(n_trainers, 1)) if n_trainers > 0 else h
+    for i in range(n_trainers):
+        ty = 4 + i * sp
+        m.rect(cx-2, ty, cx+2, ty+1, CAVE_FL)
+    m.entrance_n(w//2); m.entrance_s(w//2)
+    return m, w, h
+
+def make_r13():
+    """Verdant Jungle. Dense, humid, 9 trainers, stream."""
+    w, h = 32, 48
+    m = Map(w, h, TREE_TL)
+    for y in range(0, h, 2):
+        for x in range(0, w, 2):
+            m.tree_block(x, y)
+    m.rect(4, 2, w-5, h-3, TALL_GRASS)
+    cx = w // 2
+    for y in range(h):
+        off = int(5 * math.sin(y * 2 * math.pi / 11))
+        px = cx + off
+        for dx in range(-1, 2): m.s(px+dx, y, PATH_C)
+    # Jungle stream
+    for y in range(h//4, 3*h//4):
+        wx = cx + 7 + int(2 * math.sin(y * 0.3))
+        m.s(wx, y, WATER); m.s(wx+1, y, WATER)
+    for i in range(9):
+        ty = 4 + i * 4 + random.randint(-1, 1)
+        off = int(4 * math.sin(ty * 0.6))
+        m.rect(cx+off-3, ty-1, cx+off+3, ty+1, GRASS)
+    m.scatter_trees(4, 2, w-5, h-3, 0.15)
+    m.entrance_n(w//2); m.entrance_s(w//2)
     return m, w, h
 
 
-# ═══════════════════════════════════════════════════════════
-# MAP LIST WITH CUSTOM DESIGNS
-# ═══════════════════════════════════════════════════════════
+# ═══════════════════════════════════════════════════
+# BUILD ALL MAPS
+# ═══════════════════════════════════════════════════
 
-def build_all():
-    MAPS = {
-        "DawnflakeTown":     lambda: design_dawnflake_town(),
-        "PowderpathVillage": lambda: design_powderpath_village(),
-        "SnowRoute1":        lambda: design_route1(),
-        "SnowRoute2":        lambda: design_route2(),
-        "IcespireTown":      lambda: design_icespire_town(),
-        "SnowRoute3":        lambda: design_route3(),
-        "SnowRoute4":        lambda: design_route4(),
-        "PinegroveCity":     lambda: design_town_generic(24, 18, TREE_A),
-        "SnowRoute5":        lambda: design_route5(),
-        "IronfrostCity":     lambda: design_town_generic(28, 18, CLIFF_DARK),
-        "SnowRoute6":        lambda: design_route6(),
-        "SnowRoute7":        lambda: design_route_standard(26, 35, 5, amplitude=4, period=10),
-        "FrostbreakLodge":   lambda: design_town_generic(18, 14, TREE_A),
-        "SnowRoute8":        lambda: design_route_standard(26, 35, 6, amplitude=3, period=8),
-        "DreamursTown":      lambda: design_town_generic(24, 18, CLIFF_MED),
-        "SnowRoute9":        lambda: design_coastal(28, 30, 8),
-        "IceharborCity":     lambda: design_town_generic(28, 20, CLIFF_MED),
-        "DriftrockIsle":     lambda: design_coastal(24, 24, 5),
-        "SnowRoute10":       lambda: design_cave_route(24, 30, 8),
-        "SnowRoute11":       lambda: design_route_standard(28, 35, 6, amplitude=5, period=12),
-        "DragonforgeCity":   lambda: design_town_generic(30, 22, CLIFF_DARK),
-        "SnowRoute12":       lambda: design_route_standard(24, 35, 7, amplitude=3, period=9),
-        "SolaceTown":        lambda: design_town_generic(22, 16, CLIFF_MED),
-        "SnowRoute13":       lambda: design_route3.__wrapped__(30, 42) if hasattr(design_route3, '__wrapped__') else (lambda: (MapGrid(30,42,TREE_A).fill_rect(2,1,27,40,TALL_GRASS) or design_forest_gen(30, 42, 9)))(),
-        "SnowRoute14":       lambda: design_route_standard(28, 35, 9, amplitude=3, period=7),
-        "SnowRoute15":       lambda: design_coastal(28, 35, 9),
-        "PyrespireCity":     lambda: design_town_generic(28, 20, CLIFF_DARK),
-        "SnowVictoryRoad":   lambda: design_cave_route(28, 38, 8),
-        "PokemonLeague":     lambda: design_town_generic(24, 18, CLIFF_DARK),
-        "IronfrostCaveB1":   lambda: design_cave_route(24, 24, 0),
-        "IronfrostCaveB2B3": lambda: design_cave_route(28, 30, 0),
-    }
+ALL_MAPS = {
+    "DawnflakeTown":      (make_dawnflake_town, "gTileset_Petalburg"),
+    "PowderpathVillage":  (make_powderpath_village, "gTileset_Petalburg"),
+    "SnowRoute1":         (make_route1, "gTileset_Petalburg"),
+    "SnowRoute2":         (make_route2, "gTileset_Petalburg"),
+    "IcespireTown":       (make_icespire_town, "gTileset_Petalburg"),
+    "SnowRoute3":         (make_route3, "gTileset_Petalburg"),
+    "SnowRoute4":         (make_route4, "gTileset_Petalburg"),
+    "PinegroveCity":      (lambda: make_town_standard(28, 20, True, True, 2), "gTileset_Petalburg"),
+    "SnowRoute5":         (make_route5, "gTileset_Cave"),
+    "IronfrostCity":      (lambda: make_town_standard(30, 22, True, True, 2), "gTileset_Petalburg"),
+    "SnowRoute6":         (make_route6, "gTileset_Petalburg"),
+    "SnowRoute7":         (lambda: make_route_outdoor(28, 38, 5, 4, 12), "gTileset_Petalburg"),
+    "FrostbreakLodge":    (lambda: make_town_standard(20, 16, False, False, 1), "gTileset_Petalburg"),
+    "SnowRoute8":         (lambda: make_route_outdoor(28, 38, 6, 3, 9), "gTileset_Petalburg"),
+    "DreamursTown":       (lambda: make_town_standard(26, 20, True, False, 2), "gTileset_Petalburg"),
+    "SnowRoute9":         (lambda: make_coastal(30, 34, 8), "gTileset_Petalburg"),
+    "IceharborCity":      (lambda: make_town_standard(30, 22, True, True, 2), "gTileset_Petalburg"),
+    "DriftrockIsle":      (lambda: make_coastal(26, 26, 5), "gTileset_Petalburg"),
+    "SnowRoute10":        (lambda: make_cave(26, 34, 8), "gTileset_Cave"),
+    "SnowRoute11":        (lambda: make_route_outdoor(30, 38, 6, 5, 11), "gTileset_Petalburg"),
+    "DragonforgeCity":    (lambda: make_town_standard(32, 24, True, True, 3), "gTileset_Petalburg"),
+    "SnowRoute12":        (lambda: make_route_outdoor(26, 38, 7, 3, 8), "gTileset_Petalburg"),
+    "SolaceTown":         (lambda: make_town_standard(24, 18, True, False, 1), "gTileset_Petalburg"),
+    "SnowRoute13":        (make_r13, "gTileset_Petalburg"),
+    "SnowRoute14":        (lambda: make_route_outdoor(28, 38, 9, 3, 7), "gTileset_Petalburg"),
+    "SnowRoute15":        (lambda: make_coastal(30, 38, 9), "gTileset_Petalburg"),
+    "PyrespireCity":      (lambda: make_town_standard(30, 22, True, True, 2), "gTileset_Petalburg"),
+    "SnowVictoryRoad":    (lambda: make_cave(30, 42, 8), "gTileset_Cave"),
+    "PokemonLeague":      (lambda: make_town_standard(26, 20, True, False, 1), "gTileset_Petalburg"),
+    "IronfrostCaveB1":    (lambda: make_cave(26, 26, 0), "gTileset_Cave"),
+    "IronfrostCaveB2B3":  (lambda: make_cave(30, 32, 0), "gTileset_Cave"),
+}
 
-    # Fix R13 — dense jungle
-    def design_r13():
-        w, h = 30, 42
-        m = MapGrid(w, h, TREE_A)
-        m.fill_rect(2, 1, w-3, h-2, TALL_GRASS)
-        m.winding_path_v(w//2, 0, h-1, width=3, amplitude=5, period=9)
-        m.scatter_trees(2, 1, w-3, h-2, 0.3)
-        # Water feature (jungle stream)
-        for y in range(h//3, 2*h//3):
-            wx = w//2 + 6 + int(2 * math.sin(y * 0.3))
-            m.set(wx, y, WATER); m.set(wx+1, y, WATER)
-        # 9 trainer clearings
-        for i in range(9):
-            ty = 3 + i * 4
-            cx = w//2 + int(4 * math.sin(ty * 0.7))
-            m.fill_rect(cx-2, ty, cx+2, ty+1, GRASS)
-        m.entrance_north(w//2)
-        m.entrance_south(w//2)
-        return m, w, h
+CAVES = {"SnowRoute5","SnowRoute10","SnowVictoryRoad","IronfrostCaveB1","IronfrostCaveB2B3"}
 
-    MAPS["SnowRoute13"] = design_r13
-
-    TILESETS = {
-        "DawnflakeTown": "gTileset_Petalburg", "PowderpathVillage": "gTileset_Petalburg",
-        "SnowRoute1": "gTileset_EverGrande", "SnowRoute2": "gTileset_EverGrande",
-        "IcespireTown": "gTileset_Rustboro", "SnowRoute3": "gTileset_Fortree",
-        "SnowRoute4": "gTileset_Fortree", "PinegroveCity": "gTileset_Rustboro",
-        "SnowRoute5": "gTileset_Cave", "IronfrostCity": "gTileset_Mauville",
-        "SnowRoute6": "gTileset_EverGrande", "SnowRoute7": "gTileset_EverGrande",
-        "FrostbreakLodge": "gTileset_Fallarbor", "SnowRoute8": "gTileset_EverGrande",
-        "DreamursTown": "gTileset_Fallarbor", "SnowRoute9": "gTileset_EverGrande",
-        "IceharborCity": "gTileset_Slateport", "DriftrockIsle": "gTileset_EverGrande",
-        "SnowRoute10": "gTileset_Cave", "SnowRoute11": "gTileset_EverGrande",
-        "DragonforgeCity": "gTileset_Mauville", "SnowRoute12": "gTileset_EverGrande",
-        "SolaceTown": "gTileset_Fallarbor", "SnowRoute13": "gTileset_Fortree",
-        "SnowRoute14": "gTileset_Lavaridge", "SnowRoute15": "gTileset_Lavaridge",
-        "PyrespireCity": "gTileset_Sootopolis", "SnowVictoryRoad": "gTileset_Cave",
-        "PokemonLeague": "gTileset_EverGrande", "IronfrostCaveB1": "gTileset_Cave",
-        "IronfrostCaveB2B3": "gTileset_Cave",
-    }
-
-    IS_CAVE = {"SnowRoute5","SnowRoute10","SnowVictoryRoad","IronfrostCaveB1","IronfrostCaveB2B3"}
-
+def main():
     with open(REPO / "data/layouts/layouts.json") as f:
-        layouts_data = json.load(f)
+        ld = json.load(f)
 
-    for map_dir, gen_fn in MAPS.items():
-        m, w, h = gen_fn()
-        lid = "LAYOUT_" + ''.join(f'_{c}' if c.isupper() and i > 0 and map_dir[i-1].islower()
-                                   else c for i, c in enumerate(map_dir)).upper()
-        # Clean up double underscores
-        while '__' in lid:
-            lid = lid.replace('__', '_')
+    for name, (gen, tileset) in ALL_MAPS.items():
+        m, w, h = gen()
+        lid = "LAYOUT_" + ''.join(
+            f'_{c}' if c.isupper() and i > 0 and name[i-1].islower() else c
+            for i, c in enumerate(name)
+        ).upper().replace('__','_')
 
-        layout_dir = REPO / "data/layouts" / map_dir
-        layout_dir.mkdir(parents=True, exist_ok=True)
+        ldir = REPO / "data/layouts" / name
+        ldir.mkdir(parents=True, exist_ok=True)
+        (ldir / "map.bin").write_bytes(m.to_bytes())
+        bdr = [CAVE_WL]*4 if name in CAVES else [TREE_TL, TREE_TR, TREE_BL, TREE_BR]
+        with open(ldir / "border.bin", "wb") as f:
+            for t in bdr: f.write(struct.pack("<H", t))
 
-        with open(layout_dir / "map.bin", "wb") as f:
-            f.write(m.to_bytes())
+        ent = {"id": lid, "name": f"{name}_Layout", "width": w, "height": h,
+               "primary_tileset": "gTileset_General", "secondary_tileset": tileset,
+               "border_filepath": f"data/layouts/{name}/border.bin",
+               "blockdata_filepath": f"data/layouts/{name}/map.bin"}
+        ex = [l for l in ld["layouts"] if l["id"] == lid]
+        if ex: ld["layouts"][ld["layouts"].index(ex[0])] = ent
+        else: ld["layouts"].append(ent)
 
-        border = BORDER_CAVE if map_dir in IS_CAVE else BORDER_GRASS
-        with open(layout_dir / "border.bin", "wb") as f:
-            for t in border:
-                f.write(struct.pack("<H", t))
-
-        entry = {
-            "id": lid, "name": f"{map_dir}_Layout",
-            "width": w, "height": h,
-            "primary_tileset": "gTileset_General",
-            "secondary_tileset": TILESETS[map_dir],
-            "border_filepath": f"data/layouts/{map_dir}/border.bin",
-            "blockdata_filepath": f"data/layouts/{map_dir}/map.bin",
-        }
-        existing = [l for l in layouts_data["layouts"] if l["id"] == lid]
-        if existing:
-            layouts_data["layouts"][layouts_data["layouts"].index(existing[0])] = entry
-        else:
-            layouts_data["layouts"].append(entry)
-
-        # Update map.json
-        mjp = REPO / "data/maps" / map_dir / "map.json"
-        with open(mjp) as f:
-            mj = json.load(f)
+        mjp = REPO / "data/maps" / name / "map.json"
+        with open(mjp) as f: mj = json.load(f)
         mj["layout"] = lid
-        with open(mjp, "w") as f:
-            json.dump(mj, f, indent=2); f.write("\n")
+        with open(mjp, "w") as f: json.dump(mj, f, indent=2); f.write("\n")
+        print(f"  {name:25s} {w:2d}x{h:2d}")
 
-        print(f"  {map_dir:25s} {w:2d}x{h:2d}")
+    # Remove any stale duplicate entries
+    seen = {}
+    for i, l in enumerate(ld["layouts"]):
+        seen[l["id"]] = i
+    ld["layouts"] = [ld["layouts"][i] for i in sorted(seen.values())]
 
     with open(REPO / "data/layouts/layouts.json", "w") as f:
-        json.dump(layouts_data, f, indent=2); f.write("\n")
-
-    print(f"\n{len(MAPS)} layouts generated")
-
+        json.dump(ld, f, indent=2); f.write("\n")
+    print(f"\n{len(ALL_MAPS)} layouts generated")
 
 if __name__ == "__main__":
-    build_all()
+    main()
