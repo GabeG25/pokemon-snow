@@ -50,23 +50,29 @@ Implementation State
 This section is living — update as routes ship. Last updated: 2026-04-12 post-all-trainers.
 Shipped (data layer, compiled into ROM):
 
-R1(3) R2(4) R3(5) R5(6) R6(8) R7(5) R8(6) R9(8) R10(8) R11(6) R12(7) R13(9) R14(9) R15(9) DI(5)
-Total: 98 trainers, ~340 Pokémon as ROM data. ALL v17 §20 route trainers shipped.
+Route trainers: R1(3) R2(4) R3(5) R5(6) R6(8) R7(5) R8(6) R9(8) R10(8) R11(6) R12(7) R13(9) R14(9) R15(9) DI(5) VR(8) = 106 trainers
+Boss fights: F1-F35 = 57 trainer entries (35 fights, 11 with A/B/C starter variants)
+Total: 163 Snow trainers in ROM. ALL v17 §20 + §5 trainer data shipped.
 
 Engine state:
 
 MAX_TRAINERS_COUNT_EMERALD expanded from 864 to 1024 (flag-ceiling expansion committed as save-breaking change)
-TRAINERS_COUNT_EMERALD equals 953 (98 Snow trainers plus 855 vanilla Emerald trainers retained)
-71 flag slots free
+TRAINERS_COUNT_EMERALD equals 1018 (163 Snow trainers plus 855 vanilla Emerald trainers retained)
+6 flag slots free (64 facility grunts will require ceiling expansion to ~1088)
 SaveBlock1 sizeof equals 15,588 bytes, budget 15,872, headroom 284 bytes
 Build compiles clean via make -j$(nproc) using devkitARM under WSL Ubuntu
 
+Shipped (species data layer):
+
+104 custom Hidden Abilities applied to 167 species (port_species_ha.py)
+~138 custom learnset additions (198 moves via port_species_learnsets.py)
+2x crit damage, physical Water Shuriken, trade evo native in expansion
+Gallade Sharpness already handled by pokeemerald-expansion GEN_9 guard
+
 Not yet shipped — design exists in v17, awaiting implementation:
 
-317-species Pokédex data files
-Custom Hidden Abilities (104 species)
-Custom learnsets
-35 boss fights (species data prerequisite)
+317-species full Pokédex data files (base stats, types beyond what's already in expansion)
+64 facility grunts (Facilities Delta/Beta/Alpha — requires ceiling expansion)
 
 Not yet started:
 
@@ -77,7 +83,7 @@ Item distribution across maps (Dragonforge Dept. Store inventory, Frostbreak Lod
 Music, art, sound beyond vanilla Emerald
 Balance playtesting (blocked until at least R1 through R5 has map wiring)
 
-Rough completeness: ~20% toward a fully playable build. Trainer data is 100% complete (98/98 route trainers). The remaining work is species data, map wiring, boss fights, scripting, and art.
+Rough completeness: ~35% toward a fully playable build. All trainer data (163 route + 57 boss = 220 entries), custom HAs (167 species), and custom learnsets (198 moves) are shipped. The remaining work is map wiring, wild encounter tables, NPC scripting, facility grunts, and art.
 Tool Architecture
 The core tool is tools/snow_port/port_trainers.py — reads the v17 design archive and emits ROM data with full safety rails. Currently ~650 lines.
 What the tool does:
