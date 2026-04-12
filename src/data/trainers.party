@@ -17414,3 +17414,309 @@ Nature: Jolly
 - Icy Wind
 - Quick Attack
 - Hone Claws
+
+=== TRAINER_SNOW_R6_1_NADIA ===
+Name: NADIA
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Vulpix-Alola
+Level: 27
+Ability: Snow Cloak
+Nature: Timid
+- Icy Wind
+- Confuse Ray
+- Ice Shard
+- Extrasensory
+
+Snorunt @ Oran Berry
+Level: 28
+Ability: Ice Body
+Nature: Timid
+- Icy Wind
+- Bite
+- Ice Shard
+- Frost Breath
+
+Sneasel @ Oran Berry
+Level: 29
+Ability: Inner Focus
+Nature: Jolly
+- Feint Attack
+- Ice Shard
+- Metal Claw
+- Hone Claws
+
+=== TRAINER_SNOW_R6_2_REED ===
+Name: REED
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Swinub
+Level: 28
+Ability: Snow Cloak
+Nature: Adamant
+- Ice Shard
+- Mud-Slap
+- Take Down
+- Endure
+
+Shellder
+Level: 28
+Ability: Skill Link
+Nature: Jolly
+- Icicle Spear
+- Rock Blast
+- Water Gun
+- Protect
+
+Cubchoo @ Oran Berry
+Level: 29
+Ability: Snow Cloak
+Nature: Adamant
+- Slash
+- Brine
+- Icy Wind
+- Charm
+
+Nosepass @ Oran Berry
+Level: 30
+Ability: Sturdy
+Nature: Bold
+- Rock Slide
+- Thunder Wave
+- Spark
+- Block
+
+=== TRAINER_SNOW_R6_3_WADE ===
+Name: WADE
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Tentacool
+Level: 28
+Ability: Clear Body
+Nature: Bold
+- Bubble Beam
+- Acid
+- Wrap
+- Supersonic
+
+Poliwhirl
+Level: 29
+Ability: Water Absorb
+Nature: Adamant
+- Mud Shot
+- Bubble Beam
+- Wake-Up Slap
+- Hypnosis
+
+Spheal
+Level: 29
+Ability: Thick Fat
+Nature: Bold
+- Ice Ball
+- Brine
+- Rollout
+- Rest
+
+Lanturn @ Oran Berry
+Level: 30
+Ability: Volt Absorb
+Nature: Bold
+- Bubble Beam
+- Spark
+- Confuse Ray
+- Thunder Wave
+
+=== TRAINER_SNOW_R6_4_CLARK ===
+Name: CLARK
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Finneon @ Oran Berry
+Level: 29
+Ability: Swift Swim
+Nature: Modest
+- Water Pulse
+- Silver Wind
+- Attract
+- Rain Dance
+
+Palpitoad
+Level: 30
+Ability: Swift Swim
+Nature: Modest
+- Bubble Beam
+- Mud Shot
+- Uproar
+- Acid
+
+Staryu @ Oran Berry
+Level: 31
+Ability: Natural Cure
+Nature: Timid
+- Water Pulse
+- Swift
+- Rapid Spin
+- Recover
+
+=== TRAINER_SNOW_R6_5_MILES ===
+Name: MILES
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Venonat
+Level: 29
+Ability: Compound Eyes
+Nature: Modest
+- Psybeam
+- Confusion
+- Sleep Powder
+- Stun Spore
+
+Joltik
+Level: 30
+Ability: Compound Eyes
+Nature: Timid
+- Electroweb
+- Bug Bite
+- Absorb
+- Gastro Acid
+
+Skorupi @ Oran Berry
+Level: 30
+Ability: Battle Armor
+Nature: Jolly
+- Knock Off
+- Bug Bite
+- Poison Fang
+- Pin Missile
+
+Yanma @ Oran Berry
+Level: 31
+Ability: Speed Boost
+Nature: Modest
+- Air Cutter
+- Ancient Power
+- U-turn
+- Detect
+
+=== TRAINER_SNOW_R6_6_HELENA ===
+Name: HELENA
+Class: Lady
+Pic: Lady
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Kirlia @ Chesto Berry
+Level: 31
+Ability: Trace
+Nature: Timid
+- Psybeam
+- Draining Kiss
+- Calm Mind
+- Hypnosis
+
+Roselia @ Oran Berry
+Level: 32
+Ability: Natural Cure
+Nature: Modest
+- Giga Drain
+- Venoshock
+- Toxic
+- Synthesis
+
+=== TRAINER_SNOW_R6_7_IVY ===
+Name: IVY
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+Double Battle: Yes
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Darumaka-Galar
+Level: 31
+Ability: Hustle
+Nature: Jolly
+- Ice Fang
+- Fire Fang
+- Headbutt
+- Taunt
+
+Stantler
+Level: 32
+Ability: Intimidate
+Nature: Jolly
+- Stomp
+- Take Down
+- Hypnosis
+- Confuse Ray
+
+Sealeo @ Oran Berry
+Level: 33
+Ability: Thick Fat
+Nature: Bold
+- Brine
+- Aurora Beam
+- Encore
+- Body Slam
+
+=== TRAINER_SNOW_R6_8_HALE ===
+Name: HALE
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+Double Battle: Yes
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Pachirisu
+Level: 31
+Ability: Pickup
+Nature: Impish
+- Spark
+- Nuzzle
+- Follow Me
+- Charm
+
+Delibird
+Level: 32
+Ability: Vital Spirit
+Nature: Jolly
+- Ice Shard
+- Aerial Ace
+- Present
+- Icy Wind
+
+Ursaring @ Oran Berry
+Level: 33
+Ability: Guts
+Nature: Jolly
+- Slash
+- Play Rough
+- Brick Break
+- Crunch
