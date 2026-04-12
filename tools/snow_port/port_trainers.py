@@ -76,6 +76,18 @@ CLASS_GENDER_DEFAULTS = {
     "Skier": "Female",
     "Miner": "Male",
     "Bug Catcher": "Male",
+    "Scientist": "Male",
+    "Fisherman": "Male",
+    "Lady": "Female",
+    "Collector": "Male",
+    "Painter": "Female",
+    "Musician": "Male",
+    "Dragon Tamer": "Male",
+    "Sailor": "Male",
+    "Swimmer": "Female",
+    "Ace Trainer": "Male",
+    "Pokémon Ranger": "Male",
+    "Special Agent": "Male",
 }
 
 TRAINER_HEADER_RE = re.compile(
@@ -91,6 +103,7 @@ class Mon:
     ability: str
     item: str | None
     moves: list[str]
+    evs: str | None = None
 
 
 @dataclass
@@ -128,7 +141,13 @@ class Trainer:
     def gender(self) -> str:
         if self.is_grunt:
             return "Male"  # CEO-approved default 2026-04-12. Spec silent on grunt gender. Revisit per-grunt when real Veil assets ship.
-        return CLASS_GENDER_DEFAULTS.get(self.emit_class, "Male")
+        ec = self.emit_class
+        if ec not in CLASS_GENDER_DEFAULTS:
+            raise ValueError(
+                f"R{self.route}-{self.index} {self.name}: unknown class '{ec}' — "
+                f"add to CLASS_GENDER_DEFAULTS before porting"
+            )
+        return CLASS_GENDER_DEFAULTS[ec]
 
     @property
     def constant(self) -> str:
@@ -148,6 +167,8 @@ def _clean(cell: str) -> str | None:
     cell = cell.strip()
     if cell in ("", "—", "-"):
         return None
+    cell = cell.replace("**", "")  # strip markdown bold markers
+    cell = re.sub(r"\s*\((?:A[12]|HA\s*#\d+)\)", "", cell)  # strip ability slot annotations like (A1), (HA #29)
     return cell
 
 
@@ -195,8 +216,18 @@ def parse_spec(spec_text: str, route_filter: int | None = None) -> list[Trainer]
                     f"R{route}-{index} {name}: row has {len(cells)} cells, expected 10"
                 )
             species = cells[1]
-            level = int(cells[2])
+            if species is None:
+                raise ValueError(f"R{route}-{index} {name}: species is empty in row")
+            try:
+                level = int(cells[2])
+            except (TypeError, ValueError):
+                raise ValueError(
+                    f"R{route}-{index} {name}: invalid level '{cells[2]}' — "
+                    f"expected integer"
+                )
             nature = cells[3]
+            if nature is None:
+                raise ValueError(f"R{route}-{index} {name}: nature is empty in row")
             ability = cells[4]
             item = cells[5]
             moves = [c for c in cells[6:10] if c is not None]
@@ -544,9 +575,10 @@ def commit_batch(route: int, parsed: list[Trainer],
     print(f"      trainers.party  {post_party_md5}")
     print(f"      opponents.h     {post_opp_md5}")
 
-    print(f"[8/9] running make -j{os.cpu_count()} ...")
+    ncpu = os.cpu_count() or 1
+    print(f"[8/9] running make -j{ncpu} ...")
     build = subprocess.run(
-        ["make", f"-j{os.cpu_count()}"],
+        ["make", f"-j{ncpu}"],
         cwd=REPO_ROOT,
         capture_output=True,
         text=True,
