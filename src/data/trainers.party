@@ -16914,7 +16914,7 @@ Pic: Hiker
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
 
 Swinub
 Level: 4
@@ -16922,3 +16922,11 @@ Ability: Snow Cloak
 Nature: Adamant
 - Tackle
 - Mud-Slap
+
+Cubchoo
+Level: 5
+Ability: Snow Cloak
+Nature: Adamant
+- Powder Snow
+- Growl
+- Icy Wind
