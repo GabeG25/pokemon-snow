@@ -16881,7 +16881,7 @@ Pic: Youngster
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
 
 Sentret
 Level: 4
@@ -16890,7 +16890,6 @@ Nature: Jolly
 - Scratch
 - Defense Curl
 
-
 === TRAINER_SNOW_R1_2_ELISE ===
 Name: ELISE
 Class: Lass
@@ -16898,7 +16897,7 @@ Pic: Lass
 Gender: Female
 Music: Female
 Double Battle: No
-AI: Check Bad Move
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
 
 Snover
 Level: 4
