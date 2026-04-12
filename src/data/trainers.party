@@ -23919,3 +23919,555 @@ Nature: Timid
 - Giga Drain
 - Psychic
 - Quiver Dance
+
+=== TRAINER_SNOW_VR_1_SOLEIL ===
+Name: SOLEIL
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Ninetales @ Heat Rock
+Level: 85
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Drought
+Nature: Timid
+- Nasty Plot
+- Fire Blast
+- Solar Beam
+- Extrasensory
+
+Lilligant @ Occa Berry
+Level: 85
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Chlorophyll
+Nature: Modest
+- Growth
+- Solar Beam
+- Sleep Powder
+- Giga Drain
+
+Shiftry @ Dark Gem
+Level: 86
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Chlorophyll
+Nature: Modest
+- Nasty Plot
+- Dark Pulse
+- Solar Beam
+- Focus Blast
+
+Sawsbuck @ Focus Sash
+Level: 86
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Chlorophyll
+Nature: Adamant
+- Swords Dance
+- Horn Leech
+- Jump Kick
+- Return
+
+Leafeon @ Yache Berry
+Level: 86
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Leaf Guard
+Nature: Jolly
+- Swords Dance
+- Leaf Blade
+- X-Scissor
+- Knock Off
+
+Rapidash @ Muscle Band
+Level: 87
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Flash Fire
+Nature: Jolly
+- Flare Blitz
+- High Horsepower
+- Wild Charge
+- Morning Sun
+
+=== TRAINER_SNOW_VR_2_MAREN ===
+Name: MAREN
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Politoed @ Damp Rock
+Level: 85
+EVs: 252 HP / 252 SpD / 4 SpA
+Ability: Drizzle
+Nature: Calm
+- Scald
+- Ice Beam
+- Hypnosis
+- Encore
+
+Ludicolo @ Wise Glasses
+Level: 85
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Swift Swim
+Nature: Modest
+- Surf
+- Giga Drain
+- Ice Beam
+- Focus Blast
+
+Kingdra @ Dragon Gem
+Level: 86
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Swift Swim
+Nature: Modest
+- Surf
+- Dragon Pulse
+- Flash Cannon
+- Rain Dance
+
+Toxicroak @ Muscle Band
+Level: 86
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Dry Skin
+Nature: Adamant
+- Swords Dance
+- Drain Punch
+- Gunk Shot
+- Sucker Punch
+
+Dragonite @ Yache Berry
+Level: 86
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Inner Focus
+Nature: Modest
+- Hurricane
+- Thunder
+- Dragon Pulse
+- Roost
+
+Azumarill @ Sitrus Berry
+Level: 87
+EVs: 252 Atk / 252 HP / 4 Def
+Ability: Huge Power
+Nature: Adamant
+- Belly Drum
+- Aqua Jet
+- Play Rough
+- Knock Off
+
+=== TRAINER_SNOW_VR_3_DUNE ===
+Name: DUNE
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Hippowdon @ Smooth Rock
+Level: 86
+EVs: 252 HP / 252 Def / 4 SpD
+Ability: Sand Stream
+Nature: Impish
+- Earthquake
+- Stealth Rock
+- Slack Off
+- Yawn
+
+Tyranitar @ Chople Berry
+Level: 86
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Sand Stream
+Nature: Jolly
+- Dragon Dance
+- Stone Edge
+- Crunch
+- Earthquake
+
+Claydol @ Wise Glasses
+Level: 87
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Levitate
+Nature: Modest
+- Earth Power
+- Psychic
+- Ice Beam
+- Shadow Ball
+
+Gigalith @ Sitrus Berry
+Level: 87
+EVs: 252 Atk / 252 HP / 4 Def
+Ability: Sturdy
+Nature: Brave
+- Curse
+- Stone Edge
+- Earthquake
+- Explosion
+
+Aggron @ Muscle Band
+Level: 87
+EVs: 252 Atk / 252 HP / 4 Def
+Ability: Rock Head
+Nature: Adamant
+- Head Smash
+- Heavy Slam
+- Earthquake
+- Aqua Tail
+
+Lucario @ Focus Sash
+Level: 88
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Technician
+Nature: Jolly
+- Swords Dance
+- Bullet Punch
+- Vacuum Wave
+- Force Palm
+
+=== TRAINER_SNOW_VR_4_NEVE ===
+Name: NEVE
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Abomasnow @ Icy Rock
+Level: 86
+EVs: 252 SpA / 252 HP / 4 Def
+Ability: Snow Warning
+Nature: Quiet
+- Blizzard
+- Giga Drain
+- Ice Shard
+- Leech Seed
+
+Ninetales-Alola @ Focus Sash
+Level: 86
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Snow Cloak
+Nature: Timid
+- Aurora Veil
+- Blizzard
+- Moonblast
+- Freeze-Dry
+
+Walrein @ Sitrus Berry
+Level: 87
+EVs: 252 SpA / 252 HP / 4 SpD
+Ability: Ice Body
+Nature: Modest
+- Blizzard
+- Surf
+- Earthquake
+- Toxic
+
+Metagross @ Occa Berry
+Level: 87
+EVs: 252 Atk / 252 HP / 4 Def
+Ability: Clear Body
+Nature: Adamant
+- Meteor Mash
+- Zen Headbutt
+- Earthquake
+- Bullet Punch
+
+Froslass @ Lum Berry
+Level: 87
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Snow Cloak
+Nature: Timid
+- Blizzard
+- Shadow Ball
+- Thunderbolt
+- Destiny Bond
+
+Glalie @ Ice Gem
+Level: 88
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Refrigerate
+Nature: Adamant
+- Return
+- Explosion
+- Earthquake
+- Ice Shard
+
+=== TRAINER_SNOW_VR_5_PYRE ===
+Name: PYRE
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Electrode @ Focus Sash
+Level: 86
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Aftermath
+Nature: Timid
+- Thunderbolt
+- Explosion
+- Taunt
+- Light Screen
+
+Rampardos @ Muscle Band
+Level: 86
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Mold Breaker
+Nature: Adamant
+- Head Smash
+- Earthquake
+- Fire Punch
+- Zen Headbutt
+
+Archeops @ Flying Gem
+Level: 87
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Defeatist
+Nature: Jolly
+- Acrobatics
+- Head Smash
+- Earthquake
+- U-turn
+
+Staraptor @ Sitrus Berry
+Level: 87
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Intimidate
+Nature: Jolly
+- Brave Bird
+- Double-Edge
+- Close Combat
+- U-turn
+
+Golem @ Normal Gem
+Level: 87
+EVs: 252 Atk / 252 HP / 4 Def
+Ability: Sturdy
+Nature: Brave
+- Earthquake
+- Stone Edge
+- Explosion
+- Stealth Rock
+
+Darmanitan @ Fire Gem
+Level: 88
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Sheer Force
+Nature: Jolly
+- Flare Blitz
+- Superpower
+- Rock Slide
+- U-turn
+
+=== TRAINER_SNOW_VR_6_JINX ===
+Name: JINX
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Tentacruel @ Wise Glasses
+Level: 87
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Liquid Ooze
+Nature: Timid
+- Toxic Spikes
+- Scald
+- Sludge Bomb
+- Ice Beam
+
+Quagsire @ Sitrus Berry
+Level: 87
+EVs: 252 HP / 252 Def / 4 SpD
+Ability: Unaware
+Nature: Impish
+- Earthquake
+- Scald
+- Recover
+- Toxic
+
+Sableye @ Lum Berry
+Level: 87
+EVs: 252 HP / 252 SpD / 4 Def
+Ability: Prankster
+Nature: Careful
+- Will-O-Wisp
+- Recover
+- Knock Off
+- Foul Play
+
+Probopass @ Shuca Berry
+Level: 88
+EVs: 252 SpA / 252 HP / 4 SpD
+Ability: Magnet Pull
+Nature: Modest
+- Stealth Rock
+- Power Gem
+- Earth Power
+- Thunder Wave
+
+Vileplume @ Wise Glasses
+Level: 88
+EVs: 252 HP / 252 Def / 4 SpA
+Ability: Effect Spore
+Nature: Bold
+- Sludge Bomb
+- Giga Drain
+- Sleep Powder
+- Moonlight
+
+Togekiss @ Sitrus Berry
+Level: 89
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Serene Grace
+Nature: Timid
+- Air Slash
+- Thunder Wave
+- Dazzling Gleam
+- Roost
+
+=== TRAINER_SNOW_VR_7_ZENO ===
+Name: ZENO
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Reuniclus @ Focus Sash
+Level: 87
+EVs: 252 SpA / 252 HP / 4 Def
+Ability: Magic Guard
+Nature: Quiet
+- Trick Room
+- Psyshock
+- Shadow Ball
+- Recover
+
+Golurk @ Muscle Band
+Level: 87
+EVs: 252 Atk / 252 HP / 4 Def
+Ability: Iron Fist
+Nature: Brave
+- Earthquake
+- Shadow Punch
+- Ice Punch
+- Drain Punch
+
+Machamp @ Flame Orb
+Level: 88
+EVs: 252 Atk / 252 HP / 4 Def
+Ability: Guts
+Nature: Brave
+- Close Combat
+- Knock Off
+- Stone Edge
+- Bullet Punch
+
+Snorlax @ Sitrus Berry
+Level: 88
+EVs: 252 Atk / 252 HP / 4 Def
+Ability: Thick Fat
+Nature: Brave
+- Body Slam
+- Crunch
+- Earthquake
+- Fire Punch
+
+Druddigon @ Dragon Gem
+Level: 88
+EVs: 252 Atk / 252 HP / 4 Def
+Ability: Sheer Force
+Nature: Brave
+- Dragon Claw
+- Crunch
+- Fire Punch
+- Iron Head
+
+Beartic @ Lum Berry
+Level: 89
+EVs: 252 Atk / 252 HP / 4 Def
+Ability: Intimidate
+Nature: Brave
+- Swords Dance
+- Icicle Crash
+- Superpower
+- Stone Edge
+
+=== TRAINER_SNOW_VR_8_KYROS ===
+Name: KYROS
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Weavile @ Focus Sash
+Level: 87
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Pressure
+Nature: Jolly
+- Swords Dance
+- Ice Shard
+- Knock Off
+- Low Kick
+
+Arcanine @ Muscle Band
+Level: 88
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Guard Dog
+Nature: Adamant
+- Flare Blitz
+- Extreme Speed
+- Close Combat
+- Wild Charge
+
+Krookodile @ Lum Berry
+Level: 88
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Moxie
+Nature: Jolly
+- Earthquake
+- Crunch
+- Stone Edge
+- Dragon Claw
+
+Starmie @ Wise Glasses
+Level: 88
+EVs: 252 SpA / 252 Spe / 4 HP
+Ability: Natural Cure
+Nature: Timid
+- Surf
+- Psychic
+- Thunderbolt
+- Ice Beam
+
+Mamoswine @ Ice Gem
+Level: 88
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Oblivious
+Nature: Adamant
+- Icicle Crash
+- Earthquake
+- Ice Shard
+- Superpower
+
+Gallade @ Focus Sash
+Level: 89
+EVs: 252 Atk / 252 Spe / 4 HP
+Ability: Steadfast
+Nature: Jolly
+- Swords Dance
+- Close Combat
+- Psycho Cut
+- Shadow Sneak
