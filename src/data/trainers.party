@@ -20376,3 +20376,228 @@ Nature: Adamant
 - Megahorn
 - Aqua Jet
 - Sacred Sword
+
+=== TRAINER_SNOW_DI_1_DAPHNE ===
+Name: DAPHNE
+Class: Swimmer F
+Pic: Swimmer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Corsola @ Rindo Berry
+Level: 48
+Ability: Natural Cure
+Nature: Bold
+- Scald
+- Power Gem
+- Recover
+- Toxic
+
+Lumineon @ Wise Glasses
+Level: 48
+Ability: Storm Drain
+Nature: Timid
+- Surf
+- Ice Beam
+- U-turn
+- Aqua Ring
+
+Tentacruel @ Black Sludge
+Level: 49
+Ability: Liquid Ooze
+Nature: Timid
+- Sludge Wave
+- Scald
+- Toxic Spikes
+- Rapid Spin
+
+Kingler @ Muscle Band
+Level: 50
+Ability: Hyper Cutter
+Nature: Jolly
+- Crabhammer
+- Rock Slide
+- X-Scissor
+- Agility
+
+=== TRAINER_SNOW_DI_2_PEARL ===
+Name: PEARL
+Class: Swimmer F
+Pic: Swimmer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Lanturn @ Sitrus Berry
+Level: 48
+Ability: Volt Absorb
+Nature: Bold
+- Scald
+- Discharge
+- Thunder Wave
+- Confuse Ray
+
+Poliwrath @ Muscle Band
+Level: 49
+Ability: Water Absorb
+Nature: Adamant
+- Waterfall
+- Close Combat
+- Ice Punch
+- Bulk Up
+
+Cryogonal @ Lum Berry
+Level: 50
+Ability: Levitate
+Nature: Timid
+- Ice Beam
+- Freeze-Dry
+- Rapid Spin
+- Recover
+
+=== TRAINER_SNOW_DI_3_FLYNN ===
+Name: FLYNN
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Starmie @ Wise Glasses
+Level: 48
+Ability: Natural Cure
+Nature: Timid
+- Surf
+- Psychic
+- Ice Beam
+- Recover
+
+Relicanth @ Sitrus Berry
+Level: 49
+Ability: Rock Head
+Nature: Adamant
+- Head Smash
+- Waterfall
+- Earthquake
+- Yawn
+
+Sharpedo @ Lum Berry
+Level: 50
+Ability: Rough Skin
+Nature: Jolly
+- Crunch
+- Waterfall
+- Ice Fang
+- Poison Fang
+
+=== TRAINER_SNOW_DI_4_TARA ===
+Name: TARA
+Class: Swimmer F
+Pic: Swimmer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Pelipper @ Wacan Berry
+Level: 48
+Ability: Keen Eye
+Nature: Bold
+- Scald
+- Hurricane
+- Roost
+- U-turn
+
+Kingdra @ Lum Berry
+Level: 49
+Ability: Swift Swim
+Nature: Modest
+- Hydro Pump
+- Dragon Pulse
+- Ice Beam
+- Rain Dance
+
+Cloyster @ White Herb
+Level: 49
+Ability: Skill Link
+Nature: Jolly
+- Icicle Spear
+- Rock Blast
+- Razor Shell
+- Shell Smash
+
+Politoed @ Sitrus Berry
+Level: 50
+Ability: Water Absorb
+Nature: Bold
+- Scald
+- Ice Beam
+- Hypnosis
+- Encore
+
+=== TRAINER_SNOW_DI_5_HEATH ===
+Name: HEATH
+Class: Pkmn Ranger
+Pic: Pokemon Ranger M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Skarmory @ Sitrus Berry
+Level: 48
+Ability: Sturdy
+Nature: Impish
+- Body Press
+- Iron Defense
+- Spikes
+- Whirlwind
+
+Ursaring @ Flame Orb
+Level: 48
+Ability: Guts
+Nature: Adamant
+- Facade
+- Close Combat
+- Crunch
+- Play Rough
+
+Ninetales-Alola @ Light Clay
+Level: 49
+Ability: Snow Warning
+Nature: Timid
+- Aurora Veil
+- Blizzard
+- Freeze-Dry
+- Moonblast
+
+Sawsbuck @ Lum Berry
+Level: 49
+Ability: Sap Sipper
+Nature: Jolly
+- Horn Leech
+- Body Slam
+- Megahorn
+- Charm
+
+Druddigon @ Rocky Helmet
+Level: 49
+Ability: Rough Skin
+Nature: Adamant
+- Dragon Claw
+- Crunch
+- Fire Fang
+- Glare
+
+Gallade @ Focus Sash
+Level: 50
+Ability: Sharpness
+Nature: Jolly
+- Close Combat
+- Psycho Cut
+- Night Slash
+- Swords Dance
