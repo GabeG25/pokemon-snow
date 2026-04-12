@@ -17036,3 +17036,174 @@ Nature: Timid
 - Gust
 - Attract
 - Heart Stamp
+
+=== TRAINER_SNOW_R3_1_TATE ===
+Name: TATE
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Poochyena
+Level: 13
+Ability: Rattled
+Nature: Adamant
+- Bite
+- Howl
+- Sand Attack
+- Roar
+
+Seedot
+Level: 13
+Ability: Chlorophyll
+Nature: Adamant
+- Rollout
+- Absorb
+- Growth
+- Harden
+
+Starly @ Oran Berry
+Level: 14
+Ability: Keen Eye
+Nature: Jolly
+- Wing Attack
+- Quick Attack
+- Double Team
+- Growl
+
+=== TRAINER_SNOW_R3_2_LIAM ===
+Name: LIAM
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Venipede
+Level: 13
+Ability: Poison Point
+Nature: Jolly
+- Bug Bite
+- Poison Sting
+- Rollout
+- Screech
+
+Joltik @ Oran Berry
+Level: 14
+Ability: Compound Eyes
+Nature: Timid
+- Electroweb
+- Bug Bite
+- Absorb
+- Fury Cutter
+
+=== TRAINER_SNOW_R3_3_FAYE ===
+Name: FAYE
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Oddish
+Level: 14
+Ability: Chlorophyll
+Nature: Modest
+- Mega Drain
+- Acid
+- Poison Powder
+- Growth
+
+Deerling
+Level: 14
+Ability: Serene Grace
+Nature: Jolly
+- Double Kick
+- Leech Seed
+- Leafage
+- Sand Attack
+
+Pachirisu @ Oran Berry
+Level: 15
+Ability: Pickup
+Nature: Impish
+- Spark
+- Quick Attack
+- Charm
+- Growl
+
+=== TRAINER_SNOW_R3_4_ROWAN ===
+Name: ROWAN
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Krabby
+Level: 14
+Ability: Hyper Cutter
+Nature: Adamant
+- Vise Grip
+- Bubble Beam
+- Leer
+- Harden
+
+Pineco
+Level: 15
+Ability: Sturdy
+Nature: Relaxed
+- Bug Bite
+- Take Down
+- Self-Destruct
+- Harden
+
+Larvesta
+Level: 15
+Ability: Flame Body
+Nature: Modest
+- Ember
+- Leech Life
+- String Shot
+- Bug Bite
+
+Skorupi @ Oran Berry
+Level: 16
+Ability: Battle Armor
+Nature: Jolly
+- Bug Bite
+- Knock Off
+- Pin Missile
+- Poison Sting
+
+=== TRAINER_SNOW_R3_5_GRUNT ===
+Name: GRUNT
+Class: Team Magma
+Pic: Magma Grunt M
+Gender: Male
+Music: Magma
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Snover @ Oran Berry
+Level: 15
+Ability: Snow Warning
+Nature: Quiet
+- Powder Snow
+- Leafage
+- Ice Shard
+- Mist
+
+Sandile @ Oran Berry
+Level: 16
+Ability: Intimidate
+Nature: Jolly
+- Bite
+- Hone Claws
+- Sand Tomb
+- Scary Face
