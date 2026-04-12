@@ -57,11 +57,24 @@
 #define FLAG_SNOW_HIDE_DAWNFLAKE_ASHER       0x22
 #define FLAG_SNOW_AUTUMN_TUTORIAL_DONE       0x23
 #define FLAG_SNOW_GOT_POKEBALLS              0x24
-#define FLAG_SNOW_BEAT_F2_AUTUMN              0x25
-#define FLAG_SNOW_BEAT_F3_SILVAN              0x26
-#define FLAG_SNOW_BEAT_F6_CEDAR               0x27
-#define FLAG_SNOW_BEAT_F9_COPPER              0x28
-#define FLAG_SNOW_BEAT_F11_FRAN               0x29
+#define FLAG_SNOW_BEAT_F2_AUTUMN             0x25
+#define FLAG_SNOW_BEAT_F3_SILVAN             0x26
+#define FLAG_SNOW_BEAT_F6_CEDAR              0x27
+#define FLAG_SNOW_BEAT_F9_COPPER             0x28
+#define FLAG_SNOW_BEAT_F11_FRAN              0x29
+#define FLAG_SNOW_GOT_VANILLITE              0x2B
+#define FLAG_SNOW_BEAT_F4_ASHER              0x2C
+#define FLAG_SNOW_HIDE_ICESPIRE_ASHER        0x2D
+#define FLAG_SNOW_GOT_WIDE_LENS              0x2E
+#define FLAG_SNOW_GOT_TOXIC_ORB              0x2F
+#define FLAG_SNOW_GOT_SHELL_BELL             0x30
+#define FLAG_SNOW_GOT_BLACK_SLUDGE           0x31
+#define FLAG_SNOW_GOT_DRAGON_SCALE           0x32
+#define FLAG_SNOW_GOT_FOSSIL                 0x33
+#define FLAG_SNOW_BEAT_F7_CRASH              0x34
+#define FLAG_SNOW_BEAT_F8_ASHER              0x35
+#define FLAG_SNOW_BEAT_F10_AUTUMN            0x36
+#define FLAG_UNUSED_0x037    0x37 // Unused Flag
 #define FLAG_UNUSED_0x02A    0x2A // Unused Flag
 #define FLAG_UNUSED_0x02B    0x2B // Unused Flag
 #define FLAG_UNUSED_0x02C    0x2C // Unused Flag
