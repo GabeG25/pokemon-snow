@@ -863,7 +863,6 @@
 #define TRAINER_SNOW_R1_2_ELISE             856
 #define TRAINER_SNOW_R1_3_KAI               857
 
-
 #define TRAINER_SNOW_R2_1_BRETT             858
 #define TRAINER_SNOW_R2_2_FINN              859
 #define TRAINER_SNOW_R2_3_MILA              860

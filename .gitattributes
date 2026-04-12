@@ -21,6 +21,7 @@ Makefile text eol=lf
 *.party text eol=lf
 *.cfg text eol=lf
 *.ld text eol=lf
+*.py text eol=lf
 
 *.png binary
 *.bin binary
