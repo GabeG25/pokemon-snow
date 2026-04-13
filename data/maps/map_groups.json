@@ -1194,6 +1194,15 @@
     "PokemonLeague",
     "IronfrostCaveB1",
     "IronfrostCaveB2B3",
-    "DawnflakeTown_EvergreensLab"
+    "DawnflakeTown_EvergreensLab",
+    "DawnflakeTown_PlayersHouse_1F",
+    "DawnflakeTown_PlayersHouse_2F",
+    "DawnflakeTown_AshersHouse",
+    "DawnflakeTown_AutumnsHouse",
+    "PowderpathVillage_PokemonCenter_1F",
+    "PowderpathVillage_PokemonCenter_2F",
+    "PowderpathVillage_Mart",
+    "PowderpathVillage_House1",
+    "PowderpathVillage_House2"
   ]
 }

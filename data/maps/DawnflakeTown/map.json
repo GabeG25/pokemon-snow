@@ -19,10 +19,10 @@
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
-      "x": 10,
-      "y": 13,
+      "x": 8,
+      "y": 10,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -42,6 +42,19 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "DawnflakeTown_EventScript_CandyBox",
       "flag": "FLAG_SNOW_GOT_CANDY_BOX"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
+      "x": 17,
+      "y": 13,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
+      "movement_range_x": 1,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "DawnflakeTown_EventScript_Villager",
+      "flag": "0"
     }
   ],
   "warp_events": [
@@ -56,14 +69,21 @@
       "x": 14,
       "y": 8,
       "elevation": 0,
-      "dest_map": "MAP_DAWNFLAKE_TOWN_EVERGREENS_LAB",
+      "dest_map": "MAP_DAWNFLAKE_TOWN_ASHERS_HOUSE",
       "dest_warp_id": "0"
     },
     {
       "x": 5,
       "y": 8,
       "elevation": 0,
-      "dest_map": "MAP_DAWNFLAKE_TOWN_EVERGREENS_LAB",
+      "dest_map": "MAP_DAWNFLAKE_TOWN_PLAYERS_HOUSE_1F",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 13,
+      "y": 16,
+      "elevation": 0,
+      "dest_map": "MAP_DAWNFLAKE_TOWN_AUTUMNS_HOUSE",
       "dest_warp_id": "0"
     }
   ],

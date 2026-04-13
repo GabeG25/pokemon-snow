@@ -78,6 +78,9 @@
 #define FLAG_SNOW_BEAT_F16_PRIYO             0x38
 #define FLAG_SNOW_BEAT_F17_ERIN              0x39
 #define FLAG_SNOW_BEAT_F23_SCORCH            0x3A
+#define FLAG_SNOW_GOT_POTION_R1              0x2A
+#define FLAG_SNOW_GOT_TM04_RETURN            0x3B
+#define FLAG_SNOW_POWDERPATH_OBSERVER_SEEN   0x3C
 #define FLAG_UNUSED_0x02A    0x2A // Unused Flag
 #define FLAG_UNUSED_0x02B    0x2B // Unused Flag
 #define FLAG_UNUSED_0x02C    0x2C // Unused Flag
@@ -680,6 +683,7 @@
 #define FLAG_HIDDEN_ITEM_NAVEL_ROCK_TOP_SACRED_ASH           (FLAG_HIDDEN_ITEMS_START + 0x6D)
 #define FLAG_HIDDEN_ITEM_ROUTE_123_RARE_CANDY                (FLAG_HIDDEN_ITEMS_START + 0x6E)
 #define FLAG_HIDDEN_ITEM_ROUTE_105_BIG_PEARL                 (FLAG_HIDDEN_ITEMS_START + 0x6F)
+#define FLAG_HIDDEN_ITEM_SNOW_ROUTE1_ANTIDOTE                (FLAG_HIDDEN_ITEMS_START + 0x70)
 
 #define FLAG_UNUSED_0x264  0x264 // Unused Flag
 #define FLAG_UNUSED_0x265  0x265 // Unused Flag
