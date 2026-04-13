@@ -16,6 +16,7 @@
 #include "random.h"
 #include "starter_choose.h"
 #include "script_pokemon_util.h"
+#include "constants/region_map_sections.h"
 #include "palette.h"
 #include "window.h"
 #include "event_object_movement.h"
@@ -959,10 +960,18 @@ void ChooseStarter(void)
 static void CB2_GiveStarter(void)
 {
     u16 starterMon;
+    u8 metLocation = METLOC_FATEFUL_ENCOUNTER;
+    bool8 fatefulEncounter = TRUE;
 
     *GetVarPointer(VAR_STARTER_MON) = gSpecialVar_Result;
     starterMon = GetStarterPokemon(gSpecialVar_Result);
     ScriptGiveMon(starterMon, 5, ITEM_NONE);
+    // Snow v17: tag the starter as a Fateful Encounter so its summary-screen
+    // met location reads "a fateful encounter" instead of "Dawnflake Town".
+    // This frees Dawnflake as a separate Nuzlocke encounter slot.
+    // Party is empty before the gift, so the starter is always at index 0.
+    SetMonData(&gPlayerParty[0], MON_DATA_MET_LOCATION, &metLocation);
+    SetMonData(&gPlayerParty[0], MON_DATA_MODERN_FATEFUL_ENCOUNTER, &fatefulEncounter);
     // Snow: skip the vanilla Birch Zigzagoon tutorial battle.
     // Return control to the script that called ChooseStarter.
     SetMainCallback2(CB2_ReturnToFieldContinueScript);
