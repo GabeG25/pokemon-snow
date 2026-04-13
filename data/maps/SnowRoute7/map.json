@@ -1,7 +1,7 @@
 {
   "layout": "LAYOUT_SNOW_ROUTE7",
   "music": "MUS_ROUTE101",
-  "region_map_section": "MAPSEC_ROUTE_101",
+  "region_map_section": "MAPSEC_GALETOP_PLATEAU",
   "requires_flash": false,
   "weather": "WEATHER_SNOW",
   "allow_cycling": true,

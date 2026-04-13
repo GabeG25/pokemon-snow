@@ -1,7 +1,7 @@
 {
   "layout": "LAYOUT_SNOW_ROUTE10",
   "music": "MUS_ROUTE101",
-  "region_map_section": "MAPSEC_ROUTE_101",
+  "region_map_section": "MAPSEC_SNOWBURN_PATH",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "allow_cycling": true,

@@ -1,7 +1,7 @@
 {
   "layout": "LAYOUT_POKEMON_LEAGUE",
   "music": "MUS_ROUTE101",
-  "region_map_section": "MAPSEC_ROUTE_101",
+  "region_map_section": "MAPSEC_BORALYSS_LEAGUE",
   "requires_flash": false,
   "weather": "WEATHER_SNOW",
   "allow_cycling": true,

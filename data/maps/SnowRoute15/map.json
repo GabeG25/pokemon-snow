@@ -1,7 +1,7 @@
 {
   "layout": "LAYOUT_SNOW_ROUTE15",
   "music": "MUS_ROUTE101",
-  "region_map_section": "MAPSEC_ROUTE_101",
+  "region_map_section": "MAPSEC_PYRESPIRE_LAGOON",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
   "allow_cycling": true,
