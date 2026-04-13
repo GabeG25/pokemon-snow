@@ -1,5 +1,49 @@
 DawnflakeTown_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, DawnflakeTown_OnTransition
 	.byte 0
+
+DawnflakeTown_OnTransition::
+	goto_if_set FLAG_ADVENTURE_STARTED, DawnflakeTown_OnTransition_End
+	@ First time entering — trigger intro cutscene
+	call DawnflakeTown_EventScript_IntroCutscene
+DawnflakeTown_OnTransition_End::
+	end
+
+@ ═══════════════════════════════════════════════════════════
+@ First-time intro cutscene
+@ ═══════════════════════════════════════════════════════════
+
+DawnflakeTown_EventScript_IntroCutscene::
+	lockall
+	msgbox DawnflakeTown_Text_IntroCard1, MSGBOX_DEFAULT
+	msgbox DawnflakeTown_Text_IntroCard2, MSGBOX_DEFAULT
+	msgbox DawnflakeTown_Text_IntroCard3, MSGBOX_DEFAULT
+	releaseall
+	return
+
+DawnflakeTown_Text_IntroCard1:
+	.string "...\p"
+	.string "{PLAYER}!\p"
+	.string "MOM (from inside): {PLAYER},\n"
+	.string "are you up? Professor Evergreen\l"
+	.string "is waiting for you!$"
+
+DawnflakeTown_Text_IntroCard2:
+	.string "You step out of your house into\n"
+	.string "the familiar Dawnflake morning.\p"
+	.string "The snow is fresh. The air is\n"
+	.string "crisp. Your breath fogs in\l"
+	.string "front of you.\p"
+	.string "Today's the day. You're finally\n"
+	.string "getting your first Pokemon.$"
+
+DawnflakeTown_Text_IntroCard3:
+	.string "MOM'S VOICE: I left the CANDY BOX\n"
+	.string "on the path outside - something\l"
+	.string "small to help you along the way.\p"
+	.string "Now GO - Professor Evergreen's\n"
+	.string "lab is the big building to the\l"
+	.string "south. He's been expecting you.$"
 
 @ ═══════════════════════════════════════════════════════════
 @ Asher F1 — First rival battle, grief & armor
