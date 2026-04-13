@@ -1,13 +1,10 @@
 SnowRoute1_MapScripts::
 	.byte 0
 
-@ ===== Autumn catching tutorial + F2 battle =====
-@ Sequence:
-@ 1. Player enters mandatory grass -> Autumn stops them
-@ 2. Autumn explains catching and demonstrates (scripted cutscene)
-@ 3. Gives player 5 Poke Balls
-@ 4. Challenges player to F2 battle (Sentret + starter)
-@ 5. Variant A/B/C based on player's starter (A=player picked Treecko, etc.)
+@ ═══════════════════════════════════════════════════════════
+@ Autumn F2 — Catching tutorial + first rival battle
+@ Warm, nerdy, research-passionate voice
+@ ═══════════════════════════════════════════════════════════
 
 SnowRoute1_EventScript_AutumnTutorial::
 	lock
@@ -15,8 +12,8 @@ SnowRoute1_EventScript_AutumnTutorial::
 	goto_if_set FLAG_SNOW_BEAT_F2_AUTUMN, SnowRoute1_EventScript_AutumnDefeated
 	goto_if_set FLAG_SNOW_AUTUMN_TUTORIAL_DONE, SnowRoute1_EventScript_AutumnBattleIntro
 	msgbox SnowRoute1_Text_AutumnIntro, MSGBOX_DEFAULT
+	msgbox SnowRoute1_Text_AutumnScienceTangent, MSGBOX_DEFAULT
 	msgbox SnowRoute1_Text_AutumnCatchingExplanation, MSGBOX_DEFAULT
-	@ Scripted catch demonstration
 	applymovement VAR_LAST_TALKED, SnowRoute1_Movement_AutumnToGrass
 	waitmovement 0
 	msgbox SnowRoute1_Text_AutumnDemoCatch, MSGBOX_DEFAULT
@@ -32,10 +29,6 @@ SnowRoute1_EventScript_AutumnTutorial::
 
 SnowRoute1_EventScript_AutumnBattleIntro::
 	msgbox SnowRoute1_Text_AutumnChallenge, MSGBOX_DEFAULT
-	@ A=Mudkip, B=Treecko, C=Torchic
-	@ Player Treecko -> Autumn Torchic (C)
-	@ Player Torchic -> Autumn Mudkip  (A)
-	@ Player Mudkip  -> Autumn Treecko (B)
 	compare VAR_STARTER_MON, 0
 	goto_if_eq SnowRoute1_EventScript_AutumnVariantC
 	compare VAR_STARTER_MON, 1
@@ -43,14 +36,6 @@ SnowRoute1_EventScript_AutumnBattleIntro::
 	compare VAR_STARTER_MON, 2
 	goto_if_eq SnowRoute1_EventScript_AutumnVariantB
 	end
-
-@ Autumn's starter also has type advantage over player
-@ Player Treecko(0) -> Autumn Torchic (A) [F2_A has Mudkip though, let me check]
-@ Actually Autumn_A has Mudkip (from trainers.party earlier)
-@ So A=Mudkip, B=Treecko, C=Torchic... need to map by advantage
-@ Player Treecko (weak to Fire)  -> Autumn Torchic -> variant with Torchic
-@ Player Torchic (weak to Water) -> Autumn Mudkip  -> variant with Mudkip
-@ Player Mudkip  (weak to Grass) -> Autumn Treecko -> variant with Treecko
 
 SnowRoute1_EventScript_AutumnVariantA::
 	trainerbattle_no_intro TRAINER_SNOW_F2_AUTUMN_A, SnowRoute1_Text_AutumnDefeat
@@ -89,49 +74,94 @@ SnowRoute1_Movement_AutumnReturn:
 	step_end
 
 SnowRoute1_Text_AutumnIntro:
-	.string "AUTUMN: {PLAYER}! Hold up!\p"
-	.string "I was hoping to catch you out here.\n"
-	.string "Have you caught a wild POKEMON yet?\p"
-	.string "You're going to need a full team\n"
-	.string "if you want to take on the gyms!$"
+	.string "AUTUMN: {PLAYER}!\n"
+	.string "Oh wow, you're already out here?\p"
+	.string "I thought I'd catch up to you\n"
+	.string "before you left Dawnflake, but\l"
+	.string "you move fast!\p"
+	.string "I saw Asher heading back to\n"
+	.string "train. He was... sulking.\p"
+	.string "Did you beat him? You beat him,\n"
+	.string "didn't you. He always sulks when\l"
+	.string "he loses.$"
+
+SnowRoute1_Text_AutumnScienceTangent:
+	.string "AUTUMN: So, okay, real talk - I've\n"
+	.string "been DYING to show someone this.\p"
+	.string "Look at that SENTRET over there.\n"
+	.string "See how its tail is twitching?\p"
+	.string "It's not cold. It's thermoregulating!\n"
+	.string "Wild POKEMON in Boralyss have\l"
+	.string "adapted to radiate heat through\l"
+	.string "their extremities.\p"
+	.string "Basically, the tail IS the heater.\n"
+	.string "Isn't that incredible?\p"
+	.string "...Sorry. Sorry. I know you\n"
+	.string "didn't ask. I get excited.$"
 
 SnowRoute1_Text_AutumnCatchingExplanation:
-	.string "AUTUMN: Catching is simple - let me\n"
-	.string "show you how it's done.\p"
-	.string "Weaken a wild POKEMON first in\n"
-	.string "battle, then throw a POKE BALL.\p"
-	.string "Watch me!$"
+	.string "AUTUMN: Anyway - have you caught\n"
+	.string "a wild POKEMON yet?\p"
+	.string "No? Okay, let me show you.\n"
+	.string "Watch carefully!$"
 
 SnowRoute1_Text_AutumnDemoCatch:
-	.string "AUTUMN found a wild SENTRET!\p"
-	.string "She weakened it with her starter\n"
-	.string "and threw a POKE BALL...\p"
+	.string "AUTUMN weakened a wild SENTRET\n"
+	.string "with her starter!\p"
+	.string "She waited until it was tired,\n"
+	.string "then threw a POKE BALL...\p"
 	.string "...\p"
-	.string "GOTCHA! SENTRET was caught!$"
+	.string "GOTCHA! The SENTRET was caught!\p"
+	.string "AUTUMN: YES! On the first try!\n"
+	.string "This one's coming with me for\l"
+	.string "further study. Look at that\l"
+	.string "adorable face!$"
 
 SnowRoute1_Text_AutumnGiveBalls:
-	.string "AUTUMN: See? Easy!\p"
-	.string "Here, take some of my spare balls\n"
-	.string "so you can try it yourself.$"
+	.string "AUTUMN: See how it works?\p"
+	.string "Weaken them first - don't just\n"
+	.string "throw balls at healthy POKEMON,\l"
+	.string "that's a waste.\p"
+	.string "Status effects help too - sleep\n"
+	.string "and paralysis are huge.\p"
+	.string "Here, take some of my spare\n"
+	.string "balls. I bought way too many.\p"
+	.string "You'll need them more than I do.$"
 
 SnowRoute1_Text_AutumnChallenge:
-	.string "AUTUMN: Now that I've got my SENTRET,\n"
-	.string "how about a quick battle?\p"
-	.string "I want to see how your starter\n"
-	.string "stacks up against mine!$"
+	.string "AUTUMN: Oh! Since we're both out\n"
+	.string "here anyway, let's battle!\p"
+	.string "I want to see how your starter's\n"
+	.string "adapting. It's for... research.\p"
+	.string "(Also it's just fun. Don't tell\n"
+	.string "my field notes I said that.)$"
 
 SnowRoute1_Text_AutumnDefeat:
-	.string "AUTUMN: Whoa! You're stronger\n"
-	.string "than I expected!$"
+	.string "AUTUMN: Wow! Okay, no pity there!$"
 
 SnowRoute1_Text_AutumnPostBattle:
-	.string "AUTUMN: That was a great battle!\p"
-	.string "Keep pushing forward - I'll be\n"
-	.string "training too. See you down the road!$"
+	.string "AUTUMN: That was a GREAT battle!\p"
+	.string "Your starter's already showing\n"
+	.string "adaptation instincts. Did you\l"
+	.string "see how it responded to the cold?\p"
+	.string "I'm going to keep documenting\n"
+	.string "wild populations along this route.\p"
+	.string "You go ahead - Powderpath Village\n"
+	.string "is just south of here.\p"
+	.string "Good luck, {PLAYER}! Don't be\n"
+	.string "a stranger!$"
 
 SnowRoute1_Text_AutumnPostTutorial:
-	.string "AUTUMN: Catch some good POKEMON\n"
-	.string "out there! See you soon.$"
+	.string "AUTUMN: I'm cataloguing the wild\n"
+	.string "SENTRET population here.\p"
+	.string "Did you know they form family\n"
+	.string "groups? It's SO cute.\p"
+	.string "Anyway - go get 'em! I'll catch\n"
+	.string "up with you down the road!$"
+
+@ ═══════════════════════════════════════════════════════════
+@ Route trainers (unchanged from previous batch)
+@ ═══════════════════════════════════════════════════════════
 
 SnowRoute1_EventScript_Noel::
 	trainerbattle_single TRAINER_SNOW_R1_1_NOEL, SnowRoute1_Text_NoelIntro, SnowRoute1_Text_NoelDefeat
@@ -149,28 +179,38 @@ SnowRoute1_EventScript_Kai::
 	end
 
 SnowRoute1_Text_NoelIntro:
-	.string "Think you can handle the cold?\nLet's find out!$"
+	.string "I was born in this snow!\n"
+	.string "Let's see if you can keep up!$"
 
 SnowRoute1_Text_NoelDefeat:
 	.string "That was incredible...$"
 
 SnowRoute1_Text_NoelPostBattle:
-	.string "The path ahead gets tougher.\nBe careful out there.$"
+	.string "Mom says everyone from outside\n"
+	.string "the region is slower in the cold.\p"
+	.string "I guess that's not always true!$"
 
 SnowRoute1_Text_EliseIntro:
-	.string "A challenger? Perfect timing!$"
+	.string "Oh! A traveler!\n"
+	.string "I've never battled one before!$"
 
 SnowRoute1_Text_EliseDefeat:
-	.string "I didn't expect that...$"
+	.string "I didn't expect that at all...$"
 
 SnowRoute1_Text_ElisePostBattle:
-	.string "Good luck on your journey.$"
+	.string "Good luck on the rest of your\n"
+	.string "journey! Be safe out there!$"
 
 SnowRoute1_Text_KaiIntro:
-	.string "I've been training for this!\nBring it on!$"
+	.string "You there! Stop!\n"
+	.string "A trainer doesn't pass without\n"
+	.string "a battle - that's the rule of\n"
+	.string "the trail!$"
 
 SnowRoute1_Text_KaiDefeat:
-	.string "You're stronger than I thought!$"
+	.string "Hah! A good fight!$"
 
 SnowRoute1_Text_KaiPostBattle:
-	.string "I'll be training hard for\nnext time we meet.$"
+	.string "Head on to Powderpath. Buy some\n"
+	.string "ice cream while you're there -\n"
+	.string "the vendor makes it old-school.$"

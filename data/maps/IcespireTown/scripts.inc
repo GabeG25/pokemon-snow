@@ -1,8 +1,11 @@
 IcespireTown_MapScripts::
 	.byte 0
 
-@ ===== Gym 1 Silvan (Ice type) =====
-@ Placeholder: battle triggers from an NPC in town until gym interior exists.
+@ ═══════════════════════════════════════════════════════════
+@ Silvan — Gym 1 Leader (Ice), Pro-Veil ignorant voice
+@ Warm, community-proud, grateful to Director Tyrell,
+@ genuinely believes the winter is a gift to Boralyss
+@ ═══════════════════════════════════════════════════════════
 
 IcespireTown_EventScript_GymLeaderSilvan::
 	lock
@@ -15,18 +18,19 @@ IcespireTown_EventScript_GymLeaderSilvan::
 	msgbox IcespireTown_Text_SilvanPostBattle, MSGBOX_DEFAULT
 	giveitem ITEM_TM03, 1
 	msgbox IcespireTown_Text_SilvanGiveTM, MSGBOX_DEFAULT
-	@ Unlock next rival battle
 	clearflag FLAG_SNOW_HIDE_ICESPIRE_ASHER
 	release
 	end
 
 IcespireTown_EventScript_SilvanDefeated::
-	msgbox IcespireTown_Text_SilvanPostBattle, MSGBOX_DEFAULT
+	msgbox IcespireTown_Text_SilvanPostDefeat, MSGBOX_DEFAULT
 	release
 	end
 
-@ ===== Asher F4 (after Gym 1) =====
-@ A=Fire/Combusken, B=Water/Marshtomp, C=Grass/Grovyle
+@ ═══════════════════════════════════════════════════════════
+@ Asher F4 — Post-Gym 1 rematch
+@ Compounding frustration, still not Veil yet (F14)
+@ ═══════════════════════════════════════════════════════════
 
 IcespireTown_EventScript_AsherF4::
 	lock
@@ -63,11 +67,13 @@ IcespireTown_EventScript_AsherF4AfterBattle::
 	end
 
 IcespireTown_EventScript_AsherF4Defeated::
-	msgbox IcespireTown_Text_AsherF4PostBattle, MSGBOX_DEFAULT
+	msgbox IcespireTown_Text_AsherF4PostDefeat, MSGBOX_DEFAULT
 	release
 	end
 
-@ ===== Wide Lens NPC gift (v17 §16) =====
+@ ═══════════════════════════════════════════════════════════
+@ Wide Lens NPC gift
+@ ═══════════════════════════════════════════════════════════
 
 IcespireTown_EventScript_WideLensNPC::
 	lock
@@ -86,9 +92,9 @@ IcespireTown_EventScript_WideLensDone::
 	release
 	end
 
-@ ===== Roughneck Move Tutor (v17 §15, Post-Gym 1) =====
-@ Simplified: teaches Body Slam for 2000 yen (single move placeholder until
-@ scrollable multichoice list is set up for full 6-move selection)
+@ ═══════════════════════════════════════════════════════════
+@ Roughneck Move Tutor
+@ ═══════════════════════════════════════════════════════════
 
 IcespireTown_EventScript_RoughneckTutor::
 	lock
@@ -131,80 +137,181 @@ IcespireTown_EventScript_RoughneckLocked::
 	release
 	end
 
-@ ===== Text =====
+@ ═══════════════════════════════════════════════════════════
+@ Pro-Veil citizen - establishes Act 1 "Beautiful Lie"
+@ ═══════════════════════════════════════════════════════════
+
+IcespireTown_EventScript_ProVeilCitizen::
+	lock
+	faceplayer
+	msgbox IcespireTown_Text_CitizenPraise, MSGBOX_DEFAULT
+	release
+	end
+
+@ ═══════════════════════════════════════════════════════════
+@ Text
+@ ═══════════════════════════════════════════════════════════
 
 IcespireTown_Text_SilvanIntro:
-	.string "SILVAN: Welcome to my gym.\p"
-	.string "You've come seeking the ICESHARD\n"
-	.string "BADGE, haven't you?\p"
-	.string "I won't make this easy.\n"
-	.string "The cold reveals all weakness.$"
+	.string "SILVAN: Welcome, welcome!\p"
+	.string "Beautiful day, isn't it?\n"
+	.string "Fresh snow on the peaks, crisp\l"
+	.string "air in the lungs - doesn't get\l"
+	.string "better than this.\p"
+	.string "I'm SILVAN, the ICESHARD GYM\n"
+	.string "Leader. Keeper of the cold.\p"
+	.string "You know, none of this would\n"
+	.string "be possible without DIRECTOR\l"
+	.string "TYRELL and his researchers.\p"
+	.string "The perpetual winter they gave\n"
+	.string "us - it's a blessing. Pokemon\l"
+	.string "thrive in it. People are\l"
+	.string "happier. I've never felt more\l"
+	.string "connected to my craft.\p"
+	.string "But I'm getting ahead of myself.\n"
+	.string "You're here for a badge, not a\l"
+	.string "sermon!\p"
+	.string "Let me see what you're made of.$"
 
 IcespireTown_Text_SilvanDefeat:
-	.string "SILVAN: Impressive.\n"
-	.string "The cold didn't break you.$"
+	.string "SILVAN: Oh my. Well done!$"
 
 IcespireTown_Text_SilvanPostBattle:
-	.string "SILVAN: You've earned the\n"
-	.string "ICESHARD BADGE.\p"
-	.string "{PLAYER} received the\n"
-	.string "ICESHARD BADGE!$"
+	.string "SILVAN: Heh heh - that was\n"
+	.string "splendid! Absolutely splendid!\p"
+	.string "You've clearly trained in the\n"
+	.string "cold before. You understand it.\p"
+	.string "{PLAYER}, you have earned\n"
+	.string "the ICESHARD BADGE!$"
 
 IcespireTown_Text_SilvanGiveTM:
-	.string "SILVAN: Take this as well.\p"
-	.string "TM03 contains ICY WIND.\n"
-	.string "It lowers the opponent's speed.\p"
-	.string "A fitting tool for cold battles.$"
+	.string "SILVAN: Oh - and take this.\p"
+	.string "TM03: ICY WIND.\p"
+	.string "It's a beautiful move. Slows\n"
+	.string "opponents down and looks\l"
+	.string "magnificent on a battlefield.\p"
+	.string "You know, you should visit us\n"
+	.string "again someday. Bring your team,\l"
+	.string "enjoy the winter.\p"
+	.string "The DIRECTOR promised us this\n"
+	.string "will last forever. Isn't that\l"
+	.string "wonderful?$"
+
+IcespireTown_Text_SilvanPostDefeat:
+	.string "SILVAN: Oh! {PLAYER}, good to\n"
+	.string "see you again!\p"
+	.string "Enjoying our lovely winter?\n"
+	.string "I hope the DIRECTOR keeps his\l"
+	.string "promise - I don't know what I'd\l"
+	.string "do without the cold.$"
 
 IcespireTown_Text_AsherF4Intro:
-	.string "ASHER: {PLAYER}! Heard you beat\n"
-	.string "Silvan!\p"
-	.string "Don't think that means you're\n"
-	.string "ahead of me. I've been training\l"
-	.string "hard too - let me show you!$"
+	.string "ASHER: Of course.\p"
+	.string "Of COURSE you beat Silvan first.\p"
+	.string "I've been up here for days.\n"
+	.string "Days. I know his rotation, his\l"
+	.string "leads, his switches. I was\l"
+	.string "THIS close to -\p"
+	.string "...\p"
+	.string "You know what? Forget it.\n"
+	.string "You want the ICESHARD BADGE?\p"
+	.string "Then you can handle me.\n"
+	.string "One more time.$"
 
 IcespireTown_Text_AsherF4Defeat:
-	.string "ASHER: Gah! Not again!$"
+	.string "ASHER: No. No no no.$"
 
 IcespireTown_Text_AsherF4PostBattle:
-	.string "ASHER: You got lucky.\p"
-	.string "I'll catch up - count on it.\n"
-	.string "See you at Gym 2!$"
+	.string "ASHER: ...\p"
+	.string "I'm stronger than this.\n"
+	.string "I'm SUPPOSED to be stronger\l"
+	.string "than this.\p"
+	.string "...\p"
+	.string "Why does everything come so\n"
+	.string "easy to you?\p"
+	.string "My team is training harder\n"
+	.string "than yours. I KNOW they are.\p"
+	.string "So why -\p"
+	.string "Never mind.\p"
+	.string "I'll see you at Gym 2. And\n"
+	.string "the one after that. And the\l"
+	.string "one after that.\p"
+	.string "Eventually, you'll run out of\n"
+	.string "luck, {PLAYER}.$"
+
+IcespireTown_Text_AsherF4PostDefeat:
+	.string "ASHER: Still here? Still winning?\p"
+	.string "Great. Fine. Whatever.\n"
+	.string "I'm heading to Pinegrove.$"
 
 IcespireTown_Text_WideLensIntro:
-	.string "TRAINER: That gym nearly did me in.\p"
-	.string "My POKEMON couldn't land a hit.\p"
-	.string "Here - I picked this up on R2 but\n"
-	.string "I'm done with battling for now.\p"
-	.string "Maybe it'll help you.$"
+	.string "WORN-OUT TRAINER: That gym nearly\n"
+	.string "did me in.\p"
+	.string "Silvan's team - the hail, the\n"
+	.string "evasion, his Piplup's SPEED...\p"
+	.string "My POKEMON just couldn't land\n"
+	.string "a hit.\p"
+	.string "Here. I picked this up on R2 but\n"
+	.string "I'm done battling for a while.\p"
+	.string "Maybe it'll help you land more\n"
+	.string "attacks than I did.$"
 
 IcespireTown_Text_WideLensGiven:
 	.string "{PLAYER} received the WIDE LENS!$"
 
 IcespireTown_Text_WideLensPost:
-	.string "TRAINER: Good luck out there.$"
+	.string "WORN-OUT TRAINER: I think I'm\n"
+	.string "going to retire and open a\l"
+	.string "little cafe. Somewhere warm.$"
 
 IcespireTown_Text_RoughneckIntro:
-	.string "ROUGHNECK: I didn't learn to fight\n"
-	.string "in any gym.\p"
-	.string "Want me to teach your POKEMON\n"
-	.string "how to scrap?$"
+	.string "ROUGHNECK: Hey, you. Yeah, you.\p"
+	.string "I've been watching trainers come\n"
+	.string "and go through this gym for years.\p"
+	.string "The ones who make it big always\n"
+	.string "have the same thing in common -\l"
+	.string "they don't JUST rely on type\l"
+	.string "charts.\p"
+	.string "They hit hard. They hit dirty.\n"
+	.string "They SCRAP.\p"
+	.string "I didn't learn to fight in any\n"
+	.string "gym. You want me to teach your\l"
+	.string "POKEMON how to actually brawl?$"
 
 IcespireTown_Text_RoughneckOffer:
-	.string "ROUGHNECK: I can teach BODY SLAM.\n"
-	.string "Costs 2000 yen. Interested?$"
+	.string "ROUGHNECK: I can teach BODY SLAM\n"
+	.string "for 2000 yen.\p"
+	.string "Big heavy hit. Might paralyze.\n"
+	.string "Changes fights.\p"
+	.string "Interested?$"
 
 IcespireTown_Text_RoughneckDecline:
-	.string "ROUGHNECK: Suit yourself.$"
+	.string "ROUGHNECK: Think about it. Door's\n"
+	.string "always open.$"
 
 IcespireTown_Text_RoughneckNoMoney:
-	.string "ROUGHNECK: Not enough yen.\n"
-	.string "Come back when you've got it.$"
+	.string "ROUGHNECK: You're short. Come\n"
+	.string "back when your wallet isn't.$"
 
 IcespireTown_Text_RoughneckLocked:
-	.string "ROUGHNECK: Earn your first badge\n"
-	.string "before you come asking me for\l"
-	.string "anything, kid.$"
+	.string "ROUGHNECK: Kid, come back with a\n"
+	.string "badge. I don't waste lessons on\l"
+	.string "trainers who can't prove they\l"
+	.string "can take a hit.$"
 
 IcespireTown_Text_RoughneckTaught:
-	.string "ROUGHNECK: Done. BODY SLAM taught.$"
+	.string "ROUGHNECK: BODY SLAM taught. Now\n"
+	.string "go hit something with it.$"
+
+IcespireTown_Text_CitizenPraise:
+	.string "CITIZEN: Beautiful day, isn't it?\p"
+	.string "I moved here from Slateport years\n"
+	.string "ago. Couldn't stand the heat.\p"
+	.string "Then DIRECTOR TYRELL and his\n"
+	.string "researchers changed everything.\p"
+	.string "This winter - it's a miracle.\n"
+	.string "The air is clean, the POKEMON\l"
+	.string "are thriving, crime is down...\p"
+	.string "I don't know how he did it, but\n"
+	.string "I trust him completely.\p"
+	.string "Director Tyrell saved Boralyss.$"

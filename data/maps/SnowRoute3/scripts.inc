@@ -22,8 +22,8 @@ SnowRoute3_EventScript_Rowan::
 	end
 
 SnowRoute3_EventScript_Grunt1::
-	trainerbattle_single TRAINER_SNOW_R3_5_GRUNT, SnowRoute3_Text_Grunt1Intro, SnowRoute3_Text_Grunt1Defeat
-	msgbox SnowRoute3_Text_Grunt1PostBattle, MSGBOX_AUTOCLOSE
+	trainerbattle_single TRAINER_SNOW_R3_5_GRUNT, SnowRoute3_Text_KaelIntro, SnowRoute3_Text_KaelDefeat
+	msgbox SnowRoute3_Text_KaelPostBattle, MSGBOX_AUTOCLOSE
 	end
 
 SnowRoute3_Text_TateIntro:
@@ -62,11 +62,38 @@ SnowRoute3_Text_RowanDefeat:
 SnowRoute3_Text_RowanPostBattle:
 	.string "You should rest at the next\ntown if you can.$"
 
-SnowRoute3_Text_Grunt1Intro:
-	.string "Team Veil will not be stopped!$"
+SnowRoute3_Text_KaelIntro:
+	.string "KAEL: Hey - you. Stop right there.\p"
+	.string "This area is under observation.\p"
+	.string "...No, don't panic, traveler.\n"
+	.string "TEAM VEIL isn't here to cause\l"
+	.string "any trouble. We're just doing\l"
+	.string "wildlife monitoring.\p"
+	.string "Making sure the endless winter\n"
+	.string "is treating the POKEMON well.\p"
+	.string "DIRECTOR TYRELL takes that very\n"
+	.string "seriously. It's beautiful work,\l"
+	.string "really.\p"
+	.string "...But I can't have outsiders\n"
+	.string "wandering through my survey area.\p"
+	.string "Tell you what - battle me.\n"
+	.string "Win and I'll let you pass. Call\l"
+	.string "it part of the study.$"
 
-SnowRoute3_Text_Grunt1Defeat:
-	.string "This changes nothing...$"
+SnowRoute3_Text_KaelDefeat:
+	.string "KAEL: Whoa! Easy there!$"
 
-SnowRoute3_Text_Grunt1PostBattle:
-	.string "Team Veil's plan is already\nin motion. You're too late.$"
+SnowRoute3_Text_KaelPostBattle:
+	.string "KAEL: Hmph. You're strong.\p"
+	.string "Your POKEMON adapt quickly - the\n"
+	.string "kind of adaptation the research\l"
+	.string "team will want to document.\p"
+	.string "...\p"
+	.string "Go on, then. Head south to\n"
+	.string "Pinegrove. Enjoy the winter.\p"
+	.string "DIRECTOR TYRELL built it for all\n"
+	.string "of us, you know. Even outsiders.\p"
+	.string "...\p"
+	.string "(Don't tell anyone I let you\n"
+	.string "through. I'm supposed to report\l"
+	.string "these encounters.)$"

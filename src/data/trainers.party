@@ -17182,7 +17182,7 @@ Nature: Jolly
 - Poison Sting
 
 === TRAINER_SNOW_R3_5_GRUNT ===
-Name: GRUNT
+Name: KAEL
 Class: Team Magma
 Pic: Magma Grunt M
 Gender: Male
@@ -17290,7 +17290,7 @@ Nature: Jolly
 - Taunt
 
 === TRAINER_SNOW_R5_3_GRUNT ===
-Name: GRUNT
+Name: BRAN
 Class: Team Magma
 Pic: Magma Grunt M
 Gender: Male
@@ -17317,7 +17317,7 @@ Nature: Jolly
 - Pin Missile
 
 === TRAINER_SNOW_R5_4_GRUNT ===
-Name: GRUNT
+Name: NYLA
 Class: Team Magma
 Pic: Magma Grunt M
 Gender: Male
@@ -17344,7 +17344,7 @@ Nature: Adamant
 - Torment
 
 === TRAINER_SNOW_R5_5_GRUNT ===
-Name: GRUNT
+Name: ORIN
 Class: Team Magma
 Pic: Magma Grunt M
 Gender: Male
@@ -17380,7 +17380,7 @@ Nature: Adamant
 - Icy Wind
 
 === TRAINER_SNOW_R5_6_GRUNT ===
-Name: GRUNT
+Name: LIRA
 Class: Team Magma
 Pic: Magma Grunt M
 Gender: Male

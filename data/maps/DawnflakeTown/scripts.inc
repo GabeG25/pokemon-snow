@@ -1,6 +1,10 @@
 DawnflakeTown_MapScripts::
 	.byte 0
 
+@ ═══════════════════════════════════════════════════════════
+@ Prof. Evergreen — Starter gift in the lab
+@ ═══════════════════════════════════════════════════════════
+
 DawnflakeTown_EventScript_Evergreen::
 	lock
 	faceplayer
@@ -28,10 +32,9 @@ DawnflakeTown_EventScript_EvergreenPostRival::
 	release
 	end
 
-@ Asher F1: his ace has TYPE ADVANTAGE over player's starter
-@ Player Treecko(0) -> Asher Torchic (A) [Fire beats Grass]
-@ Player Torchic(1) -> Asher Mudkip  (B) [Water beats Fire]
-@ Player Mudkip (2) -> Asher Treecko (C) [Grass beats Water]
+@ ═══════════════════════════════════════════════════════════
+@ Asher F1 — First rival battle, grief & armor
+@ ═══════════════════════════════════════════════════════════
 
 DawnflakeTown_EventScript_Asher::
 	lock
@@ -68,9 +71,13 @@ DawnflakeTown_EventScript_AsherAfterBattle::
 	end
 
 DawnflakeTown_EventScript_AsherDefeated::
-	msgbox DawnflakeTown_Text_AsherPostBattle, MSGBOX_DEFAULT
+	msgbox DawnflakeTown_Text_AsherPostDefeat, MSGBOX_DEFAULT
 	release
 	end
+
+@ ═══════════════════════════════════════════════════════════
+@ Candy Box — Key item under the bed
+@ ═══════════════════════════════════════════════════════════
 
 DawnflakeTown_EventScript_CandyBox::
 	lock
@@ -83,48 +90,100 @@ DawnflakeTown_EventScript_CandyBox::
 	release
 	end
 
+@ ═══════════════════════════════════════════════════════════
+@ Text
+@ ═══════════════════════════════════════════════════════════
+
 DawnflakeTown_Text_EvergreenIntro:
-	.string "PROF. EVERGREEN: Ah, {PLAYER}!\n"
-	.string "Right on time.\p"
-	.string "Today is about YOU. I have three\n"
-	.string "POKEMON from warmer regions here.\p"
-	.string "Any of them would make a fine\n"
-	.string "partner for your journey.\p"
-	.string "Go on - take a look!$"
+	.string "PROF. EVERGREEN: {PLAYER}!\n"
+	.string "You're finally here.\p"
+	.string "I know your mother said to come\n"
+	.string "right over. I was getting worried.\p"
+	.string "Listen - three POKEMON were sent\n"
+	.string "to me from one of the warmer\l"
+	.string "regions to the south.\p"
+	.string "They're not from Boralyss.\n"
+	.string "They've never felt cold like ours.\p"
+	.string "But they're strong. And they need\n"
+	.string "a trainer who can help them adapt.\p"
+	.string "I think you might be that trainer.\p"
+	.string "Go on - take a look at them.$"
 
 DawnflakeTown_Text_EvergreenGotStarter:
-	.string "PROF. EVERGREEN: Excellent choice!\p"
-	.string "Take good care of it.\p"
-	.string "Asher is waiting outside to test\n"
-	.string "your new partner.$"
+	.string "PROF. EVERGREEN: Good choice.\p"
+	.string "That one suits you.\p"
+	.string "...\p"
+	.string "Now, a word of warning.\p"
+	.string "Asher was here earlier. I told him\n"
+	.string "about the starters. He picked one\l"
+	.string "too - and he's been waiting outside\l"
+	.string "to challenge you.\p"
+	.string "Be gentle with him, {PLAYER}.\n"
+	.string "He's been through a lot.$"
 
 DawnflakeTown_Text_EvergreenWaitForRival:
-	.string "PROF. EVERGREEN: Asher is waiting\n"
-	.string "for you outside.$"
+	.string "PROF. EVERGREEN: Asher is outside.\p"
+	.string "Please - talk to him before you\n"
+	.string "leave town.\p"
+	.string "He won't admit it, but he needs\n"
+	.string "this.$"
 
 DawnflakeTown_Text_EvergreenHeadSouth:
-	.string "PROF. EVERGREEN: Head south to\n"
-	.string "Route 1 when you're ready.\p"
-	.string "Autumn is out there too - she'll\n"
-	.string "teach you about catching POKEMON.$"
+	.string "PROF. EVERGREEN: Route 1 is south\n"
+	.string "of town. That's where your journey\l"
+	.string "really begins.\p"
+	.string "Autumn was out there this morning\n"
+	.string "studying wildlife. She'll probably\l"
+	.string "want to say hello.\p"
+	.string "...Take care of yourself out there.\n"
+	.string "Boralyss isn't as gentle as it\l"
+	.string "looks, no matter what anyone\l"
+	.string "tells you.$"
 
 DawnflakeTown_Text_AsherChallenge:
-	.string "ASHER: So Evergreen gave you one\n"
-	.string "of his outsider POKEMON, huh?\p"
-	.string "I picked one too - and mine has\n"
-	.string "the TYPE ADVANTAGE over yours!\p"
-	.string "Let's see if you can handle a REAL\n"
-	.string "Boralyss trainer!$"
+	.string "ASHER: Oh. You.\p"
+	.string "The professor said you'd pick\n"
+	.string "one of the outsider POKEMON today.\p"
+	.string "Figures.\p"
+	.string "Look - I don't do friendship\n"
+	.string "speeches. You're not my friend.\p"
+	.string "I battle. You battle. One of us\n"
+	.string "walks away feeling stupid.\p"
+	.string "My starter has the type\n"
+	.string "advantage. I made sure of it.\p"
+	.string "Let's go.$"
 
 DawnflakeTown_Text_AsherDefeat:
-	.string "ASHER: What?! How did I lose?!$"
+	.string "ASHER: ...tch.$"
 
 DawnflakeTown_Text_AsherPostBattle:
-	.string "ASHER: Tch... beginner's luck.\p"
-	.string "I'll be training all the way up\n"
-	.string "to the League. See you out there!$"
+	.string "ASHER: ...\p"
+	.string "Whatever. Beginner's luck.\p"
+	.string "I don't know what you're\n"
+	.string "smiling about. You think this\l"
+	.string "is a game? That the region's\l"
+	.string "just handing out adventures?\p"
+	.string "It isn't.\p"
+	.string "...\p"
+	.string "Forget it. I'm not sticking\n"
+	.string "around to hear you gloat.\p"
+	.string "I've got training to do.\n"
+	.string "Real training.\p"
+	.string "Don't get used to winning,\n"
+	.string "{PLAYER}.$"
+
+DawnflakeTown_Text_AsherPostDefeat:
+	.string "ASHER: What, you want a rematch?\p"
+	.string "Come find me on the road.\n"
+	.string "I'll be the one who's actually\l"
+	.string "getting stronger.$"
 
 DawnflakeTown_Text_CandyBoxFound:
-	.string "{PLAYER} found a CANDY BOX!\p"
-	.string "A strange box always full of\n"
-	.string "Rare Candies - capped by challenge.$"
+	.string "{PLAYER} found the CANDY BOX!\p"
+	.string "A small wooden box left by mom.\n"
+	.string "It's somehow always full of\l"
+	.string "Rare Candies...\p"
+	.string "A note reads: 'They won't let\n"
+	.string "you outpace the challenge ahead,\l"
+	.string "but they'll help you keep up.\l"
+	.string "- Mom'$"

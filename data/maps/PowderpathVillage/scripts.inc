@@ -72,3 +72,33 @@ PowderpathVillage_Text_VendorNoMoney:
 PowderpathVillage_Text_VendorReturn:
 	.string "ICE CREAM VENDOR: How's your\n"
 	.string "VANILLITE doing? Keep it cool!$"
+
+
+@ ═══════════════════════════════════════════════════════════
+@ Pro-Veil citizen — establishes Act 1 public perception
+@ ═══════════════════════════════════════════════════════════
+
+PowderpathVillage_EventScript_ProVeilCitizen::
+	lock
+	faceplayer
+	msgbox PowderpathVillage_Text_CitizenPraise, MSGBOX_DEFAULT
+	release
+	end
+
+PowderpathVillage_Text_CitizenPraise:
+	.string "VILLAGER: Oh, a traveler!\p"
+	.string "You picked a great time to visit.\n"
+	.string "Powderpath is at its most beautiful\l"
+	.string "during the endless winter.\p"
+	.string "Do you know the story? DIRECTOR\n"
+	.string "TYRELL and his TEAM VEIL\l"
+	.string "researchers gave us this.\p"
+	.string "Before the Director, we used to\n"
+	.string "get terrible summer heat waves.\l"
+	.string "My tomato plants would wither.\p"
+	.string "Now? Every day is snow. The\n"
+	.string "POKEMON love it. The kids love it.\l"
+	.string "The whole village loves it.\p"
+	.string "I don't know what we did to\n"
+	.string "deserve a hero like Director\l"
+	.string "Tyrell. I really don't.$"
