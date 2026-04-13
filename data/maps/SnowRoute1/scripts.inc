@@ -91,7 +91,7 @@ SnowRoute1_Text_AutumnScienceTangent:
 	.string "Look at that SENTRET over there.\n"
 	.string "See how its tail is twitching?\p"
 	.string "It's not cold. It's thermoregulating!\n"
-	.string "Wild POKEMON in Boralyss have\l"
+	.string "Wild Pokemon in Boralyss have\l"
 	.string "adapted to radiate heat through\l"
 	.string "their extremities.\p"
 	.string "Basically, the tail IS the heater.\n"
@@ -101,7 +101,7 @@ SnowRoute1_Text_AutumnScienceTangent:
 
 SnowRoute1_Text_AutumnCatchingExplanation:
 	.string "AUTUMN: Anyway - have you caught\n"
-	.string "a wild POKEMON yet?\p"
+	.string "a wild Pokemon yet?\p"
 	.string "No? Okay, let me show you.\n"
 	.string "Watch carefully!$"
 
@@ -120,7 +120,7 @@ SnowRoute1_Text_AutumnDemoCatch:
 SnowRoute1_Text_AutumnGiveBalls:
 	.string "AUTUMN: See how it works?\p"
 	.string "Weaken them first - don't just\n"
-	.string "throw balls at healthy POKEMON,\l"
+	.string "throw balls at healthy Pokemon,\l"
 	.string "that's a waste.\p"
 	.string "Status effects help too - sleep\n"
 	.string "and paralysis are huge.\p"

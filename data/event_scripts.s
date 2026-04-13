@@ -129,6 +129,7 @@ gStdScripts_End::
 	.include "data/scripts/snow_mart.inc"
 	@ Snow maps
 	.include "data/maps/DawnflakeTown/scripts.inc"
+	.include "data/maps/DawnflakeTown_EvergreensLab/scripts.inc"
 	.include "data/maps/PowderpathVillage/scripts.inc"
 	.include "data/maps/SnowRoute1/scripts.inc"
 	.include "data/maps/SnowRoute2/scripts.inc"

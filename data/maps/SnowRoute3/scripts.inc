@@ -70,7 +70,7 @@ SnowRoute3_Text_KaelIntro:
 	.string "any trouble. We're just doing\l"
 	.string "wildlife monitoring.\p"
 	.string "Making sure the endless winter\n"
-	.string "is treating the POKEMON well.\p"
+	.string "is treating the Pokemon well.\p"
 	.string "DIRECTOR TYRELL takes that very\n"
 	.string "seriously. It's beautiful work,\l"
 	.string "really.\p"
@@ -85,7 +85,7 @@ SnowRoute3_Text_KaelDefeat:
 
 SnowRoute3_Text_KaelPostBattle:
 	.string "KAEL: Hmph. You're strong.\p"
-	.string "Your POKEMON adapt quickly - the\n"
+	.string "Your Pokemon adapt quickly - the\n"
 	.string "kind of adaptation the research\l"
 	.string "team will want to document.\p"
 	.string "...\p"

@@ -109,7 +109,7 @@ def check_snow_maps():
                 err("HIGH", f"{map_name}: object_event references undefined flag '{flag_ref}'")
 
         # 2. Connections reference existing Snow maps
-        for conn in mj.get("connections", []):
+        for conn in (mj.get("connections") or []):
             target = conn.get("map", "")
             # Strip MAP_ prefix, convert to dir name format
             # Just check it's a known MAP_ constant — skip detailed name check

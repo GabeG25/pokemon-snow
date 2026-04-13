@@ -249,7 +249,7 @@ IcespireTown_Text_WideLensIntro:
 	.string "did me in.\p"
 	.string "Silvan's team - the hail, the\n"
 	.string "evasion, his Piplup's SPEED...\p"
-	.string "My POKEMON just couldn't land\n"
+	.string "My Pokemon just couldn't land\n"
 	.string "a hit.\p"
 	.string "Here. I picked this up on R2 but\n"
 	.string "I'm done battling for a while.\p"
@@ -276,7 +276,7 @@ IcespireTown_Text_RoughneckIntro:
 	.string "They SCRAP.\p"
 	.string "I didn't learn to fight in any\n"
 	.string "gym. You want me to teach your\l"
-	.string "POKEMON how to actually brawl?$"
+	.string "Pokemon how to actually brawl?$"
 
 IcespireTown_Text_RoughneckOffer:
 	.string "ROUGHNECK: I can teach BODY SLAM\n"
@@ -310,7 +310,7 @@ IcespireTown_Text_CitizenPraise:
 	.string "Then DIRECTOR TYRELL and his\n"
 	.string "researchers changed everything.\p"
 	.string "This winter - it's a miracle.\n"
-	.string "The air is clean, the POKEMON\l"
+	.string "The air is clean, the Pokemon\l"
 	.string "are thriving, crime is down...\p"
 	.string "I don't know how he did it, but\n"
 	.string "I trust him completely.\p"

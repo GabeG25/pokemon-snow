@@ -97,7 +97,7 @@ PowderpathVillage_Text_CitizenPraise:
 	.string "get terrible summer heat waves.\l"
 	.string "My tomato plants would wither.\p"
 	.string "Now? Every day is snow. The\n"
-	.string "POKEMON love it. The kids love it.\l"
+	.string "Pokemon love it. The kids love it.\l"
 	.string "The whole village loves it.\p"
 	.string "I don't know what we did to\n"
 	.string "deserve a hero like Director\l"

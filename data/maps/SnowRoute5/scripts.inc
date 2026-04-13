@@ -66,7 +66,7 @@ SnowRoute5_EventScript_CrashDefeated::
 SnowRoute5_Text_KnoxIntro:
 	.string "I mine this cave for a living.\n"
 	.string "These rocks don't give up easy -\n"
-	.string "neither will my POKEMON!$"
+	.string "neither will my Pokemon!$"
 
 SnowRoute5_Text_KnoxDefeat:
 	.string "Hah! A good swing!$"
@@ -133,7 +133,7 @@ SnowRoute5_Text_NylaIntro:
 	.string "we've built here?\p"
 	.string "The endless winter isn't a\n"
 	.string "curse. It's a MIRACLE.\p"
-	.string "POKEMON are happier. People\n"
+	.string "Pokemon are happier. People\n"
 	.string "are grateful. The air is clean.\l"
 	.string "Crime is down.\p"
 	.string "DIRECTOR TYRELL saved Boralyss\n"
@@ -169,7 +169,7 @@ SnowRoute5_Text_OrinIntro:
 	.string "himself comes to observe.\p"
 	.string "He trusts us, {PLAYER}. Do you\n"
 	.string "understand how sacred that is?\p"
-	.string "Let's see what your POKEMON\n"
+	.string "Let's see what your Pokemon\n"
 	.string "can do against TRUE loyalty.$"
 
 SnowRoute5_Text_OrinDefeat:
@@ -194,7 +194,7 @@ SnowRoute5_Text_LiraIntro:
 	.string "Do you have any IDEA what you're\n"
 	.string "doing? What you're INTERRUPTING?\p"
 	.string "DIRECTOR TYRELL gave us PURPOSE.\n"
-	.string "He gave us a world where POKEMON\l"
+	.string "He gave us a world where Pokemon\l"
 	.string "don't have to suffer hot summers\l"
 	.string "or droughts or wildfire.\p"
 	.string "He gave us a perfect, endless,\n"
