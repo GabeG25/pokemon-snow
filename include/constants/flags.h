@@ -678,8 +678,8 @@
 #define FLAG_SNOW_BEAT_F33_REVERIE           0x266 // E3 Reverie (Ghost) defeated
 #define FLAG_SNOW_BEAT_F34_WYATT             0x267 // E4 Wyatt (Electric) defeated
 #define FLAG_SNOW_HIDE_HOF_EVERGREEN         0x268 // Prof Evergreen hidden in HoF until cutscene reveals him
-#define FLAG_UNUSED_0x269  0x269 // Unused Flag
-#define FLAG_UNUSED_0x26A  0x26A // Unused Flag
+#define FLAG_SNOW_HIDE_KYUREM_CAVE           0x269 // Kyurem hidden in IronfrostCaveB2B3 until F27 Tyrell defeated
+#define FLAG_SNOW_BEAT_KYUREM                0x26A // Kyurem encounter resolved (caught or defeated)
 #define FLAG_UNUSED_0x26B  0x26B // Unused Flag
 #define FLAG_UNUSED_0x26C  0x26C // Unused Flag
 #define FLAG_UNUSED_0x26D  0x26D // Unused Flag
