@@ -1238,6 +1238,11 @@
     "DragonforgeCity_DepartmentStore_3F",
     "DragonforgeCity_DepartmentStore_4F",
     "DragonforgeCity_DepartmentStore_5F",
-    "DragonforgeCity_DepartmentStoreRooftop"
+    "DragonforgeCity_DepartmentStoreRooftop",
+    "PokemonLeague_BrynnsRoom",
+    "PokemonLeague_VespersRoom",
+    "PokemonLeague_ReveriesRoom",
+    "PokemonLeague_WyattsRoom",
+    "PokemonLeague_TyrimsRoom"
   ]
 }

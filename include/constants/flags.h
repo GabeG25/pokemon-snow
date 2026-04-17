@@ -534,7 +534,6 @@
 #define FLAG_SNOW_BEAT_F28_EVERGREEN         0x1E1 // F28 Evergreen postgame (cap 89→92)
 #define FLAG_SNOW_BEAT_F30_ASHER             0x1E2 // F30 Asher #6 final rival fight (cap 92→95)
 #define FLAG_SNOW_GOT_TM18_REST              0x1E3 // TM18 Rest gift NPC at Frostbreak Lodge (v17 §15)
-#define FLAG_UNUSED_0x1E3                    0x1E3 // Unused Flag
 
 // Mystery Gift Flags (Unknown)
 #define FLAG_MYSTERY_GIFT_DONE               0x1E4
@@ -672,10 +671,12 @@
 #define FLAG_HIDDEN_ITEM_SNOW_ROUTE2_POTION                  (FLAG_HIDDEN_ITEMS_START + 0x71)
 #define FLAG_HIDDEN_ITEM_SNOW_R3_SUPER_POTION                (FLAG_HIDDEN_ITEMS_START + 0x72)
 
-#define FLAG_UNUSED_0x264  0x264 // Unused Flag
-#define FLAG_UNUSED_0x265  0x265 // Unused Flag
-#define FLAG_UNUSED_0x266  0x266 // Unused Flag
-#define FLAG_UNUSED_0x267  0x267 // Unused Flag
+// Snow League E4 battle flags — set by each PokemonLeague_*Room script
+// post-defeat. Gate progression; also used for rematch-state detection.
+#define FLAG_SNOW_BEAT_F31_BRYNN             0x264 // E1 Brynn (Bug) defeated
+#define FLAG_SNOW_BEAT_F32_VESPER            0x265 // E2 Vesper (Dark) defeated
+#define FLAG_SNOW_BEAT_F33_REVERIE           0x266 // E3 Reverie (Ghost) defeated
+#define FLAG_SNOW_BEAT_F34_WYATT             0x267 // E4 Wyatt (Electric) defeated
 #define FLAG_UNUSED_0x268  0x268 // Unused Flag
 #define FLAG_UNUSED_0x269  0x269 // Unused Flag
 #define FLAG_UNUSED_0x26A  0x26A // Unused Flag
