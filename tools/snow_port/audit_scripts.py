@@ -217,6 +217,49 @@ def check_snow_scripts_charset():
                     break
 
 
+def check_snow_movement_pairing():
+    """Every applymovement on a non-player NPC must be followed by a
+    waitmovement before the enclosing event script returns. Otherwise
+    the engine continues executing script opcodes while the NPC is still
+    animating, which races subsequent applymovement calls and can leave
+    the NPC stuck mid-movement or out-of-frame.
+
+    Scan each Snow map's scripts.inc for applymovement lines; confirm a
+    waitmovement appears within the next ~30 lines before the next
+    end/return terminator. goto/call/jump are treated as trusted exits
+    (cross-script trace is out of scope — caller presumably pairs the
+    waitmovement).
+    """
+    snow_maps = []
+    with open(REPO / "data/maps/map_groups.json") as f:
+        mg = json.load(f)
+        snow_maps = mg.get("gMapGroup_Snow", [])
+
+    for map_name in snow_maps:
+        inc = MAPS_DIR / map_name / "scripts.inc"
+        if not inc.exists():
+            continue
+        lines = inc.read_text().splitlines()
+        for idx, line in enumerate(lines):
+            stripped = line.strip()
+            if not stripped.startswith("applymovement"):
+                continue
+            found = False
+            for j in range(idx + 1, min(len(lines), idx + 30)):
+                s = lines[j].strip()
+                if s.startswith("waitmovement"):
+                    found = True
+                    break
+                if s in ("end", "return"):
+                    break
+                if s.startswith(("goto", "call", "jump")):
+                    found = True  # cross-script handoff trusted
+                    break
+            if not found:
+                err("MED", f"{map_name}/scripts.inc:{idx + 1}: applymovement without "
+                            f"following waitmovement before end/return — NPC may race")
+
+
 def check_event_scripts_includes():
     """Verify all Snow map scripts.inc files are included in event_scripts.s."""
     snow_maps = []
@@ -335,6 +378,7 @@ def main():
     check_event_scripts_includes()
     check_snow_gym_leaders()
     check_snow_scripts_charset()
+    check_snow_movement_pairing()
     check_critical_files()
 
     total = len(CRIT) + len(HIGH) + len(MED) + len(LOW)
