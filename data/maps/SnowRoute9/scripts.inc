@@ -41,74 +41,146 @@ SnowRoute9_EventScript_Troy::
 	msgbox SnowRoute9_Text_TroyPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+@ R9 Iceharbor Bay - coastal approach to Iceharbor (Gym 5 Marina Water).
+@ 6 main trainers + 2 Surf-gated post-Gym-5 backtrack.
+
+@ R9-1 Fisherman Jonas - Corsola/Stunfisk/Sharpedo opener.
+@ Voice: salt-weathered, short sentences, respects the sea.
+
 SnowRoute9_Text_JonasIntro:
-	.string "Think you can handle the cold?\nLet's find out!$"
+	.string "Tide's in. My turn.\p"
+	.string "CORSOLA walls you. STUNFISK\n"
+	.string "carries the Ground. SHARPEDO\l"
+	.string "ends it.$"
 
 SnowRoute9_Text_JonasDefeat:
-	.string "That was incredible...$"
+	.string "Fast learner.$"
 
 SnowRoute9_Text_JonasPostBattle:
-	.string "The path ahead gets tougher.\nBe careful out there.$"
+	.string "SHARPEDO's ROUGH SKIN bites\n"
+	.string "back on every contact.\p"
+	.string "You felt that.$"
+
+@ R9-2 Tycoon Sterling - 5-mon class debut, rare species.
+@ Voice: wealthy, deliberate, treats battles as asset appreciation.
 
 SnowRoute9_Text_SterlingIntro:
-	.string "A challenger? Perfect timing!$"
+	.string "Tycoon STERLING.\p"
+	.string "CRADILY. PORYGON2. CARRACOSTA.\n"
+	.string "DRAGONAIR. EELEKTROSS.\p"
+	.string "Five rarities. One battle.\n"
+	.string "Make it worth the spectacle.$"
 
 SnowRoute9_Text_SterlingDefeat:
-	.string "I didn't expect that...$"
+	.string "That was worth every credit.$"
 
 SnowRoute9_Text_SterlingPostBattle:
-	.string "Good luck on your journey.$"
+	.string "EELEKTROSS LEVITATES.\n"
+	.string "It has zero weaknesses.\p"
+	.string "You beat it anyway. That's\n"
+	.string "a rare thing.$"
+
+@ R9-3 Fisherman Vince - 2-mon Cloyster Shell Smash + Starmie anchor.
+@ Voice: quiet veteran, contrast to Jonas's gruffness.
 
 SnowRoute9_Text_VinceIntro:
-	.string "I've been training for this!\nBring it on!$"
+	.string "CLOYSTER opens.\n"
+	.string "SHELL SMASH, plus-two.\p"
+	.string "You have one turn.$"
 
 SnowRoute9_Text_VinceDefeat:
-	.string "You're stronger than I thought!$"
+	.string "Priority move. Figures.$"
 
 SnowRoute9_Text_VincePostBattle:
-	.string "I'll be training hard for\nnext time we meet.$"
+	.string "STARMIE's RECOVER kept me alive\n"
+	.string "four turns. Five was too many.$"
+
+@ R9-4 Sailor Burke - 4-mon rain team class debut, Golurk ace.
+@ Voice: booming, naval, leans into "my rain wins" braggadocio.
 
 SnowRoute9_Text_BurkeIntro:
-	.string "You look tough, but I'm tougher!$"
+	.string "Sailor BURKE.\p"
+	.string "PELIPPER brings the rain.\n"
+	.string "KINGLER hits in it.\p"
+	.string "Everything after is cleanup.$"
 
 SnowRoute9_Text_BurkeDefeat:
-	.string "Wow, I lost...$"
+	.string "GOLURK wasn't supposed to go\n"
+	.string "first.$"
 
 SnowRoute9_Text_BurkePostBattle:
-	.string "You should rest at the next\ntown if you can.$"
+	.string "GHOST-type closer in a rain\n"
+	.string "team. Caught you thinking.\p"
+	.string "Respect.$"
+
+@ R9-5 Sailor Marsh - Tentacruel Liquid Ooze + Electrode ace.
+@ Voice: shorter, meaner than Burke; engineer-sailor hybrid.
 
 SnowRoute9_Text_MarshIntro:
-	.string "Hey! You're a trainer too?\nLet's battle!$"
+	.string "Grass type? TENTACRUEL has\n"
+	.string "LIQUID OOZE. Your drain moves\l"
+	.string "hurt YOU.\p"
+	.string "Surprise.$"
 
 SnowRoute9_Text_MarshDefeat:
-	.string "I need to train more...$"
+	.string "ELECTRODE was the last word.\n"
+	.string "You wrote a longer sentence.$"
 
 SnowRoute9_Text_MarshPostBattle:
-	.string "The wild POKéMON around here\ncan be tricky. Stay alert.$"
+	.string "AFTERMATH takes 25 percent of\n"
+	.string "your HP on KO by contact.\p"
+	.string "I hope you noticed.$"
+
+@ R9-6 Painter Iris - Lanturn/Lampent/Hippowdon/Lilligant weather painter.
+@ Voice: descriptive, color-coded moves, more abstract than Lumi.
 
 SnowRoute9_Text_IrisIntro:
-	.string "No one passes without a fight!$"
+	.string "LANTURN for blue.\n"
+	.string "LAMPENT for violet.\p"
+	.string "HIPPOWDON stirs the canvas.\n"
+	.string "LILLIGANT blooms through it.$"
 
 SnowRoute9_Text_IrisDefeat:
-	.string "You really got me...$"
+	.string "Beautiful fight.\n"
+	.string "Wrong colors.$"
 
 SnowRoute9_Text_IrisPostBattle:
-	.string "You've got real talent.$"
+	.string "LILLIGANT's OWN TEMPO means\n"
+	.string "PETAL DANCE never confuses her.\p"
+	.string "Perfectly painted.$"
+
+@ R9-7 Swimmer Coral - SURF-GATED. Relicanth/Alomomola/Beartic.
+@ Voice: post-Surf gated, knows you came back for her.
 
 SnowRoute9_Text_CoralIntro:
-	.string "I won't go easy on you!$"
+	.string "You came back with SURF.\p"
+	.string "Good. RELICANTH hits like rock\n"
+	.string "from ten thousand years ago.$"
 
 SnowRoute9_Text_CoralDefeat:
-	.string "Not bad at all...$"
+	.string "BEARTIC's Swords Dance didn't\n"
+	.string "land.\p"
+	.string "Fair.$"
 
 SnowRoute9_Text_CoralPostBattle:
-	.string "Keep pushing forward!$"
+	.string "ALOMOMOLA's WISH landed on the\n"
+	.string "wrong turn.\p"
+	.string "Timing kills teams.$"
+
+@ R9-8 Swimmer Troy - SURF-GATED. Jellicent/Walrein/Seismitoad/Ludicolo.
+@ Voice: strategy-minded, notes ace synergies explicitly.
 
 SnowRoute9_Text_TroyIntro:
-	.string "Ready? Here I come!$"
+	.string "JELLICENT walls.\n"
+	.string "WALREIN stalls.\p"
+	.string "LUDICOLO ends. In rain.\n"
+	.string "RAIN DANCE buys the sweep.$"
 
 SnowRoute9_Text_TroyDefeat:
-	.string "I'll remember this battle!$"
+	.string "The rain didn't hold.$"
 
 SnowRoute9_Text_TroyPostBattle:
-	.string "I've got nothing left to say.\nJust... wow.$"
+	.string "SEISMITOAD's STEALTH ROCK put\n"
+	.string "your switch-ins at 12 percent\l"
+	.string "before they moved.\p"
+	.string "And you still won.$"
