@@ -26,47 +26,92 @@ SnowRoute7_EventScript_Lumi::
 	msgbox SnowRoute7_Text_LumiPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+@ R7-1 Collector Harlan - Murkrow/Larvesta/Monferno/Porygon.
+@ Voice: obsessive archivist, proud of the roster.
+
 SnowRoute7_Text_HarlanIntro:
-	.string "Think you can handle the cold?\nLet's find out!$"
+	.string "Four mons nobody else climbs\n"
+	.string "with. I collected them.\p"
+	.string "MURKROW crits half the time.\n"
+	.string "In BORALYSS that's double damage.$"
 
 SnowRoute7_Text_HarlanDefeat:
-	.string "That was incredible...$"
+	.string "Fine specimens, all four.\n"
+	.string "Still not enough.$"
 
 SnowRoute7_Text_HarlanPostBattle:
-	.string "The path ahead gets tougher.\nBe careful out there.$"
+	.string "PORYGON copies whatever DOWNLOAD\n"
+	.string "tells it to fear most.\p"
+	.string "Today it feared you.$"
+
+@ R7-2 Youngster Corey - parafusion + Swagger disruption.
+@ Voice: overeager kid, quotes strategy he half-understands.
 
 SnowRoute7_Text_CoreyIntro:
-	.string "A challenger? Perfect timing!$"
+	.string "SWAGGER! Confuse you, boost\n"
+	.string "your Attack, watch you hit\l"
+	.string "yourself!\p"
+	.string "It's GALAXY BRAIN, right?$"
 
 SnowRoute7_Text_CoreyDefeat:
-	.string "I didn't expect that...$"
+	.string "You didn't hit yourself\n"
+	.string "once!$"
 
 SnowRoute7_Text_CoreyPostBattle:
-	.string "Good luck on your journey.$"
+	.string "FLAAFFY's THUNDER WAVE plus\n"
+	.string "CONFUSE RAY is called parafusion.\p"
+	.string "I read about it!$"
+
+@ R7-3 Scientist Opal - Synchronize + Magic Guard tech.
+@ Voice: dry, precise, competitor more than conversationalist.
 
 SnowRoute7_Text_OpalIntro:
-	.string "I've been training for this!\nBring it on!$"
+	.string "Status won't help you.\n"
+	.string "XATU bounces it back.\p"
+	.string "DUOSION is unkillable.\n"
+	.string "Please stop reading articles\l"
+	.string "about me.$"
 
 SnowRoute7_Text_OpalDefeat:
-	.string "You're stronger than I thought!$"
+	.string "Hmm. Metang missed the\n"
+	.string "Agility window.$"
 
 SnowRoute7_Text_OpalPostBattle:
-	.string "I'll be training hard for\nnext time we meet.$"
+	.string "MAGIC GUARD blocks all indirect\n"
+	.string "damage. Stealth Rock, poison,\l"
+	.string "burn, Life Orb - nothing.\p"
+	.string "You hit it directly. Fine.$"
+
+@ R7-4 Skier Brenna - ONE MON (Piloswine endurance test).
+@ Voice: stoic, two-sentence warrior. All Piloswine energy.
 
 SnowRoute7_Text_BrennaIntro:
-	.string "You look tough, but I'm tougher!$"
+	.string "One mon.\p"
+	.string "Longer than four.$"
 
 SnowRoute7_Text_BrennaDefeat:
-	.string "Wow, I lost...$"
+	.string "Curse wasn't enough.$"
 
 SnowRoute7_Text_BrennaPostBattle:
-	.string "You should rest at the next\ntown if you can.$"
+	.string "PILOSWINE took eleven turns\n"
+	.string "against the last trainer.\p"
+	.string "You did it in nine.\n"
+	.string "Respect.$"
+
+@ R7-5 Painter Lumi - last before Autumn. Togetic/Corsola/Musharna.
+@ Voice: soft, observant, sees you as a subject before an opponent.
 
 SnowRoute7_Text_LumiIntro:
-	.string "Hey! You're a trainer too?\nLet's battle!$"
+	.string "Hold still, trainer.\n"
+	.string "I want to paint you mid-battle.\p"
+	.string "TOGETIC flinches. CORSOLA bleeds\n"
+	.string "light. Give me ten turns.$"
 
 SnowRoute7_Text_LumiDefeat:
-	.string "I need to train more...$"
+	.string "Beautiful. Quick.\n"
+	.string "Hard to capture.$"
 
 SnowRoute7_Text_LumiPostBattle:
-	.string "The wild POKéMON around here\ncan be tricky. Stay alert.$"
+	.string "AUTUMN is at the peak.\p"
+	.string "She'll paint you too,\n"
+	.string "but with harder brushes.$"
