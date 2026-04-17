@@ -87,44 +87,19 @@
 #define FLAG_SNOW_GOT_TM05_PROTECT           0x40
 #define FLAG_SNOW_GOT_BRIGHT_POWDER          0x41
 #define FLAG_SNOW_KAEL_FIRST_VEIL_CONTACT    0x42
-#define FLAG_UNUSED_0x02A    0x2A // Unused Flag
-#define FLAG_UNUSED_0x02B    0x2B // Unused Flag
-#define FLAG_UNUSED_0x02C    0x2C // Unused Flag
-#define FLAG_UNUSED_0x02D    0x2D // Unused Flag
-#define FLAG_UNUSED_0x02E    0x2E // Unused Flag
-#define FLAG_UNUSED_0x02F    0x2F // Unused Flag
-#define FLAG_UNUSED_0x030    0x30 // Unused Flag
-#define FLAG_UNUSED_0x031    0x31 // Unused Flag
-#define FLAG_UNUSED_0x032    0x32 // Unused Flag
-#define FLAG_UNUSED_0x033    0x33 // Unused Flag
-#define FLAG_UNUSED_0x034    0x34 // Unused Flag
-#define FLAG_UNUSED_0x035    0x35 // Unused Flag
-#define FLAG_UNUSED_0x036    0x36 // Unused Flag
-#define FLAG_UNUSED_0x037    0x37 // Unused Flag
-#define FLAG_UNUSED_0x038    0x38 // Unused Flag
-#define FLAG_UNUSED_0x039    0x39 // Unused Flag
-#define FLAG_UNUSED_0x03A    0x3A // Unused Flag
-#define FLAG_UNUSED_0x03B    0x3B // Unused Flag
-#define FLAG_UNUSED_0x03C    0x3C // Unused Flag
-#define FLAG_UNUSED_0x03D    0x3D // Unused Flag
-#define FLAG_UNUSED_0x03E    0x3E // Unused Flag
-#define FLAG_UNUSED_0x03F    0x3F // Unused Flag
-#define FLAG_UNUSED_0x040    0x40 // Unused Flag
-#define FLAG_UNUSED_0x041    0x41 // Unused Flag
-#define FLAG_UNUSED_0x042    0x42 // Unused Flag
-#define FLAG_UNUSED_0x043    0x43 // Unused Flag
-#define FLAG_UNUSED_0x044    0x44 // Unused Flag
-#define FLAG_UNUSED_0x045    0x45 // Unused Flag
-#define FLAG_UNUSED_0x046    0x46 // Unused Flag
-#define FLAG_UNUSED_0x047    0x47 // Unused Flag
-#define FLAG_UNUSED_0x048    0x48 // Unused Flag
-#define FLAG_UNUSED_0x049    0x49 // Unused Flag
-#define FLAG_UNUSED_0x04A    0x4A // Unused Flag
-#define FLAG_UNUSED_0x04B    0x4B // Unused Flag
-#define FLAG_UNUSED_0x04C    0x4C // Unused Flag
-#define FLAG_UNUSED_0x04D    0x4D // Unused Flag
-#define FLAG_UNUSED_0x04E    0x4E // Unused Flag
-#define FLAG_UNUSED_0x04F    0x4F // Unused Flag
+#define FLAG_SNOW_GOT_TM01_WORK_UP           0x43
+#define FLAG_SNOW_INTRO_MOM_CUTSCENE_DONE    0x44
+#define FLAG_SNOW_GOT_POTION_BEDROOM_PC      0x45
+#define FLAG_SNOW_AUTUMN_HEADING_TO_LAB      0x46
+#define FLAG_SNOW_HIDE_AUTUMN_LAB            0x47
+#define FLAG_SNOW_HIDE_AUTUMN_BEDROOM        0x48
+#define FLAG_SNOW_HIDE_ASHER_LAB             0x49
+#define FLAG_SNOW_STARTER_CUTSCENE_DONE      0x4A
+#define FLAG_SNOW_GOT_POKEDEX_DAWNFLAKE      0x4B
+#define FLAG_SNOW_MOM_RUNNING_SHOES_DONE     0x4C
+#define FLAG_SNOW_HIDE_MOM_RUNNING_SHOES     0x4D
+#define FLAG_SNOW_HIDE_AUTUMN_RUN_OUT_LAB    0x4E
+#define FLAG_SNOW_HIDE_AUTUMN_R1             0x4F
 
 // Scripts
 #define FLAG_HIDE_SKY_PILLAR_TOP_RAYQUAZA_STILL  0x50
@@ -132,8 +107,8 @@
 #define FLAG_RESCUED_BIRCH                       0x52
 #define FLAG_LEGENDARIES_IN_SOOTOPOLIS           0x53
 
-#define FLAG_UNUSED_0x054                    0x54  // Unused Flag
-#define FLAG_UNUSED_0x055                    0x55  // Unused Flag
+#define FLAG_SNOW_HIDE_STARTER_GATE          0x54
+#define FLAG_SNOW_TOLD_AUTUMN                0x55
 
 #define FLAG_HIDE_CONTEST_POKE_BALL          0x56  // Always set after new game, object it hides is added directly
 #define FLAG_MET_RIVAL_MOM                   0x57
