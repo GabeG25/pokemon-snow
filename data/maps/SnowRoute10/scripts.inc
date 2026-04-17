@@ -41,74 +41,158 @@ SnowRoute10_EventScript_Boone::
 	msgbox SnowRoute10_Text_BoonePostBattle, MSGBOX_AUTOCLOSE
 	end
 
+@ R10 Snowburn Path - cave gauntlet from Iceharbor to Dragonforge.
+@ Thermal extremes (Torkoal sun + Glalie ice). Gauntlet peak at R10-5
+@ Dragon Tamer, closer at R10-8 Miner.
+
+@ R10-1 Miner Hank - Torkoal sun + Aggron/Glalie/Lucario closer.
+@ Voice: veteran mineshaft boss, dry humor, warns of the depths.
+
 SnowRoute10_Text_HankIntro:
-	.string "Think you can handle the cold?\nLet's find out!$"
+	.string "Welcome to SNOWBURN.\p"
+	.string "TORKOAL brings the sun down\n"
+	.string "here. GLALIE brings the cold.\p"
+	.string "Cave does both at once.$"
 
 SnowRoute10_Text_HankDefeat:
-	.string "That was incredible...$"
+	.string "LUCARIO's BULLET PUNCH lost\n"
+	.string "by a hair.$"
 
 SnowRoute10_Text_HankPostBattle:
-	.string "The path ahead gets tougher.\nBe careful out there.$"
+	.string "Seven more down the tunnel.\n"
+	.string "Don't heal. Can't heal.\p"
+	.string "Good luck.$"
+
+@ R10-2 Scientist Lyra - Magneton Sturdy+Balloon, Gorilla Darmanitan, Espeon Magic Bounce.
+@ Voice: academic, studying the thermals, treats battles as data.
 
 SnowRoute10_Text_LyraIntro:
-	.string "A challenger? Perfect timing!$"
+	.string "I'm measuring the cave's\n"
+	.string "thermal cycle.\p"
+	.string "Your team is a control group.$"
 
 SnowRoute10_Text_LyraDefeat:
-	.string "I didn't expect that...$"
+	.string "ESPEON's MAGIC BOUNCE was\n"
+	.string "supposed to stop all that.$"
 
 SnowRoute10_Text_LyraPostBattle:
-	.string "Good luck on your journey.$"
+	.string "MAGNETON had two stacked\n"
+	.string "protections: STURDY and AIR\l"
+	.string "BALLOON.\p"
+	.string "You broke both.$"
+
+@ R10-3 Miner Nash - Probopass/Magmar/Claydol. Probopass Explosion + Magmar Vital Spirit.
+@ Voice: gruff, Hank-adjacent but colder, older.
 
 SnowRoute10_Text_NashIntro:
-	.string "I've been training for this!\nBring it on!$"
+	.string "PROBOPASS tanks. Then it\n"
+	.string "EXPLODES.\p"
+	.string "Your move.$"
 
 SnowRoute10_Text_NashDefeat:
-	.string "You're stronger than I thought!$"
+	.string "CLAYDOL held longer than I\n"
+	.string "expected.$"
 
 SnowRoute10_Text_NashPostBattle:
-	.string "I'll be training hard for\nnext time we meet.$"
+	.string "MAGMAR's VITAL SPIRIT. Sleep\n"
+	.string "doesn't land.\p"
+	.string "Everyone tries the SPORE trick\n"
+	.string "once.$"
+
+@ R10-4 Special Agent Grimm - 2 Dark-type Weavile + Honchkrow.
+@ Voice: minimal, intimidating, Rook-family cold.
 
 SnowRoute10_Text_GrimmIntro:
-	.string "You look tough, but I'm tougher!$"
+	.string "Eye of the storm.\p"
+	.string "Two mons.\n"
+	.string "Both Dark.$"
 
 SnowRoute10_Text_GrimmDefeat:
-	.string "Wow, I lost...$"
+	.string "Fighting types. Always.$"
 
 SnowRoute10_Text_GrimmPostBattle:
-	.string "You should rest at the next\ntown if you can.$"
+	.string "WEAVILE's PRESSURE doubled\n"
+	.string "PP loss on every move you\l"
+	.string "used against her.\p"
+	.string "Look at your team's PP.$"
+
+@ R10-5 Dragon Tamer Zara - CLASS DEBUT, 5-mon peak difficulty.
+@ Voice: calm, operatic, five-dragon choreographer.
 
 SnowRoute10_Text_ZaraIntro:
-	.string "Hey! You're a trainer too?\nLet's battle!$"
+	.string "Dragon Tamer ZARA.\p"
+	.string "Five dragons.\n"
+	.string "Each one teaches a different\l"
+	.string "lesson.\p"
+	.string "I hope you're taking notes.$"
 
 SnowRoute10_Text_ZaraDefeat:
-	.string "I need to train more...$"
+	.string "HAXORUS missed its window.\n"
+	.string "You taught me something.$"
 
 SnowRoute10_Text_ZaraPostBattle:
-	.string "The wild POKéMON around here\ncan be tricky. Stay alert.$"
+	.string "KINGDRA's FOCUS ENERGY plus\n"
+	.string "SNIPER makes crits triple.\p"
+	.string "HYDRO PUMP averaged 363 BP\n"
+	.string "per turn.\p"
+	.string "You outlived the math.$"
+
+@ R10-6 Scientist Felix - Metang/Exeggutor/Cryogonal sun synergy.
+@ Voice: younger than Lyra, more excitable, sun-deploy strategy.
 
 SnowRoute10_Text_FelixIntro:
-	.string "No one passes without a fight!$"
+	.string "SUNNY DAY up top!\n"
+	.string "EXEGGUTOR doubles speed!\p"
+	.string "SLEEP POWDER hits YOU first!$"
 
 SnowRoute10_Text_FelixDefeat:
-	.string "You really got me...$"
+	.string "CRYOGONAL... I depended on\n"
+	.string "her too much.$"
 
 SnowRoute10_Text_FelixPostBattle:
-	.string "You've got real talent.$"
+	.string "Sun weakened your WATER moves\n"
+	.string "by half.\p"
+	.string "Most trainers don't notice\n"
+	.string "until mon three.$"
+
+@ R10-7 Collector Sage - Spiritomb/Rampardos/Pupitar/Heracross.
+@ Voice: obsessive, rare-mon focus, Heracross-pride.
 
 SnowRoute10_Text_SageIntro:
-	.string "I won't go easy on you!$"
+	.string "RAMPARDOS has the highest ATK\n"
+	.string "in the regional dex.\p"
+	.string "HERACROSS ignites her own\n"
+	.string "TOXIC ORB.\p"
+	.string "I collect lethal things.$"
 
 SnowRoute10_Text_SageDefeat:
-	.string "Not bad at all...$"
+	.string "HERACROSS burned out before\n"
+	.string "she could close.$"
 
 SnowRoute10_Text_SagePostBattle:
-	.string "Keep pushing forward!$"
+	.string "TOXIC ORB GUTS boosted every\n"
+	.string "move by 50 percent.\p"
+	.string "She punched above her price\n"
+	.string "tag.$"
+
+@ R10-8 Miner Boone - GAUNTLET CLOSER. Three Sturdy mons + Machamp No Guard + Gigalith ace.
+@ Voice: patriarch of the mines, final boss of the route.
 
 SnowRoute10_Text_BooneIntro:
-	.string "Ready? Here I come!$"
+	.string "Seven trainers told you about me.\p"
+	.string "SKARMORY. FORRETRESS. GIGALITH.\n"
+	.string "All STURDY.\p"
+	.string "Plus MACHAMP's DYNAMIC PUNCH.\n"
+	.string "One hundred percent confusion.$"
 
 SnowRoute10_Text_BooneDefeat:
-	.string "I'll remember this battle!$"
+	.string "You had a special attacker\n"
+	.string "left.\p"
+	.string "Most don't make it this far.$"
 
 SnowRoute10_Text_BoonePostBattle:
-	.string "I've got nothing left to say.\nJust... wow.$"
+	.string "GIGALITH's CURSE escalates\n"
+	.string "forever behind STURDY.\p"
+	.string "You hit it hard enough, fast\n"
+	.string "enough, special enough.\p"
+	.string "DRAGONFORGE's waiting.$"
