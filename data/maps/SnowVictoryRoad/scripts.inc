@@ -1,6 +1,112 @@
 SnowVictoryRoad_MapScripts::
 	.byte 0
 
+@ ═══════════════════════════════════════════════════════════════
+@ F30 ASHER — Victory Road, FINAL rival encounter (v17 §20, cast)
+@ ═══════════════════════════════════════════════════════════════
+@ Per v17 cast: Asher never says "AUTUMN" until Victory Road
+@ apology at F30. This is his armor-off moment. His parents died
+@ during a Kyurem capture attempt years before the game; the
+@ hostility toward the player was grief wearing trainer-clothes.
+@ After F21 Beta Roof he stopped pretending he was serving Veil.
+@ Here he stops pretending at all.
+@
+@ Team: Persian/Crobat/Breloom/Cloyster/Magmortar + starter ace
+@ Lv92, all with custom HA (Speed Boost Blaziken / Sheer Force
+@ Swampert / Protean Sceptile pre-Gen 9).
+@
+@ Starter-keyed A/B/C on VAR_STARTER_MON. LOCALID 9.
+
+SnowVictoryRoad_EventScript_AsherF30::
+	lock
+	faceplayer
+	msgbox SnowVictoryRoad_Text_AsherF30Intro, MSGBOX_DEFAULT
+	closemessage
+	compare VAR_STARTER_MON, 0
+	goto_if_eq SnowVictoryRoad_EventScript_AsherF30VariantA
+	compare VAR_STARTER_MON, 1
+	goto_if_eq SnowVictoryRoad_EventScript_AsherF30VariantB
+	compare VAR_STARTER_MON, 2
+	goto_if_eq SnowVictoryRoad_EventScript_AsherF30VariantC
+	release
+	end
+
+SnowVictoryRoad_EventScript_AsherF30VariantA::
+	trainerbattle_no_intro TRAINER_SNOW_F30_ASHER_A, SnowVictoryRoad_Text_AsherF30Defeat
+	goto SnowVictoryRoad_EventScript_AsherF30AfterBattle
+
+SnowVictoryRoad_EventScript_AsherF30VariantB::
+	trainerbattle_no_intro TRAINER_SNOW_F30_ASHER_B, SnowVictoryRoad_Text_AsherF30Defeat
+	goto SnowVictoryRoad_EventScript_AsherF30AfterBattle
+
+SnowVictoryRoad_EventScript_AsherF30VariantC::
+	trainerbattle_no_intro TRAINER_SNOW_F30_ASHER_C, SnowVictoryRoad_Text_AsherF30Defeat
+	goto SnowVictoryRoad_EventScript_AsherF30AfterBattle
+
+SnowVictoryRoad_EventScript_AsherF30AfterBattle::
+	setflag FLAG_SNOW_BEAT_F30_ASHER
+	msgbox SnowVictoryRoad_Text_AsherF30PostBattle, MSGBOX_DEFAULT
+	closemessage
+	applymovement 9, SnowVictoryRoad_Movement_AsherF30Depart
+	waitmovement 0
+	setflag FLAG_SNOW_HIDE_ASHER_VR
+	removeobject 9
+	release
+	end
+
+SnowVictoryRoad_Movement_AsherF30Depart:
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+SnowVictoryRoad_Text_AsherF30Intro:
+	.string "ASHER: {PLAYER}.\p"
+	.string "I knew you'd make it through\n"
+	.string "KYROS. Everybody did.\p"
+	.string "Pass here and you're at the\n"
+	.string "BORALYSS LEAGUE.\p"
+	.string "TYRIM is five rooms south.\n"
+	.string "The ELITE FOUR are in\l"
+	.string "between.\p"
+	.string "Before you go...\p"
+	.string "My parents died trying to\n"
+	.string "capture KYUREM. I was six.\p"
+	.string "I told myself I'd be\n"
+	.string "stronger than them. That\l"
+	.string "nothing would take me the\l"
+	.string "way it took them.\p"
+	.string "And then a kid from DAWNFLAKE\n"
+	.string "started climbing faster than\l"
+	.string "I could.\p"
+	.string "AUTUMN saw it first.\n"
+	.string "I want to say her name.\p"
+	.string "AUTUMN. My oldest friend.\n"
+	.string "I haven't said it out loud\l"
+	.string "in eight years.\p"
+	.string "One more fight, {PLAYER}.\n"
+	.string "No Veil. No armor. Just me.$"
+
+SnowVictoryRoad_Text_AsherF30Defeat:
+	.string "ASHER: That was the fight I\n"
+	.string "owed you.$"
+
+SnowVictoryRoad_Text_AsherF30PostBattle:
+	.string "ASHER: Beat the LEAGUE.\p"
+	.string "Come back to DAWNFLAKE when\n"
+	.string "you're CHAMPION.\p"
+	.string "I'll be on the porch.\n"
+	.string "AUTUMN said she'd make tea.\p"
+	.string "She said it like she meant\n"
+	.string "it.\p"
+	.string "Thank you, {PLAYER}.\p"
+	.string "For everything.$"
+
 SnowVictoryRoad_EventScript_Soleil::
 	trainerbattle_single TRAINER_SNOW_VR_1_SOLEIL, SnowVictoryRoad_Text_SoleilIntro, SnowVictoryRoad_Text_SoleilDefeat
 	msgbox SnowVictoryRoad_Text_SoleilPostBattle, MSGBOX_AUTOCLOSE
