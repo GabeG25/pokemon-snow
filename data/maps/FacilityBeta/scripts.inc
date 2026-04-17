@@ -2,21 +2,68 @@ FacilityBeta_MapScripts::
 	.byte 0
 
 @ ═══════════════════════════════════════════════════════════════
-@ FACILITY BETA — F22 TYRELL #1 (FIRST CONFRONTATION)
+@ FACILITY BETA — F21 ASHER #5 + F22 TYRELL #1 back-to-back no-heal
 @ ═══════════════════════════════════════════════════════════════
-@ Per CEO: F22 Tyrell is his "educating" battle. He explains the
-@ error of the player's ways — dismissive, superior. Post-battle
-@ he retreats, shaken but composed, setting up the F27 desperate
-@ rematch.
+@ Per v17 §20: Asher gates the path to Tyrell on Beta Roof. After
+@ Asher's loss his working-for-Veil mask cracks — he moves aside
+@ without apology but the player can feel the shift. Tyrell's own
+@ "educating" battle follows with NO HEAL between them. F21 is the
+@ first fight where Asher's starter uses its custom HA (Speed Boost
+@ Blaziken / Sheer Force Swampert / Protean Sceptile).
 @
 @ STUB: Facility Beta is a single-room map reusing Devon Corp 2F
 @ layout. Full v17 §18 Beta design calls for 2 floors + roof, 22
-@ grunts, F19 Mika / F20 Xenon / F21 Asher #5 gating F22. Those
-@ are CEO-creative (DECISIONS.md grunt locks). This stub gives
-@ the story a working first-confrontation beat.
+@ grunts, F19 Mika / F20 Xenon preceding F21. Those are CEO-creative.
+
+@ F21 Asher — starter-keyed A/B/C. LOCALID 2.
+
+FacilityBeta_EventScript_Asher::
+	lock
+	faceplayer
+	msgbox FacilityBeta_Text_AsherIntro, MSGBOX_DEFAULT
+	closemessage
+	compare VAR_STARTER_MON, 0
+	goto_if_eq FacilityBeta_EventScript_AsherVariantA
+	compare VAR_STARTER_MON, 1
+	goto_if_eq FacilityBeta_EventScript_AsherVariantB
+	compare VAR_STARTER_MON, 2
+	goto_if_eq FacilityBeta_EventScript_AsherVariantC
+	release
+	end
+
+FacilityBeta_EventScript_AsherVariantA::
+	trainerbattle_no_intro TRAINER_SNOW_F21_ASHER_A, FacilityBeta_Text_AsherDefeat
+	goto FacilityBeta_EventScript_AsherAfterBattle
+
+FacilityBeta_EventScript_AsherVariantB::
+	trainerbattle_no_intro TRAINER_SNOW_F21_ASHER_B, FacilityBeta_Text_AsherDefeat
+	goto FacilityBeta_EventScript_AsherAfterBattle
+
+FacilityBeta_EventScript_AsherVariantC::
+	trainerbattle_no_intro TRAINER_SNOW_F21_ASHER_C, FacilityBeta_Text_AsherDefeat
+	goto FacilityBeta_EventScript_AsherAfterBattle
+
+FacilityBeta_EventScript_AsherAfterBattle::
+	setflag FLAG_SNOW_BEAT_F21_ASHER
+	msgbox FacilityBeta_Text_AsherRetreats, MSGBOX_DEFAULT
+	closemessage
+	applymovement 2, FacilityBeta_Movement_AsherStepsAside
+	waitmovement 0
+	release
+	end
+
+FacilityBeta_Movement_AsherStepsAside:
+	walk_right
+	walk_right
+	walk_down
+	walk_down
+	step_end
+
+@ F22 Tyrell — blocked until F21 Asher is defeated.
 
 FacilityBeta_EventScript_Tyrell::
 	lockall
+	goto_if_unset FLAG_SNOW_BEAT_F21_ASHER, FacilityBeta_EventScript_TyrellAsherBlocking
 	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterUp
 	waitmovement 0
 	msgbox FacilityBeta_Text_TyrellEducates, MSGBOX_DEFAULT
@@ -34,6 +81,46 @@ FacilityBeta_EventScript_Tyrell::
 	closemessage
 	releaseall
 	end
+
+FacilityBeta_EventScript_TyrellAsherBlocking::
+	msgbox FacilityBeta_Text_TyrellAsherFirst, MSGBOX_DEFAULT
+	closemessage
+	releaseall
+	end
+
+FacilityBeta_Text_AsherIntro:
+	.string "ASHER: Stop right there.\p"
+	.string "{PLAYER}. I knew you'd come.\n"
+	.string "I told TYRELL you would.\p"
+	.string "He didn't believe me.\p"
+	.string "Said you'd give up after\n"
+	.string "DRAGONFORGE. Said you were\l"
+	.string "like PRIYO. Safe.\p"
+	.string "You're not safe.\p"
+	.string "That's the one thing I've\n"
+	.string "had right about you since\l"
+	.string "DAWNFLAKE.\p"
+	.string "If you want TYRELL? Through\n"
+	.string "me first.\p"
+	.string "Full team. This isn't a\n"
+	.string "friendly check-in anymore.$"
+
+FacilityBeta_Text_AsherDefeat:
+	.string "ASHER: ...Figures.$"
+
+FacilityBeta_Text_AsherRetreats:
+	.string "ASHER: Go.\p"
+	.string "I'm not going to stop you.\n"
+	.string "I don't even know why I\l"
+	.string "thought I could.\p"
+	.string "TYRELL's back there. He's\n"
+	.string "waiting for you.\p"
+	.string "Just... finish it, {PLAYER}.$"
+
+FacilityBeta_Text_TyrellAsherFirst:
+	.string "ASHER stands between you and\n"
+	.string "TYRELL's chamber.\p"
+	.string "Deal with him first.$"
 
 FacilityBeta_Text_TyrellEducates:
 	.string "TYRELL: Ah.\n"
