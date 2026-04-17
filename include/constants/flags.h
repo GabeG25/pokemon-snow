@@ -671,45 +671,24 @@
 #define FLAG_HIDDEN_ITEM_SNOW_ROUTE2_POTION                  (FLAG_HIDDEN_ITEMS_START + 0x71)
 #define FLAG_HIDDEN_ITEM_SNOW_R3_SUPER_POTION                (FLAG_HIDDEN_ITEMS_START + 0x72)
 
-// Snow League E4 battle flags — set by each PokemonLeague_*Room script
-// post-defeat. Gate progression; also used for rematch-state detection.
-#define FLAG_SNOW_BEAT_F31_BRYNN             0x264 // E1 Brynn (Bug) defeated
-#define FLAG_SNOW_BEAT_F32_VESPER            0x265 // E2 Vesper (Dark) defeated
-#define FLAG_SNOW_BEAT_F33_REVERIE           0x266 // E3 Reverie (Ghost) defeated
-#define FLAG_SNOW_BEAT_F34_WYATT             0x267 // E4 Wyatt (Electric) defeated
-#define FLAG_SNOW_HIDE_HOF_EVERGREEN         0x268 // Prof Evergreen hidden in HoF until cutscene reveals him
-#define FLAG_SNOW_HIDE_KYUREM_CAVE           0x269 // Kyurem hidden in IronfrostCaveB2B3 until F27 Tyrell defeated
-#define FLAG_SNOW_BEAT_KYUREM                0x26A // Kyurem encounter resolved (caught or defeated)
-#define FLAG_SNOW_GOT_ZORUA                  0x26B // Xenon's silent Zorua gift received (v17 §12, Facility Alpha)
-#define FLAG_SNOW_HIDE_AUTUMN_R15            0x26C // Autumn F18 defeated on R15 fork; she walks north to Research Outpost
-#define FLAG_UNUSED_0x26D  0x26D // Unused Flag
-#define FLAG_UNUSED_0x26E  0x26E // Unused Flag
-#define FLAG_UNUSED_0x26F  0x26F // Unused Flag
-#define FLAG_UNUSED_0x270  0x270 // Unused Flag
-#define FLAG_UNUSED_0x271  0x271 // Unused Flag
-#define FLAG_UNUSED_0x272  0x272 // Unused Flag
-#define FLAG_UNUSED_0x273  0x273 // Unused Flag
-#define FLAG_UNUSED_0x274  0x274 // Unused Flag
-#define FLAG_UNUSED_0x275  0x275 // Unused Flag
-#define FLAG_UNUSED_0x276  0x276 // Unused Flag
-#define FLAG_UNUSED_0x277  0x277 // Unused Flag
-#define FLAG_UNUSED_0x278  0x278 // Unused Flag
-#define FLAG_UNUSED_0x279  0x279 // Unused Flag
-#define FLAG_UNUSED_0x27A  0x27A // Unused Flag
-#define FLAG_UNUSED_0x27B  0x27B // Unused Flag
-#define FLAG_UNUSED_0x27C  0x27C // Unused Flag
-#define FLAG_UNUSED_0x27D  0x27D // Unused Flag
-#define FLAG_UNUSED_0x27E  0x27E // Unused Flag
-#define FLAG_UNUSED_0x27F  0x27F // Unused Flag
-#define FLAG_UNUSED_0x280  0x280 // Unused Flag
-#define FLAG_UNUSED_0x281  0x281 // Unused Flag
-#define FLAG_UNUSED_0x282  0x282 // Unused Flag
-#define FLAG_UNUSED_0x283  0x283 // Unused Flag
-#define FLAG_UNUSED_0x284  0x284 // Unused Flag
-#define FLAG_UNUSED_0x285  0x285 // Unused Flag
-#define FLAG_UNUSED_0x286  0x286 // Unused Flag
-#define FLAG_UNUSED_0x287  0x287 // Unused Flag
-#define FLAG_UNUSED_0x288  0x288 // Unused Flag
+// Snow story/E4/facility flags — relocated from 0x264-0x26C to 0x280+
+// because 0x264-0x266 collided with FLAG_HIDDEN_ITEM_SNOW_ROUTE1/2/R3
+// (shared bits, same raw value). Hidden-item block is FLAG_HIDDEN_ITEMS_START
+// (0x1F4) + 0x00..0x72 inclusive; any Snow non-hidden-item flag must
+// live outside 0x1F4-0x266.
+#define FLAG_SNOW_BEAT_F31_BRYNN             0x280 // E1 Brynn (Bug) defeated
+#define FLAG_SNOW_BEAT_F32_VESPER            0x281 // E2 Vesper (Dark) defeated
+#define FLAG_SNOW_BEAT_F33_REVERIE           0x282 // E3 Reverie (Ghost) defeated
+#define FLAG_SNOW_BEAT_F34_WYATT             0x283 // E4 Wyatt (Electric) defeated
+#define FLAG_SNOW_HIDE_HOF_EVERGREEN         0x284 // Prof Evergreen hidden in HoF until cutscene reveals him
+#define FLAG_SNOW_HIDE_KYUREM_CAVE           0x285 // Kyurem hidden in IronfrostCaveB2B3 until F27 Tyrell defeated
+#define FLAG_SNOW_BEAT_KYUREM                0x286 // Kyurem encounter resolved (caught or defeated)
+#define FLAG_SNOW_GOT_ZORUA                  0x287 // Xenon's silent Zorua gift received (v17 §12, Facility Alpha)
+#define FLAG_SNOW_HIDE_AUTUMN_R15            0x288 // Autumn F18 defeated on R15 fork; she walks north to Research Outpost
+
+// 0x264-0x27F now reserved for Snow hidden-item flag expansion (+0x70..+0x8B):
+// FLAG_HIDDEN_ITEMS_START + 0x70..0x72 already claimed (R1 Antidote, R2 Potion, R3 Super Potion).
+// +0x73..+0x8B available for R7 9 berries + R4/R8/DI/R11/R12/R14/IronfrostBasement items.
 #define FLAG_UNUSED_0x289  0x289 // Unused Flag
 #define FLAG_UNUSED_0x28A  0x28A // Unused Flag
 #define FLAG_UNUSED_0x28B  0x28B // Unused Flag
