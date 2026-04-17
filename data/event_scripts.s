@@ -186,6 +186,7 @@ gStdScripts_End::
 	.include "data/maps/PokemonLeague_ReveriesRoom/scripts.inc"
 	.include "data/maps/PokemonLeague_WyattsRoom/scripts.inc"
 	.include "data/maps/PokemonLeague_TyrimsRoom/scripts.inc"
+	.include "data/maps/BoralyssHallOfFame/scripts.inc"
 	.include "data/maps/SnowRoute5/scripts.inc"
 	.include "data/maps/SnowRoute6/scripts.inc"
 	.include "data/maps/SnowRoute7/scripts.inc"

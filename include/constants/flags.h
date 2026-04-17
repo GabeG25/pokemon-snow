@@ -677,7 +677,7 @@
 #define FLAG_SNOW_BEAT_F32_VESPER            0x265 // E2 Vesper (Dark) defeated
 #define FLAG_SNOW_BEAT_F33_REVERIE           0x266 // E3 Reverie (Ghost) defeated
 #define FLAG_SNOW_BEAT_F34_WYATT             0x267 // E4 Wyatt (Electric) defeated
-#define FLAG_UNUSED_0x268  0x268 // Unused Flag
+#define FLAG_SNOW_HIDE_HOF_EVERGREEN         0x268 // Prof Evergreen hidden in HoF until cutscene reveals him
 #define FLAG_UNUSED_0x269  0x269 // Unused Flag
 #define FLAG_UNUSED_0x26A  0x26A // Unused Flag
 #define FLAG_UNUSED_0x26B  0x26B // Unused Flag

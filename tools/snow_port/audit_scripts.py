@@ -102,7 +102,9 @@ def check_snow_maps():
         # 1. object_event script references
         for ev in mj.get("object_events", []):
             script_ref = ev.get("script", "0")
-            if script_ref and script_ref != "0":
+            # Both "0" and "0x0" are vanilla conventions meaning "no interaction
+            # script" — common for cutscene-only NPCs controlled by ON_FRAME.
+            if script_ref and script_ref not in ("0", "0x0"):
                 # Accept shared/vanilla script labels that live outside this map's
                 # scripts.inc (e.g., Snow_PokeMart_EventScript_Clerk from
                 # data/scripts/snow_mart.inc, Common_EventScript_* from vanilla).
