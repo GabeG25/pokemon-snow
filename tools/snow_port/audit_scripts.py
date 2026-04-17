@@ -10,6 +10,9 @@ Checks:
 4. Text labels: all msgbox references point to defined strings
 5. Build sanity: map_groups.json consistency
 6. Connection validity: map.json connections reference existing maps
+7. Gym leader trainer-ID match: each gym's battle script references the
+   correct leader's trainer constant (catches e.g. IronfrostCity calling
+   F3_SILVAN for Copper's Gym 3 battle — symbol resolves, but wrong team)
 
 Usage: python3 tools/snow_port/audit_scripts.py
 Exit 0 = clean, exit 1 = issues found
@@ -176,6 +179,66 @@ def check_event_scripts_includes():
             err("CRIT", f"{map_name}: scripts.inc NOT included in event_scripts.s")
 
 
+# Map containing each Snow gym leader's battle script → the expected
+# trainer-constant suffix. Used by check_snow_gym_leaders() to catch
+# gym battle scripts that reference the wrong TRAINER_SNOW_* ID
+# (symbol resolves but semantic match is wrong).
+SNOW_GYM_LEADERS = {
+    "IcespireTown_Gym": "SILVAN",   # Gym 1 Ice
+    "PinegroveCity":    "CEDAR",    # Gym 2 Grass
+    "IronfrostCity":    "COPPER",   # Gym 3 Steel
+    "DreamursTown":     "FRAN",     # Gym 4 Fairy
+    "IceharborCity":    "MARINA",   # Gym 5 Water
+    "DragonforgeCity":  "PRIYO",    # Gym 6 Dragon
+    "SolaceTown":       "ERIN",     # Gym 7 Ground
+    "PyrespireCity":    "SCORCH",   # Gym 8 Fire
+}
+
+
+def check_snow_gym_leaders():
+    """Cross-check each gym leader's battle script references the correct
+    TRAINER_SNOW_F*_{NAME} constant. Detects IronfrostCity-class drift where
+    the trainer symbol resolves cleanly but points at a different leader's team.
+    """
+    for map_name, leader in SNOW_GYM_LEADERS.items():
+        inc = MAPS_DIR / map_name / "scripts.inc"
+        if not inc.exists():
+            err("HIGH", f"{map_name}: expected gym map missing scripts.inc")
+            continue
+        text = inc.read_text()
+
+        # The gym's leader script label — either "GymLeader{Name}" (7 gyms)
+        # or bare "{Name}" (IcespireTown_Gym uses Silvan directly).
+        candidates = [
+            f"{map_name}_EventScript_GymLeader{leader.title()}::",
+            f"{map_name}_EventScript_{leader.title()}::",
+        ]
+        label = next((c for c in candidates if c in text), None)
+        if label is None:
+            err("MED", f"{map_name}: gym leader {leader.title()} script label not found "
+                       f"(expected {candidates[0].rstrip(':')} or {candidates[1].rstrip(':')})")
+            continue
+
+        # Slice from the label to the next top-level label (:: at line start)
+        start = text.index(label)
+        rest = text[start + len(label):]
+        next_label = re.search(r'\n\w+::', rest)
+        block = rest[:next_label.start()] if next_label else rest
+
+        # Every trainerbattle_* call inside the leader block must reference
+        # a trainer ID whose constant name contains _{NAME}. Anything else is
+        # a gym misbinding (the IronfrostCity class of bug).
+        found_any = False
+        for m in re.finditer(r'trainerbattle_\w+\s+(TRAINER_SNOW_\w+)', block):
+            found_any = True
+            trainer = m.group(1)
+            if f"_{leader}" not in trainer:
+                err("HIGH", f"{map_name}/scripts.inc: gym {leader.title()} battle references "
+                            f"'{trainer}' — expected TRAINER_SNOW_F*_{leader}")
+        if not found_any:
+            err("MED", f"{map_name}/scripts.inc: {leader.title()} gym leader script has no trainerbattle_* call")
+
+
 def check_critical_files():
     """Verify critical Snow config files are in correct state."""
     caps_h = (REPO / "include/config/caps.h").read_text()
@@ -200,6 +263,7 @@ def main():
     print("Snow project static audit\n")
     check_snow_maps()
     check_event_scripts_includes()
+    check_snow_gym_leaders()
     check_critical_files()
 
     total = len(CRIT) + len(HIGH) + len(MED) + len(LOW)
