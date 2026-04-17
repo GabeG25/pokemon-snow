@@ -103,7 +103,11 @@ def check_snow_maps():
         for ev in mj.get("object_events", []):
             script_ref = ev.get("script", "0")
             if script_ref and script_ref != "0":
-                # Strip map prefix if present
+                # Accept shared/vanilla script labels that live outside this map's
+                # scripts.inc (e.g., Snow_PokeMart_EventScript_Clerk from
+                # data/scripts/snow_mart.inc, Common_EventScript_* from vanilla).
+                if script_ref.startswith(("Common_", "EventScript_", "Std_", "Snow_")):
+                    continue
                 if script_ref not in defined_labels:
                     err("HIGH", f"{map_name}: object_event references undefined script '{script_ref}'")
             # Flag field
