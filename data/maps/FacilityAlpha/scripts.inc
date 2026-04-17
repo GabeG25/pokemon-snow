@@ -2,6 +2,43 @@ FacilityAlpha_MapScripts::
 	.byte 0
 
 @ ═══════════════════════════════════════════════════════════════
+@ XENON SILENT ZORUA GIFT
+@ ═══════════════════════════════════════════════════════════════
+@ Per v17 §12 + CEO direction: Xenon drops a Zorua for the player
+@ at Facility Alpha as a cold acknowledgment that the strong
+@ survive. Mysterious and short per CEO dialogue directive.
+
+FacilityAlpha_EventScript_Xenon::
+	lock
+	faceplayer
+	msgbox FacilityAlpha_Text_XenonGift, MSGBOX_DEFAULT
+	givemon SPECIES_ZORUA, 25
+	msgbox FacilityAlpha_Text_ZoruaReceived, MSGBOX_DEFAULT
+	setflag FLAG_SNOW_GOT_ZORUA
+	closemessage
+	applymovement 2, FacilityAlpha_Movement_XenonLeaves
+	waitmovement 0
+	removeobject 2
+	release
+	end
+
+FacilityAlpha_Movement_XenonLeaves:
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	step_end
+
+FacilityAlpha_Text_XenonGift:
+	.string "XENON: You made it.\p"
+	.string "Take her.\p"
+	.string "You'll need something TYRELL\n"
+	.string "won't see coming.$"
+
+FacilityAlpha_Text_ZoruaReceived:
+	.string "{PLAYER} received a ZORUA.$"
+
+@ ═══════════════════════════════════════════════════════════════
 @ FACILITY ALPHA — F27 TYRELL #2 + KYUREM DEATH CUTSCENE
 @ ═══════════════════════════════════════════════════════════════
 @ Per v17: Tyrell dies at the end of F27. Kyurem (held at the
