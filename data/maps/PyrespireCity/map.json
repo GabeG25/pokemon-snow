@@ -76,6 +76,13 @@
       "elevation": 0,
       "dest_map": "MAP_PYRESPIRE_CITY_MART",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 25,
+      "y": 3,
+      "elevation": 0,
+      "dest_map": "MAP_FACILITY_BETA",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [],
