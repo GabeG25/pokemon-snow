@@ -1,6 +1,102 @@
 SnowRoute15_MapScripts::
 	.byte 0
 
+@ ═══════════════════════════════════════════════════════════════
+@ F18 AUTUMN — FINAL rival fight, mid-route fork (v17 §20, §21)
+@ Her retirement from battle. She walks north to the Research
+@ Outpost after defeat. Sets FLAG_SNOW_BEAT_F18_AUTUMN for the
+@ zone 8a→8b mid-zone cap advance (cap 72 → 73) — only mid-zone
+@ sub-cap advancement in the file.
+@
+@ Starter-keyed A/B/C: player Treecko = A (Swampert ace),
+@ Torchic = B (Sceptile ace), Mudkip = C (Blaziken ace).
+@ LOCALID 3 (third object_event in map.json).
+@ ═══════════════════════════════════════════════════════════════
+
+SnowRoute15_EventScript_AutumnF18::
+	lock
+	faceplayer
+	msgbox SnowRoute15_Text_AutumnF18Intro, MSGBOX_DEFAULT
+	closemessage
+	compare VAR_STARTER_MON, 0
+	goto_if_eq SnowRoute15_EventScript_AutumnF18VariantA
+	compare VAR_STARTER_MON, 1
+	goto_if_eq SnowRoute15_EventScript_AutumnF18VariantB
+	compare VAR_STARTER_MON, 2
+	goto_if_eq SnowRoute15_EventScript_AutumnF18VariantC
+	release
+	end
+
+SnowRoute15_EventScript_AutumnF18VariantA::
+	trainerbattle_no_intro TRAINER_SNOW_F18_AUTUMN_A, SnowRoute15_Text_AutumnF18Defeat
+	goto SnowRoute15_EventScript_AutumnF18AfterBattle
+
+SnowRoute15_EventScript_AutumnF18VariantB::
+	trainerbattle_no_intro TRAINER_SNOW_F18_AUTUMN_B, SnowRoute15_Text_AutumnF18Defeat
+	goto SnowRoute15_EventScript_AutumnF18AfterBattle
+
+SnowRoute15_EventScript_AutumnF18VariantC::
+	trainerbattle_no_intro TRAINER_SNOW_F18_AUTUMN_C, SnowRoute15_Text_AutumnF18Defeat
+	goto SnowRoute15_EventScript_AutumnF18AfterBattle
+
+SnowRoute15_EventScript_AutumnF18AfterBattle::
+	setflag FLAG_SNOW_BEAT_F18_AUTUMN
+	msgbox SnowRoute15_Text_AutumnF18PostBattle, MSGBOX_DEFAULT
+	closemessage
+	applymovement 3, SnowRoute15_Movement_AutumnF18Depart
+	waitmovement 0
+	setflag FLAG_SNOW_HIDE_AUTUMN_R15
+	removeobject 3
+	release
+	end
+
+SnowRoute15_Movement_AutumnF18Depart:
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+SnowRoute15_Text_AutumnF18Intro:
+	.string "AUTUMN: There you are.\p"
+	.string "I was worried I'd miss you\n"
+	.string "before the lagoon crest.\p"
+	.string "{PLAYER}, listen.\n"
+	.string "This is my last one.\p"
+	.string "I've been thinking about it\n"
+	.string "since GALETOP. EVERGREEN needs\l"
+	.string "a research partner.\p"
+	.string "I'm better with notes than\n"
+	.string "with a full team.\p"
+	.string "But before I step back, I\n"
+	.string "want you to remember what a\l"
+	.string "fair fight feels like.\p"
+	.string "One more, {PLAYER}.\n"
+	.string "Then I'm off your road.$"
+
+SnowRoute15_Text_AutumnF18Defeat:
+	.string "AUTUMN: ...Yes.\p"
+	.string "That was the right answer.$"
+
+SnowRoute15_Text_AutumnF18PostBattle:
+	.string "AUTUMN: You're ready for what\n"
+	.string "PYRESPIRE has waiting.\p"
+	.string "I'm not, {PLAYER}.\n"
+	.string "TYRELL scares me. FACILITY\l"
+	.string "BETA scares me.\p"
+	.string "What you're about to do?\n"
+	.string "I couldn't.\p"
+	.string "I'll be at EVERGREEN's\n"
+	.string "Research Outpost north.\p"
+	.string "If you come back through,\n"
+	.string "find me. I'll have something\l"
+	.string "for you.\p"
+	.string "Go. SCORCH is waiting. The\n"
+	.string "region is waiting.\p"
+	.string "I trust you.$"
+
 SnowRoute15_EventScript_Briney::
 	trainerbattle_single TRAINER_SNOW_R15_1_BRINEY, SnowRoute15_Text_BrineyIntro, SnowRoute15_Text_BrineyDefeat
 	msgbox SnowRoute15_Text_BrineyPostBattle, MSGBOX_AUTOCLOSE

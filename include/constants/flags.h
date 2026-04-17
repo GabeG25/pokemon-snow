@@ -681,8 +681,7 @@
 #define FLAG_SNOW_HIDE_KYUREM_CAVE           0x269 // Kyurem hidden in IronfrostCaveB2B3 until F27 Tyrell defeated
 #define FLAG_SNOW_BEAT_KYUREM                0x26A // Kyurem encounter resolved (caught or defeated)
 #define FLAG_SNOW_GOT_ZORUA                  0x26B // Xenon's silent Zorua gift received (v17 §12, Facility Alpha)
-#define FLAG_UNUSED_0x26B  0x26B // Unused Flag
-#define FLAG_UNUSED_0x26C  0x26C // Unused Flag
+#define FLAG_SNOW_HIDE_AUTUMN_R15            0x26C // Autumn F18 defeated on R15 fork; she walks north to Research Outpost
 #define FLAG_UNUSED_0x26D  0x26D // Unused Flag
 #define FLAG_UNUSED_0x26E  0x26E // Unused Flag
 #define FLAG_UNUSED_0x26F  0x26F // Unused Flag
