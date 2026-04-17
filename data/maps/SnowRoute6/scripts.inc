@@ -41,74 +41,128 @@ SnowRoute6_EventScript_Hale::
 	msgbox SnowRoute6_Text_HalePostBattle, MSGBOX_AUTOCLOSE
 	end
 
+@ R6-1 Skier Nadia — route opener. Alolan Vulpix / Snorunt / Sneasel.
+@ Voice: carving-line confidence. Frost Breath = crit teaching moment.
+
 SnowRoute6_Text_NadiaIntro:
-	.string "Think you can handle the cold?\nLet's find out!$"
+	.string "Nadia. Five-time slalom gold.\n"
+	.string "I race things colder than you.\p"
+	.string "Frost doesn't miss twice.$"
 
 SnowRoute6_Text_NadiaDefeat:
-	.string "That was incredible...$"
+	.string "Huh. Warmer than I expected.$"
 
 SnowRoute6_Text_NadiaPostBattle:
-	.string "The path ahead gets tougher.\nBe careful out there.$"
+	.string "Watch for the crits, trainer.\n"
+	.string "BORALYSS doubles them.$"
+
+@ R6-2 Boarder Reed — Skill Link Shellder spam.
+@ Voice: loud, mid-trick, half-listening.
 
 SnowRoute6_Text_ReedIntro:
-	.string "A challenger? Perfect timing!$"
+	.string "SHELLDER hits five times,\n"
+	.string "rider! You ready?\p"
+	.string "Bet you're not.$"
 
 SnowRoute6_Text_ReedDefeat:
-	.string "I didn't expect that...$"
+	.string "Okay. Okay. Respect.$"
 
 SnowRoute6_Text_ReedPostBattle:
-	.string "Good luck on your journey.$"
+	.string "Next run's on you.$"
+
+@ R6-3 Fisherman Wade — status gauntlet. Hypnosis + Wrap + Supersonic.
+@ Voice: patient, almost cruel.
 
 SnowRoute6_Text_WadeIntro:
-	.string "I've been training for this!\nBring it on!$"
+	.string "You rush the lake, you lose.\p"
+	.string "Sleep. Wrap. Confuse.\n"
+	.string "That's the order.$"
 
 SnowRoute6_Text_WadeDefeat:
-	.string "You're stronger than I thought!$"
+	.string "You were ready.\n"
+	.string "Most aren't.$"
 
 SnowRoute6_Text_WadePostBattle:
-	.string "I'll be training hard for\nnext time we meet.$"
+	.string "The ice thinks in its own time.\n"
+	.string "So should you.$"
+
+@ R6-4 Fisherman Clark — Rain Dance + Staryu Recover anchor.
+@ Voice: young, cocky, shorter-tempered than Wade.
 
 SnowRoute6_Text_ClarkIntro:
-	.string "You look tough, but I'm tougher!$"
+	.string "WADE's boring. Watch this.\p"
+	.string "RAIN DANCE. Full speed.\n"
+	.string "See you at the finish.$"
 
 SnowRoute6_Text_ClarkDefeat:
-	.string "Wow, I lost...$"
+	.string "STARYU's supposed to recover.\n"
+	.string "Not from that.$"
 
 SnowRoute6_Text_ClarkPostBattle:
-	.string "You should rest at the next\ntown if you can.$"
+	.string "Tell WADE I said hi. From\n"
+	.string "the bottom of the lake.$"
+
+@ R6-5 Bug Catcher Miles — Compound Eyes Sleep Powder 97.5%.
+@ Voice: wired, over-excited about mechanics.
 
 SnowRoute6_Text_MilesIntro:
-	.string "Hey! You're a trainer too?\nLet's battle!$"
+	.string "97.5 percent! That's my\n"
+	.string "VENONAT's SLEEP POWDER!\p"
+	.string "I ran the MATH!$"
 
 SnowRoute6_Text_MilesDefeat:
-	.string "I need to train more...$"
+	.string "You woke up the wrong mon...$"
 
 SnowRoute6_Text_MilesPostBattle:
-	.string "The wild POKéMON around here\ncan be tricky. Stay alert.$"
+	.string "YANMA's SPEED BOOST means I\n"
+	.string "only lose by a few turns.\p"
+	.string "Next time!$"
+
+@ R6-6 Lady Helena — 2-mon sustain. Kirlia Calm Mind + Roselia Toxic.
+@ Voice: poised, condescending without being mean.
 
 SnowRoute6_Text_HelenaIntro:
-	.string "No one passes without a fight!$"
+	.string "I brought two, dear. That\n"
+	.string "is all I need.\p"
+	.string "KIRLIA. CALM MIND. Shall we?$"
 
 SnowRoute6_Text_HelenaDefeat:
-	.string "You really got me...$"
+	.string "Oh.\n"
+	.string "Well played, dear.$"
 
 SnowRoute6_Text_HelenaPostBattle:
-	.string "You've got real talent.$"
+	.string "When ROSELIA's TOXIC lands,\n"
+	.string "time becomes the enemy.\p"
+	.string "You beat the clock.$"
+
+@ R6-7 Skier Ivy — tag-double partner, leads with Follow Me + Hustle fangs.
+@ Voice: sharper than Nadia, tactical narrator.
 
 SnowRoute6_Text_IvyIntro:
-	.string "I won't go easy on you!$"
+	.string "IVY.\p"
+	.string "HALE and I don't lose doubles.\n"
+	.string "Turn around now.$"
 
 SnowRoute6_Text_IvyDefeat:
-	.string "Not bad at all...$"
+	.string "HALE. We rebuild.$"
 
 SnowRoute6_Text_IvyPostBattle:
-	.string "Keep pushing forward!$"
+	.string "Follow Me redirects.\n"
+	.string "Hustle hits.\p"
+	.string "That was supposed to work.$"
+
+@ R6-8 Boarder Hale — tag-double partner, Pachirisu/Delibird/Ursaring.
+@ Voice: relaxed, trusts Ivy, lets her call it.
 
 SnowRoute6_Text_HaleIntro:
-	.string "Ready? Here I come!$"
+	.string "IVY told you. I'm just here\n"
+	.string "to swing URSARING.$"
 
 SnowRoute6_Text_HaleDefeat:
-	.string "I'll remember this battle!$"
+	.string "Fair. That was fair.$"
 
 SnowRoute6_Text_HalePostBattle:
-	.string "I've got nothing left to say.\nJust... wow.$"
+	.string "GLACIER LAKE freezes over\n"
+	.string "in a week.\p"
+	.string "Take the RAZOR CLAW before it\n"
+	.string "does.$"
