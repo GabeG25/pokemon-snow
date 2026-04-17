@@ -31,56 +31,114 @@ SnowRoute11_EventScript_Odette::
 	msgbox SnowRoute11_Text_OdettePostBattle, MSGBOX_AUTOCLOSE
 	end
 
+@ R11 Brightbloom Meadow - flower route before Dragonforge.
+@ Mid-game breather. 6 trainers, last pre-Dragonforge approach.
+
+@ R11-1 Lass Vera - Nidorina/Roselia/Vulpix/Glaceon flower team.
+@ Voice: cheerful, meadow-wandering, flower-themed.
+
 SnowRoute11_Text_VeraIntro:
-	.string "Think you can handle the cold?\nLet's find out!$"
+	.string "Picked the perfect spot for a\n"
+	.string "battle, didn't you?\p"
+	.string "The flowers open at noon.\n"
+	.string "Let's finish before then.$"
 
 SnowRoute11_Text_VeraDefeat:
-	.string "That was incredible...$"
+	.string "GLACEON froze, then thawed.\n"
+	.string "You chose your moment.$"
 
 SnowRoute11_Text_VeraPostBattle:
-	.string "The path ahead gets tougher.\nBe careful out there.$"
+	.string "ROSELIA's TOXIC SPIKES stayed\n"
+	.string "on the field.\p"
+	.string "Your next switch paid the\n"
+	.string "price.$"
+
+@ R11-2 Sailor Tucker - Staraptor/Breloom/Ampharos. Mach Punch + Spore.
+@ Voice: confident sailor, rotating power hitters.
 
 SnowRoute11_Text_TuckerIntro:
-	.string "A challenger? Perfect timing!$"
+	.string "STARAPTOR Intimidates. BRELOOM\n"
+	.string "Spores. AMPHAROS cleans up.\p"
+	.string "Standard Sailor rotation.$"
 
 SnowRoute11_Text_TuckerDefeat:
-	.string "I didn't expect that...$"
+	.string "COTTON GUARD didn't save me.\n"
+	.string "Respect.$"
 
 SnowRoute11_Text_TuckerPostBattle:
-	.string "Good luck on your journey.$"
+	.string "BRELOOM's COBA BERRY survived\n"
+	.string "one Flying hit. The second\l"
+	.string "killed it.\p"
+	.string "Tight math.$"
+
+@ R11-3 Bug Catcher Cypress - Larvesta/Scolipede/Drapion/Yanmega.
+@ Voice: older than Miles or Wren, studied entomologist energy.
 
 SnowRoute11_Text_CypressIntro:
-	.string "I've been training for this!\nBring it on!$"
+	.string "Bug-type has grown up.\n"
+	.string "Four fully evolved threats.\p"
+	.string "SCOLIPEDE leads Swords Dance.$"
 
 SnowRoute11_Text_CypressDefeat:
-	.string "You're stronger than I thought!$"
+	.string "YANMEGA's SPEED BOOST didn't\n"
+	.string "snowball in time.$"
 
 SnowRoute11_Text_CypressPostBattle:
-	.string "I'll be training hard for\nnext time we meet.$"
+	.string "DRAPION's BATTLE ARMOR blocked\n"
+	.string "your crit gambles.\p"
+	.string "Boralyss doubles crits. You\n"
+	.string "know that.$"
+
+@ R11-4 Lass Nina - 1 mon Mawile Sheer Force SD sweeper.
+@ Voice: tiny, direct, Brenna-adjacent endurance wall.
 
 SnowRoute11_Text_NinaIntro:
-	.string "You look tough, but I'm tougher!$"
+	.string "MAWILE.\p"
+	.string "Steel-Fairy. Nine resistances.\n"
+	.string "Good luck.$"
 
 SnowRoute11_Text_NinaDefeat:
-	.string "Wow, I lost...$"
+	.string "Fire or Ground.\n"
+	.string "You had the answer.$"
 
 SnowRoute11_Text_NinaPostBattle:
-	.string "You should rest at the next\ntown if you can.$"
+	.string "SHEER FORCE makes her IRON HEAD\n"
+	.string "hit 156 BP.\p"
+	.string "PLAY ROUGH hits 175. You raced\n"
+	.string "the SWORDS DANCE.$"
+
+@ R11-5 Dragon Tamer Cade - Seadra Sniper crit engine + Tropius/Lapras.
+@ Voice: younger than Zara, less polished, crit-hunter vibe.
 
 SnowRoute11_Text_CadeIntro:
-	.string "Hey! You're a trainer too?\nLet's battle!$"
+	.string "SEADRA's FOCUS ENERGY. SNIPER.\n"
+	.string "Scope Lens. Guaranteed triple\l"
+	.string "crits.\p"
+	.string "Just watch.$"
 
 SnowRoute11_Text_CadeDefeat:
-	.string "I need to train more...$"
+	.string "The crits landed on MY side.$"
 
 SnowRoute11_Text_CadePostBattle:
-	.string "The wild POKéMON around here\ncan be tricky. Stay alert.$"
+	.string "LAPRAS is a classic. She\n"
+	.string "SINGS, then freezes.\p"
+	.string "Didn't get there.$"
+
+@ R11-6 Lady Odette - Kirlia Eviolite + Alolan Vulpix Encore/Disable + Fearow.
+@ Voice: refined, older than Vivian, Helena-continuation arc.
 
 SnowRoute11_Text_OdetteIntro:
-	.string "No one passes without a fight!$"
+	.string "KIRLIA refused to evolve.\n"
+	.string "I respect her choice.\p"
+	.string "EVIOLITE makes up the stats.$"
 
 SnowRoute11_Text_OdetteDefeat:
-	.string "You really got me...$"
+	.string "ENCORE and DISABLE should have\n"
+	.string "trapped you.\p"
+	.string "You switched.$"
 
 SnowRoute11_Text_OdettePostBattle:
-	.string "You've got real talent.$"
+	.string "The next route's MEMORIA\n"
+	.string "PASSAGE. Everything past\l"
+	.string "there runs full EVs.\p"
+	.string "You're about to feel it.$"
