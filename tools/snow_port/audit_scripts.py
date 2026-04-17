@@ -167,6 +167,56 @@ def check_snow_maps():
                     err("HIGH", f"{map_name}/scripts.inc: reference to undefined label '{ref}'")
 
 
+def check_snow_scripts_charset():
+    """Scan Snow scripts.inc .string literals for characters the game's preproc
+    can't map. The charmap supports ascii + a handful of Pokemon-specific glyphs;
+    unicode punctuation INSIDE a .string triggers:
+        data/maps/<X>/scripts.inc:<line>: error: unknown character U+XXXX
+    and halts the build. U+2014 (em-dash) landed twice during Phase 2 interior
+    build-out. Comments (lines starting with @) are stripped by preproc and are
+    safe — only flag the literal-content lines."""
+    # Map of unicode codepoint → friendly name for error messages
+    bad_chars = {
+        "\u2014": "em-dash (U+2014)",
+        "\u2013": "en-dash (U+2013)",
+        "\u2018": "left single quote (U+2018)",
+        "\u2019": "right single quote (U+2019)",
+        "\u201C": "left double quote (U+201C)",
+        "\u201D": "right double quote (U+201D)",
+        "\u2026": "ellipsis (U+2026)",
+    }
+
+    snow_maps = []
+    with open(REPO / "data/maps/map_groups.json") as f:
+        mg = json.load(f)
+        snow_maps = mg.get("gMapGroup_Snow", [])
+
+    for map_name in snow_maps:
+        inc = MAPS_DIR / map_name / "scripts.inc"
+        if not inc.exists():
+            continue
+        text = inc.read_text(encoding="utf-8", errors="replace")
+        for line_no, line in enumerate(text.splitlines(), 1):
+            # Skip comment lines — preproc strips them before charmap check.
+            stripped = line.lstrip()
+            if stripped.startswith("@"):
+                continue
+            # Only check the content inside .string "..." literals.
+            if ".string" not in line:
+                continue
+            # Extract string content between first and last double-quote on the line.
+            lq = line.find('"')
+            rq = line.rfind('"')
+            if lq < 0 or rq <= lq:
+                continue
+            content = line[lq + 1:rq]
+            for ch, label in bad_chars.items():
+                if ch in content:
+                    err("HIGH", f"{map_name}/scripts.inc:{line_no}: .string contains {label} — "
+                                f"game charmap cannot encode; replace with ASCII equivalent")
+                    break
+
+
 def check_event_scripts_includes():
     """Verify all Snow map scripts.inc files are included in event_scripts.s."""
     snow_maps = []
@@ -284,6 +334,7 @@ def main():
     check_snow_maps()
     check_event_scripts_includes()
     check_snow_gym_leaders()
+    check_snow_scripts_charset()
     check_critical_files()
 
     total = len(CRIT) + len(HIGH) + len(MED) + len(LOW)
