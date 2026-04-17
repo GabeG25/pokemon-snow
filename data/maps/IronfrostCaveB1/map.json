@@ -24,7 +24,16 @@
   "object_events": [],
   "warp_events": [],
   "coord_events": [],
-  "bg_events": [],
+  "bg_events": [
+    {
+      "type": "hidden_item",
+      "x": 25,
+      "y": 38,
+      "elevation": 3,
+      "item": "ITEM_TM51",
+      "flag": "FLAG_HIDDEN_ITEM_SNOW_IRONFROST_B1_TM51_STONE_EDGE"
+    }
+  ],
   "id": "MAP_IRONFROST_CAVE_B1",
   "name": "IronfrostCaveB1",
   "map_type": "MAP_TYPE_UNDERGROUND"

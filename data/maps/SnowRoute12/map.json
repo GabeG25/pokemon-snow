@@ -116,7 +116,16 @@
   ],
   "warp_events": [],
   "coord_events": [],
-  "bg_events": [],
+  "bg_events": [
+    {
+      "type": "hidden_item",
+      "x": 70,
+      "y": 16,
+      "elevation": 3,
+      "item": "ITEM_REAPER_CLOTH",
+      "flag": "FLAG_HIDDEN_ITEM_SNOW_R12_REAPER_CLOTH"
+    }
+  ],
   "id": "MAP_SNOW_ROUTE12",
   "name": "SnowRoute12",
   "map_type": "MAP_TYPE_ROUTE"

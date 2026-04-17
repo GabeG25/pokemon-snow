@@ -103,7 +103,16 @@
   ],
   "warp_events": [],
   "coord_events": [],
-  "bg_events": [],
+  "bg_events": [
+    {
+      "type": "hidden_item",
+      "x": 5,
+      "y": 130,
+      "elevation": 3,
+      "item": "ITEM_TM26",
+      "flag": "FLAG_HIDDEN_ITEM_SNOW_R11_TM26_VOLT_SWITCH"
+    }
+  ],
   "id": "MAP_SNOW_ROUTE11",
   "name": "SnowRoute11",
   "map_type": "MAP_TYPE_ROUTE"

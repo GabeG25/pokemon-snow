@@ -142,7 +142,24 @@
   ],
   "warp_events": [],
   "coord_events": [],
-  "bg_events": [],
+  "bg_events": [
+    {
+      "type": "hidden_item",
+      "x": 10,
+      "y": 50,
+      "elevation": 3,
+      "item": "ITEM_TM40",
+      "flag": "FLAG_HIDDEN_ITEM_SNOW_R14_TM40_IRON_HEAD"
+    },
+    {
+      "type": "hidden_item",
+      "x": 30,
+      "y": 10,
+      "elevation": 3,
+      "item": "ITEM_MAGMARIZER",
+      "flag": "FLAG_HIDDEN_ITEM_SNOW_R14_MAGMARIZER"
+    }
+  ],
   "id": "MAP_SNOW_ROUTE14",
   "name": "SnowRoute14",
   "map_type": "MAP_TYPE_ROUTE"

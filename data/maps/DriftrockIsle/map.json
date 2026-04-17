@@ -85,7 +85,16 @@
   ],
   "warp_events": [],
   "coord_events": [],
-  "bg_events": [],
+  "bg_events": [
+    {
+      "type": "hidden_item",
+      "x": 35,
+      "y": 70,
+      "elevation": 3,
+      "item": "ITEM_TM23",
+      "flag": "FLAG_HIDDEN_ITEM_SNOW_DI_TM23_POISON_JAB"
+    }
+  ],
   "id": "MAP_DRIFTROCK_ISLE",
   "name": "DriftrockIsle",
   "map_type": "MAP_TYPE_ROUTE"

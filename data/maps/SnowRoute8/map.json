@@ -103,7 +103,16 @@
   ],
   "warp_events": [],
   "coord_events": [],
-  "bg_events": [],
+  "bg_events": [
+    {
+      "type": "hidden_item",
+      "x": 55,
+      "y": 3,
+      "elevation": 3,
+      "item": "ITEM_TM17",
+      "flag": "FLAG_HIDDEN_ITEM_SNOW_R8_TM17_WILL_O_WISP"
+    }
+  ],
   "id": "MAP_SNOW_ROUTE8",
   "name": "SnowRoute8",
   "map_type": "MAP_TYPE_ROUTE"

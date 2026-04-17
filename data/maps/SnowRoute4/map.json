@@ -22,5 +22,14 @@
   "object_events": [],
   "warp_events": [],
   "coord_events": [],
-  "bg_events": []
+  "bg_events": [
+    {
+      "type": "hidden_item",
+      "x": 75,
+      "y": 17,
+      "elevation": 3,
+      "item": "ITEM_TM06",
+      "flag": "FLAG_HIDDEN_ITEM_SNOW_R4_TM06_TOXIC"
+    }
+  ]
 }
