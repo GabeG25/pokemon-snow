@@ -1217,6 +1217,12 @@
     "PinegroveCity_Mart",
     "IronfrostCity_PokemonCenter_1F",
     "IronfrostCity_PokemonCenter_2F",
-    "IronfrostCity_Mart"
+    "IronfrostCity_Mart",
+    "DreamursTown_PokemonCenter_1F",
+    "DreamursTown_PokemonCenter_2F",
+    "DreamursTown_Mart",
+    "IceharborCity_PokemonCenter_1F",
+    "IceharborCity_PokemonCenter_2F",
+    "IceharborCity_Mart"
   ]
 }

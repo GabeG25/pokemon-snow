@@ -399,6 +399,26 @@
       "respawn_npc": "0",
       "respawn_x": 7,
       "respawn_y": 3
+    },
+    {
+      "id": "HEAL_LOCATION_DREAMURS_TOWN",
+      "map": "MAP_DREAMURS_TOWN",
+      "x": 4,
+      "y": 3,
+      "respawn_map": "MAP_DREAMURS_TOWN_POKEMON_CENTER_1F",
+      "respawn_npc": "0",
+      "respawn_x": 7,
+      "respawn_y": 3
+    },
+    {
+      "id": "HEAL_LOCATION_ICEHARBOR_CITY",
+      "map": "MAP_ICEHARBOR_CITY",
+      "x": 4,
+      "y": 3,
+      "respawn_map": "MAP_ICEHARBOR_CITY_POKEMON_CENTER_1F",
+      "respawn_npc": "0",
+      "respawn_x": 7,
+      "respawn_y": 3
     }
   ]
 }
