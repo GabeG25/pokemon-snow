@@ -525,11 +525,14 @@
 #define FLAG_DEFEATED_HO_OH                  0x1DC
 #define FLAG_DEFEATED_LUGIA                  0x1DD
 
-#define FLAG_UNUSED_0x1DE                    0x1DE // Unused Flag
-#define FLAG_UNUSED_0x1DF                    0x1DF // Unused Flag
-#define FLAG_UNUSED_0x1E0                    0x1E0 // Unused Flag
-#define FLAG_UNUSED_0x1E1                    0x1E1 // Unused Flag
-#define FLAG_UNUSED_0x1E2                    0x1E2 // Unused Flag
+// Snow facility-boss cascade flags — set by their respective boss battle
+// scripts; consumed by src/caps.c GetCurrentLevelCap to advance zone caps
+// between badges 8 and Champion per v17 §21 Zone Cap Progression Table.
+#define FLAG_SNOW_BEAT_F18_AUTUMN            0x1DE // F18 Autumn #5 on R15 Pyrespire Lagoon (cap 72→73; v17 §21 mid-zone sub-cap)
+#define FLAG_SNOW_BEAT_F22_TYRELL            0x1DF // F22 Tyrell #1 on Facility Beta Roof (cap 73→79)
+#define FLAG_SNOW_BEAT_F27_TYRELL            0x1E0 // F27 Tyrell #2 on Facility Alpha F4 with Kyurem (cap 79→89; HARDEST FIGHT)
+#define FLAG_SNOW_BEAT_F28_EVERGREEN         0x1E1 // F28 Evergreen postgame (cap 89→92)
+#define FLAG_SNOW_BEAT_F30_ASHER             0x1E2 // F30 Asher #6 final rival fight (cap 92→95)
 #define FLAG_UNUSED_0x1E3                    0x1E3 // Unused Flag
 
 // Mystery Gift Flags (Unknown)

@@ -250,12 +250,28 @@ def check_critical_files():
         err("HIGH", "B_RARE_CANDY_CAP not set to TRUE (Candy Box won't respect caps)")
 
     caps_c = (REPO / "src/caps.c").read_text()
-    snow_caps = ["FLAG_BADGE01_GET, 15", "FLAG_BADGE02_GET, 23", "FLAG_BADGE03_GET, 30",
-                 "FLAG_BADGE04_GET, 40", "FLAG_BADGE05_GET, 50", "FLAG_BADGE06_GET, 59",
-                 "FLAG_BADGE07_GET, 66", "FLAG_BADGE08_GET, 72", "FLAG_IS_CHAMPION, 95"]
-    for c in snow_caps:
-        if c not in caps_c:
-            err("HIGH", f"src/caps.c missing Snow level cap: {c}")
+    # Snow Zone Cap Progression (v17 §21): each (flag, cap) pair must be
+    # present in the sLevelCapFlagMap. Match is whitespace-insensitive on
+    # the comma separator so either "FLAG, 15" or "FLAG,           15" counts.
+    snow_caps = [
+        ("FLAG_BADGE01_GET",           "15"),
+        ("FLAG_BADGE02_GET",           "23"),
+        ("FLAG_BADGE03_GET",           "30"),
+        ("FLAG_BADGE04_GET",           "40"),
+        ("FLAG_BADGE05_GET",           "50"),
+        ("FLAG_BADGE06_GET",           "59"),
+        ("FLAG_BADGE07_GET",           "66"),
+        ("FLAG_BADGE08_GET",           "72"),
+        ("FLAG_SNOW_BEAT_F18_AUTUMN",  "72"),
+        ("FLAG_SNOW_BEAT_F22_TYRELL",  "73"),
+        ("FLAG_SNOW_BEAT_F27_TYRELL",  "79"),
+        ("FLAG_SNOW_BEAT_F28_EVERGREEN", "89"),
+        ("FLAG_SNOW_BEAT_F30_ASHER",   "92"),
+        ("FLAG_IS_CHAMPION",           "95"),
+    ]
+    for flag, cap in snow_caps:
+        if not re.search(rf'{re.escape(flag)}\s*,\s*{cap}\b', caps_c):
+            err("HIGH", f"src/caps.c missing Snow level cap: {flag}, {cap}")
 
     battle_util = (REPO / "src/battle_util.c").read_text()
     if "weatherDuration = 0" not in battle_util:
