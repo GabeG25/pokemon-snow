@@ -1229,6 +1229,15 @@
     "SolaceTown_Mart",
     "PyrespireCity_PokemonCenter_1F",
     "PyrespireCity_PokemonCenter_2F",
-    "PyrespireCity_Mart"
+    "PyrespireCity_Mart",
+    "DragonforgeCity_PokemonCenter_1F",
+    "DragonforgeCity_PokemonCenter_2F",
+    "DragonforgeCity_Mart",
+    "DragonforgeCity_DepartmentStore_1F",
+    "DragonforgeCity_DepartmentStore_2F",
+    "DragonforgeCity_DepartmentStore_3F",
+    "DragonforgeCity_DepartmentStore_4F",
+    "DragonforgeCity_DepartmentStore_5F",
+    "DragonforgeCity_DepartmentStoreRooftop"
   ]
 }
