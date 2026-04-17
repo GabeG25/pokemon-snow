@@ -51,17 +51,26 @@ DawnflakeTown_PlayersHouse_2F_EventScript_PC::
 	end
 
 @ ═══════════════════════════════════════════════════════════
-@ Candy Box — hidden item-style trigger at bed foot
+@ Candy Box — visible item-ball object by the bed (LOCALID 1)
+@ Hidden after pickup via FLAG_SNOW_GOT_CANDY_BOX on the event.
 @ ═══════════════════════════════════════════════════════════
 
-DawnflakeTown_PlayersHouse_2F_EventScript_CandyBoxTrigger::
-	lockall
-	goto_if_set FLAG_SNOW_GOT_CANDY_BOX, DawnflakeTown_PlayersHouse_2F_EventScript_CandyBoxEnd
+DawnflakeTown_PlayersHouse_2F_EventScript_CandyBox::
+	lock
+	faceplayer
 	playse SE_PIN
 	msgbox DawnflakeTown_PlayersHouse_2F_Text_CandyBoxFound, MSGBOX_DEFAULT
 	setflag FLAG_SNOW_GOT_CANDY_BOX
-DawnflakeTown_PlayersHouse_2F_EventScript_CandyBoxEnd::
-	releaseall
+	removeobject 1
+	release
+	end
+
+@ ═══════════════════════════════════════════════════════════
+@ TV sign — bedroom flavor
+@ ═══════════════════════════════════════════════════════════
+
+DawnflakeTown_PlayersHouse_2F_EventScript_TV::
+	msgbox DawnflakeTown_PlayersHouse_2F_Text_TV, MSGBOX_SIGN
 	end
 
 @ ═══════════════════════════════════════════════════════════
@@ -87,6 +96,15 @@ DawnflakeTown_PlayersHouse_2F_Text_WallClock:
 	.string "Quarter past eight.\n"
 	.string "The morning's already moving\l"
 	.string "without you.$"
+
+DawnflakeTown_PlayersHouse_2F_Text_TV:
+	.string "The TV is tuned to the\n"
+	.string "BORALYSS WEATHER CHANNEL.\p"
+	.string "'...third week of early-onset\n"
+	.string "winter advisories. Route 1\l"
+	.string "trainers are advised to pack\l"
+	.string "extra layers.'\p"
+	.string "You turn it off.$"
 
 DawnflakeTown_PlayersHouse_2F_Text_WakeUp:
 	.string "...\p"

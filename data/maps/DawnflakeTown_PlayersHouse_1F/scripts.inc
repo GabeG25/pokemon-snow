@@ -1,5 +1,33 @@
 DawnflakeTown_PlayersHouse_1F_MapScripts::
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, DawnflakeTown_PlayersHouse_1F_OnFrame
 	.byte 0
+
+DawnflakeTown_PlayersHouse_1F_OnFrame:
+	map_script_2 VAR_SNOW_INTRO_STATE, 1, DawnflakeTown_PlayersHouse_1F_EventScript_MomCutscene
+	.2byte 0
+
+@ ═══════════════════════════════════════════════════════════
+@ Mom downstairs cutscene — auto-fires on first descent from
+@ the bedroom.  VAR_SNOW_INTRO_STATE=1 after the wake-up; this
+@ script advances it to 2 so the frame entry never re-matches.
+@ ═══════════════════════════════════════════════════════════
+
+DawnflakeTown_PlayersHouse_1F_EventScript_MomCutscene::
+	lockall
+	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterDown
+	waitmovement 0
+	applymovement 1, DawnflakeTown_PlayersHouse_1F_Movement_MomFaceUp
+	waitmovement 0
+	msgbox DawnflakeTown_PlayersHouse_1F_Text_MomCutscene, MSGBOX_DEFAULT
+	closemessage
+	setvar VAR_SNOW_INTRO_STATE, 2
+	setflag FLAG_SNOW_INTRO_MOM_CUTSCENE_DONE
+	releaseall
+	end
+
+DawnflakeTown_PlayersHouse_1F_Movement_MomFaceUp:
+	walk_in_place_faster_up
+	step_end
 
 @ ═══════════════════════════════════════════════════════════
 @ Mom interact — warm, worried, heals post-rival
@@ -77,3 +105,18 @@ DawnflakeTown_PlayersHouse_1F_Text_Bookshelf:
 	.string "The second one has a bookmark\n"
 	.string "deep in a chapter titled\l"
 	.string "'When Winter Won't Leave.'$"
+
+DawnflakeTown_PlayersHouse_1F_Text_MomCutscene:
+	.string "MOM: Oh! You're up!\p"
+	.string "I heard you shuffling around\n"
+	.string "upstairs. Sleep well?\p"
+	.string "Professor EVERGREEN called\n"
+	.string "down from the lab twice\l"
+	.string "already.\p"
+	.string "He's a patient man, honey.\n"
+	.string "Don't make him be patient a\l"
+	.string "third time.\p"
+	.string "Head on over whenever you're\n"
+	.string "ready.\p"
+	.string "ASHER's probably already\n"
+	.string "there pretending he isn't.$"
