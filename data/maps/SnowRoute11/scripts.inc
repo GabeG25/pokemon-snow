@@ -1,6 +1,93 @@
 SnowRoute11_MapScripts::
 	.byte 0
 
+@ ═══════════════════════════════════════════════════════════════
+@ F14 ASHER — R11 Brightbloom Meadow, his first Veil-era fight
+@ ═══════════════════════════════════════════════════════════════
+@ Per v17 cast: Works for Veil F14–F21. F14 is the first fight
+@ where the player sees him wearing the uniform (or whatever Veil
+@ signal). Team introduces the Persian/Breloom/Cloyster core that
+@ persists through F21/F30. LOCALID 7. Starter-keyed A/B/C.
+
+SnowRoute11_EventScript_AsherF14::
+	lock
+	faceplayer
+	msgbox SnowRoute11_Text_AsherF14Intro, MSGBOX_DEFAULT
+	closemessage
+	compare VAR_STARTER_MON, 0
+	goto_if_eq SnowRoute11_EventScript_AsherF14VariantA
+	compare VAR_STARTER_MON, 1
+	goto_if_eq SnowRoute11_EventScript_AsherF14VariantB
+	compare VAR_STARTER_MON, 2
+	goto_if_eq SnowRoute11_EventScript_AsherF14VariantC
+	release
+	end
+
+SnowRoute11_EventScript_AsherF14VariantA::
+	trainerbattle_no_intro TRAINER_SNOW_F14_ASHER_A, SnowRoute11_Text_AsherF14Defeat
+	goto SnowRoute11_EventScript_AsherF14AfterBattle
+
+SnowRoute11_EventScript_AsherF14VariantB::
+	trainerbattle_no_intro TRAINER_SNOW_F14_ASHER_B, SnowRoute11_Text_AsherF14Defeat
+	goto SnowRoute11_EventScript_AsherF14AfterBattle
+
+SnowRoute11_EventScript_AsherF14VariantC::
+	trainerbattle_no_intro TRAINER_SNOW_F14_ASHER_C, SnowRoute11_Text_AsherF14Defeat
+	goto SnowRoute11_EventScript_AsherF14AfterBattle
+
+SnowRoute11_EventScript_AsherF14AfterBattle::
+	setflag FLAG_SNOW_BEAT_F14_ASHER
+	msgbox SnowRoute11_Text_AsherF14PostBattle, MSGBOX_DEFAULT
+	closemessage
+	applymovement 7, SnowRoute11_Movement_AsherF14Depart
+	waitmovement 0
+	setflag FLAG_SNOW_HIDE_ASHER_R11
+	removeobject 7
+	release
+	end
+
+SnowRoute11_Movement_AsherF14Depart:
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+SnowRoute11_Text_AsherF14Intro:
+	.string "ASHER: {PLAYER}.\p"
+	.string "You're looking at me like\n"
+	.string "you don't recognize this\l"
+	.string "crest.\p"
+	.string "It's TEAM VEIL. I work for\n"
+	.string "TYRELL now.\p"
+	.string "Before you say anything,\n"
+	.string "save it. I know what\l"
+	.string "EVERGREEN thinks. I know\l"
+	.string "what PRIYO says.\p"
+	.string "They don't know what TYRELL\n"
+	.string "is BUILDING.\p"
+	.string "KYUREM isn't a weapon. It's\n"
+	.string "a correction.\p"
+	.string "Fight me, {PLAYER}. Convince\n"
+	.string "me you belong on the side\l"
+	.string "that stops it.$"
+
+SnowRoute11_Text_AsherF14Defeat:
+	.string "ASHER: ...Shut up.$"
+
+SnowRoute11_Text_AsherF14PostBattle:
+	.string "ASHER: You're still ahead of\n"
+	.string "me. Fine.\p"
+	.string "Doesn't change what I\n"
+	.string "decided. I'm not turning\l"
+	.string "around.\p"
+	.string "TYRELL said you'd show up\n"
+	.string "at Facility BETA eventually.\p"
+	.string "He's right.\p"
+	.string "I'll be there when you do.$"
+
 SnowRoute11_EventScript_Vera::
 	trainerbattle_single TRAINER_SNOW_R11_1_VERA, SnowRoute11_Text_VeraIntro, SnowRoute11_Text_VeraDefeat
 	msgbox SnowRoute11_Text_VeraPostBattle, MSGBOX_AUTOCLOSE

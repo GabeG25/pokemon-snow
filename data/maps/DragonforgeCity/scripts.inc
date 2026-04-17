@@ -110,3 +110,82 @@ DragonforgeCity_Text_AideLocked:
 
 DragonforgeCity_Text_AideTaught:
 	.string "AIDE: KNOCK OFF taught successfully.$"
+
+@ ===== F15 Autumn — post Gym 5 Dragonforge, Lv57 team (v17 §20) =====
+@ LOCALID 3. After F10 on R7 she said she was stepping back. She
+@ didn't fully. Still wanting one more fight. Voice: warmer than F10,
+@ less giddy than F5, more reflective.
+
+DragonforgeCity_EventScript_AutumnF15::
+	lock
+	faceplayer
+	msgbox DragonforgeCity_Text_AutumnF15Intro, MSGBOX_DEFAULT
+	closemessage
+	compare VAR_STARTER_MON, 0
+	goto_if_eq DragonforgeCity_EventScript_AutumnF15VariantA
+	compare VAR_STARTER_MON, 1
+	goto_if_eq DragonforgeCity_EventScript_AutumnF15VariantB
+	compare VAR_STARTER_MON, 2
+	goto_if_eq DragonforgeCity_EventScript_AutumnF15VariantC
+	release
+	end
+
+DragonforgeCity_EventScript_AutumnF15VariantA::
+	trainerbattle_no_intro TRAINER_SNOW_F15_AUTUMN_A, DragonforgeCity_Text_AutumnF15Defeat
+	goto DragonforgeCity_EventScript_AutumnF15AfterBattle
+
+DragonforgeCity_EventScript_AutumnF15VariantB::
+	trainerbattle_no_intro TRAINER_SNOW_F15_AUTUMN_B, DragonforgeCity_Text_AutumnF15Defeat
+	goto DragonforgeCity_EventScript_AutumnF15AfterBattle
+
+DragonforgeCity_EventScript_AutumnF15VariantC::
+	trainerbattle_no_intro TRAINER_SNOW_F15_AUTUMN_C, DragonforgeCity_Text_AutumnF15Defeat
+	goto DragonforgeCity_EventScript_AutumnF15AfterBattle
+
+DragonforgeCity_EventScript_AutumnF15AfterBattle::
+	setflag FLAG_SNOW_BEAT_F15_AUTUMN
+	msgbox DragonforgeCity_Text_AutumnF15PostBattle, MSGBOX_DEFAULT
+	closemessage
+	applymovement 3, DragonforgeCity_Movement_AutumnF15Depart
+	waitmovement 0
+	setflag FLAG_SNOW_HIDE_AUTUMN_DRAGONFORGE
+	removeobject 3
+	release
+	end
+
+DragonforgeCity_Movement_AutumnF15Depart:
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+DragonforgeCity_Text_AutumnF15Intro:
+	.string "AUTUMN: Hey.\p"
+	.string "Don't look at me like that.\n"
+	.string "I know. I said GALETOP was\l"
+	.string "the last one.\p"
+	.string "I lied. Apparently.\p"
+	.string "{PLAYER}, I've been reading\n"
+	.string "everything EVERGREEN sends.\l"
+	.string "ASHER's in the VEIL CREST\l"
+	.string "now. Did you know?\p"
+	.string "I saw him on R11.\n"
+	.string "I didn't say anything.\p"
+	.string "You should know, though.\p"
+	.string "One more fight. Really this\n"
+	.string "time, probably.$"
+
+DragonforgeCity_Text_AutumnF15Defeat:
+	.string "AUTUMN: ...Yeah.$"
+
+DragonforgeCity_Text_AutumnF15PostBattle:
+	.string "AUTUMN: PYRESPIRE is south.\n"
+	.string "R15's past that.\p"
+	.string "If you see me there, it's\n"
+	.string "the real last one.\p"
+	.string "Be careful with ASHER,\n"
+	.string "{PLAYER}. He'll be at BETA.\p"
+	.string "He listens to you. He won't\n"
+	.string "say it but he does.$"

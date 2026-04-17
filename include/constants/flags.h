@@ -706,18 +706,18 @@
 #define FLAG_SNOW_GOT_TM14_ACROBATICS        0x28A // Autumn's TM14 Acrobatics gift after F10 (v17 §15)
 #define FLAG_SNOW_BEAT_F21_ASHER             0x28B // F21 Asher #5 at Facility Beta Roof, gates F22 Tyrell (v17 §20)
 #define FLAG_SNOW_HIDE_ASHER_VR              0x28C // Asher F30 hidden after he steps aside to let the player reach E4
+#define FLAG_SNOW_BEAT_F5_AUTUMN             0x28D // F5 Autumn #2 at Pinegrove City post-Gym-2 (v17 §20)
+#define FLAG_SNOW_HIDE_AUTUMN_PINEGROVE      0x28E // Autumn F5 hidden after she walks off post-fight
+#define FLAG_SNOW_BEAT_F8_ASHER              0x28F // F8 Asher #3 at Ironfrost City post-Gym-3 (v17 §20)
+#define FLAG_SNOW_HIDE_ASHER_IRONFROST       0x290 // Asher F8 hidden after he departs
+#define FLAG_SNOW_BEAT_F14_ASHER             0x291 // F14 Asher #4 at R11 Brightbloom Meadow (v17 §20)
+#define FLAG_SNOW_HIDE_ASHER_R11             0x292 // Asher F14 hidden after he departs
+#define FLAG_SNOW_BEAT_F15_AUTUMN            0x293 // F15 Autumn #4 at Dragonforge City post-Gym-5 (v17 §20)
+#define FLAG_SNOW_HIDE_AUTUMN_DRAGONFORGE    0x294 // Autumn F15 hidden after she departs
 
 // 0x264-0x27F now reserved for Snow hidden-item flag expansion (+0x70..+0x8B):
 // FLAG_HIDDEN_ITEMS_START + 0x70..0x72 already claimed (R1 Antidote, R2 Potion, R3 Super Potion).
 // +0x73..+0x8B available for R7 9 berries + R4/R8/DI/R11/R12/R14/IronfrostBasement items.
-#define FLAG_UNUSED_0x28D  0x28D // Unused Flag
-#define FLAG_UNUSED_0x28E  0x28E // Unused Flag
-#define FLAG_UNUSED_0x28F  0x28F // Unused Flag
-#define FLAG_UNUSED_0x290  0x290 // Unused Flag
-#define FLAG_UNUSED_0x291  0x291 // Unused Flag
-#define FLAG_UNUSED_0x292  0x292 // Unused Flag
-#define FLAG_UNUSED_0x293  0x293 // Unused Flag
-#define FLAG_UNUSED_0x294  0x294 // Unused Flag
 #define FLAG_UNUSED_0x295  0x295 // Unused Flag
 #define FLAG_UNUSED_0x296  0x296 // Unused Flag
 #define FLAG_UNUSED_0x297  0x297 // Unused Flag

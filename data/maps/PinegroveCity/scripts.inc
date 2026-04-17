@@ -120,3 +120,80 @@ PinegroveCity_Text_FishingRodGiven:
 PinegroveCity_Text_FishingRodPost:
 	.string "FISHERMAN: Catching anything\n"
 	.string "good out there?$"
+
+@ ===== F5 Autumn — post Gym 2 rival, Lv21 team (v17 §20) =====
+@ LOCALID 4. She intercepts the player in the city after they beat
+@ CEDAR. Still enthusiastic rival — her F10 "stepping back" moment
+@ hasn't happened yet.
+
+PinegroveCity_EventScript_AutumnF5::
+	lock
+	faceplayer
+	msgbox PinegroveCity_Text_AutumnF5Intro, MSGBOX_DEFAULT
+	closemessage
+	compare VAR_STARTER_MON, 0
+	goto_if_eq PinegroveCity_EventScript_AutumnF5VariantA
+	compare VAR_STARTER_MON, 1
+	goto_if_eq PinegroveCity_EventScript_AutumnF5VariantB
+	compare VAR_STARTER_MON, 2
+	goto_if_eq PinegroveCity_EventScript_AutumnF5VariantC
+	release
+	end
+
+PinegroveCity_EventScript_AutumnF5VariantA::
+	trainerbattle_no_intro TRAINER_SNOW_F5_AUTUMN_A, PinegroveCity_Text_AutumnF5Defeat
+	goto PinegroveCity_EventScript_AutumnF5AfterBattle
+
+PinegroveCity_EventScript_AutumnF5VariantB::
+	trainerbattle_no_intro TRAINER_SNOW_F5_AUTUMN_B, PinegroveCity_Text_AutumnF5Defeat
+	goto PinegroveCity_EventScript_AutumnF5AfterBattle
+
+PinegroveCity_EventScript_AutumnF5VariantC::
+	trainerbattle_no_intro TRAINER_SNOW_F5_AUTUMN_C, PinegroveCity_Text_AutumnF5Defeat
+	goto PinegroveCity_EventScript_AutumnF5AfterBattle
+
+PinegroveCity_EventScript_AutumnF5AfterBattle::
+	setflag FLAG_SNOW_BEAT_F5_AUTUMN
+	msgbox PinegroveCity_Text_AutumnF5PostBattle, MSGBOX_DEFAULT
+	closemessage
+	applymovement 4, PinegroveCity_Movement_AutumnF5Depart
+	waitmovement 0
+	setflag FLAG_SNOW_HIDE_AUTUMN_PINEGROVE
+	removeobject 4
+	release
+	end
+
+PinegroveCity_Movement_AutumnF5Depart:
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+PinegroveCity_Text_AutumnF5Intro:
+	.string "AUTUMN: {PLAYER}!\n"
+	.string "You beat CEDAR!\p"
+	.string "Okay okay okay. I saw your\n"
+	.string "badge case the second you\l"
+	.string "walked in.\p"
+	.string "I've been practicing. A LOT.\n"
+	.string "Like, I dreamed about battle\l"
+	.string "plans last night, which is\l"
+	.string "not a flex.\p"
+	.string "One fight!\n"
+	.string "Let's go!$"
+
+PinegroveCity_Text_AutumnF5Defeat:
+	.string "AUTUMN: Noooo!\n"
+	.string "Okay. Okay.$"
+
+PinegroveCity_Text_AutumnF5PostBattle:
+	.string "AUTUMN: Fine. Fine!\n"
+	.string "You got better.\p"
+	.string "I was literally writing\n"
+	.string "notes between moves. You\l"
+	.string "read me the whole time.\p"
+	.string "Going to GALETOP next?\n"
+	.string "R7 has the BERRY field.\p"
+	.string "I'll see you up there.$"

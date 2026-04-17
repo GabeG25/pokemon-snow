@@ -47,6 +47,19 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "DragonforgeCity_EventScript_ProfessorsAideTutor",
       "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
+      "x": 22,
+      "y": 10,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "DragonforgeCity_EventScript_AutumnF15",
+      "flag": "FLAG_SNOW_HIDE_AUTUMN_DRAGONFORGE"
     }
   ],
   "warp_events": [

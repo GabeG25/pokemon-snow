@@ -171,3 +171,77 @@ IronfrostCity_Text_GeologistLocked:
 
 IronfrostCity_Text_GeologistTaught:
 	.string "GEOLOGIST: Done. DIG taught.$"
+
+@ ===== F8 Asher — post Gym 3 rival, Lv29 team (v17 §20) =====
+@ LOCALID 5. Asher intercepts in the city after COPPER falls. Still
+@ hostile at this point — his Veil-work arc (F14-F21) hasn't begun
+@ yet, but the armor is thick.
+
+IronfrostCity_EventScript_AsherF8::
+	lock
+	faceplayer
+	msgbox IronfrostCity_Text_AsherF8Intro, MSGBOX_DEFAULT
+	closemessage
+	compare VAR_STARTER_MON, 0
+	goto_if_eq IronfrostCity_EventScript_AsherF8VariantA
+	compare VAR_STARTER_MON, 1
+	goto_if_eq IronfrostCity_EventScript_AsherF8VariantB
+	compare VAR_STARTER_MON, 2
+	goto_if_eq IronfrostCity_EventScript_AsherF8VariantC
+	release
+	end
+
+IronfrostCity_EventScript_AsherF8VariantA::
+	trainerbattle_no_intro TRAINER_SNOW_F8_ASHER_A, IronfrostCity_Text_AsherF8Defeat
+	goto IronfrostCity_EventScript_AsherF8AfterBattle
+
+IronfrostCity_EventScript_AsherF8VariantB::
+	trainerbattle_no_intro TRAINER_SNOW_F8_ASHER_B, IronfrostCity_Text_AsherF8Defeat
+	goto IronfrostCity_EventScript_AsherF8AfterBattle
+
+IronfrostCity_EventScript_AsherF8VariantC::
+	trainerbattle_no_intro TRAINER_SNOW_F8_ASHER_C, IronfrostCity_Text_AsherF8Defeat
+	goto IronfrostCity_EventScript_AsherF8AfterBattle
+
+IronfrostCity_EventScript_AsherF8AfterBattle::
+	setflag FLAG_SNOW_BEAT_F8_ASHER
+	msgbox IronfrostCity_Text_AsherF8PostBattle, MSGBOX_DEFAULT
+	closemessage
+	applymovement 5, IronfrostCity_Movement_AsherF8Depart
+	waitmovement 0
+	setflag FLAG_SNOW_HIDE_ASHER_IRONFROST
+	removeobject 5
+	release
+	end
+
+IronfrostCity_Movement_AsherF8Depart:
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+IronfrostCity_Text_AsherF8Intro:
+	.string "ASHER: Three badges. Cute.\p"
+	.string "You know who else had three\n"
+	.string "badges at your age?\p"
+	.string "Me.\p"
+	.string "Difference is I didn't need\n"
+	.string "AUTUMN handing me POKE BALLS\l"
+	.string "on Route 1.\p"
+	.string "Let me see how much of this\n"
+	.string "run was actually you.$"
+
+IronfrostCity_Text_AsherF8Defeat:
+	.string "ASHER: Tch.$"
+
+IronfrostCity_Text_AsherF8PostBattle:
+	.string "ASHER: Fine. You're not a\n"
+	.string "fluke.\p"
+	.string "Doesn't mean you're ready\n"
+	.string "for what's south.\p"
+	.string "R6 is teeth. FRAN's gym is\n"
+	.string "teeth. SOLACE is teeth.\p"
+	.string "Don't slow down, {PLAYER}.\n"
+	.string "I won't.$"
