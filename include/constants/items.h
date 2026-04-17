@@ -1051,6 +1051,9 @@ enum __attribute__((packed)) Item
     ITEM_TATSUGIRINITE = 872,
     ITEM_GLIMMORANITE = 873,
 
+    // Pokemon Snow custom items
+    ITEM_PERMAFROST_SHARD = 874,  // Boosts Ice-type moves 1.5x when held by Kyurem (v17 §23)
+
     ITEMS_COUNT,
     ITEM_FIELD_ARROW = ITEMS_COUNT,
 };

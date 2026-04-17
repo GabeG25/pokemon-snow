@@ -6787,6 +6787,11 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct BattleContext *ctx)
              || (B_SOUL_DEW_BOOST < GEN_7 && !(gBattleTypeFlags & BATTLE_TYPE_FRONTIER) && IsBattleMoveSpecial(move))))
             modifier = uq4_12_multiply(modifier, holdEffectModifier);
         break;
+    case HOLD_EFFECT_PERMAFROST_SHARD:
+        // Pokemon Snow: 1.5x Ice-type moves for any Kyurem form (v17 §23)
+        if (GET_BASE_SPECIES_ID(gBattleMons[battlerAtk].species) == SPECIES_KYUREM && moveType == TYPE_ICE)
+            modifier = uq4_12_multiply(modifier, holdEffectModifier);
+        break;
     case HOLD_EFFECT_TYPE_POWER:
     case HOLD_EFFECT_PLATE:
         if (moveType == GetItemSecondaryId(gBattleMons[battlerAtk].item))

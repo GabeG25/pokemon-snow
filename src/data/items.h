@@ -7241,6 +7241,24 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_Glimmoranite,
     },
 
+// Pokemon Snow custom items (v17 §23)
+    [ITEM_PERMAFROST_SHARD] =
+    {
+        .name = ITEM_NAME("Permafrost Shard"),
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_PERMAFROST_SHARD,
+        .holdEffectParam = 50,  // +50% = 1.5x Ice-type damage for Kyurem
+        .description = COMPOUND_STRING(
+            "A shard of ancient\n"
+            "ice. Powers up Ice\n"
+            "moves for Kyurem."),
+        .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_SPECIAL_HELD_ITEM,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .flingPower = 90,
+    },
+
 // Gems
     #if I_PRICE >= GEN_9
         #define GEM_PRICE 15000

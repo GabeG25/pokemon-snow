@@ -35,8 +35,9 @@ AI_SUITE_BOSS = ("Check Bad Move / Try To Faint / Check Viability / "
 
 # Custom items in v17 that don't exist in pokeemerald-expansion yet.
 # Map to closest available item until real items are implemented.
+# Permafrost Shard shipped natively as ITEM_PERMAFROST_SHARD (874) with
+# HOLD_EFFECT_PERMAFROST_SHARD — 1.5x Ice for Kyurem. Fallback no longer needed.
 ITEM_FALLBACKS = {
-    "Permafrost Shard": "Sitrus Berry",  # F27 Tyrell's custom item, defer to art session
 }
 
 # Boss character → trainer class/pic/music/gender mapping.

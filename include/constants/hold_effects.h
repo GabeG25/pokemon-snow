@@ -140,6 +140,7 @@ enum __attribute__((packed)) HoldEffect
     HOLD_EFFECT_OGERPON_MASK,
     // Gen2 hold effect
     HOLD_EFFECT_BERSERK_GENE,
+    HOLD_EFFECT_PERMAFROST_SHARD,  // Pokemon Snow: 1.5x Ice-type moves for Kyurem (v17 §23)
     HOLD_EFFECT_COUNT
 };
 
