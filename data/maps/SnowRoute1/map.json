@@ -1,9 +1,12 @@
 {
+  "id": "MAP_SNOW_ROUTE1",
+  "name": "SnowRoute1",
   "layout": "LAYOUT_SNOW_ROUTE1",
   "music": "MUS_ROUTE101",
   "region_map_section": "MAPSEC_POWDERPATH_TRAIL",
   "requires_flash": false,
   "weather": "WEATHER_SNOW",
+  "map_type": "MAP_TYPE_ROUTE",
   "allow_cycling": true,
   "allow_escaping": false,
   "allow_running": true,
@@ -33,11 +36,11 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SnowRoute1_EventScript_AutumnTutorial",
-      "flag": "0"
+      "flag": "FLAG_SNOW_HIDE_AUTUMN_R1"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
-      "x": 9,
+      "x": 6,
       "y": 8,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
@@ -50,10 +53,10 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_LASS",
-      "x": 6,
-      "y": 12,
+      "x": 12,
+      "y": 10,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -63,7 +66,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_HIKER",
-      "x": 7,
+      "x": 9,
       "y": 14,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_UP",
@@ -77,7 +80,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_HIKER",
       "x": 4,
-      "y": 17,
+      "y": 10,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 0,
@@ -89,8 +92,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-      "x": 17,
-      "y": 10,
+      "x": 19,
+      "y": 9,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
@@ -105,9 +108,126 @@
   "coord_events": [
     {
       "type": "trigger",
+      "x": 2,
+      "y": 3,
+      "elevation": 0,
+      "var": "VAR_TEMP_1",
+      "var_value": "0",
+      "script": "SnowRoute1_EventScript_AutumnTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 3,
+      "y": 3,
+      "elevation": 0,
+      "var": "VAR_TEMP_1",
+      "var_value": "0",
+      "script": "SnowRoute1_EventScript_AutumnTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 4,
+      "y": 3,
+      "elevation": 0,
+      "var": "VAR_TEMP_1",
+      "var_value": "0",
+      "script": "SnowRoute1_EventScript_AutumnTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 5,
+      "y": 3,
+      "elevation": 0,
+      "var": "VAR_TEMP_1",
+      "var_value": "0",
+      "script": "SnowRoute1_EventScript_AutumnTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 6,
+      "y": 3,
+      "elevation": 0,
+      "var": "VAR_TEMP_1",
+      "var_value": "0",
+      "script": "SnowRoute1_EventScript_AutumnTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 7,
+      "y": 3,
+      "elevation": 0,
+      "var": "VAR_TEMP_1",
+      "var_value": "0",
+      "script": "SnowRoute1_EventScript_AutumnTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 8,
+      "y": 3,
+      "elevation": 0,
+      "var": "VAR_TEMP_1",
+      "var_value": "0",
+      "script": "SnowRoute1_EventScript_AutumnTrigger"
+    },
+    {
+      "type": "trigger",
       "x": 9,
       "y": 3,
-      "elevation": 3,
+      "elevation": 0,
+      "var": "VAR_TEMP_1",
+      "var_value": "0",
+      "script": "SnowRoute1_EventScript_AutumnTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 10,
+      "y": 3,
+      "elevation": 0,
+      "var": "VAR_TEMP_1",
+      "var_value": "0",
+      "script": "SnowRoute1_EventScript_AutumnTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 11,
+      "y": 3,
+      "elevation": 0,
+      "var": "VAR_TEMP_1",
+      "var_value": "0",
+      "script": "SnowRoute1_EventScript_AutumnTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 12,
+      "y": 3,
+      "elevation": 0,
+      "var": "VAR_TEMP_1",
+      "var_value": "0",
+      "script": "SnowRoute1_EventScript_AutumnTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 13,
+      "y": 3,
+      "elevation": 0,
+      "var": "VAR_TEMP_1",
+      "var_value": "0",
+      "script": "SnowRoute1_EventScript_AutumnTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 14,
+      "y": 3,
+      "elevation": 0,
+      "var": "VAR_TEMP_1",
+      "var_value": "0",
+      "script": "SnowRoute1_EventScript_AutumnTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 15,
+      "y": 3,
+      "elevation": 0,
       "var": "VAR_TEMP_1",
       "var_value": "0",
       "script": "SnowRoute1_EventScript_AutumnTrigger"
@@ -138,8 +258,5 @@
       "item": "ITEM_ANTIDOTE",
       "flag": "FLAG_HIDDEN_ITEM_SNOW_ROUTE1_ANTIDOTE"
     }
-  ],
-  "id": "MAP_SNOW_ROUTE1",
-  "name": "SnowRoute1",
-  "map_type": "MAP_TYPE_ROUTE"
+  ]
 }

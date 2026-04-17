@@ -68,11 +68,11 @@ SnowRoute1_EventScript_AutumnBagFull::
 SnowRoute1_EventScript_AutumnBattleIntro::
 	msgbox SnowRoute1_Text_AutumnChallenge, MSGBOX_DEFAULT
 	compare VAR_STARTER_MON, 0
-	goto_if_eq SnowRoute1_EventScript_AutumnVariantC
-	compare VAR_STARTER_MON, 1
 	goto_if_eq SnowRoute1_EventScript_AutumnVariantA
-	compare VAR_STARTER_MON, 2
+	compare VAR_STARTER_MON, 1
 	goto_if_eq SnowRoute1_EventScript_AutumnVariantB
+	compare VAR_STARTER_MON, 2
+	goto_if_eq SnowRoute1_EventScript_AutumnVariantC
 	end
 
 SnowRoute1_EventScript_AutumnVariantA::
@@ -90,6 +90,11 @@ SnowRoute1_EventScript_AutumnVariantC::
 SnowRoute1_EventScript_AutumnAfterBattle::
 	setflag FLAG_SNOW_BEAT_F2_AUTUMN
 	msgbox SnowRoute1_Text_AutumnPostBattle, MSGBOX_DEFAULT
+	closemessage
+	applymovement 1, SnowRoute1_Movement_AutumnDepart
+	waitmovement 0
+	setflag FLAG_SNOW_HIDE_AUTUMN_R1
+	removeobject 1
 	releaseall
 	end
 
@@ -131,6 +136,12 @@ SnowRoute1_Movement_AutumnReturn:
 
 SnowRoute1_Movement_AutumnFacePlayer:
 	face_up
+	step_end
+
+SnowRoute1_Movement_AutumnDepart:
+	walk_up
+	walk_up
+	walk_up
 	step_end
 
 @ Autumn text ------------------------------------------------
