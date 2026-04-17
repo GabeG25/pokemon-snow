@@ -47,19 +47,21 @@ Eviolite pre-evo exception: trainer Pokémon can hold Eviolite only if the speci
 Trade evolution via held-item config toggle: species that normally require trade evolution use an in-engine toggle instead, preserving the evolution trigger without multiplayer dependency
 
 Implementation State
-This section is living — update as routes ship. Last updated: 2026-04-12 post-encounters.
+This section is living — update as routes ship. Last updated: 2026-04-17 post-autonomous-completion.
 Shipped (data layer, compiled into ROM):
 
 Route trainers: R1(3) R2(4) R3(5) R5(6) R6(8) R7(5) R8(6) R9(8) R10(8) R11(6) R12(7) R13(9) R14(9) R15(9) DI(5) VR(8) = 106 trainers
-Boss fights: F1-F35 = 57 trainer entries (35 fights, 11 with A/B/C starter variants)
+Boss fights: F1-F35 = 57 trainer entries (35 fights, 11 with A/B/C starter variants). E4 (F31-F34 Brynn/Vesper/Reverie/Wyatt) + Champion (F35 Tyrim) named per v17 canon.
 Total: 163 Snow trainers in ROM. ALL v17 §20 + §5 trainer data shipped.
 
 Engine state:
 
-MAX_TRAINERS_COUNT_EMERALD expanded from 864 to 1024 (flag-ceiling expansion committed as save-breaking change)
-TRAINERS_COUNT_EMERALD equals 1018 (163 Snow trainers plus 855 vanilla Emerald trainers retained)
-6 flag slots free (64 facility grunts will require ceiling expansion to ~1088)
-SaveBlock1 sizeof equals 15,588 bytes, budget 15,872, headroom 284 bytes
+MAX_TRAINERS_COUNT_EMERALD expanded 864 → 1024 → 1088 (save-breaking expansions)
+TRAINERS_COUNT_EMERALD equals 1018 (163 Snow + 855 vanilla Emerald retained)
+70 trainer flag slots free (64 facility grunts fit within 1088 ceiling with 6 headroom)
+FLAG_SNOW_* count: 51 allocated (0x20-0x4F + 0x54-0x55 + Act 1 intro flags + 6 in 0x1DE-0x1E3 block for facility caps and TM18)
+VAR_SNOW_* count: 1 (VAR_SNOW_INTRO_STATE at 0x404E)
+SaveBlock1 sizeof equals 15,596 bytes, budget 15,872, headroom 276 bytes
 Build compiles clean via make -j$(nproc) using devkitARM under WSL Ubuntu
 
 Shipped (species data layer):
@@ -68,29 +70,69 @@ Shipped (species data layer):
 ~138 custom learnset additions (198 moves via port_species_learnsets.py)
 2x crit damage, physical Water Shuriken, trade evo native in expansion
 Gallade Sharpness already handled by pokeemerald-expansion GEN_9 guard
+51-TM Snow remap (TMs 01-51 per v17 §11, shipped via commit c5f61fe218)
+
+Shipped (engine mechanics, all active globally):
+
+B_CRIT_MULTIPLIER = GEN_5 (2x crits per DECISIONS.md locked)
+Weather rocks duration 0 (permanent per v17 §2)
+Water Shuriken = DAMAGE_CATEGORY_PHYSICAL
+Amulet Coin 3x prize multiplier (per v17 §16)
+B_PROTEAN_LIBERO = GEN_8
+Snow level-cap progression: badges 1-8 (15/23/30/40/50/59/66/72) + facility-boss cascade F18→73, F22→79, F27→89, F28→92, F30→95, Champion→95+ (v17 §21)
+ITEM_PERMAFROST_SHARD + HOLD_EFFECT_PERMAFROST_SHARD: +50% Ice damage for Kyurem (v17 §23)
 
 Shipped (map infrastructure + wild encounters):
 
-25 map stubs created with minimal map.json + scripts.inc — registered in gMapGroup_Snow
-Wild encounter tables for all 25 locations injected into wild_encounters.json (23 land, 7 water, 8 fishing)
-~120 unique species across all encounter tables, levels from 2-4 (Dawnflake) through 82-86 (Victory Road)
-Includes regional forms: Alolan Vulpix/Sandshrew/Sandslash, Galarian Darumaka
+73 Snow maps registered in gMapGroup_Snow: 31 outdoor + 42 interior
+All 31 outdoor/primary maps painted with custom layouts (Dawnflake, Route 1, Powderpath, Route 2, Icespire, Route 3 at CEO-polished quality; R4-R15 + VR + DI algorithmically generated via gen_layouts.py)
+60 outdoor-to-outdoor connections (north-to-south flow per v17 geography)
+8 gym cities fully walkable with PC 1F/2F + Mart + heal loop: Icespire, Pinegrove, Ironfrost, Dreamurs, Iceharbor, Dragonforge (+ 5-floor Dept Store + Rooftop with 108-item inventory), Solace, Pyrespire
+Frostbreak Lodge: 8-item specialty shop + Shell Bell + TM18 Rest NPCs
+10 Snow heal locations (Dawnflake bedroom + 8 city PCs + implicit Frostbreak)
+Wild encounter tables: 22 locations (21 land, 6 water, 7 fishing), 131 unique species, levels 2-4 (Dawnflake) through 82-86 (Victory Road), includes regional forms (Alolan Vulpix/Sandshrew/Sandslash, Galarian Darumaka)
 
-Not yet shipped — design exists in v17, awaiting implementation:
+Shipped (scripting):
 
-317-species full Pokédex data files (base stats, types beyond what's already in expansion)
-64 facility grunts (Facilities Delta/Beta/Alpha — requires ceiling expansion)
+Act 1 complete: bedroom wake-up → Mom cutscene → lab starter ceremony (with Asher F1 + Autumn pitch + TM01 Work Up) → Running Shoes → R1 Autumn tutorial (F2 battle + 5 Poké Balls) → first route trainers
+106 trainer battle scripts with placeholder dialogue
+Badge-gated Poké Mart shared clerk (Snow_PokeMart_EventScript_Clerk) used by all 7 city marts
+Dragonforge Dept Store clerks (2F Poke Mart Plus, 3F TM Shop, 4F Battle Items A+B, 5F Evolution, Rooftop Vending)
+All 8 gym leader scripts functional (Silvan richest, Gyms 2-8 with placeholder dialogue)
+NPC gifts: TM01/02/03/04/05/18, Shell Bell, Toxic Orb, Dragon Scale, Wide Lens, Bright Powder, Black Sludge, Old Rod, Root Fossil, Vanillite (Powderpath), Move Tutors (5 cities)
+Region MAPSEC naming per-location (29 Snow MAPSECs defined; grid coords placeholder)
+
+Shipped (tooling):
+
+tools/snow_port/ — 12 scripts, ~5500 lines:
+port_trainers.py, port_boss_fights.py, port_species_ha.py, port_species_learnsets.py, port_wild_encounters.py, gen_layouts.py, audit_scripts.py, paint_dawnflake.py, blend_dawnflake_route1.py
+audit_scripts.py: semantic gym-leader vs trainer-ID cross-check (catches IronfrostCity-class bugs), flag/trainer/item cross-reference, 14 cap-entry validation
+gen_layouts.py: --only flag for non-destructive single-map regeneration
+port_trainers.py: GRUNT_NAME_OVERRIDES dict for narrative-name decoupling from constant IDs
+
+Not yet shipped — CEO-blocked (design decisions required):
+
+29 MAPSEC grid coordinates for Town Map UI (Phase 1 blocker)
+Kyurem confrontation design (location, trigger, battle shape — Phase 4)
+Tyrell F22 + F27 encounter sites + cutscene content (Phase 4)
+64 facility grunt teams (species/moves/items/natures/abilities/EVs per Delta/Beta/Alpha — Phase 6)
+Xenon Zorua gift specifics (location, conditions, flag — Phase 7)
+Post-game scope boundary for v1.0 (Phase 7)
+4 E4 member + Champion HoF flavor text + credits content (Phase 5; names already locked)
 
 Not yet started:
 
-Map wiring — 25 stub maps exist but use placeholder layouts. Real tile painting, event placement, sight ranges, and map connections require Porymap
-NPC scripting — dialog, rival encounters, Team Veil story cutscenes, Kyurem confrontation
-Real Team Veil / Boarder / Skier / Miner class sprites (currently using Magma / Hiker fallbacks)
-Item distribution across maps (Dragonforge Dept. Store inventory, Frostbreak Lodge, 22 designed hidden items)
+Pokémon League interior maps (PokemonLeague/scripts.inc is `.byte 0` stub — E4 rooms, Champion room, Hall of Fame cutscene)
+Dialogue polish R6-R15 + VR + DI (~60 trainers running 6-voice placeholder pool — Phase 3)
+Story scripts for Acts 2-3 rival encounters (Asher F8/F21/F30, Autumn F10/F15)
+Team Veil scripted events past R5 (R6 tag-double grunts, R12/R14 grunt pairs, Facility Delta/Beta/Alpha grunt waves)
+22 hidden items placed across maps (v17 §16)
+Real Team Veil / Boarder / Skier / Miner class sprites (fallbacks active)
+Custom Boralyss region map PNG (vanilla Hoenn placeholder)
 Music, art, sound beyond vanilla Emerald
-Balance playtesting (blocked until at least R1 through R5 has map wiring)
+Balance playtesting
 
-Rough completeness: ~38% toward a fully playable build. All trainer data (220 entries), custom HAs (167 species), custom learnsets (198 moves), and wild encounters (25 locations) are shipped. The remaining work is map wiring (tiles/events/connections), NPC scripting, facility grunts, and art.
+Rough completeness: ~55-60% toward a fully playable build. All engine mechanics, data layers, structural map infrastructure (73 maps), Act 1 scripting, and post-Act-1 gym-city interiors are shipped. Remaining work is CEO creative (dialogue, 64 grunts, Kyurem design, League interior) and art.
 Tool Architecture
 The core tools are in tools/snow_port/:
 port_trainers.py (~870 lines) — route/DI/VR trainers with tag-doubles
