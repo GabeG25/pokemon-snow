@@ -46,83 +46,152 @@ SnowRoute15_EventScript_Nemo::
 	msgbox SnowRoute15_Text_NemoPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+@ R15 Pyrespire Lagoon - volcanic tropical, Autumn F18 mid-route fork.
+@ 2 pre-fork, F18 Autumn junction, 7 post-fork (3 Surf-gated Swimmers).
+
+@ R15-1 Briney (Sailor) - Pre-Fork "Tide Watcher". Sudowoodo/Relicanth/Poliwrath.
+
 SnowRoute15_Text_BrineyIntro:
-	.string "Think you can handle the cold?\nLet's find out!$"
+	.string "BRINEY. Tide Watcher.\p"
+	.string "RELICANTH's ROCK HEAD negates\n"
+	.string "HEAD SMASH recoil entirely.$"
 
 SnowRoute15_Text_BrineyDefeat:
-	.string "That was incredible...$"
+	.string "POLIWRATH's BULK UP needed\n"
+	.string "one more turn.$"
 
 SnowRoute15_Text_BrineyPostBattle:
-	.string "The path ahead gets tougher.\nBe careful out there.$"
+	.string "AUTUMN waits at the fork\n"
+	.string "north.\p"
+	.string "I can't prepare you for her.$"
+
+@ R15-2 Ahab (Fisherman) - Pre-Fork "Old Salt". Politoed rain + Tentacruel.
 
 SnowRoute15_Text_AhabIntro:
-	.string "A challenger? Perfect timing!$"
+	.string "AHAB.\p"
+	.string "Two mons. POLITOED rains.\n"
+	.string "TENTACRUEL poisons your drain\l"
+	.string "moves.\p"
+	.string "Last test before the fork.$"
 
 SnowRoute15_Text_AhabDefeat:
-	.string "I didn't expect that...$"
+	.string "LIQUID OOZE's punishment\n"
+	.string "didn't land enough times.$"
 
 SnowRoute15_Text_AhabPostBattle:
-	.string "Good luck on your journey.$"
+	.string "After AUTUMN, the lagoon gets\n"
+	.string "deeper.\p"
+	.string "Bring SURF if you have it.$"
+
+@ R15-3 Cousteau (Pokemon Tycoon) - "The Curator". 4 fossil-mid-evo specimens.
 
 SnowRoute15_Text_CousteauIntro:
-	.string "I've been training for this!\nBring it on!$"
+	.string "COUSTEAU.\p"
+	.string "Marine curator. Four fossil\n"
+	.string "pre-evos on EVIOLITE.\p"
+	.string "They hit like finals.$"
 
 SnowRoute15_Text_CousteauDefeat:
-	.string "You're stronger than I thought!$"
+	.string "PUPITAR's DRAGON DANCE landed\n"
+	.string "one turn late.$"
 
 SnowRoute15_Text_CousteauPostBattle:
-	.string "I'll be training hard for\nnext time we meet.$"
+	.string "METANG's IRON FIST METEOR MASH\n"
+	.string "with Steel Gem = 243 BP.\p"
+	.string "You took one hit. Barely.$"
+
+@ R15-4 Hadley (Fisherman) - "Shore Veteran". Bulky Water trio.
 
 SnowRoute15_Text_HadleyIntro:
-	.string "You look tough, but I'm tougher!$"
+	.string "HADLEY.\p"
+	.string "Three Water-immune mons.\n"
+	.string "QUAGSIRE. SEALEO. JELLICENT.\p"
+	.string "Your Water moves heal us.$"
 
 SnowRoute15_Text_HadleyDefeat:
-	.string "Wow, I lost...$"
+	.string "JELLICENT's RECOVER couldn't\n"
+	.string "catch up.$"
 
 SnowRoute15_Text_HadleyPostBattle:
-	.string "You should rest at the next\ntown if you can.$"
+	.string "SEALEO on EVIOLITE has the\n"
+	.string "same effective bulk as a fully\l"
+	.string "evolved tank.\p"
+	.string "Mid-evo deception.$"
+
+@ R15-5 Volt (Sailor) - "Lagoon Stormcaller". Sigilyph/Stunfisk/Ampharos.
 
 SnowRoute15_Text_VoltIntro:
-	.string "Hey! You're a trainer too?\nLet's battle!$"
+	.string "VOLT. Stormcaller.\p"
+	.string "The lagoon conducts electricity.\n"
+	.string "AMPHAROS closes with COTTON\l"
+	.string "GUARD plus three Defense.$"
 
 SnowRoute15_Text_VoltDefeat:
-	.string "I need to train more...$"
+	.string "THUNDERBOLT didn't catch.$"
 
 SnowRoute15_Text_VoltPostBattle:
-	.string "The wild POKéMON around here\ncan be tricky. Stay alert.$"
+	.string "SIGILYPH's MAGIC GUARD ignored\n"
+	.string "every hazard I put down.\p"
+	.string "She was my most reliable mon.$"
+
+@ R15-6 Quint (Fisherman) - MANDATORY GATE. 5 mons "Master of the Lagoon".
 
 SnowRoute15_Text_QuintIntro:
-	.string "No one passes without a fight!$"
+	.string "QUINT.\p"
+	.string "Master of the lagoon. Five\n"
+	.string "mons. No passing without me.\p"
+	.string "PYRESPIRE is one fight away.$"
 
 SnowRoute15_Text_QuintDefeat:
-	.string "You really got me...$"
+	.string "Pass. You earned it.$"
 
 SnowRoute15_Text_QuintPostBattle:
-	.string "You've got real talent.$"
+	.string "PYRESPIRE CITY is south.\p"
+	.string "FACILITY BETA is waiting.\n"
+	.string "SCORCH is waiting.$"
+
+@ R15-7 Nori (Swimmer) - SURF-GATED. "Lagoon Shallows".
 
 SnowRoute15_Text_NoriIntro:
-	.string "I won't go easy on you!$"
+	.string "NORI.\p"
+	.string "You brought SURF. Good.\n"
+	.string "Lagoon water's warm here.$"
 
 SnowRoute15_Text_NoriDefeat:
-	.string "Not bad at all...$"
+	.string "You swim faster than you look.$"
 
 SnowRoute15_Text_NoriPostBattle:
-	.string "Keep pushing forward!$"
+	.string "Deeper water means TRITON.\n"
+	.string "He's harder than I am.$"
+
+@ R15-8 Triton (Swimmer) - SURF-GATED. "Lagoon Mid-Depth".
 
 SnowRoute15_Text_TritonIntro:
-	.string "Ready? Here I come!$"
+	.string "TRITON.\p"
+	.string "Mid-depth. The sun stops\n"
+	.string "reaching down here.$"
 
 SnowRoute15_Text_TritonDefeat:
-	.string "I'll remember this battle!$"
+	.string "You read the current.$"
 
 SnowRoute15_Text_TritonPostBattle:
-	.string "I've got nothing left to say.\nJust... wow.$"
+	.string "NEMO's at the bottom. If you\n"
+	.string "beat him you've beaten every\l"
+	.string "Swimmer in BORALYSS.$"
+
+@ R15-9 Nemo (Swimmer) - SURF-GATED. "Deep Lagoon Master". R15 HARDEST OPTIONAL.
 
 SnowRoute15_Text_NemoIntro:
-	.string "Think you can handle the cold?\nLet's find out!$"
+	.string "NEMO.\p"
+	.string "Deep lagoon master.\n"
+	.string "R15 hardest. Optional.\p"
+	.string "You chose to come down here.$"
 
 SnowRoute15_Text_NemoDefeat:
-	.string "That was incredible...$"
+	.string "No one beats the deep.\n"
+	.string "You did.$"
 
 SnowRoute15_Text_NemoPostBattle:
-	.string "The path ahead gets tougher.\nBe careful out there.$"
+	.string "Every Swimmer in BORALYSS.\p"
+	.string "You can go back to the surface\n"
+	.string "now. PYRESPIRE's waiting.$"
