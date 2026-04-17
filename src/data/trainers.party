@@ -23575,12 +23575,12 @@ Nature: Timid
 - Power Gem
 - Glare
 
-=== TRAINER_SNOW_F31_E4 ===
-Name: E4
-Class: Pkmn Trainer 1
-Pic: Brendan
-Gender: Male
-Music: Male
+=== TRAINER_SNOW_F31_BRYNN ===
+Name: BRYNN
+Class: Elite Four
+Pic: Elite Four Phoebe
+Gender: Female
+Music: Elite Four
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
 
@@ -23644,12 +23644,12 @@ Nature: Adamant
 - Crabhammer
 - Earthquake
 
-=== TRAINER_SNOW_F32_E4 ===
-Name: E4
-Class: Pkmn Trainer 1
-Pic: Brendan
+=== TRAINER_SNOW_F32_VESPER ===
+Name: VESPER
+Class: Elite Four
+Pic: Elite Four Sidney
 Gender: Male
-Music: Male
+Music: Elite Four
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
 
@@ -23713,12 +23713,12 @@ Nature: Timid
 - Heat Wave
 - Flash Cannon
 
-=== TRAINER_SNOW_F33_E4 ===
-Name: E4
-Class: Pkmn Trainer 1
-Pic: Brendan
-Gender: Male
-Music: Male
+=== TRAINER_SNOW_F33_REVERIE ===
+Name: REVERIE
+Class: Elite Four
+Pic: Elite Four Glacia
+Gender: Female
+Music: Elite Four
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
 
@@ -23782,12 +23782,12 @@ Nature: Impish
 - Poison Jab
 - Drain Punch
 
-=== TRAINER_SNOW_F34_E4 ===
-Name: E4
-Class: Pkmn Trainer 1
-Pic: Brendan
+=== TRAINER_SNOW_F34_WYATT ===
+Name: WYATT
+Class: Elite Four
+Pic: Elite Four Drake
 Gender: Male
-Music: Male
+Music: Elite Four
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
 
@@ -23851,10 +23851,10 @@ Nature: Timid
 - Air Cutter
 - Spiky Shield
 
-=== TRAINER_SNOW_F35_CHAMPION ===
-Name: CHAMPION
-Class: Pkmn Trainer 1
-Pic: Brendan
+=== TRAINER_SNOW_F35_TYRIM ===
+Name: TYRIM
+Class: Champion
+Pic: Champion Wallace
 Gender: Male
 Music: Male
 Double Battle: No

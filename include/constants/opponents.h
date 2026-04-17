@@ -1010,11 +1010,11 @@
 #define TRAINER_SNOW_F30_ASHER_A            1002
 #define TRAINER_SNOW_F30_ASHER_B            1003
 #define TRAINER_SNOW_F30_ASHER_C            1004
-#define TRAINER_SNOW_F31_E4                 1005
-#define TRAINER_SNOW_F32_E4                 1006
-#define TRAINER_SNOW_F33_E4                 1007
-#define TRAINER_SNOW_F34_E4                 1008
-#define TRAINER_SNOW_F35_CHAMPION           1009
+#define TRAINER_SNOW_F31_BRYNN              1005
+#define TRAINER_SNOW_F32_VESPER             1006
+#define TRAINER_SNOW_F33_REVERIE            1007
+#define TRAINER_SNOW_F34_WYATT              1008
+#define TRAINER_SNOW_F35_TYRIM              1009
 #define TRAINER_SNOW_VR_1_SOLEIL            1010
 #define TRAINER_SNOW_VR_2_MAREN             1011
 #define TRAINER_SNOW_VR_3_DUNE              1012

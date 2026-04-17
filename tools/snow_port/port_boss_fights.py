@@ -156,8 +156,10 @@ def parse_boss_fights(spec_text: str, fight_filter: int | None = None) -> list[B
         is_double = battle_type.upper() == "DOUBLES"
 
         # Extract character name: "ASHER #1" → "ASHER", "GYM 1 SILVAN (Ice)" → "SILVAN"
-        # "GYM 7 ERIN (Ground)" → "ERIN", "CRASH" → "CRASH"
-        name_match = re.search(r"(?:GYM \d+ |ELITE FOUR )?(\w+)", header_label)
+        # "GYM 7 ERIN (Ground)" → "ERIN", "CRASH" → "CRASH", "E4 BRYNN (Bug)" → "BRYNN",
+        # "CHAMPION TYRIM" → "TYRIM". Order matters — longest prefixes first so
+        # "GYM 8 " / "ELITE FOUR " are tried before bare "E4 " / "CHAMPION ".
+        name_match = re.search(r"(?:GYM \d+ |ELITE FOUR |E4 |CHAMPION )?(\w+)", header_label)
         boss_name = name_match.group(1).upper() if name_match else header_label.split()[0].upper()
 
         if fight_filter is not None and fight_num != fight_filter:
