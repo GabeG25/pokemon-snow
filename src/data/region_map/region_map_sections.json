@@ -1069,7 +1069,7 @@
     },
     {
       "id": "MAPSEC_POKEMON_MANSION",
-      "name": "POKéMON MANSION",
+      "name": "POK\u00e9MON MANSION",
       "x": 4,
       "y": 14,
       "width": 1,
@@ -1085,7 +1085,7 @@
     },
     {
       "id": "MAPSEC_POKEMON_LEAGUE",
-      "name": "POKéMON LEAGUE",
+      "name": "POK\u00e9MON LEAGUE",
       "x": 2,
       "y": 3,
       "width": 1,
@@ -1109,7 +1109,7 @@
     },
     {
       "id": "MAPSEC_POKEMON_TOWER",
-      "name": "POKéMON TOWER",
+      "name": "POK\u00e9MON TOWER",
       "x": 18,
       "y": 6,
       "width": 1,
@@ -1630,7 +1630,7 @@
     {
       "id": "MAPSEC_DAWNFLAKE_TOWN",
       "name": "DAWNFLAKE TOWN",
-      "x": 0,
+      "x": 14,
       "y": 0,
       "width": 1,
       "height": 1
@@ -1638,232 +1638,232 @@
     {
       "id": "MAPSEC_POWDERPATH_VILLAGE",
       "name": "POWDERPATH VILLAGE",
-      "x": 0,
-      "y": 0,
+      "x": 14,
+      "y": 2,
       "width": 1,
       "height": 1
     },
     {
       "id": "MAPSEC_POWDERPATH_TRAIL",
       "name": "POWDERPATH TRAIL",
-      "x": 0,
-      "y": 0,
+      "x": 14,
+      "y": 1,
       "width": 1,
       "height": 1
     },
     {
       "id": "MAPSEC_ICESPIRE_PASS",
       "name": "ICESPIRE PASS",
-      "x": 0,
-      "y": 0,
+      "x": 14,
+      "y": 3,
       "width": 1,
       "height": 1
     },
     {
       "id": "MAPSEC_ICESPIRE_TOWN",
       "name": "ICESPIRE TOWN",
-      "x": 0,
-      "y": 0,
+      "x": 14,
+      "y": 4,
       "width": 1,
       "height": 1
     },
     {
       "id": "MAPSEC_PINEHURST_WOODS",
       "name": "PINEHURST WOODS",
-      "x": 0,
-      "y": 0,
+      "x": 14,
+      "y": 5,
       "width": 1,
       "height": 1
     },
     {
       "id": "MAPSEC_PINEGROVE_CITY",
       "name": "PINEGROVE CITY",
-      "x": 0,
-      "y": 0,
+      "x": 14,
+      "y": 6,
       "width": 1,
       "height": 1
     },
     {
       "id": "MAPSEC_TIMBER_CREEK",
       "name": "TIMBER CREEK",
-      "x": 0,
-      "y": 0,
+      "x": 16,
+      "y": 5,
       "width": 1,
       "height": 1
     },
     {
       "id": "MAPSEC_IRONFROST_CAVE",
       "name": "IRONFROST CAVE",
-      "x": 0,
-      "y": 0,
+      "x": 14,
+      "y": 7,
       "width": 1,
       "height": 1
     },
     {
       "id": "MAPSEC_IRONFROST_CITY",
       "name": "IRONFROST CITY",
-      "x": 0,
-      "y": 0,
+      "x": 14,
+      "y": 8,
       "width": 1,
       "height": 1
     },
     {
       "id": "MAPSEC_GLACIER_LAKE",
       "name": "GLACIER LAKE",
-      "x": 0,
-      "y": 0,
+      "x": 14,
+      "y": 9,
       "width": 1,
       "height": 1
     },
     {
       "id": "MAPSEC_FROSTBREAK_LODGE",
       "name": "FROSTBREAK LODGE",
-      "x": 0,
-      "y": 0,
+      "x": 15,
+      "y": 9,
       "width": 1,
       "height": 1
     },
     {
       "id": "MAPSEC_GALETOP_PLATEAU",
       "name": "GALETOP PLATEAU",
-      "x": 0,
-      "y": 0,
+      "x": 14,
+      "y": 10,
       "width": 1,
       "height": 1
     },
     {
       "id": "MAPSEC_DREAMURS_VALLEY",
       "name": "DREAMURS VALLEY",
-      "x": 0,
-      "y": 0,
+      "x": 14,
+      "y": 11,
       "width": 1,
       "height": 1
     },
     {
       "id": "MAPSEC_DREAMURS_TOWN",
       "name": "DREAMURS TOWN",
-      "x": 0,
-      "y": 0,
+      "x": 14,
+      "y": 12,
       "width": 1,
       "height": 1
     },
     {
       "id": "MAPSEC_ICEHARBOR_BAY",
       "name": "ICEHARBOR BAY",
-      "x": 0,
-      "y": 0,
+      "x": 14,
+      "y": 13,
       "width": 1,
       "height": 1
     },
     {
       "id": "MAPSEC_ICEHARBOR_CITY",
       "name": "ICEHARBOR CITY",
-      "x": 0,
-      "y": 0,
+      "x": 14,
+      "y": 14,
       "width": 1,
       "height": 1
     },
     {
       "id": "MAPSEC_DRIFTROCK_ISLE",
       "name": "DRIFTROCK ISLE",
-      "x": 0,
-      "y": 0,
+      "x": 17,
+      "y": 14,
       "width": 1,
       "height": 1
     },
     {
       "id": "MAPSEC_SNOWBURN_PATH",
       "name": "SNOWBURN PATH",
-      "x": 0,
-      "y": 0,
+      "x": 16,
+      "y": 14,
       "width": 1,
       "height": 1
     },
     {
       "id": "MAPSEC_BRIGHTBLOOM_MEADOW",
       "name": "BRIGHTBLOOM MEADOW",
-      "x": 0,
-      "y": 0,
+      "x": 18,
+      "y": 14,
       "width": 1,
       "height": 1
     },
     {
       "id": "MAPSEC_DRAGONFORGE_CITY",
       "name": "DRAGONFORGE CITY",
-      "x": 0,
-      "y": 0,
+      "x": 20,
+      "y": 14,
       "width": 1,
       "height": 1
     },
     {
       "id": "MAPSEC_MEMORIA_PASSAGE",
       "name": "MEMORIA PASSAGE",
-      "x": 0,
-      "y": 0,
+      "x": 22,
+      "y": 14,
       "width": 1,
       "height": 1
     },
     {
       "id": "MAPSEC_SOLACE_TOWN",
       "name": "SOLACE TOWN",
-      "x": 0,
-      "y": 0,
+      "x": 24,
+      "y": 14,
       "width": 1,
       "height": 1
     },
     {
       "id": "MAPSEC_VERDANT_JUNGLE",
       "name": "VERDANT JUNGLE",
-      "x": 0,
-      "y": 0,
+      "x": 26,
+      "y": 14,
       "width": 1,
       "height": 1
     },
     {
       "id": "MAPSEC_CINDERSTONE_PATH",
       "name": "CINDERSTONE PATH",
-      "x": 0,
-      "y": 0,
+      "x": 26,
+      "y": 13,
       "width": 1,
       "height": 1
     },
     {
       "id": "MAPSEC_PYRESPIRE_LAGOON",
       "name": "PYRESPIRE LAGOON",
-      "x": 0,
-      "y": 0,
+      "x": 25,
+      "y": 13,
       "width": 1,
       "height": 1
     },
     {
       "id": "MAPSEC_PYRESPIRE_CITY",
       "name": "PYRESPIRE CITY",
-      "x": 0,
-      "y": 0,
+      "x": 24,
+      "y": 13,
       "width": 1,
       "height": 1
     },
     {
       "id": "MAPSEC_IRONFROST_BASEMENT",
       "name": "IRONFROST BASEMENT",
-      "x": 0,
-      "y": 0,
+      "x": 13,
+      "y": 7,
       "width": 1,
       "height": 1
     },
     {
       "id": "MAPSEC_BORALYSS_VICTORY_ROAD",
       "name": "VICTORY ROAD",
-      "x": 0,
-      "y": 0,
+      "x": 23,
+      "y": 13,
       "width": 1,
       "height": 1
     },
     {
       "id": "MAPSEC_BORALYSS_LEAGUE",
       "name": "BORALYSS LEAGUE",
-      "x": 0,
-      "y": 0,
+      "x": 22,
+      "y": 13,
       "width": 1,
       "height": 1
     }
