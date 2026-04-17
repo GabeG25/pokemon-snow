@@ -93,6 +93,18 @@ GRUNT_TEAM_FALLBACK = {
     "Veil": "Magma",  # Team Veil is design-archive only; pre-loaded to Magma (closest evil-team asset in pokeemerald-expansion). Revisit when real Team Veil class assets ship.
 }
 
+# Per-slot story name overrides for Team Veil grunts. v17 §20 lists grunts as
+# "Team Veil Grunt" (unnamed). Story dialogue in commit 2dc698ff12 assigned
+# narrative names to the Act 1 Veil first-contact set; this dict preserves
+# them for byte-identical round-trip with trainers.party.
+GRUNT_NAME_OVERRIDES = {
+    (3, 5): "Kael",  # R3-5: first Veil contact (Pinehurst Woods)
+    (5, 3): "Bran",  # R5-3: Ironfrost Cave singles grunt #1
+    (5, 4): "Nyla",  # R5-4: Ironfrost Cave singles grunt #2
+    (5, 5): "Orin",  # R5-5: Ironfrost Cave tag-double partner A
+    (5, 6): "Lira",  # R5-6: Ironfrost Cave tag-double partner B
+}
+
 CLASS_GENDER_DEFAULTS = {
     # Spec class names (pre-fallback)
     "Youngster": "Male",
@@ -191,6 +203,7 @@ class Trainer:
     name: str
     is_grunt: bool = False
     team: str | None = None  # e.g. "Veil" for Team Veil Grunt
+    story_name: str | None = None  # narrative override for `Name:` field (grunts only). Constant ID still uses `name`.
     mons: list[Mon] = field(default_factory=list)
 
     @property
@@ -372,6 +385,7 @@ def _parse_tag_double(lines: list[str], start: int, n: int,
                 trainer_name = "Grunt"
                 is_grunt = True
                 team = "Veil"
+                story_name = GRUNT_NAME_OVERRIDES.get((route, idx))
             else:
                 # Use header-derived class+name (sub-labels may abbreviate)
                 klass, trainer_name = header_pairs[found_labels]
@@ -381,7 +395,9 @@ def _parse_tag_double(lines: list[str], start: int, n: int,
             mons, j = _parse_mon_table(lines, j + 1, n, route, idx, trainer_name)
             sub_trainers.append(
                 Trainer(route=route, index=idx, klass=klass, name=trainer_name,
-                        is_grunt=is_grunt, team=team, mons=mons)
+                        is_grunt=is_grunt, team=team,
+                        story_name=story_name if is_grunt_double else None,
+                        mons=mons)
             )
             found_labels += 1
         else:
@@ -434,6 +450,7 @@ def parse_spec(spec_text: str, route_filter: int | None = None) -> list[Trainer]
         klass, name = split_class_and_name(label)
         is_grunt = name == "Grunt" and klass.startswith("Team ")
         team = klass.split(" ", 1)[1] if is_grunt else None
+        story_name = GRUNT_NAME_OVERRIDES.get((route, index)) if is_grunt else None
 
         if route_filter is not None and route != route_filter:
             i += 1
@@ -447,7 +464,7 @@ def parse_spec(spec_text: str, route_filter: int | None = None) -> list[Trainer]
             )
         trainers.append(
             Trainer(route=route, index=index, klass=klass, name=name,
-                    is_grunt=is_grunt, team=team, mons=mons)
+                    is_grunt=is_grunt, team=team, story_name=story_name, mons=mons)
         )
     return trainers
 
@@ -495,9 +512,10 @@ def assert_spec_compliance(trainers: list[Trainer]) -> None:
 
 def emit_trainer(t: Trainer, double_battles: set[tuple[int, int]]) -> str:
     is_double = (t.route, t.index) in double_battles
+    display_name = (t.story_name or t.name).upper()
     header = [
         f"=== {t.constant} ===",
-        f"Name: {t.name.upper()}",
+        f"Name: {display_name}",
         f"Class: {t.emit_class}",
         f"Pic: {t.emit_pic}",
         f"Gender: {t.gender}",

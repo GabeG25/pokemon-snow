@@ -9,7 +9,7 @@ IronfrostCity_EventScript_GymLeaderCopper::
 	goto_if_set FLAG_SNOW_BEAT_F9_COPPER, IronfrostCity_EventScript_CopperDefeated
 	goto_if_unset FLAG_BADGE02_GET, IronfrostCity_EventScript_CopperNeedBadge2
 	msgbox IronfrostCity_Text_CopperIntro, MSGBOX_DEFAULT
-	trainerbattle_no_intro TRAINER_SNOW_F3_SILVAN, IronfrostCity_Text_CopperDefeat
+	trainerbattle_no_intro TRAINER_SNOW_F9_COPPER, IronfrostCity_Text_CopperDefeat
 	setflag FLAG_SNOW_BEAT_F9_COPPER
 	setflag FLAG_BADGE03_GET
 	msgbox IronfrostCity_Text_CopperPostBattle, MSGBOX_DEFAULT

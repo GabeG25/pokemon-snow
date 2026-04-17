@@ -1,9 +1,12 @@
 {
+  "id": "MAP_SNOW_ROUTE4",
+  "name": "SnowRoute4",
   "layout": "LAYOUT_SNOW_ROUTE4",
   "music": "MUS_ROUTE101",
   "region_map_section": "MAPSEC_TIMBER_CREEK",
   "requires_flash": false,
   "weather": "WEATHER_SNOW",
+  "map_type": "MAP_TYPE_ROUTE",
   "allow_cycling": true,
   "allow_escaping": false,
   "allow_running": true,
@@ -19,8 +22,5 @@
   "object_events": [],
   "warp_events": [],
   "coord_events": [],
-  "bg_events": [],
-  "id": "MAP_SNOW_ROUTE4",
-  "name": "SnowRoute4",
-  "map_type": "MAP_TYPE_ROUTE"
+  "bg_events": []
 }
