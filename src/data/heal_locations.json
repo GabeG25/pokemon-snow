@@ -419,6 +419,26 @@
       "respawn_npc": "0",
       "respawn_x": 7,
       "respawn_y": 3
+    },
+    {
+      "id": "HEAL_LOCATION_SOLACE_TOWN",
+      "map": "MAP_SOLACE_TOWN",
+      "x": 4,
+      "y": 3,
+      "respawn_map": "MAP_SOLACE_TOWN_POKEMON_CENTER_1F",
+      "respawn_npc": "0",
+      "respawn_x": 7,
+      "respawn_y": 3
+    },
+    {
+      "id": "HEAL_LOCATION_PYRESPIRE_CITY",
+      "map": "MAP_PYRESPIRE_CITY",
+      "x": 4,
+      "y": 3,
+      "respawn_map": "MAP_PYRESPIRE_CITY_POKEMON_CENTER_1F",
+      "respawn_npc": "0",
+      "respawn_x": 7,
+      "respawn_y": 3
     }
   ]
 }

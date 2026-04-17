@@ -1223,6 +1223,12 @@
     "DreamursTown_Mart",
     "IceharborCity_PokemonCenter_1F",
     "IceharborCity_PokemonCenter_2F",
-    "IceharborCity_Mart"
+    "IceharborCity_Mart",
+    "SolaceTown_PokemonCenter_1F",
+    "SolaceTown_PokemonCenter_2F",
+    "SolaceTown_Mart",
+    "PyrespireCity_PokemonCenter_1F",
+    "PyrespireCity_PokemonCenter_2F",
+    "PyrespireCity_Mart"
   ]
 }
