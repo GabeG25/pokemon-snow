@@ -533,6 +533,7 @@
 #define FLAG_SNOW_BEAT_F27_TYRELL            0x1E0 // F27 Tyrell #2 on Facility Alpha F4 with Kyurem (cap 79→89; HARDEST FIGHT)
 #define FLAG_SNOW_BEAT_F28_EVERGREEN         0x1E1 // F28 Evergreen postgame (cap 89→92)
 #define FLAG_SNOW_BEAT_F30_ASHER             0x1E2 // F30 Asher #6 final rival fight (cap 92→95)
+#define FLAG_SNOW_GOT_TM18_REST              0x1E3 // TM18 Rest gift NPC at Frostbreak Lodge (v17 §15)
 #define FLAG_UNUSED_0x1E3                    0x1E3 // Unused Flag
 
 // Mystery Gift Flags (Unknown)
