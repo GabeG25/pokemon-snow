@@ -17,7 +17,7 @@ Key design rules:
 - Move Tutors per v17 §15: Icespire/Ironfrost/Iceharbor/Dragonforge/Pyrespire
 """
 
-import json, struct, math, random
+import argparse, json, struct, math, random
 from pathlib import Path
 
 random.seed(2026)
@@ -1228,8 +1228,23 @@ ALL = {
 CAVES = {"SnowRoute5","SnowRoute10","SnowRoute12","SnowVictoryRoad","IronfrostCaveB1","IronfrostCaveB2B3"}
 
 def main():
+    ap = argparse.ArgumentParser(description="Generate Snow map layouts from CEO synopses + v17 spec.")
+    ap.add_argument("--only", metavar="NAME", action="append",
+                    help="Regenerate only the named map (e.g., SnowRoute13). "
+                         "Repeatable. Default: every map in ALL. Use when polished "
+                         "maps must not be clobbered.")
+    args = ap.parse_args()
+
+    targets = dict(ALL)
+    if args.only:
+        unknown = [n for n in args.only if n not in ALL]
+        if unknown:
+            raise SystemExit(f"Unknown map name(s): {', '.join(unknown)}\n"
+                             f"Known: {', '.join(sorted(ALL))}")
+        targets = {n: ALL[n] for n in args.only}
+
     with open(REPO/"data/layouts/layouts.json") as f: ld=json.load(f)
-    for name,(gen,ts) in ALL.items():
+    for name,(gen,ts) in targets.items():
         m,w,h = gen()
         lid = "LAYOUT_"+''.join(f'_{c}' if c.isupper() and i>0 and name[i-1].islower()
               else c for i,c in enumerate(name)).upper().replace('__','_')
@@ -1254,6 +1269,6 @@ def main():
     for i,l in enumerate(ld["layouts"]): seen[l["id"]]=i
     ld["layouts"]=[ld["layouts"][i] for i in sorted(seen.values())]
     with open(REPO/"data/layouts/layouts.json","w") as f: json.dump(ld,f,indent=2); f.write("\n")
-    print(f"\n{len(ALL)} layouts generated")
+    print(f"\n{len(targets)} layout(s) generated")
 
 if __name__=="__main__": main()
