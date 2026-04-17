@@ -2,7 +2,7 @@ DawnflakeTown_PlayersHouse_1F_MapScripts::
 	.byte 0
 
 @ ═══════════════════════════════════════════════════════════
-@ Mom — warm, worried, heals the party post-rival
+@ Mom interact — warm, worried, heals post-rival
 @ ═══════════════════════════════════════════════════════════
 
 DawnflakeTown_PlayersHouse_1F_EventScript_Mom::
@@ -29,15 +29,11 @@ DawnflakeTown_PlayersHouse_1F_EventScript_MomHealIntro::
 	end
 
 @ ═══════════════════════════════════════════════════════════
-@ Bookshelf and TV flavor
+@ Bookshelf
 @ ═══════════════════════════════════════════════════════════
 
 DawnflakeTown_PlayersHouse_1F_EventScript_Bookshelf::
 	msgbox DawnflakeTown_PlayersHouse_1F_Text_Bookshelf, MSGBOX_SIGN
-	end
-
-DawnflakeTown_PlayersHouse_1F_EventScript_TV::
-	msgbox DawnflakeTown_PlayersHouse_1F_Text_TV, MSGBOX_SIGN
 	end
 
 @ ═══════════════════════════════════════════════════════════
@@ -45,8 +41,9 @@ DawnflakeTown_PlayersHouse_1F_EventScript_TV::
 @ ═══════════════════════════════════════════════════════════
 
 DawnflakeTown_PlayersHouse_1F_Text_MomMorning:
-	.string "MOM: There you are, sleepyhead.\p"
-	.string "Professor Evergreen called down\n"
+	.string "MOM: Welcome home, sweetheart!\p"
+	.string "How do you like the new place?\p"
+	.string "Professor EVERGREEN called down\n"
 	.string "from the lab twice already.\p"
 	.string "He's a patient man. Don't make\n"
 	.string "him be patient a third time.$"
@@ -56,10 +53,7 @@ DawnflakeTown_PlayersHouse_1F_Text_MomAfterStarter:
 	.string "Let me see... yes. Good.\p"
 	.string "That's a brave little thing.\n"
 	.string "It'll need you to be brave too.\p"
-	.string "Asher was outside when I swept\n"
-	.string "the steps this morning. He didn't\l"
-	.string "say hello. He never does anymore.\p"
-	.string "Be kind to him, {PLAYER}.\n"
+	.string "Be kind to Asher, {PLAYER}.\n"
 	.string "Even when he isn't.$"
 
 DawnflakeTown_PlayersHouse_1F_Text_MomHealOffer:
@@ -83,9 +77,3 @@ DawnflakeTown_PlayersHouse_1F_Text_Bookshelf:
 	.string "The second one has a bookmark\n"
 	.string "deep in a chapter titled\l"
 	.string "'When Winter Won't Leave.'$"
-
-DawnflakeTown_PlayersHouse_1F_Text_TV:
-	.string "A quiet morning broadcast.\p"
-	.string "'...third week of unseasonal\n"
-	.string "cold across the northern coast.\l"
-	.string "Officials continue to urge calm...'$"

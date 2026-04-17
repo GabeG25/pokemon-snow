@@ -1,104 +1,5 @@
 DawnflakeTown_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, DawnflakeTown_OnTransition
 	.byte 0
-
-DawnflakeTown_OnTransition::
-	goto_if_set FLAG_ADVENTURE_STARTED, DawnflakeTown_OnTransition_End
-	call DawnflakeTown_EventScript_IntroCutscene
-DawnflakeTown_OnTransition_End::
-	end
-
-@ ═══════════════════════════════════════════════════════════
-@ First-time intro cutscene
-@ ═══════════════════════════════════════════════════════════
-
-DawnflakeTown_EventScript_IntroCutscene::
-	lockall
-	msgbox DawnflakeTown_Text_IntroCard1, MSGBOX_DEFAULT
-	msgbox DawnflakeTown_Text_IntroCard2, MSGBOX_DEFAULT
-	msgbox DawnflakeTown_Text_IntroCard3, MSGBOX_DEFAULT
-	releaseall
-	return
-
-DawnflakeTown_Text_IntroCard1:
-	.string "MOM (calling from inside):\n"
-	.string "{PLAYER}! You're awake?\p"
-	.string "Professor Evergreen's been\n"
-	.string "asking after you since sunrise.$"
-
-DawnflakeTown_Text_IntroCard2:
-	.string "The snow is fresh on the path.\p"
-	.string "Your breath fogs in the morning\n"
-	.string "air. Dawnflake Town is quiet\l"
-	.string "the way only a small town can be.\p"
-	.string "Today is the day you get your\n"
-	.string "first Pokemon.$"
-
-DawnflakeTown_Text_IntroCard3:
-	.string "MOM'S VOICE: I left the CANDY BOX\n"
-	.string "on the path - something small\l"
-	.string "to help you keep up.\p"
-	.string "Evergreen's lab is the big\n"
-	.string "building to the south.\p"
-	.string "Go on. He's waiting.$"
-
-@ ═══════════════════════════════════════════════════════════
-@ Asher F1 — First rival battle, grief and armor
-@ ═══════════════════════════════════════════════════════════
-
-DawnflakeTown_EventScript_Asher::
-	lock
-	faceplayer
-	goto_if_set FLAG_SNOW_BEAT_F1_ASHER, DawnflakeTown_EventScript_AsherDefeated
-	msgbox DawnflakeTown_Text_AsherChallenge, MSGBOX_DEFAULT
-	compare VAR_STARTER_MON, 0
-	goto_if_eq DawnflakeTown_EventScript_AsherVariantA
-	compare VAR_STARTER_MON, 1
-	goto_if_eq DawnflakeTown_EventScript_AsherVariantB
-	compare VAR_STARTER_MON, 2
-	goto_if_eq DawnflakeTown_EventScript_AsherVariantC
-	end
-
-DawnflakeTown_EventScript_AsherVariantA::
-	trainerbattle_no_intro TRAINER_SNOW_F1_ASHER_A, DawnflakeTown_Text_AsherDefeat
-	goto DawnflakeTown_EventScript_AsherAfterBattle
-	end
-
-DawnflakeTown_EventScript_AsherVariantB::
-	trainerbattle_no_intro TRAINER_SNOW_F1_ASHER_B, DawnflakeTown_Text_AsherDefeat
-	goto DawnflakeTown_EventScript_AsherAfterBattle
-	end
-
-DawnflakeTown_EventScript_AsherVariantC::
-	trainerbattle_no_intro TRAINER_SNOW_F1_ASHER_C, DawnflakeTown_Text_AsherDefeat
-	goto DawnflakeTown_EventScript_AsherAfterBattle
-	end
-
-DawnflakeTown_EventScript_AsherAfterBattle::
-	setflag FLAG_SNOW_BEAT_F1_ASHER
-	msgbox DawnflakeTown_Text_AsherPostBattle, MSGBOX_DEFAULT
-	release
-	end
-
-DawnflakeTown_EventScript_AsherDefeated::
-	msgbox DawnflakeTown_Text_AsherPostDefeat, MSGBOX_DEFAULT
-	release
-	end
-
-@ ═══════════════════════════════════════════════════════════
-@ Candy Box — gift from mom
-@ ═══════════════════════════════════════════════════════════
-
-DawnflakeTown_EventScript_CandyBox::
-	lock
-	faceplayer
-	giveitem ITEM_RARE_CANDY, 1
-	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
-	setflag FLAG_SNOW_GOT_CANDY_BOX
-	msgbox DawnflakeTown_Text_CandyBoxFound, MSGBOX_DEFAULT
-	removeobject VAR_LAST_TALKED
-	release
-	end
 
 @ ═══════════════════════════════════════════════════════════
 @ Ambient villager
@@ -118,50 +19,72 @@ DawnflakeTown_EventScript_VillagerPostRival::
 	end
 
 @ ═══════════════════════════════════════════════════════════
-@ Text
+@ Starter Gate Elder — blocks south exit until player has starter
 @ ═══════════════════════════════════════════════════════════
 
-DawnflakeTown_Text_AsherChallenge:
-	.string "ASHER: Oh. You.\p"
-	.string "Evergreen gave you one of the\n"
-	.string "outsider Pokemon. Figures.\p"
-	.string "I don't do friendship speeches.\n"
-	.string "You're not my friend.\p"
-	.string "I battle. You battle. One of us\n"
-	.string "walks away feeling stupid.\p"
-	.string "My starter beats yours. I made\n"
-	.string "sure of it.\p"
-	.string "Let's go.$"
+DawnflakeTown_EventScript_StarterGateElder::
+	lock
+	faceplayer
+	msgbox DawnflakeTown_Text_StarterGateElder, MSGBOX_DEFAULT
+	release
+	end
 
-DawnflakeTown_Text_AsherDefeat:
-	.string "ASHER: ...tch.$"
+@ ═══════════════════════════════════════════════════════════
+@ Mom Running Shoes cutscene
+@ Fires once when player approaches the south exit post-starter.
+@ ═══════════════════════════════════════════════════════════
 
-DawnflakeTown_Text_AsherPostBattle:
-	.string "ASHER: ...\p"
-	.string "Whatever. Beginner's luck.\p"
-	.string "You think this is a game?\n"
-	.string "You think the region's just\l"
-	.string "handing out adventures?\p"
-	.string "It isn't. Not this one.\p"
-	.string "I've got training to do.\n"
-	.string "Real training.\p"
-	.string "Don't get used to winning,\n"
-	.string "{PLAYER}.$"
+@ ═══════════════════════════════════════════════════════════
+@ South-exit trigger — unified handler for all y=18 tiles.
+@ Priority 1: block passage if starter cutscene not done.
+@ Priority 2: Mom running shoes cutscene if post-rival.
+@ Priority 3: pass through silently.
+@ ═══════════════════════════════════════════════════════════
 
-DawnflakeTown_Text_AsherPostDefeat:
-	.string "ASHER: You want a rematch?\p"
-	.string "Come find me on the road.\n"
-	.string "I'll be the one actually getting\l"
-	.string "stronger.$"
+DawnflakeTown_EventScript_MomRunningShoesTrigger::
+	lockall
+	goto_if_unset FLAG_SNOW_STARTER_CUTSCENE_DONE, DawnflakeTown_EventScript_StarterGateBlock
+	goto_if_set FLAG_SNOW_MOM_RUNNING_SHOES_DONE, DawnflakeTown_EventScript_MomRunningShoesEnd
+	goto_if_unset FLAG_SNOW_BEAT_F1_ASHER, DawnflakeTown_EventScript_MomRunningShoesEnd
+	applymovement OBJ_EVENT_ID_PLAYER, DawnflakeTown_Movement_PlayerFaceUp
+	waitmovement 0
+	msgbox DawnflakeTown_Text_MomRunningShoes, MSGBOX_DEFAULT
+	setflag FLAG_SYS_B_DASH
+	setflag FLAG_RECEIVED_RUNNING_SHOES
+	setflag FLAG_SNOW_MOM_RUNNING_SHOES_DONE
+	setflag FLAG_SNOW_HIDE_MOM_RUNNING_SHOES
+	removeobject 3
+	releaseall
+	end
 
-DawnflakeTown_Text_CandyBoxFound:
-	.string "{PLAYER} found the CANDY BOX!\p"
-	.string "A small wooden box, somehow\n"
-	.string "always full of Rare Candies.\p"
-	.string "A note tucked inside reads:\n"
-	.string "'They won't let you outpace\l"
-	.string "what's coming - but they'll\l"
-	.string "help you keep up. - Mom'$"
+DawnflakeTown_EventScript_StarterGateBlock::
+	msgbox DawnflakeTown_Text_StarterGateBlock2, MSGBOX_DEFAULT
+	applymovement OBJ_EVENT_ID_PLAYER, DawnflakeTown_Movement_PlayerPushBack
+	waitmovement 0
+	releaseall
+	end
+
+DawnflakeTown_EventScript_MomRunningShoesEnd::
+	releaseall
+	end
+
+@ Interacting directly with Mom (before she approaches) runs the same scene.
+DawnflakeTown_EventScript_MomRunningShoes::
+	lockall
+	faceplayer
+	goto DawnflakeTown_EventScript_MomRunningShoesTrigger
+
+DawnflakeTown_Movement_PlayerFaceUp:
+	walk_in_place_faster_up
+	step_end
+
+DawnflakeTown_Movement_PlayerPushBack:
+	walk_up
+	step_end
+
+@ ═══════════════════════════════════════════════════════════
+@ Text
+@ ═══════════════════════════════════════════════════════════
 
 DawnflakeTown_Text_Villager:
 	.string "VILLAGER: Morning, dear.\p"
@@ -175,3 +98,27 @@ DawnflakeTown_Text_VillagerPostRival:
 	.string "He used to laugh, that boy.\n"
 	.string "Back before the mountain went\l"
 	.string "quiet.$"
+
+DawnflakeTown_Text_StarterGateElder:
+	.string "ELDER: Hey there, kid.\p"
+	.string "Head to EVERGREEN's lab first -\n"
+	.string "you're not leaving DAWNFLAKE\l"
+	.string "without a POKEMON.\p"
+	.string "The trails south don't forgive\n"
+	.string "travellers who wander in empty-\l"
+	.string "handed.$"
+
+DawnflakeTown_Text_MomRunningShoes:
+	.string "MOM: {PLAYER}! Wait, wait -\n"
+	.string "don't leave yet!\p"
+	.string "I knew you'd forget. Here -\n"
+	.string "your RUNNING SHOES.\p"
+	.string "The cold makes everything slow.\n"
+	.string "These will help.\p"
+	.string "Come home if you need to, okay?\n"
+	.string "Promise me.$"
+
+DawnflakeTown_Text_StarterGateBlock2:
+	.string "The trail south looks rough.\p"
+	.string "Better grab a POKEMON from\n"
+	.string "PROF. EVERGREEN's lab first.$"

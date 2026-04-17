@@ -18,32 +18,6 @@
   ],
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
-      "x": 8,
-      "y": 10,
-      "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "DawnflakeTown_EventScript_Asher",
-      "flag": "FLAG_SNOW_HIDE_DAWNFLAKE_ASHER"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-      "x": 7,
-      "y": 17,
-      "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "DawnflakeTown_EventScript_CandyBox",
-      "flag": "FLAG_SNOW_GOT_CANDY_BOX"
-    },
-    {
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
       "x": 17,
       "y": 13,
@@ -55,39 +29,228 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "DawnflakeTown_EventScript_Villager",
       "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MAN_3",
+      "x": 9,
+      "y": 18,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "DawnflakeTown_EventScript_StarterGateElder",
+      "flag": "FLAG_SNOW_HIDE_STARTER_GATE"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MOM",
+      "x": 9,
+      "y": 17,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "DawnflakeTown_EventScript_MomRunningShoes",
+      "flag": "FLAG_SNOW_HIDE_MOM_RUNNING_SHOES"
     }
   ],
   "warp_events": [
     {
-      "x": 7,
+      "x": 5,
       "y": 16,
       "elevation": 0,
       "dest_map": "MAP_DAWNFLAKE_TOWN_EVERGREENS_LAB",
       "dest_warp_id": "0"
     },
     {
-      "x": 14,
-      "y": 8,
+      "x": 6,
+      "y": 7,
       "elevation": 0,
       "dest_map": "MAP_DAWNFLAKE_TOWN_ASHERS_HOUSE",
       "dest_warp_id": "0"
     },
     {
-      "x": 5,
-      "y": 8,
+      "x": 15,
+      "y": 7,
       "elevation": 0,
       "dest_map": "MAP_DAWNFLAKE_TOWN_PLAYERS_HOUSE_1F",
       "dest_warp_id": "0"
     },
     {
-      "x": 13,
+      "x": 15,
       "y": 16,
       "elevation": 0,
       "dest_map": "MAP_DAWNFLAKE_TOWN_AUTUMNS_HOUSE",
       "dest_warp_id": "0"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 1,
+      "y": 18,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "DawnflakeTown_EventScript_MomRunningShoesTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 2,
+      "y": 18,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "DawnflakeTown_EventScript_MomRunningShoesTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 3,
+      "y": 18,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "DawnflakeTown_EventScript_MomRunningShoesTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 4,
+      "y": 18,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "DawnflakeTown_EventScript_MomRunningShoesTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 5,
+      "y": 18,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "DawnflakeTown_EventScript_MomRunningShoesTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 6,
+      "y": 18,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "DawnflakeTown_EventScript_MomRunningShoesTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 7,
+      "y": 18,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "DawnflakeTown_EventScript_MomRunningShoesTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 8,
+      "y": 18,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "DawnflakeTown_EventScript_MomRunningShoesTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 9,
+      "y": 18,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "DawnflakeTown_EventScript_MomRunningShoesTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 10,
+      "y": 18,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "DawnflakeTown_EventScript_MomRunningShoesTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 11,
+      "y": 18,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "DawnflakeTown_EventScript_MomRunningShoesTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 12,
+      "y": 18,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "DawnflakeTown_EventScript_MomRunningShoesTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 13,
+      "y": 18,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "DawnflakeTown_EventScript_MomRunningShoesTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 14,
+      "y": 18,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "DawnflakeTown_EventScript_MomRunningShoesTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 15,
+      "y": 18,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "DawnflakeTown_EventScript_MomRunningShoesTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 16,
+      "y": 18,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "DawnflakeTown_EventScript_MomRunningShoesTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 17,
+      "y": 18,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "DawnflakeTown_EventScript_MomRunningShoesTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 18,
+      "y": 18,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "DawnflakeTown_EventScript_MomRunningShoesTrigger"
+    }
+  ],
   "bg_events": [],
   "id": "MAP_DAWNFLAKE_TOWN",
   "name": "DawnflakeTown",
