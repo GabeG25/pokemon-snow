@@ -656,6 +656,11 @@ bool8 StandardWildEncounter(u16 curMetatileBehavior, u16 prevMetatileBehavior)
     if (sWildEncountersDisabled == TRUE)
         return FALSE;
 
+    // Snow: no wild encounters if the player has no Pokemon. Prevents
+    // instant whiteout on Dawnflake grass before the starter is obtained.
+    if (gPlayerPartyCount == 0)
+        return FALSE;
+
     headerId = GetCurrentMapWildMonHeaderId();
     if (headerId == HEADER_NONE)
     {

@@ -491,9 +491,15 @@ static void PlayerPC_TurnOff(u8 taskId)
 {
     if (sTopMenuNumOptions == NUM_BEDROOM_PC_OPTIONS) // Flimsy way to determine if Bedroom PC is in use
     {
+        // Snow: dispatch by map layout, not player gender. The Dawnflake
+        // bedroom uses May's House layout for both male and female players,
+        // so we must always run the May's TurnOffPlayerPC script (which
+        // uses PC_LOCATION_MAYS_HOUSE and the MayPC_Off metatile 0x259) —
+        // otherwise a male player gets BrendanPC_Off (0x25A) drawn over
+        // May's-layout tiles, leaving a visual artifact.
         if (gMapHeader.mapLayoutId == LAYOUT_PALLET_TOWN_PLAYERS_HOUSE_2F_FRLG)
             ScriptContext_SetupScript(EventScript_PalletTown_PlayersHouse_2F_ShutDownPC);
-        else if (gSaveBlock2Ptr->playerGender == MALE)
+        else if (gMapHeader.mapLayoutId == LAYOUT_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F)
             ScriptContext_SetupScript(LittlerootTown_BrendansHouse_2F_EventScript_TurnOffPlayerPC);
         else
             ScriptContext_SetupScript(LittlerootTown_MaysHouse_2F_EventScript_TurnOffPlayerPC);

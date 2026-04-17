@@ -17,6 +17,9 @@
 #include "rtc.h"
 #include "easy_chat.h"
 #include "event_data.h"
+#include "overworld.h"
+#include "constants/flags.h"
+#include "constants/heal_locations.h"
 #include "money.h"
 #include "trainer_hill.h"
 #include "trainer_tower.h"
@@ -137,8 +140,10 @@ static void WarpToTruck(void)
     if (IS_FRLG)
         SetWarpDestination(MAP_GROUP(MAP_PALLET_TOWN_PLAYERS_HOUSE_2F), MAP_NUM(MAP_PALLET_TOWN_PLAYERS_HOUSE_2F), WARP_ID_NONE, 6, 6);
     else
-        // Snow: start in Dawnflake Town instead of inside the truck
-        SetWarpDestination(MAP_GROUP(MAP_DAWNFLAKE_TOWN), MAP_NUM(MAP_DAWNFLAKE_TOWN), WARP_ID_NONE, 15, 12);
+        // Snow: spawn directly in player's bedroom in Dawnflake Town.
+        // Intro flags are seeded by the 2F ON_FRAME_TABLE script on
+        // the first frame of a new game (VAR_SNOW_INTRO_STATE == 0).
+        SetWarpDestination(MAP_GROUP(MAP_DAWNFLAKE_TOWN_PLAYERS_HOUSE_2F), MAP_NUM(MAP_DAWNFLAKE_TOWN_PLAYERS_HOUSE_2F), WARP_ID_NONE, 5, 3);
     WarpIntoMap();
 }
 
@@ -215,6 +220,9 @@ void NewGameInitData(void)
         RunScriptImmediately(EventScript_ResetAllMapFlagsFrlg);
     else
         RunScriptImmediately(EventScript_ResetAllMapFlags);
+    // Snow: hide-flag + respawn setup happens in the 2F bedroom's
+    // ON_FRAME_TABLE script (DawnflakeTown_PlayersHouse_2F_EventScript_WakeUp)
+    // on the first frame of a new game, gated by VAR_SNOW_INTRO_STATE == 0.
 #if IS_FRLG
         StringCopy(gSaveBlock1Ptr->rivalName, rivalName);
 #endif
