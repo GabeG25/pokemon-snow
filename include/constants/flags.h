@@ -702,12 +702,12 @@
 #define FLAG_SNOW_BEAT_KYUREM                0x286 // Kyurem encounter resolved (caught or defeated)
 #define FLAG_SNOW_GOT_ZORUA                  0x287 // Xenon's silent Zorua gift received (v17 §12, Facility Alpha)
 #define FLAG_SNOW_HIDE_AUTUMN_R15            0x288 // Autumn F18 defeated on R15 fork; she walks north to Research Outpost
+#define FLAG_SNOW_HIDE_AUTUMN_R7             0x289 // Autumn F10 defeated at Galetop Plateau; she departs back to Icespire
+#define FLAG_SNOW_GOT_TM14_ACROBATICS        0x28A // Autumn's TM14 Acrobatics gift after F10 (v17 §15)
 
 // 0x264-0x27F now reserved for Snow hidden-item flag expansion (+0x70..+0x8B):
 // FLAG_HIDDEN_ITEMS_START + 0x70..0x72 already claimed (R1 Antidote, R2 Potion, R3 Super Potion).
 // +0x73..+0x8B available for R7 9 berries + R4/R8/DI/R11/R12/R14/IronfrostBasement items.
-#define FLAG_UNUSED_0x289  0x289 // Unused Flag
-#define FLAG_UNUSED_0x28A  0x28A // Unused Flag
 #define FLAG_UNUSED_0x28B  0x28B // Unused Flag
 #define FLAG_UNUSED_0x28C  0x28C // Unused Flag
 #define FLAG_UNUSED_0x28D  0x28D // Unused Flag

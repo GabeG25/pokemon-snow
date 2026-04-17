@@ -1,6 +1,131 @@
 SnowRoute7_MapScripts::
 	.byte 0
 
+@ ═══════════════════════════════════════════════════════════════
+@ F10 AUTUMN — R7 Galetop Plateau, her "stepping back" moment
+@ Per v17 §20, F10 Autumn #3 is mid-game rival where she realizes
+@ her passion is research, not battling. After defeat she gifts the
+@ player TM14 Acrobatics (v17 §15) and walks south.
+@
+@ Starter-keyed A/B/C per VAR_STARTER_MON. LOCALID 6.
+@ ═══════════════════════════════════════════════════════════════
+
+SnowRoute7_EventScript_AutumnF10::
+	lock
+	faceplayer
+	goto_if_set FLAG_SNOW_BEAT_F10_AUTUMN, SnowRoute7_EventScript_AutumnF10OfferTm
+	msgbox SnowRoute7_Text_AutumnF10Intro, MSGBOX_DEFAULT
+	closemessage
+	compare VAR_STARTER_MON, 0
+	goto_if_eq SnowRoute7_EventScript_AutumnF10VariantA
+	compare VAR_STARTER_MON, 1
+	goto_if_eq SnowRoute7_EventScript_AutumnF10VariantB
+	compare VAR_STARTER_MON, 2
+	goto_if_eq SnowRoute7_EventScript_AutumnF10VariantC
+	release
+	end
+
+SnowRoute7_EventScript_AutumnF10VariantA::
+	trainerbattle_no_intro TRAINER_SNOW_F10_AUTUMN_A, SnowRoute7_Text_AutumnF10Defeat
+	goto SnowRoute7_EventScript_AutumnF10AfterBattle
+
+SnowRoute7_EventScript_AutumnF10VariantB::
+	trainerbattle_no_intro TRAINER_SNOW_F10_AUTUMN_B, SnowRoute7_Text_AutumnF10Defeat
+	goto SnowRoute7_EventScript_AutumnF10AfterBattle
+
+SnowRoute7_EventScript_AutumnF10VariantC::
+	trainerbattle_no_intro TRAINER_SNOW_F10_AUTUMN_C, SnowRoute7_Text_AutumnF10Defeat
+	goto SnowRoute7_EventScript_AutumnF10AfterBattle
+
+SnowRoute7_EventScript_AutumnF10AfterBattle::
+	setflag FLAG_SNOW_BEAT_F10_AUTUMN
+	msgbox SnowRoute7_Text_AutumnF10PostBattle, MSGBOX_DEFAULT
+	closemessage
+	goto SnowRoute7_EventScript_AutumnF10OfferTm
+
+SnowRoute7_EventScript_AutumnF10OfferTm::
+	giveitem ITEM_TM14, 1
+	compare VAR_RESULT, FALSE
+	goto_if_eq SnowRoute7_EventScript_AutumnF10BagFull
+	setflag FLAG_SNOW_GOT_TM14_ACROBATICS
+	msgbox SnowRoute7_Text_AutumnF10TmGift, MSGBOX_DEFAULT
+	closemessage
+	applymovement 6, SnowRoute7_Movement_AutumnF10Depart
+	waitmovement 0
+	setflag FLAG_SNOW_HIDE_AUTUMN_R7
+	removeobject 6
+	release
+	end
+
+SnowRoute7_EventScript_AutumnF10BagFull::
+	msgbox SnowRoute7_Text_AutumnF10BagFull, MSGBOX_DEFAULT
+	release
+	end
+
+SnowRoute7_Movement_AutumnF10Depart:
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+SnowRoute7_Text_AutumnF10Intro:
+	.string "AUTUMN: Hey! Hey.\p"
+	.string "I was hoping you'd come\n"
+	.string "through GALETOP today.\p"
+	.string "I've been up at the LODGE\n"
+	.string "reading PROF. EVERGREEN's\l"
+	.string "field notes.\p"
+	.string "{PLAYER}, I... I want to have\n"
+	.string "one more battle with you.\p"
+	.string "Properly, this time.\n"
+	.string "Full team, no holding back.\p"
+	.string "And then I want to tell you\n"
+	.string "something. But battle first!$"
+
+SnowRoute7_Text_AutumnF10Defeat:
+	.string "AUTUMN: You're really\n"
+	.string "something, {PLAYER}.$"
+
+SnowRoute7_Text_AutumnF10PostBattle:
+	.string "AUTUMN: So here's the thing.\p"
+	.string "I love POKEMON. I love\n"
+	.string "studying them. Notes,\l"
+	.string "patterns, the way species\l"
+	.string "learn new moves...\p"
+	.string "But battling at YOUR level?\n"
+	.string "I don't think I can keep up.\p"
+	.string "And honestly? I don't want\n"
+	.string "to. That's not where my\l"
+	.string "passion lives.\p"
+	.string "EVERGREEN asked if I'd help\n"
+	.string "with his research. I said\l"
+	.string "yes.\p"
+	.string "So this is me stepping back.\n"
+	.string "A little, anyway.$"
+
+SnowRoute7_Text_AutumnF10TmGift:
+	.string "AUTUMN: Here. TM14.\p"
+	.string "ACROBATICS. It's a physical\n"
+	.string "Flying move. The user gets\l"
+	.string "double power when holding\l"
+	.string "no item.\p"
+	.string "I was going to write a paper\n"
+	.string "on it but... use it instead.\p"
+	.string "One more fight, someday.\n"
+	.string "When the time's right.\p"
+	.string "Go beat SCORCH for me,\n"
+	.string "{PLAYER}.$"
+
+SnowRoute7_Text_AutumnF10BagFull:
+	.string "AUTUMN: Your bag is full.\p"
+	.string "I'll hold onto the TM. Make\n"
+	.string "space and talk to me again.$"
+
 SnowRoute7_EventScript_Harlan::
 	trainerbattle_single TRAINER_SNOW_R7_1_HARLAN, SnowRoute7_Text_HarlanIntro, SnowRoute7_Text_HarlanDefeat
 	msgbox SnowRoute7_Text_HarlanPostBattle, MSGBOX_AUTOCLOSE
