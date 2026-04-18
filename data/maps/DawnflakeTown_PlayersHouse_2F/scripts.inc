@@ -7,10 +7,12 @@ DawnflakeTown_PlayersHouse_2F_OnFrame:
 	.2byte 0
 
 @ ═══════════════════════════════════════════════════════════
-@ New-game wake-up — seeds all Snow intro flags and plays a
-@ brief establishing beat.  Fires once (VAR_SNOW_INTRO_STATE
-@ advances from 0→1, so the frame-table entry never matches
-@ again).  Replaces the truck-based flag seeding.
+@ New-game silent seed — fires once on first bedroom entry to
+@ initialize Snow intro flags / vars and the heal respawn.  No
+@ visible beat: player is dropped cold into the room and the Mom
+@ cutscene downstairs supplies all narrative context (per CEO
+@ design 2026-04-18).  VAR_SNOW_INTRO_STATE 0→1 prevents the
+@ frame-table entry from matching again.
 @ ═══════════════════════════════════════════════════════════
 
 DawnflakeTown_PlayersHouse_2F_EventScript_WakeUp::
@@ -29,8 +31,6 @@ DawnflakeTown_PlayersHouse_2F_EventScript_WakeUp::
 	setrespawn HEAL_LOCATION_DAWNFLAKE_TOWN_PLAYERS_HOUSE_2F
 	@ ── Mark intro done so this never fires again ──
 	setvar VAR_SNOW_INTRO_STATE, 1
-	@ ── Wake-up beat ──
-	msgbox DawnflakeTown_PlayersHouse_2F_Text_WakeUp, MSGBOX_DEFAULT
 	releaseall
 	end
 
@@ -84,11 +84,3 @@ DawnflakeTown_PlayersHouse_2F_Text_TV:
 	.string "trainers are advised to pack\l"
 	.string "extra layers.'\p"
 	.string "You turn it off.$"
-
-DawnflakeTown_PlayersHouse_2F_Text_WakeUp:
-	.string "...\p"
-	.string "You open your eyes.\p"
-	.string "The new room still smells like\n"
-	.string "cardboard and pine.\p"
-	.string "MOM's voice drifts up from\n"
-	.string "downstairs.$"

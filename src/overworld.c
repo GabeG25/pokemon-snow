@@ -1888,7 +1888,14 @@ void CB2_NewGame(void)
     if (IS_FRLG)
         gFieldCallback = FieldCB_WarpExitFadeFromBlack;
     else
-        gFieldCallback = ExecuteTruckSequence;
+        // Snow: spawn directly in player's bedroom (see new_game.c WarpToTruck),
+        // not in vanilla Emerald's R101 truck. ExecuteTruckSequence would overwrite
+        // bedroom metatiles at (4,1)-(4,3) with METATILE_InsideOfTruck_DoorClosedFloor_*,
+        // causing a visible 3-tile-tall glitch on the bedroom floor that clears only
+        // on map re-entry (the runtime override is wiped on warp). Use the slow
+        // fade-from-black variant — clean fade-in, no metatile edits, softer reveal
+        // (delay=2 vs the default 0) so the cold spawn doesn't feel jarring.
+        gFieldCallback = FieldCB_WarpExitFadeFromBlackSlow;
     gFieldCallback2 = NULL;
     DoMapLoadLoop(&gMain.state);
     SetFieldVBlankCallback();

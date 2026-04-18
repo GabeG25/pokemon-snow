@@ -319,6 +319,19 @@ void FieldCB_WarpExitFadeFromBlack(void)
     LockPlayerFieldControls();
 }
 
+// Snow: slower variant for the new-game cold spawn into the bedroom.
+// Same as above but with FadeScreen delay=2 (vs default 0) for a softer
+// reveal that doesn't feel jarring after the naming screen.
+void FieldCB_WarpExitFadeFromBlackSlow(void)
+{
+    if (!OnTrainerHillEReaderChallengeFloor()) // always false
+        Overworld_PlaySpecialMapMusic();
+    FillPalBufferBlack();
+    FadeScreen(FADE_FROM_BLACK, 2);
+    SetUpWarpExitTask();
+    LockPlayerFieldControls();
+}
+
 static void FieldCB_SpinEnterWarp(void)
 {
     Overworld_PlaySpecialMapMusic();
