@@ -52,7 +52,7 @@
 #else
 
 // Snow story flags (using unused slots)
-#define FLAG_SNOW_GOT_CANDY_BOX              0x20
+// 0x20 freed (was FLAG_SNOW_GOT_CANDY_BOX, now a hidden_item — moved to FLAG_HIDDEN_ITEM_SNOW_DAWNFLAKE_CANDY_BOX in the FLAG_HIDDEN_ITEMS_START range)
 #define FLAG_SNOW_BEAT_F1_ASHER              0x21
 #define FLAG_SNOW_HIDE_DAWNFLAKE_ASHER       0x22
 #define FLAG_SNOW_AUTUMN_TUTORIAL_DONE       0x23
@@ -687,6 +687,7 @@
 #define FLAG_HIDDEN_ITEM_SNOW_R14_TM40_IRON_HEAD             (FLAG_HIDDEN_ITEMS_START + 0x81)
 #define FLAG_HIDDEN_ITEM_SNOW_R14_MAGMARIZER                 (FLAG_HIDDEN_ITEMS_START + 0x82)
 #define FLAG_HIDDEN_ITEM_SNOW_IRONFROST_B1_TM51_STONE_EDGE   (FLAG_HIDDEN_ITEMS_START + 0x83)
+#define FLAG_HIDDEN_ITEM_SNOW_DAWNFLAKE_CANDY_BOX            (FLAG_HIDDEN_ITEMS_START + 0x84)
 
 // Snow story/E4/facility flags — relocated from 0x264-0x26C to 0x280+
 // because 0x264-0x266 collided with FLAG_HIDDEN_ITEM_SNOW_ROUTE1/2/R3

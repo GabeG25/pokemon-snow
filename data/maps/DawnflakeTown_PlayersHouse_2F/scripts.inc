@@ -51,21 +51,6 @@ DawnflakeTown_PlayersHouse_2F_EventScript_PC::
 	end
 
 @ ═══════════════════════════════════════════════════════════
-@ Candy Box — visible item-ball object by the bed (LOCALID 1)
-@ Hidden after pickup via FLAG_SNOW_GOT_CANDY_BOX on the event.
-@ ═══════════════════════════════════════════════════════════
-
-DawnflakeTown_PlayersHouse_2F_EventScript_CandyBox::
-	lock
-	faceplayer
-	playse SE_PIN
-	msgbox DawnflakeTown_PlayersHouse_2F_Text_CandyBoxFound, MSGBOX_DEFAULT
-	setflag FLAG_SNOW_GOT_CANDY_BOX
-	removeobject 1
-	release
-	end
-
-@ ═══════════════════════════════════════════════════════════
 @ TV sign — bedroom flavor
 @ ═══════════════════════════════════════════════════════════
 
@@ -84,12 +69,6 @@ DawnflakeTown_PlayersHouse_2F_EventScript_WallClock::
 @ ═══════════════════════════════════════════════════════════
 @ Text
 @ ═══════════════════════════════════════════════════════════
-
-DawnflakeTown_PlayersHouse_2F_Text_CandyBoxFound:
-	.string "A half-empty box of candy is\n"
-	.string "tucked under the bed.\p"
-	.string "Mom must have left it as a\n"
-	.string "moving-day treat.$"
 
 DawnflakeTown_PlayersHouse_2F_Text_WallClock:
 	.string "A wooden wall clock.\p"

@@ -14,8 +14,10 @@
 --                                          NB: global.h /*0x139C*/ comment is
 --                                          STALE under the project's expanded
 --                                          NUM_FLAG_BYTES; trust the ELF.
---   FLAG_SNOW_GOT_CANDY_BOX = 0x20         include/constants/flags.h:55
---   FLAG_SNOW_INTRO_MOM_CUTSCENE_DONE 0x44 include/constants/flags.h:91
+--   FLAG_HIDDEN_ITEM_SNOW_DAWNFLAKE_CANDY_BOX = 0x278
+--                                          (= FLAG_HIDDEN_ITEMS_START 0x1F4 + 0x84)
+--                                          include/constants/flags.h:690
+--   FLAG_SNOW_INTRO_MOM_CUTSCENE_DONE = 0x44  include/constants/flags.h:91
 --   VAR_SNOW_INTRO_STATE = 0x404E          include/constants/vars.h:100
 --
 -- Load via mGBA: Tools -> Scripting -> Load script... and pick this file.
@@ -34,8 +36,8 @@ local OFF_LOC_WARPID = 0x06    -- s8
 local OFF_FLAGS      = 0x1270  -- u8 array (NUM_FLAG_BYTES bytes), per FlagGet pool
 local OFF_VARS       = 0x13B8  -- u16 array, per GetVarPointer pool (NOT 0x139C)
 
-local FLAG_SNOW_GOT_CANDY_BOX           = 0x20
-local FLAG_SNOW_INTRO_MOM_CUTSCENE_DONE = 0x44
+local FLAG_HIDDEN_ITEM_SNOW_DAWNFLAKE_CANDY_BOX = 0x278  -- FLAG_HIDDEN_ITEMS_START + 0x84
+local FLAG_SNOW_INTRO_MOM_CUTSCENE_DONE         = 0x44
 local VAR_SNOW_INTRO_STATE              = 0x404E
 local VARS_START                        = 0x4000
 
@@ -62,7 +64,7 @@ local function dump_state()
   local map_num   = emu:read8(sb1 + OFF_LOC_NUM)
   local warp_id   = emu:read8(sb1 + OFF_LOC_WARPID)
   local intro     = read_var(sb1, VAR_SNOW_INTRO_STATE)
-  local candy     = read_flag(sb1, FLAG_SNOW_GOT_CANDY_BOX)
+  local candy     = read_flag(sb1, FLAG_HIDDEN_ITEM_SNOW_DAWNFLAKE_CANDY_BOX)
   local mom_done  = read_flag(sb1, FLAG_SNOW_INTRO_MOM_CUTSCENE_DONE)
 
   local line = string.format(
