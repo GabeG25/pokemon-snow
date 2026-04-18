@@ -42,6 +42,13 @@
       "elevation": 0,
       "dest_map": "MAP_DAWNFLAKE_TOWN",
       "dest_warp_id": "1"
+    },
+    {
+      "x": 8,
+      "y": 2,
+      "elevation": 0,
+      "dest_map": "MAP_DAWNFLAKE_TOWN_ASHERS_HOUSE_2F",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [],

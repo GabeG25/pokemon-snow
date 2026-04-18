@@ -133,6 +133,7 @@ gStdScripts_End::
 	.include "data/maps/DawnflakeTown_PlayersHouse_1F/scripts.inc"
 	.include "data/maps/DawnflakeTown_PlayersHouse_2F/scripts.inc"
 	.include "data/maps/DawnflakeTown_AshersHouse/scripts.inc"
+	.include "data/maps/DawnflakeTown_AshersHouse_2F/scripts.inc"
 	.include "data/maps/DawnflakeTown_AutumnsHouse/scripts.inc"
 	.include "data/maps/DawnflakeTown_AutumnsHouse_2F/scripts.inc"
 	.include "data/maps/PowderpathVillage/scripts.inc"
