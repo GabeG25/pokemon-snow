@@ -23,10 +23,14 @@ DawnflakeTown_PlayersHouse_2F_EventScript_WakeUp::
 	setvar VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 4
 	setvar VAR_LITTLEROOT_HOUSES_STATE_MAY, 4
 	@ ── Snow-specific hide flags for cutscene NPCs ──
+	@ Note: Asher is NOT hidden at game start - he's visible at the
+	@ lab from the moment the player enters, brushing the player off
+	@ with "don't talk to me" until the F1 cutscene activates him.
+	@ He gets hidden by setflag FLAG_SNOW_HIDE_ASHER_LAB only after
+	@ losing the F1 battle (he leaves the lab permanently then).
 	setflag FLAG_SNOW_HIDE_AUTUMN_LAB
 	setflag FLAG_SNOW_HIDE_AUTUMN_RUN_OUT_LAB
 	setflag FLAG_SNOW_HIDE_MOM_RUNNING_SHOES
-	setflag FLAG_SNOW_HIDE_ASHER_LAB
 	@ ── Whiteout respawn → Player's House ──
 	setrespawn HEAL_LOCATION_DAWNFLAKE_TOWN_PLAYERS_HOUSE_2F
 	@ ── Mark intro done so this never fires again ──

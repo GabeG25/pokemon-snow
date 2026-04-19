@@ -20609,14 +20609,14 @@ Pic: Brendan
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+AI: Check Bad Move / Try To Faint / Check Viability
 
 Torchic
 Level: 5
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 Ability: Blaze
-Nature: Adamant
+Nature: Hardy
 - Scratch
-- Growl
 
 === TRAINER_SNOW_F1_ASHER_B ===
 Name: ASHER
@@ -20625,14 +20625,14 @@ Pic: Brendan
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+AI: Check Bad Move / Try To Faint / Check Viability
 
 Mudkip
 Level: 5
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 Ability: Torrent
-Nature: Adamant
+Nature: Hardy
 - Tackle
-- Growl
 
 === TRAINER_SNOW_F1_ASHER_C ===
 Name: ASHER
@@ -20641,14 +20641,14 @@ Pic: Brendan
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices / Force Setup First Turn / Ace Pokemon / Omniscient
+AI: Check Bad Move / Try To Faint / Check Viability
 
 Treecko
 Level: 5
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 Ability: Overgrow
-Nature: Timid
+Nature: Hardy
 - Pound
-- Leer
 
 === TRAINER_SNOW_F2_AUTUMN_A ===
 Name: AUTUMN

@@ -69,8 +69,7 @@ DawnflakeTown_PlayersHouse_1F_EventScript_Bookshelf::
 @ ═══════════════════════════════════════════════════════════
 
 DawnflakeTown_PlayersHouse_1F_Text_MomMorning:
-	.string "MOM: Welcome home, sweetheart!\p"
-	.string "How do you like the new place?\p"
+	.string "MOM: Up and at 'em, sweetheart!\p"
 	.string "Professor EVERGREEN called down\n"
 	.string "from the lab twice already.\p"
 	.string "He's a patient man. Don't make\n"

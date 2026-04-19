@@ -19,17 +19,6 @@ DawnflakeTown_EventScript_VillagerPostRival::
 	end
 
 @ ═══════════════════════════════════════════════════════════
-@ Starter Gate Elder — blocks south exit until player has starter
-@ ═══════════════════════════════════════════════════════════
-
-DawnflakeTown_EventScript_StarterGateElder::
-	lock
-	faceplayer
-	msgbox DawnflakeTown_Text_StarterGateElder, MSGBOX_DEFAULT
-	release
-	end
-
-@ ═══════════════════════════════════════════════════════════
 @ Mom Running Shoes cutscene
 @ Fires once when player approaches the south exit post-starter.
 @ ═══════════════════════════════════════════════════════════
@@ -53,7 +42,9 @@ DawnflakeTown_EventScript_MomRunningShoesTrigger::
 	setflag FLAG_RECEIVED_RUNNING_SHOES
 	setflag FLAG_SNOW_MOM_RUNNING_SHOES_DONE
 	setflag FLAG_SNOW_HIDE_MOM_RUNNING_SHOES
-	removeobject 3
+	@ Mom is local_id 2 now (was 3 before the Starter Gate Elder
+	@ object was removed; mapjson auto-assigns by order).
+	removeobject 2
 	releaseall
 	end
 
@@ -98,15 +89,6 @@ DawnflakeTown_Text_VillagerPostRival:
 	.string "He used to laugh, that boy.\n"
 	.string "Back before the mountain went\l"
 	.string "quiet.$"
-
-DawnflakeTown_Text_StarterGateElder:
-	.string "ELDER: Hey there, kid.\p"
-	.string "Head to EVERGREEN's lab first -\n"
-	.string "you're not leaving DAWNFLAKE\l"
-	.string "without a POKEMON.\p"
-	.string "The trails south don't forgive\n"
-	.string "travellers who wander in empty-\l"
-	.string "handed.$"
 
 DawnflakeTown_Text_MomRunningShoes:
 	.string "MOM: {PLAYER}! Wait, wait -\n"

@@ -731,12 +731,18 @@ struct
     [MENU_CATALOG_MOWER]   = {COMPOUND_STRING("Lawn mower"),      CursorCb_CatalogMower},
     [MENU_CHANGE_FORM]     = {COMPOUND_STRING("Change form"),     CursorCb_ChangeForm},
     [MENU_CHANGE_ABILITY]  = {COMPOUND_STRING("Change Ability"),  CursorCb_ChangeAbility},
+    [MENU_NICKNAME]        = {COMPOUND_STRING("NICKNAME"),        CursorCb_Nickname},
 };
 
-static const u8 sPartyMenuAction_SummarySwitchCancel[] = {MENU_SUMMARY, MENU_SWITCH, MENU_CANCEL1};
+// Snow: NICKNAME inserted right after SUMMARY in the field party menu so
+// the player can rename a mon directly from the party screen instead of
+// opening Summary first. Battle/special-context arrays (Shift, SendOut,
+// Enter, NoEntry, Store, Item, Mail, Register, Trade) intentionally
+// keep their original options — nickname doesn't belong mid-battle.
+static const u8 sPartyMenuAction_SummarySwitchCancel[] = {MENU_SUMMARY, MENU_NICKNAME, MENU_SWITCH, MENU_CANCEL1};
 static const u8 sPartyMenuAction_ShiftSummaryCancel[] = {MENU_SHIFT, MENU_SUMMARY, MENU_CANCEL1};
 static const u8 sPartyMenuAction_SendOutSummaryCancel[] = {MENU_SEND_OUT, MENU_SUMMARY, MENU_CANCEL1};
-static const u8 sPartyMenuAction_SummaryCancel[] = {MENU_SUMMARY, MENU_CANCEL1};
+static const u8 sPartyMenuAction_SummaryCancel[] = {MENU_SUMMARY, MENU_NICKNAME, MENU_CANCEL1};
 static const u8 sPartyMenuAction_EnterSummaryCancel[] = {MENU_ENTER, MENU_SUMMARY, MENU_CANCEL1};
 static const u8 sPartyMenuAction_NoEntrySummaryCancel[] = {MENU_NO_ENTRY, MENU_SUMMARY, MENU_CANCEL1};
 static const u8 sPartyMenuAction_StoreSummaryCancel[] = {MENU_STORE, MENU_SUMMARY, MENU_CANCEL1};

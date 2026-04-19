@@ -63,6 +63,7 @@
 #include "start_menu.h"
 #include "string_util.h"
 #include "strings.h"
+#include "naming_screen.h"
 #include "task.h"
 #include "text.h"
 #include "text_window.h"
@@ -115,6 +116,7 @@ enum {
     MENU_CATALOG_MOWER,
     MENU_CHANGE_FORM,
     MENU_CHANGE_ABILITY,
+    MENU_NICKNAME,
     MENU_FIELD_MOVES
 };
 
@@ -460,6 +462,9 @@ static void ShiftMoveSlot(struct BoxPokemon *, u8, u8);
 static void BlitBitmapToPartyWindow_LeftColumn(u8, u8, u8, u8, u8, bool8);
 static void BlitBitmapToPartyWindow_RightColumn(u8, u8, u8, u8, u8, bool8);
 static void CursorCb_Summary(u8);
+static void CursorCb_Nickname(u8);
+static void CB2_StartPartyMenuNickname(void);
+static void CB2_FinishPartyMenuNickname(void);
 static void CursorCb_Switch(u8);
 static void CursorCb_Cancel1(u8);
 static void CursorCb_Item(u8);
@@ -2866,6 +2871,9 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
 
     sPartyMenuInternal->numActions = 0;
     AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_SUMMARY);
+    // Snow: NICKNAME action sits right after SUMMARY in the field party menu so
+    // the player can rename a mon directly without opening the Summary screen.
+    AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_NICKNAME);
 
     if (P_PARTY_MOVE_RELEARNER
      && GetMonData(&mons[slotId], MON_DATA_SPECIES)
@@ -3058,6 +3066,31 @@ static void CursorCb_Summary(u8 taskId)
     PlaySE(SE_SELECT);
     sPartyMenuInternal->exitCallback = CB2_ShowPokemonSummaryScreen;
     Task_ClosePartyMenu(taskId);
+}
+
+// Snow: party-menu Nickname action. Closes the party menu, opens the
+// naming screen for the selected mon, then returns to the party menu.
+static void CursorCb_Nickname(u8 taskId)
+{
+    PlaySE(SE_SELECT);
+    sPartyMenuInternal->exitCallback = CB2_StartPartyMenuNickname;
+    Task_ClosePartyMenu(taskId);
+}
+
+static void CB2_StartPartyMenuNickname(void)
+{
+    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+    u16 species = GetMonData(mon, MON_DATA_SPECIES);
+    u8 gender = GetMonGender(mon);
+    u32 personality = GetMonData(mon, MON_DATA_PERSONALITY);
+    GetMonNickname(mon, gStringVar3);
+    DoNamingScreen(NAMING_SCREEN_NICKNAME, gStringVar3, species, gender, personality, CB2_FinishPartyMenuNickname);
+}
+
+static void CB2_FinishPartyMenuNickname(void)
+{
+    SetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_NICKNAME, gStringVar3);
+    CB2_ReturnToPartyMenuFromSummaryScreen();
 }
 
 static void CB2_ShowPokemonSummaryScreen(void)

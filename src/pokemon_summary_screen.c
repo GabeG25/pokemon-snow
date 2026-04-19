@@ -3678,16 +3678,20 @@ static void BufferMonTrainerMemo(void)
             DynamicPlaceholderTextUtil_SetPlaceholderPtr(4, metLocationString);
         }
 
-        if (DoesMonOTMatchOwner() == TRUE)
+        // Snow: Fateful Encounter check comes BEFORE the OT-matches branch so
+        // that gift POKEMON given via setmonmetlocation 0xFF render their
+        // "Fateful encounter" memo even though the player is the original
+        // trainer (which is the case for the lab starter).
+        if (sum->metLocation == METLOC_FATEFUL_ENCOUNTER)
+        {
+            text = gText_XNatureFatefulEncounter;
+        }
+        else if (DoesMonOTMatchOwner() == TRUE)
         {
             if (sum->metLevel == 0)
                 text = (sum->metLocation >= MAPSEC_NONE) ? gText_XNatureHatchedSomewhereAt : gText_XNatureHatchedAtYZ;
             else
                 text = (sum->metLocation >= MAPSEC_NONE) ? gText_XNatureMetSomewhereAt : gText_XNatureMetAtYZ;
-        }
-        else if (sum->metLocation == METLOC_FATEFUL_ENCOUNTER)
-        {
-            text = gText_XNatureFatefulEncounter;
         }
         else if (sum->metLocation != METLOC_IN_GAME_TRADE && DidMonComeFromGBAGames())
         {
