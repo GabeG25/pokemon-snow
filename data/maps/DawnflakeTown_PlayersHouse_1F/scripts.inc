@@ -36,7 +36,7 @@ DawnflakeTown_PlayersHouse_1F_Movement_MomFaceUp:
 DawnflakeTown_PlayersHouse_1F_EventScript_Mom::
 	lock
 	faceplayer
-	goto_if_set FLAG_SNOW_BEAT_F1_ASHER, DawnflakeTown_PlayersHouse_1F_EventScript_MomHealIntro
+	goto_if_set FLAG_SNOW_MOM_RUNNING_SHOES_DONE, DawnflakeTown_PlayersHouse_1F_EventScript_MomHealIntro
 	goto_if_set FLAG_SYS_POKEMON_GET, DawnflakeTown_PlayersHouse_1F_EventScript_MomPreRival
 	msgbox DawnflakeTown_PlayersHouse_1F_Text_MomMorning, MSGBOX_DEFAULT
 	release
