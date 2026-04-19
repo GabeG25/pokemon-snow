@@ -535,26 +535,6 @@ SnowRoute1_Text_KaiPostBattle:
 	.string "know she remembers me.$"
 
 @ ═══════════════════════════════════════════════════════════
-@ Trail regular — non-battle flavor NPC
-@ ═══════════════════════════════════════════════════════════
-
-SnowRoute1_EventScript_TrailRegular::
-	lock
-	faceplayer
-	msgbox SnowRoute1_Text_TrailRegular, MSGBOX_DEFAULT
-	release
-	end
-
-SnowRoute1_Text_TrailRegular:
-	.string "Walked this trail for thirty\n"
-	.string "winters, kid.\p"
-	.string "Every year the SENTRET come\n"
-	.string "back a little bolder. I think\l"
-	.string "they're getting used to us.\p"
-	.string "Mind the tall grass. And mind\n"
-	.string "your footing on the ice.$"
-
-@ ═══════════════════════════════════════════════════════════
 @ Signs
 @ ═══════════════════════════════════════════════════════════
 
