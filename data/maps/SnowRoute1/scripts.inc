@@ -7,15 +7,134 @@ SnowRoute1_MapScripts::
 @ Warm, nerdy, research-passionate voice
 @ ═══════════════════════════════════════════════════════════
 
+@ ═══════════════════════════════════════════════════════════
+@ Autumn y=3 trigger — forced cutscene.
+@
+@ Pass silently if the F2 battle has already been won. Otherwise,
+@ force-walk the player to (9,3) so the scene stages face-to-face
+@ with Autumn at (9,4) after her walk-up. Player x is read via
+@ StorePlayerCoordsInVars into VAR_0x8004, then dispatched to the
+@ matching walk_right/walk_left movement length. x=9 skips the
+@ force-walk entirely.
+@
+@ After force-walk, flow branches on FLAG_SNOW_AUTUMN_TUTORIAL_DONE:
+@   unset: first encounter — play full catching tutorial
+@   set  : rematch — short dialogue then straight to battle
+@ ═══════════════════════════════════════════════════════════
+
 SnowRoute1_EventScript_AutumnTrigger::
 	lockall
-	goto_if_set FLAG_SNOW_AUTUMN_TUTORIAL_DONE, SnowRoute1_EventScript_AutumnTriggerDone
+	goto_if_set FLAG_SNOW_BEAT_F2_AUTUMN, SnowRoute1_EventScript_AutumnTriggerDone
+	special StorePlayerCoordsInVars
+	compare VAR_0x8004, 2
+	goto_if_eq SnowRoute1_EventScript_AutumnWalkRight7
+	compare VAR_0x8004, 3
+	goto_if_eq SnowRoute1_EventScript_AutumnWalkRight6
+	compare VAR_0x8004, 4
+	goto_if_eq SnowRoute1_EventScript_AutumnWalkRight5
+	compare VAR_0x8004, 5
+	goto_if_eq SnowRoute1_EventScript_AutumnWalkRight4
+	compare VAR_0x8004, 6
+	goto_if_eq SnowRoute1_EventScript_AutumnWalkRight3
+	compare VAR_0x8004, 7
+	goto_if_eq SnowRoute1_EventScript_AutumnWalkRight2
+	compare VAR_0x8004, 8
+	goto_if_eq SnowRoute1_EventScript_AutumnWalkRight1
+	compare VAR_0x8004, 10
+	goto_if_eq SnowRoute1_EventScript_AutumnWalkLeft1
+	compare VAR_0x8004, 11
+	goto_if_eq SnowRoute1_EventScript_AutumnWalkLeft2
+	compare VAR_0x8004, 12
+	goto_if_eq SnowRoute1_EventScript_AutumnWalkLeft3
+	compare VAR_0x8004, 13
+	goto_if_eq SnowRoute1_EventScript_AutumnWalkLeft4
+	compare VAR_0x8004, 14
+	goto_if_eq SnowRoute1_EventScript_AutumnWalkLeft5
+	compare VAR_0x8004, 15
+	goto_if_eq SnowRoute1_EventScript_AutumnWalkLeft6
+	@ Player at x=9 (or fallback): no force-walk needed.
+	goto SnowRoute1_EventScript_AutumnEncounter
+
+SnowRoute1_EventScript_AutumnWalkRight7::
+	applymovement LOCALID_PLAYER, SnowRoute1_Movement_WalkRight7
+	waitmovement 0
+	goto SnowRoute1_EventScript_AutumnEncounter
+
+SnowRoute1_EventScript_AutumnWalkRight6::
+	applymovement LOCALID_PLAYER, SnowRoute1_Movement_WalkRight6
+	waitmovement 0
+	goto SnowRoute1_EventScript_AutumnEncounter
+
+SnowRoute1_EventScript_AutumnWalkRight5::
+	applymovement LOCALID_PLAYER, SnowRoute1_Movement_WalkRight5
+	waitmovement 0
+	goto SnowRoute1_EventScript_AutumnEncounter
+
+SnowRoute1_EventScript_AutumnWalkRight4::
+	applymovement LOCALID_PLAYER, SnowRoute1_Movement_WalkRight4
+	waitmovement 0
+	goto SnowRoute1_EventScript_AutumnEncounter
+
+SnowRoute1_EventScript_AutumnWalkRight3::
+	applymovement LOCALID_PLAYER, SnowRoute1_Movement_WalkRight3
+	waitmovement 0
+	goto SnowRoute1_EventScript_AutumnEncounter
+
+SnowRoute1_EventScript_AutumnWalkRight2::
+	applymovement LOCALID_PLAYER, SnowRoute1_Movement_WalkRight2
+	waitmovement 0
+	goto SnowRoute1_EventScript_AutumnEncounter
+
+SnowRoute1_EventScript_AutumnWalkRight1::
+	applymovement LOCALID_PLAYER, SnowRoute1_Movement_WalkRight1
+	waitmovement 0
+	goto SnowRoute1_EventScript_AutumnEncounter
+
+SnowRoute1_EventScript_AutumnWalkLeft1::
+	applymovement LOCALID_PLAYER, SnowRoute1_Movement_WalkLeft1
+	waitmovement 0
+	goto SnowRoute1_EventScript_AutumnEncounter
+
+SnowRoute1_EventScript_AutumnWalkLeft2::
+	applymovement LOCALID_PLAYER, SnowRoute1_Movement_WalkLeft2
+	waitmovement 0
+	goto SnowRoute1_EventScript_AutumnEncounter
+
+SnowRoute1_EventScript_AutumnWalkLeft3::
+	applymovement LOCALID_PLAYER, SnowRoute1_Movement_WalkLeft3
+	waitmovement 0
+	goto SnowRoute1_EventScript_AutumnEncounter
+
+SnowRoute1_EventScript_AutumnWalkLeft4::
+	applymovement LOCALID_PLAYER, SnowRoute1_Movement_WalkLeft4
+	waitmovement 0
+	goto SnowRoute1_EventScript_AutumnEncounter
+
+SnowRoute1_EventScript_AutumnWalkLeft5::
+	applymovement LOCALID_PLAYER, SnowRoute1_Movement_WalkLeft5
+	waitmovement 0
+	goto SnowRoute1_EventScript_AutumnEncounter
+
+SnowRoute1_EventScript_AutumnWalkLeft6::
+	applymovement LOCALID_PLAYER, SnowRoute1_Movement_WalkLeft6
+	waitmovement 0
+	goto SnowRoute1_EventScript_AutumnEncounter
+
+SnowRoute1_EventScript_AutumnEncounter::
+	@ Player is now at (9,3) — re-orient to face south.
+	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterDown
+	waitmovement 0
 	applymovement 1, SnowRoute1_Movement_AutumnApproachPlayer
 	waitmovement 0
+	goto_if_set FLAG_SNOW_AUTUMN_TUTORIAL_DONE, SnowRoute1_EventScript_AutumnRematch
 	playse SE_PIN
 	applymovement 1, SnowRoute1_Movement_AutumnExclaim
 	waitmovement 0
 	goto SnowRoute1_EventScript_AutumnTutorialBody
+
+SnowRoute1_EventScript_AutumnRematch::
+	msgbox SnowRoute1_Text_AutumnRematch, MSGBOX_DEFAULT
+	goto SnowRoute1_EventScript_AutumnBattleIntro
 
 SnowRoute1_EventScript_AutumnTriggerDone::
 	releaseall
@@ -25,8 +144,9 @@ SnowRoute1_EventScript_AutumnTutorial::
 	lock
 	faceplayer
 	goto_if_set FLAG_SNOW_BEAT_F2_AUTUMN, SnowRoute1_EventScript_AutumnDefeated
-	goto_if_set FLAG_SNOW_AUTUMN_TUTORIAL_DONE, SnowRoute1_EventScript_AutumnBattleIntro
-	goto SnowRoute1_EventScript_AutumnTutorialBody
+	@ Defensive fallback — the coord trigger is the real entry;
+	@ if somehow interacted before the trigger, treat as rematch.
+	goto SnowRoute1_EventScript_AutumnRematch
 
 SnowRoute1_EventScript_AutumnTutorialBody::
 	msgbox SnowRoute1_Text_AutumnIntro, MSGBOX_DEFAULT
@@ -138,10 +258,106 @@ SnowRoute1_Movement_AutumnFacePlayer:
 	face_up
 	step_end
 
+@ Autumn departs south off-screen into R1 after the F2 battle.
+@ 7 tiles south from (9,4) -> (9,11), clear of trainers Noel (6,8)
+@ and Elise (12,10) and well above Kai (9,14).
 SnowRoute1_Movement_AutumnDepart:
-	walk_up
-	walk_up
-	walk_up
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+@ Force-walk movements — player at (?,3) -> (9,3) along y=3.
+SnowRoute1_Movement_WalkRight1:
+	walk_right
+	step_end
+
+SnowRoute1_Movement_WalkRight2:
+	walk_right
+	walk_right
+	step_end
+
+SnowRoute1_Movement_WalkRight3:
+	walk_right
+	walk_right
+	walk_right
+	step_end
+
+SnowRoute1_Movement_WalkRight4:
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	step_end
+
+SnowRoute1_Movement_WalkRight5:
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	step_end
+
+SnowRoute1_Movement_WalkRight6:
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	step_end
+
+SnowRoute1_Movement_WalkRight7:
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	step_end
+
+SnowRoute1_Movement_WalkLeft1:
+	walk_left
+	step_end
+
+SnowRoute1_Movement_WalkLeft2:
+	walk_left
+	walk_left
+	step_end
+
+SnowRoute1_Movement_WalkLeft3:
+	walk_left
+	walk_left
+	walk_left
+	step_end
+
+SnowRoute1_Movement_WalkLeft4:
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	step_end
+
+SnowRoute1_Movement_WalkLeft5:
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	step_end
+
+SnowRoute1_Movement_WalkLeft6:
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
 	step_end
 
 @ Autumn text ------------------------------------------------
@@ -224,12 +440,17 @@ SnowRoute1_Text_AutumnPostBattle:
 	.string "Your starter's already showing\n"
 	.string "good instincts. Did you see how\l"
 	.string "it handled the cold?\p"
-	.string "I'm going to keep cataloguing\n"
-	.string "wild populations up here.\p"
-	.string "You go on ahead - POWDERPATH\n"
-	.string "VILLAGE is just south.\p"
-	.string "Good luck, {PLAYER}! Don't be\n"
-	.string "a stranger!$"
+	.string "Okay - I'm running ahead to\n"
+	.string "POWDERPATH. I want to catch\l"
+	.string "the afternoon SENTRET count\l"
+	.string "before the light goes.\p"
+	.string "Catch up when you can, {PLAYER}!\n"
+	.string "Don't be a stranger!$"
+
+SnowRoute1_Text_AutumnRematch:
+	.string "AUTUMN: Back already?\p"
+	.string "Good - I wasn't done with you\n"
+	.string "yet. Let's go again.$"
 
 SnowRoute1_Text_AutumnPostTutorial:
 	.string "AUTUMN: I'm cataloguing the\n"
