@@ -1,7 +1,7 @@
 {
   "id": "MAP_DAWNFLAKE_TOWN_PLAYERS_HOUSE_2F",
   "name": "DawnflakeTown_PlayersHouse_2F",
-  "layout": "LAYOUT_LITTLEROOT_TOWN_MAYS_HOUSE_2F",
+  "layout": "LAYOUT_DAWNFLAKE_TOWN_PLAYERS_HOUSE_2F",
   "music": "MUS_LITTLEROOT",
   "region_map_section": "MAPSEC_DAWNFLAKE_TOWN",
   "requires_flash": false,
