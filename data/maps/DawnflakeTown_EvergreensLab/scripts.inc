@@ -151,6 +151,11 @@ DawnflakeTown_EvergreensLab_EventScript_AsherAfterBattle::
 	@ around so they're "listening" to Autumn and Evergreen.
 	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterUp
 	waitmovement 0
+	@ Evergreen reacts first — understated, the adult in the room.
+	applymovement 1, Common_Movement_WalkInPlaceFasterDown
+	waitmovement 0
+	msgbox DawnflakeTown_EvergreensLab_Text_EvergreenPostBattleWin, MSGBOX_DEFAULT
+	closemessage
 	@ Autumn pitches from her position (already at (5, 4) the whole
 	@ ceremony) and walks out the west door (warp tile 6, 12).
 	applymovement 4, Common_Movement_WalkInPlaceFasterDown
@@ -472,21 +477,27 @@ DawnflakeTown_EvergreensLab_Text_AutumnLabPreCeremony:
 
 DawnflakeTown_EvergreensLab_Text_AsherChallenge:
 	.string "ASHER: Done?\p"
-	.string "Mine has the type advantage.\n"
-	.string "I checked.\p"
-	.string "Let's go.$"
+	.string "{PLAYER}, mine has the type\n"
+	.string "advantage. I checked.\p"
+	.string "I've been ready for this.\n"
+	.string "I hope you have too.\p"
+	.string "Let's battle.$"
 
 DawnflakeTown_EvergreensLab_Text_AsherDefeat:
 	.string "ASHER: ...$"
 
 DawnflakeTown_EvergreensLab_Text_AsherPostBattle:
 	.string "ASHER: ...\p"
-	.string "You played that well.\p"
-	.string "Won't last.$"
+	.string "I prepped for this.\n"
+	.string "You still won.\p"
+	.string "Enjoy it while you can,\n"
+	.string "{PLAYER}.$"
 
 DawnflakeTown_EvergreensLab_Text_AsherPostBattleLoss:
 	.string "ASHER: Hmph.\p"
-	.string "Told you. Chart math.\p"
+	.string "Told you I checked.\p"
+	.string "Maybe prep harder next\n"
+	.string "time, {PLAYER}.\p"
 	.string "EVERGREEN. I'm out.$"
 
 DawnflakeTown_EvergreensLab_Text_AsherVictoryInBattle:
@@ -529,11 +540,17 @@ DawnflakeTown_EvergreensLab_Text_EvergreenTM:
 	.string "so don't keep her.$"
 
 DawnflakeTown_EvergreensLab_Text_EvergreenReady:
-	.string "PROF. EVERGREEN: Oh, back\n"
-	.string "already. Where were we?\p"
-	.string "Right - ASHER had a point to\n"
-	.string "make, and I imagine he still\l"
-	.string "wants to make it.$"
+	.string "PROF. EVERGREEN: Oh - you're\n"
+	.string "back.\p"
+	.string "Take a breath.$"
+
+DawnflakeTown_EvergreensLab_Text_EvergreenPostBattleWin:
+	.string "PROF. EVERGREEN: Well.\p"
+	.string "ASHER walked out quieter\n"
+	.string "than he came in. Noted.\p"
+	.string "You kept your head. That's\n"
+	.string "the part that's hard to\l"
+	.string "teach.$"
 
 DawnflakeTown_EvergreensLab_Text_EvergreenHeadSouth:
 	.string "PROF. EVERGREEN: ROUTE 1 is\n"
