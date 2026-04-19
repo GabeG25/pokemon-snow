@@ -116,6 +116,4 @@ DawnflakeTown_PlayersHouse_1F_Text_MomCutscene:
 	.string "Don't make him be patient a\l"
 	.string "third time.\p"
 	.string "Head on over whenever you're\n"
-	.string "ready.\p"
-	.string "ASHER's probably already\n"
-	.string "there pretending he isn't.$"
+	.string "ready.$"
