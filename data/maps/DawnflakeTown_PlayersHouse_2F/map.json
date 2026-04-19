@@ -62,7 +62,7 @@
       "x": 7,
       "y": 5,
       "elevation": 3,
-      "item": "ITEM_RARE_CANDY",
+      "item": "ITEM_CANDY_BOX",
       "flag": "FLAG_HIDDEN_ITEM_SNOW_DAWNFLAKE_CANDY_BOX"
     }
   ]

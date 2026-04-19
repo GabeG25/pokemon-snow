@@ -2050,6 +2050,25 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_RareCandy,
     },
 
+    [ITEM_CANDY_BOX] =
+    {
+        .name = ITEM_NAME("Candy Box"),
+        .pluralName = ITEM_PLURAL_NAME("Candy Boxes"),
+        .price = 0,
+        .importance = 1,
+        .description = COMPOUND_STRING(
+            "An old Box of\n"
+            "Candy, it seems\n"
+            "bottomless."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_RareCandy,
+        .effect = gItemEffect_RareCandy,
+        .flingPower = 0,
+        .iconPic = gItemIcon_RareCandy,
+        .iconPalette = gItemIconPalette_RareCandy,
+    },
+
     [ITEM_EXP_CANDY_XS] =
     {
         .name = ITEM_NAME("Exp. Candy XS"),
