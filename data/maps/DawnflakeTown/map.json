@@ -40,7 +40,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "DawnflakeTown_EventScript_MomRunningShoes",
+      "script": "DawnflakeTown_EventScript_MomLabExit",
       "flag": "FLAG_SNOW_HIDE_MOM_RUNNING_SHOES"
     }
   ],
@@ -82,7 +82,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "DawnflakeTown_EventScript_MomRunningShoesTrigger"
+      "script": "DawnflakeTown_EventScript_SouthExitStarterGate"
     },
     {
       "type": "trigger",
@@ -91,7 +91,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "DawnflakeTown_EventScript_MomRunningShoesTrigger"
+      "script": "DawnflakeTown_EventScript_SouthExitStarterGate"
     },
     {
       "type": "trigger",
@@ -100,7 +100,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "DawnflakeTown_EventScript_MomRunningShoesTrigger"
+      "script": "DawnflakeTown_EventScript_SouthExitStarterGate"
     },
     {
       "type": "trigger",
@@ -109,7 +109,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "DawnflakeTown_EventScript_MomRunningShoesTrigger"
+      "script": "DawnflakeTown_EventScript_SouthExitStarterGate"
     },
     {
       "type": "trigger",
@@ -118,7 +118,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "DawnflakeTown_EventScript_MomRunningShoesTrigger"
+      "script": "DawnflakeTown_EventScript_SouthExitStarterGate"
     },
     {
       "type": "trigger",
@@ -127,7 +127,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "DawnflakeTown_EventScript_MomRunningShoesTrigger"
+      "script": "DawnflakeTown_EventScript_SouthExitStarterGate"
     },
     {
       "type": "trigger",
@@ -136,7 +136,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "DawnflakeTown_EventScript_MomRunningShoesTrigger"
+      "script": "DawnflakeTown_EventScript_SouthExitStarterGate"
     },
     {
       "type": "trigger",
@@ -145,7 +145,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "DawnflakeTown_EventScript_MomRunningShoesTrigger"
+      "script": "DawnflakeTown_EventScript_SouthExitStarterGate"
     },
     {
       "type": "trigger",
@@ -154,7 +154,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "DawnflakeTown_EventScript_MomRunningShoesTrigger"
+      "script": "DawnflakeTown_EventScript_SouthExitStarterGate"
     },
     {
       "type": "trigger",
@@ -163,7 +163,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "DawnflakeTown_EventScript_MomRunningShoesTrigger"
+      "script": "DawnflakeTown_EventScript_SouthExitStarterGate"
     },
     {
       "type": "trigger",
@@ -172,7 +172,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "DawnflakeTown_EventScript_MomRunningShoesTrigger"
+      "script": "DawnflakeTown_EventScript_SouthExitStarterGate"
     },
     {
       "type": "trigger",
@@ -181,7 +181,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "DawnflakeTown_EventScript_MomRunningShoesTrigger"
+      "script": "DawnflakeTown_EventScript_SouthExitStarterGate"
     },
     {
       "type": "trigger",
@@ -190,7 +190,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "DawnflakeTown_EventScript_MomRunningShoesTrigger"
+      "script": "DawnflakeTown_EventScript_SouthExitStarterGate"
     },
     {
       "type": "trigger",
@@ -199,7 +199,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "DawnflakeTown_EventScript_MomRunningShoesTrigger"
+      "script": "DawnflakeTown_EventScript_SouthExitStarterGate"
     },
     {
       "type": "trigger",
@@ -208,7 +208,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "DawnflakeTown_EventScript_MomRunningShoesTrigger"
+      "script": "DawnflakeTown_EventScript_SouthExitStarterGate"
     },
     {
       "type": "trigger",
@@ -217,7 +217,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "DawnflakeTown_EventScript_MomRunningShoesTrigger"
+      "script": "DawnflakeTown_EventScript_SouthExitStarterGate"
     },
     {
       "type": "trigger",
@@ -226,7 +226,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "DawnflakeTown_EventScript_MomRunningShoesTrigger"
+      "script": "DawnflakeTown_EventScript_SouthExitStarterGate"
     },
     {
       "type": "trigger",
@@ -235,7 +235,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "DawnflakeTown_EventScript_MomRunningShoesTrigger"
+      "script": "DawnflakeTown_EventScript_SouthExitStarterGate"
     }
   ],
   "bg_events": [],
