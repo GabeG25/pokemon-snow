@@ -600,7 +600,7 @@ static u32 InitMainMenu(bool8 returningFromOptionsMenu)
     ResetSpriteData();
     FreeAllSpritePalettes();
     if (returningFromOptionsMenu)
-        BeginNormalPaletteFade(PALETTES_ALL, 0, 0x10, 0, RGB_BLACK); // fade to black
+        BeginNormalPaletteFade(PALETTES_ALL, 2, 0x10, 0, RGB_BLACK); // 24-frame fade-in (delay=2 stretches the 8-step fade)
     else
         BeginNormalPaletteFade(PALETTES_ALL, 0, 0x10, 0, RGB_WHITEALPHA); // fade to white
     ResetBgsAndClearDma3BusyFlags(0);
@@ -687,6 +687,15 @@ static void Task_MainMenuCheckSaveFile(u8 taskId)
             gTasks[taskId].tMenuType = HAS_NO_SAVED_GAME;
             gTasks[taskId].func = Task_WaitForSaveFileErrorWindow;
             break;
+        }
+        // Snow: collapse the CheckSaveFile -> CheckBattery -> DisplayMainMenu chain
+        // into a single frame when no error windows are shown, removing the perceived
+        // delay when returning from the Options menu.
+        if (gTasks[taskId].func == Task_MainMenuCheckBattery)
+        {
+            Task_MainMenuCheckBattery(taskId);
+            if (gTasks[taskId].func == Task_DisplayMainMenu)
+                Task_DisplayMainMenu(taskId);
         }
         if (sCurrItemAndOptionMenuCheck & OPTION_MENU_FLAG)   // are we returning from the options menu?
         {
