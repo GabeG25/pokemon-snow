@@ -224,7 +224,7 @@ SnowRoute1_EventScript_AutumnDefeated::
 	end
 
 @ Autumn movements ------------------------------------------
-@ Start: (9,5) facing up. Grass demo tile: (4,5).
+@ Start: (9,5) facing up. Grass demo tile: (3,5).
 
 SnowRoute1_Movement_AutumnApproachPlayer:
 	walk_up
@@ -235,6 +235,7 @@ SnowRoute1_Movement_AutumnExclaim:
 	step_end
 
 SnowRoute1_Movement_AutumnToGrass:
+	walk_left
 	walk_left
 	walk_left
 	walk_left
@@ -252,6 +253,7 @@ SnowRoute1_Movement_AutumnReturn:
 	walk_right
 	walk_right
 	walk_right
+	walk_right
 	step_end
 
 SnowRoute1_Movement_AutumnFacePlayer:
@@ -259,8 +261,9 @@ SnowRoute1_Movement_AutumnFacePlayer:
 	step_end
 
 @ Autumn departs south off-screen into R1 after the F2 battle.
-@ 7 tiles south from (9,4) -> (9,11), clear of trainers Noel (6,8)
-@ and Elise (12,10) and well above Kai (9,14).
+@ 7 tiles south from (9,4) -> (9,11). Column x=9 is clear of
+@ Noel (7,17), Elise (10,9 — Autumn passes at x=9 beside her),
+@ and Kai (18,6).
 SnowRoute1_Movement_AutumnDepart:
 	walk_down
 	walk_down
