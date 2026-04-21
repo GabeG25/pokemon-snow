@@ -65,15 +65,15 @@ DawnflakeTown_EventScript_StarterGateBlock::
 @
 @ Flow:
 @   1. Player exited the lab; the door-exit animation auto-walks
-@      them to (5,17) facing south.
+@      them to (4,17) facing south.
 @   2. Script turns player in place to guarantee facing south.
-@   3. Mom (LOCALID 2) walks 1 south + 4 west from (9,17) to
-@      (5,18), then face_up. Player at (5,17) facing south; Mom
-@      at (5,18) facing north — face-to-face on column x=5, the
+@   3. Mom (LOCALID 2) walks 1 south + 5 west from (9,17) to
+@      (4,18), then face_up. Player at (4,17) facing south; Mom
+@      at (4,18) facing north — face-to-face on column x=4, the
 @      same pattern used for Autumn's R1 catching tutorial.
 @   4. Running Shoes dialogue; B-dash + RECEIVED flags set.
-@   5. Mom returns via x=9 column: 4 east to (9,18), 10 north to
-@      (9,8), 6 east to (15,8). Clear of Autumn's doorstep and
+@   5. Mom returns via x=9 column: 5 east to (9,18), 10 north to
+@      (9,8), 4 east to (13,8). Clear of Autumn's doorstep and
 @      the lab footprint.
 @   6. Opendoor, Mom walks up onto the warp tile, removeobject.
 @   7. DONE + HIDE flags set; player released facing south.
@@ -91,12 +91,12 @@ DawnflakeTown_EventScript_MomLabExit::
 	closemessage
 	applymovement 2, DawnflakeTown_Movement_MomReturnToHouse
 	waitmovement 0
-	opendoor 15, 7
+	opendoor 13, 7
 	waitdooranim
 	applymovement 2, DawnflakeTown_Movement_MomEnterDoor
 	waitmovement 0
 	removeobject 2
-	closedoor 15, 7
+	closedoor 13, 7
 	waitdooranim
 	setflag FLAG_SNOW_MOM_RUNNING_SHOES_DONE
 	setflag FLAG_SNOW_HIDE_MOM_RUNNING_SHOES
@@ -111,14 +111,14 @@ DawnflakeTown_Movement_PlayerPushBack:
 	walk_up
 	step_end
 
-@ Player already auto-walked south to (5,17) as part of the
+@ Player already auto-walked south to (4,17) as part of the
 @ lab-exit door animation. Just ensure they're facing south
-@ so Mom's approach from (5,18) lands face-to-face.
+@ so Mom's approach from (4,18) lands face-to-face.
 DawnflakeTown_Movement_PlayerExitLab:
 	walk_in_place_faster_down
 	step_end
 
-@ Mom walks south 1 tile to (9,18), then 4 tiles west to (5,18),
+@ Mom walks south 1 tile to (9,18), then 5 tiles west to (4,18),
 @ then turns to face north. Same face-to-face pattern used by
 @ Autumn's catching tutorial on Route 1.
 DawnflakeTown_Movement_MomApproachPlayer:
@@ -127,32 +127,32 @@ DawnflakeTown_Movement_MomApproachPlayer:
 	walk_left
 	walk_left
 	walk_left
+	walk_left
 	face_up
 	step_end
 
 @ Mom's return path:
-@   (5,18) -> (9,18)                     4 east
+@   (4,18) -> (9,18)                     5 east
 @   (9,18) -> (9,8)                      10 north
-@   (9,8)  -> (15,8)                     6 east
-@ Ends at (15,8), facing east. Next step walks up into the
-@ Player's house door at (15,7).
+@   (9,8)  -> (13,8)                     4 east
+@ Ends at (13,8), facing east. Next step walks up into the
+@ Player's house door at (13,7).
 DawnflakeTown_Movement_MomReturnToHouse:
 	walk_right
 	walk_right
 	walk_right
 	walk_right
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
 	walk_right
-	walk_right
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
 	walk_right
 	walk_right
 	walk_right
