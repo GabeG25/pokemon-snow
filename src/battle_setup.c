@@ -768,6 +768,8 @@ enum BattleEnvironments BattleSetup_GetEnvironmentId(void)
         return BATTLE_ENVIRONMENT_SAND;
     if (GetSavedWeather() == WEATHER_SANDSTORM)
         return BATTLE_ENVIRONMENT_SAND;
+    if (GetSavedWeather() == WEATHER_SNOW)
+        return BATTLE_ENVIRONMENT_GRASS;
 
     return BATTLE_ENVIRONMENT_PLAIN;
 }
