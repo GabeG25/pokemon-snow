@@ -23,8 +23,11 @@ SnowRoute1_MapScripts::
 @ ═══════════════════════════════════════════════════════════
 
 SnowRoute1_EventScript_AutumnTrigger::
-	lockall
+	@ One-shot guard: setvar keeps trigger from re-firing on every
+	@ step across the row within this map session (fixes running lag).
+	setvar VAR_TEMP_1, 1
 	goto_if_set FLAG_SNOW_BEAT_F2_AUTUMN, SnowRoute1_EventScript_AutumnTriggerDone
+	lockall
 	special StorePlayerCoordsInVars
 	compare VAR_0x8004, 2
 	goto_if_eq SnowRoute1_EventScript_AutumnWalkRight7
