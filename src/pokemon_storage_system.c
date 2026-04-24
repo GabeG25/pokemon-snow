@@ -1713,8 +1713,11 @@ void ResetPokemonStorageSystem(void)
         ConvertIntToDecimalStringN(dest, boxId + 1, STR_CONV_MODE_LEFT_ALIGN, 2);
     }
 
+    // Snow: every PC box defaults to the Snow wallpaper (Scenery 2 set)
+    // to match the Boralyss / Snow region theme. Players can still pick a
+    // different wallpaper from the Change Wallpaper menu.
     for (boxId = 0; boxId < TOTAL_BOXES_COUNT; boxId++)
-        SetBoxWallpaper(boxId, boxId % (MAX_DEFAULT_WALLPAPER + 1));
+        SetBoxWallpaper(boxId, WALLPAPER_SNOW);
 
     ResetWaldaWallpaper();
 }
