@@ -9370,12 +9370,72 @@
     {
       "id": "LAYOUT_POWDERPATH_VILLAGE",
       "name": "PowderpathVillage_Layout",
-      "width": 20,
+      "width": 26,
       "height": 20,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Petalburg",
       "border_filepath": "data/layouts/PowderpathVillage/border.bin",
       "blockdata_filepath": "data/layouts/PowderpathVillage/map.bin"
+    },
+    {
+      "id": "LAYOUT_POWDERPATH_VILLAGE_HOUSE1",
+      "name": "PowderpathVillage_House1_Layout",
+      "width": 10,
+      "height": 9,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/PowderpathVillage_House1/border.bin",
+      "blockdata_filepath": "data/layouts/PowderpathVillage_House1/map.bin"
+    },
+    {
+      "id": "LAYOUT_POWDERPATH_VILLAGE_HOUSE2",
+      "name": "PowderpathVillage_House2_Layout",
+      "width": 11,
+      "height": 8,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/PowderpathVillage_House2/border.bin",
+      "blockdata_filepath": "data/layouts/PowderpathVillage_House2/map.bin"
+    },
+    {
+      "id": "LAYOUT_POWDERPATH_VILLAGE_HOUSE3",
+      "name": "PowderpathVillage_House3_Layout",
+      "width": 11,
+      "height": 9,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_BrendansMaysHouse",
+      "border_filepath": "data/layouts/PowderpathVillage_House3/border.bin",
+      "blockdata_filepath": "data/layouts/PowderpathVillage_House3/map.bin"
+    },
+    {
+      "id": "LAYOUT_POWDERPATH_VILLAGE_HOUSE3_2F",
+      "name": "PowderpathVillage_House3_2F_Layout",
+      "width": 9,
+      "height": 8,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_BrendansMaysHouse",
+      "border_filepath": "data/layouts/PowderpathVillage_House3_2F/border.bin",
+      "blockdata_filepath": "data/layouts/PowderpathVillage_House3_2F/map.bin"
+    },
+    {
+      "id": "LAYOUT_POWDERPATH_VILLAGE_MART",
+      "name": "PowderpathVillage_Mart_Layout",
+      "width": 11,
+      "height": 8,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Shop",
+      "border_filepath": "data/layouts/PowderpathVillage_Mart/border.bin",
+      "blockdata_filepath": "data/layouts/PowderpathVillage_Mart/map.bin"
+    },
+    {
+      "id": "LAYOUT_POWDERPATH_VILLAGE_POKEMON_CENTER_1F",
+      "name": "PowderpathVillage_PokemonCenter_1F_Layout",
+      "width": 14,
+      "height": 9,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_PokemonCenter",
+      "border_filepath": "data/layouts/PowderpathVillage_PokemonCenter_1F/border.bin",
+      "blockdata_filepath": "data/layouts/PowderpathVillage_PokemonCenter_1F/map.bin"
     },
     {
       "id": "LAYOUT_SNOW_ROUTE1",

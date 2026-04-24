@@ -1,7 +1,7 @@
 {
-  "id": "MAP_POWDERPATH_VILLAGE_HOUSE2",
-  "name": "PowderpathVillage_House2",
-  "layout": "LAYOUT_POWDERPATH_VILLAGE_HOUSE2",
+  "id": "MAP_POWDERPATH_VILLAGE_HOUSE3_2F",
+  "name": "PowderpathVillage_House3_2F",
+  "layout": "LAYOUT_POWDERPATH_VILLAGE_HOUSE3_2F",
   "music": "MUS_PETALBURG",
   "region_map_section": "MAPSEC_POWDERPATH_VILLAGE",
   "requires_flash": false,
@@ -15,33 +15,26 @@
   "connections": null,
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_MAN_1",
+      "graphics_id": "OBJ_EVENT_GFX_GIRL_1",
       "x": 4,
       "y": 4,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "PowderpathVillage_House2_EventScript_Shopkeep",
+      "script": "PowderpathVillage_House3_2F_EventScript_Daughter",
       "flag": "0"
     }
   ],
   "warp_events": [
     {
-      "x": 3,
-      "y": 7,
+      "x": 1,
+      "y": 1,
       "elevation": 0,
-      "dest_map": "MAP_POWDERPATH_VILLAGE",
-      "dest_warp_id": "3"
-    },
-    {
-      "x": 4,
-      "y": 7,
-      "elevation": 0,
-      "dest_map": "MAP_POWDERPATH_VILLAGE",
-      "dest_warp_id": "3"
+      "dest_map": "MAP_POWDERPATH_VILLAGE_HOUSE3",
+      "dest_warp_id": "2"
     }
   ],
   "coord_events": [],

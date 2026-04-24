@@ -142,6 +142,8 @@ gStdScripts_End::
 	.include "data/maps/PowderpathVillage_Mart/scripts.inc"
 	.include "data/maps/PowderpathVillage_House1/scripts.inc"
 	.include "data/maps/PowderpathVillage_House2/scripts.inc"
+	.include "data/maps/PowderpathVillage_House3/scripts.inc"
+	.include "data/maps/PowderpathVillage_House3_2F/scripts.inc"
 	.include "data/maps/SnowRoute1/scripts.inc"
 	.include "data/maps/SnowRoute2/scripts.inc"
 	.include "data/maps/IcespireTown/scripts.inc"
