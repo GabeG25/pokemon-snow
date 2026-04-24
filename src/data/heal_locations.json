@@ -363,8 +363,8 @@
     {
       "id": "HEAL_LOCATION_POWDERPATH_VILLAGE",
       "map": "MAP_POWDERPATH_VILLAGE",
-      "x": 6,
-      "y": 16,
+      "x": 16,
+      "y": 4,
       "respawn_map": "MAP_POWDERPATH_VILLAGE_POKEMON_CENTER_1F",
       "respawn_npc": "0",
       "respawn_x": 7,

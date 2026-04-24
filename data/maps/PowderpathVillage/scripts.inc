@@ -2,8 +2,9 @@ PowderpathVillage_MapScripts::
 	.byte 0
 
 @ ═══════════════════════════════════════════════════════════
-@ Vanillite Ice Cream Vendor — warm old-school, Kai callback
-@ v17 §10: Vanillite counts as Nuzlocke encounter for Powderpath
+@ Vanillite Ice Cream Vendor — stands at (4,11) behind the
+@ counter. Player approaches from (4,12) plaza, talks up.
+@ v17 §10: Vanillite counts as Nuzlocke encounter for PP.
 @ ═══════════════════════════════════════════════════════════
 
 PowderpathVillage_EventScript_VanilliteVendor::
@@ -40,91 +41,56 @@ PowderpathVillage_EventScript_VendorAlreadyBought::
 	end
 
 PowderpathVillage_Text_VendorIntro:
-	.string "Oh - a new face on the path.\p"
-	.string "Fresh ice cream, frost-cured\n"
-	.string "the old way. One scoop at a time.$"
+	.string "VENDOR: Oh - a new face on the\n"
+	.string "path.\p"
+	.string "Fresh snow still in your hair.\p"
+	.string "Used to run this cart down in\n"
+	.string "DAWNFLAKE, summers. Back when we\l"
+	.string "had summers.\p"
+	.string "People still want ice cream,\n"
+	.string "winter or not.\p"
+	.string "Funny thing, isn't it?$"
 
 PowderpathVillage_Text_VendorOffer:
-	.string "Tell you what. I've got a little\n"
-	.string "VANILLITE in the back cart.\p"
-	.string "Five hundred yen and it's yours.\n"
-	.string "It'll keep your cooler cold and\l"
-	.string "your team warm. Deal?$"
+	.string "VENDOR: Tell you what, dear.\p"
+	.string "I've got a little VANILLITE in\n"
+	.string "the back cart. Came out of a\l"
+	.string "drift up the trail.\p"
+	.string "Five hundred yen and she's yours.\n"
+	.string "She'll keep your cooler cold and\l"
+	.string "your team warm.\p"
+	.string "Deal?$"
 
 PowderpathVillage_Text_VendorGaveVanillite:
 	.string "{PLAYER} received a VANILLITE!\p"
-	.string "Kid named KAI used to pass\n"
-	.string "through here. He still talking\l"
-	.string "about my ice cream?\p"
-	.string "Figures. Tell him the vendor\n"
-	.string "says to eat a vegetable.$"
+	.string "VENDOR: Good. She's been looking\n"
+	.string "for someone.\p"
+	.string "Walk careful up the mountain,\n"
+	.string "dear. Cold's got weight to it\l"
+	.string "these past winters.\p"
+	.string "You'll feel it in your bones\n"
+	.string "before you feel it on your skin.$"
 
 PowderpathVillage_Text_VendorDecline:
-	.string "Suit yourself. The path doesn't\n"
-	.string "get warmer from here.$"
+	.string "VENDOR: Suit yourself.\p"
+	.string "The path doesn't get warmer from\n"
+	.string "here, mind you.$"
 
 PowderpathVillage_Text_VendorNoMoney:
-	.string "Five hundred yen, dear. Come back\n"
-	.string "when you've got it rattling.$"
+	.string "VENDOR: Five hundred yen, dear.\p"
+	.string "Come back when you've got it\n"
+	.string "rattling.$"
 
 PowderpathVillage_Text_VendorReturn:
-	.string "Keep that VANILLITE cold and it\n"
-	.string "will keep you fed all winter.$"
+	.string "VENDOR: Keep that VANILLITE cold\n"
+	.string "and she'll keep you fed all winter.\p"
+	.string "That's what a good POKEMON does.\n"
+	.string "Keeps you.\p"
+	.string "Longer than the weather will.$"
 
 @ ═══════════════════════════════════════════════════════════
-@ TM04 Return — old-timer, bond theme, said plain
-@ ═══════════════════════════════════════════════════════════
-
-PowderpathVillage_EventScript_TM04OldTimer::
-	lock
-	faceplayer
-	goto_if_set FLAG_SNOW_GOT_TM04_RETURN, PowderpathVillage_EventScript_TM04AlreadyGot
-	msgbox PowderpathVillage_Text_TM04Intro, MSGBOX_DEFAULT
-	giveitem ITEM_TM04
-	compare VAR_RESULT, FALSE
-	goto_if_eq PowderpathVillage_EventScript_TM04BagFull
-	setflag FLAG_SNOW_GOT_TM04_RETURN
-	msgbox PowderpathVillage_Text_TM04Outro, MSGBOX_DEFAULT
-	release
-	end
-
-PowderpathVillage_EventScript_TM04BagFull::
-	msgbox PowderpathVillage_Text_TM04BagFull, MSGBOX_DEFAULT
-	release
-	end
-
-PowderpathVillage_EventScript_TM04AlreadyGot::
-	msgbox PowderpathVillage_Text_TM04Return, MSGBOX_DEFAULT
-	release
-	end
-
-PowderpathVillage_Text_TM04Intro:
-	.string "Old man, leaning on a shovel.\p"
-	.string "Been watching you walk your team\n"
-	.string "through town. They're close to you.\p"
-	.string "That bond - I mean the real thing,\n"
-	.string "the thing between you and them -\l"
-	.string "that's what no one can freeze.\p"
-	.string "Not the weather. Not the grey\n"
-	.string "masks. Not anyone.\p"
-	.string "Take this. It's older than I am.$"
-
-PowderpathVillage_Text_TM04Outro:
-	.string "RETURN gets stronger the more\n"
-	.string "your POKEMON likes you.\p"
-	.string "Simple as that. Good ones usually\n"
-	.string "are.$"
-
-PowderpathVillage_Text_TM04BagFull:
-	.string "Make room in your bag first.\n"
-	.string "I'll hold it for you.$"
-
-PowderpathVillage_Text_TM04Return:
-	.string "Use it on the one that walks\n"
-	.string "closest. You'll know which one.$"
-
-@ ═══════════════════════════════════════════════════════════
-@ Pro-Veil citizen — disturbingly reasonable
+@ Pro-Veil citizen (south of PC) — tough-love supporter,
+@ specific about what's changed in her life.
 @ ═══════════════════════════════════════════════════════════
 
 PowderpathVillage_EventScript_ProVeilCitizen::
@@ -135,76 +101,104 @@ PowderpathVillage_EventScript_ProVeilCitizen::
 	end
 
 PowderpathVillage_Text_CitizenPraise:
-	.string "My tomatoes used to die in the\n"
-	.string "summer. Every year.\p"
-	.string "Then DIRECTOR TYRELL came through,\n"
-	.string "and now it snows straight through\l"
-	.string "August. I grow winter squash now.\p"
-	.string "People call TEAM VEIL scary\n"
-	.string "because of the masks. I say\l"
-	.string "they know what they're doing.\p"
-	.string "Safe region. Full pantry. Quiet\n"
-	.string "kids. That's enough for me.$"
+	.string "CITIZEN: Good afternoon.\p"
+	.string "You look like someone who's going\n"
+	.string "to ask me what I think about the\l"
+	.string "DIRECTOR.\p"
+	.string "My tomatoes used to die every\n"
+	.string "summer. Too hot, too wet. I'd pull\l"
+	.string "the whole row up by August.\p"
+	.string "They don't die anymore.\p"
+	.string "Kids sleep through the night.\n"
+	.string "Pantry's full. Nobody comes\l"
+	.string "banging on the door at midnight.\p"
+	.string "Call me old-fashioned. A quiet\n"
+	.string "winter and a full cellar suits me\l"
+	.string "fine.\p"
+	.string "Some things you don't question,\n"
+	.string "dear.$"
 
 @ ═══════════════════════════════════════════════════════════
-@ Seeds-of-doubt villager — quiet, specific, scared
-@ ═══════════════════════════════════════════════════════════
-
-PowderpathVillage_EventScript_DoubtVillager::
-	lock
-	faceplayer
-	msgbox PowderpathVillage_Text_DoubtVillager, MSGBOX_DEFAULT
-	release
-	end
-
-PowderpathVillage_Text_DoubtVillager:
-	.string "Don't stare at the one in grey.\n"
-	.string "Keep walking.\p"
-	.string "My brother asked a question once.\n"
-	.string "The polite kind. Just a question.\p"
-	.string "He lives in PINEGROVE now. Doesn't\n"
-	.string "come home for the festivals.\p"
-	.string "I'm not saying anything. I'm just\n"
-	.string "telling you - don't stare.$"
-
-@ ═══════════════════════════════════════════════════════════
-@ Team Veil observer — polite, not hostile, implies a file
+@ Veil supporter (MAN_3, NW corner) — uninformed pro-Veil
+@ townsfolk, not an actual member. Just likes the winter.
 @ ═══════════════════════════════════════════════════════════
 
 PowderpathVillage_EventScript_VeilObserver::
 	lock
 	faceplayer
-	goto_if_set FLAG_SNOW_POWDERPATH_OBSERVER_SEEN, PowderpathVillage_EventScript_VeilObserverSecond
-	msgbox PowderpathVillage_Text_VeilObserverFirst, MSGBOX_DEFAULT
-	setflag FLAG_SNOW_POWDERPATH_OBSERVER_SEEN
+	msgbox PowderpathVillage_Text_VeilObserver, MSGBOX_DEFAULT
 	release
 	end
 
-PowderpathVillage_EventScript_VeilObserverSecond::
-	msgbox PowderpathVillage_Text_VeilObserverSecond, MSGBOX_DEFAULT
+PowderpathVillage_Text_VeilObserver:
+	.string "MAN: Morning. Nice day.\p"
+	.string "Well - every day is a nice day\n"
+	.string "now, I suppose. Same day, really.\p"
+	.string "Snow and snow and more snow.\p"
+	.string "I like it. Always have.\p"
+	.string "My knees used to go in the summer\n"
+	.string "heat. Now they don't. They say\l"
+	.string "that's TEAM VEIL's doing.\p"
+	.string "Don't really know what they're up\n"
+	.string "to. Something with the big\l"
+	.string "mountain, folks say.\p"
+	.string "Doesn't concern me. They've kept\n"
+	.string "things steady.\p"
+	.string "That's more than the last lot\n"
+	.string "managed.$"
+
+@ ═══════════════════════════════════════════════════════════
+@ Ice cream fan — kid loitering west of the vendor cart
+@ ═══════════════════════════════════════════════════════════
+
+PowderpathVillage_EventScript_IceCreamFan::
+	lock
+	faceplayer
+	msgbox PowderpathVillage_Text_IceCreamFan, MSGBOX_DEFAULT
 	release
 	end
 
-PowderpathVillage_Text_VeilObserverFirst:
-	.string "Good morning, {PLAYER}.\p"
-	.string "No, we haven't met. You're on the\n"
-	.string "intake list. New trainer out of\l"
-	.string "DAWNFLAKE, starter class. Noted.\p"
-	.string "Enjoy the village. The DIRECTOR\n"
-	.string "appreciates young people who move\l"
-	.string "with purpose.$"
+PowderpathVillage_Text_IceCreamFan:
+	.string "BOY: The lady sells ICE CREAM.\p"
+	.string "In winter.\p"
+	.string "I asked her why once. She said\n"
+	.string "'cold stays cold, whether anyone's\l"
+	.string "buying or not.'\p"
+	.string "I don't know what that means.\p"
+	.string "I just like the ice cream.\p"
+	.string "...\p"
+	.string "Mom says I can't have another\n"
+	.string "scoop until next week.$"
 
-PowderpathVillage_Text_VeilObserverSecond:
-	.string "Still moving with purpose. Good.\p"
-	.string "I'll make a note.$"
+@ ═══════════════════════════════════════════════════════════
+@ Flower-lover — tends the FLOWERS beside the vendor's cart
+@ ═══════════════════════════════════════════════════════════
+
+PowderpathVillage_EventScript_FlowerLover::
+	lock
+	faceplayer
+	msgbox PowderpathVillage_Text_FlowerLover, MSGBOX_DEFAULT
+	release
+	end
+
+PowderpathVillage_Text_FlowerLover:
+	.string "WOMAN: They still bloom, you know.\p"
+	.string "Under the snow.\p"
+	.string "I planted these FLOWERS when\n"
+	.string "POWDERPATH was warmer. Thought\l"
+	.string "I'd have to dig them up when\l"
+	.string "winter came and stayed.\p"
+	.string "They just kept going. Quiet.\n"
+	.string "Under the drifts.\p"
+	.string "Like they were waiting for\n"
+	.string "something the rest of us gave up\l"
+	.string "on.\p"
+	.string "That's why I tend them. Somebody\n"
+	.string "ought to notice.$"
 
 @ ═══════════════════════════════════════════════════════════
 @ Signs
 @ ═══════════════════════════════════════════════════════════
-
-PowderpathVillage_EventScript_TownSign::
-	msgbox PowderpathVillage_Text_TownSign, MSGBOX_SIGN
-	end
 
 PowderpathVillage_EventScript_MartSign::
 	msgbox PowderpathVillage_Text_MartSign, MSGBOX_SIGN
@@ -214,15 +208,13 @@ PowderpathVillage_EventScript_PCSign::
 	msgbox PowderpathVillage_Text_PCSign, MSGBOX_SIGN
 	end
 
-PowderpathVillage_Text_TownSign:
-	.string "POWDERPATH VILLAGE\p"
-	.string "Where the first snow of winter\n"
-	.string "meets the last snow of spring.$"
-
 PowderpathVillage_Text_MartSign:
-	.string "POWDERPATH POKEMON MART\n"
-	.string "Stocked for the long climb.$"
+	.string "POWDERPATH POKEMON MART\p"
+	.string "Stocked for the long climb\n"
+	.string "ahead.\p"
+	.string "Don't forget a REPEL.$"
 
 PowderpathVillage_Text_PCSign:
-	.string "POWDERPATH POKEMON CENTER\n"
-	.string "Rest here. The mountains don't.$"
+	.string "POWDERPATH POKEMON CENTER\p"
+	.string "Rest here.\p"
+	.string "The mountains don't.$"
