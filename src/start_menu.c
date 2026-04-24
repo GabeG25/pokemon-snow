@@ -23,6 +23,7 @@
 #include "link.h"
 #include "load_save.h"
 #include "main.h"
+#include "map_name_popup.h"
 #include "menu.h"
 #include "new_game.h"
 #include "option_menu.h"
@@ -627,6 +628,12 @@ void ShowStartMenu(void)
         PlayerFreeze();
         StopPlayerAvatar();
     }
+    // Snow: dismiss any active map-name title card before the Start menu
+    // opens — the popup's HBlank callback rewrites REG_BG0VOFS per scanline
+    // and corrupts any menu that draws on BG0 (same interference pattern
+    // as the gate dialog). Request does a palette-faded teardown so there's
+    // no white flash.
+    RequestMapNamePopUpDismiss();
     CreateStartMenuTask(Task_ShowStartMenu);
     LockPlayerFieldControls();
 }

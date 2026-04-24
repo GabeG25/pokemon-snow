@@ -1625,7 +1625,16 @@ static void DoCB1_Overworld(u16 newKeys, u16 heldKeys)
         if (ProcessPlayerFieldInput(&inputStruct) == 1)
         {
             LockPlayerFieldControls();
-            HideMapNamePopUpWindow();
+            // Snow: vanilla killed the map-name popup here on every input that
+            // started a script (NPC talk, sign read, coord_event step, warp).
+            // With the full-width GEN_5 title card that sits at the top of the
+            // screen and lives for ~6s, that produced the "disappears when I
+            // move around" complaint — stepping onto any coord_event tile wiped
+            // the popup. The popup's own state machine fades/slides it off
+            // gracefully; dialog boxes render at the bottom and don't overlap
+            // the top-anchored card, so leaving it alive through field scripts
+            // looks correct. Battles & map loads destroy the task via their
+            // own cleanup paths (sprite/task resets in CB2_DoChangeMap).
         }
         else
         {
@@ -2052,10 +2061,18 @@ void CB2_ReturnToFieldContinueScriptPlayMapMusic(void)
     CB2_ReturnToField();
 }
 
+// Forward declaration so CB2_ReturnToFieldFadeFromBlack can use it.
+static void FieldCB_FadeTryShowMapPopup(void);
+
 void CB2_ReturnToFieldFadeFromBlack(void)
 {
     FieldClearVBlankHBlankCallbacks();
-    gFieldCallback = FieldCB_WarpExitFadeFromBlack;
+    // Snow: FieldCB_FadeTryShowMapPopup wraps FieldCB_WarpExitFadeFromBlack and
+    // additionally fires the map-name popup (gated on showMapName). Using it
+    // here means the icy title card now shows on every warp exit — stepping
+    // out of a house, arriving at a Pokecenter, etc. — not just on connection
+    // crossings or continue-from-save.
+    gFieldCallback = FieldCB_FadeTryShowMapPopup;
     CB2_ReturnToField();
 }
 

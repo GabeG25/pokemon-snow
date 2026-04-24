@@ -10,6 +10,7 @@
 #include "menu.h"
 #include "map_name_popup.h"
 #include "palette.h"
+// Snow: BeginNormalPaletteFade lives here for the popup fade-out animation.
 #include "region_map.h"
 #include "rtc.h"
 #include "start_menu.h"
@@ -19,6 +20,7 @@
 #include "constants/battle_frontier.h"
 #include "constants/layouts.h"
 #include "constants/region_map_sections.h"
+#include "constants/rgb.h"
 #include "constants/weather.h"
 #include "config/general.h"
 #include "config/overworld.h"
@@ -311,6 +313,37 @@ static const u8 sRegionMapSectionId_To_PopUpThemeIdMapping_BW[] =
     [MAPSEC_ALTERING_CAVE - KANTO_MAPSEC_COUNT] = MAPPOPUP_THEME_BW_DEFAULT,
     [MAPSEC_NAVEL_ROCK - KANTO_MAPSEC_COUNT] = MAPPOPUP_THEME_BW_DEFAULT,
     [MAPSEC_TRAINER_HILL - KANTO_MAPSEC_COUNT] = MAPPOPUP_THEME_BW_DEFAULT,
+    // Snow (Boralyss region) MAPSECs — every Snow town/route/cave/etc. uses the ice popup
+    [MAPSEC_DAWNFLAKE_TOWN - KANTO_MAPSEC_COUNT]        = MAPPOPUP_THEME_BW_DEFAULT,
+    [MAPSEC_POWDERPATH_VILLAGE - KANTO_MAPSEC_COUNT]    = MAPPOPUP_THEME_BW_DEFAULT,
+    [MAPSEC_POWDERPATH_TRAIL - KANTO_MAPSEC_COUNT]      = MAPPOPUP_THEME_BW_DEFAULT,
+    [MAPSEC_ICESPIRE_PASS - KANTO_MAPSEC_COUNT]         = MAPPOPUP_THEME_BW_DEFAULT,
+    [MAPSEC_ICESPIRE_TOWN - KANTO_MAPSEC_COUNT]         = MAPPOPUP_THEME_BW_DEFAULT,
+    [MAPSEC_PINEHURST_WOODS - KANTO_MAPSEC_COUNT]       = MAPPOPUP_THEME_BW_DEFAULT,
+    [MAPSEC_PINEGROVE_CITY - KANTO_MAPSEC_COUNT]        = MAPPOPUP_THEME_BW_DEFAULT,
+    [MAPSEC_TIMBER_CREEK - KANTO_MAPSEC_COUNT]          = MAPPOPUP_THEME_BW_DEFAULT,
+    [MAPSEC_IRONFROST_CAVE - KANTO_MAPSEC_COUNT]        = MAPPOPUP_THEME_BW_DEFAULT,
+    [MAPSEC_IRONFROST_CITY - KANTO_MAPSEC_COUNT]        = MAPPOPUP_THEME_BW_DEFAULT,
+    [MAPSEC_GLACIER_LAKE - KANTO_MAPSEC_COUNT]          = MAPPOPUP_THEME_BW_DEFAULT,
+    [MAPSEC_FROSTBREAK_LODGE - KANTO_MAPSEC_COUNT]      = MAPPOPUP_THEME_BW_DEFAULT,
+    [MAPSEC_GALETOP_PLATEAU - KANTO_MAPSEC_COUNT]       = MAPPOPUP_THEME_BW_DEFAULT,
+    [MAPSEC_DREAMURS_VALLEY - KANTO_MAPSEC_COUNT]       = MAPPOPUP_THEME_BW_DEFAULT,
+    [MAPSEC_DREAMURS_TOWN - KANTO_MAPSEC_COUNT]         = MAPPOPUP_THEME_BW_DEFAULT,
+    [MAPSEC_ICEHARBOR_BAY - KANTO_MAPSEC_COUNT]         = MAPPOPUP_THEME_BW_DEFAULT,
+    [MAPSEC_ICEHARBOR_CITY - KANTO_MAPSEC_COUNT]        = MAPPOPUP_THEME_BW_DEFAULT,
+    [MAPSEC_DRIFTROCK_ISLE - KANTO_MAPSEC_COUNT]        = MAPPOPUP_THEME_BW_DEFAULT,
+    [MAPSEC_SNOWBURN_PATH - KANTO_MAPSEC_COUNT]         = MAPPOPUP_THEME_BW_DEFAULT,
+    [MAPSEC_BRIGHTBLOOM_MEADOW - KANTO_MAPSEC_COUNT]    = MAPPOPUP_THEME_BW_DEFAULT,
+    [MAPSEC_DRAGONFORGE_CITY - KANTO_MAPSEC_COUNT]      = MAPPOPUP_THEME_BW_DEFAULT,
+    [MAPSEC_MEMORIA_PASSAGE - KANTO_MAPSEC_COUNT]       = MAPPOPUP_THEME_BW_DEFAULT,
+    [MAPSEC_SOLACE_TOWN - KANTO_MAPSEC_COUNT]           = MAPPOPUP_THEME_BW_DEFAULT,
+    [MAPSEC_VERDANT_JUNGLE - KANTO_MAPSEC_COUNT]        = MAPPOPUP_THEME_BW_DEFAULT,
+    [MAPSEC_CINDERSTONE_PATH - KANTO_MAPSEC_COUNT]      = MAPPOPUP_THEME_BW_DEFAULT,
+    [MAPSEC_PYRESPIRE_LAGOON - KANTO_MAPSEC_COUNT]      = MAPPOPUP_THEME_BW_DEFAULT,
+    [MAPSEC_PYRESPIRE_CITY - KANTO_MAPSEC_COUNT]        = MAPPOPUP_THEME_BW_DEFAULT,
+    [MAPSEC_IRONFROST_BASEMENT - KANTO_MAPSEC_COUNT]    = MAPPOPUP_THEME_BW_DEFAULT,
+    [MAPSEC_BORALYSS_VICTORY_ROAD - KANTO_MAPSEC_COUNT] = MAPPOPUP_THEME_BW_DEFAULT,
+    [MAPSEC_BORALYSS_LEAGUE - KANTO_MAPSEC_COUNT]       = MAPPOPUP_THEME_BW_DEFAULT,
 };
 
 static const u8 sText_PyramidFloor1[] = _("PYRAMID FLOOR 1");
@@ -402,17 +435,29 @@ static void Task_MapNamePopUpWindow(u8 taskId)
     switch (task->tState)
     {
     case STATE_PRINT:
-        // Wait, then create and print the pop up window
-        if (++task->tPrintTimer > 30)
+        // Wait until the warp-exit palette fade-from-black has finished
+        // before we create the popup window. If we load the popup's
+        // palette while gPaletteFade is still active, the fade-loop
+        // blends palette 14 toward the map's stored colors and paints
+        // over our ice palette the next frame.
+        //
+        // Snow: removed the vanilla 30-frame tPrintTimer. That padding
+        // delayed the popup an extra half-second after warp/transition,
+        // which made the R1 title card barely visible when the player
+        // raced from Autumn's house straight into the Autumn catching
+        // coord-event (~48-frame walk from connection entry to the
+        // trigger). Transitioning to SLIDE_IN the moment the fade
+        // finishes gives the title card enough onscreen time before a
+        // cutscene dismiss.
+        if (gPaletteFade.active)
+            break;
+        task->tState = STATE_SLIDE_IN;
+        task->tPrintTimer = 0;
+        ShowMapNamePopUpWindow();
+        if (OW_POPUP_GENERATION == GEN_5)
         {
-            task->tState = STATE_SLIDE_IN;
-            task->tPrintTimer = 0;
-            ShowMapNamePopUpWindow();
-            if (OW_POPUP_GENERATION == GEN_5)
-            {
-                EnableInterrupts(INTR_FLAG_HBLANK);
-                SetHBlankCallback(HBlankCB_DoublePopupWindow);
-            }
+            EnableInterrupts(INTR_FLAG_HBLANK);
+            SetHBlankCallback(HBlankCB_DoublePopupWindow);
         }
         break;
     case STATE_SLIDE_IN:
@@ -427,9 +472,15 @@ static void Task_MapNamePopUpWindow(u8 taskId)
         break;
     case STATE_WAIT:
         // Wait while the window is fully onscreen.
+        // Snow: on-screen hold = 120 frames (~2s). Cut down from 240 after
+        // CEO felt the card still lingered. Total visible is ~2s hold +
+        // ~0.5s slide-in + ~0.5s fade-out slide. Also trigger a palette
+        // fade-out once we've held long enough so the popup fades rather
+        // than hard-slides away.
         if (++task->tOnscreenTimer > 120)
         {
             task->tOnscreenTimer = 0;
+            BeginNormalPaletteFade(0x00004000, 2, 0, 16, RGB_BLACK);
             task->tState = STATE_SLIDE_OUT;
         }
         break;
@@ -466,6 +517,30 @@ static void Task_MapNamePopUpWindow(u8 taskId)
     }
     if (OW_POPUP_GENERATION != GEN_5)
         SetGpuReg(REG_OFFSET_BG0VOFS, task->tYOffset);
+}
+
+// Snow: immediate dismiss used when a cutscene/dialog starts (ScrCmd_lockall
+// / ScrCmd_lock). The earlier "graceful slide-out" approach left the GEN_5
+// HBlank callback running for ~0.5s while the popup animated away — and
+// that callback slams REG_BG0VOFS every scanline, which glitched any
+// dialog that opened on BG0 during the slide (gate-block msgbox, Autumn
+// trigger). The earlier "hard teardown" snap produced a white flash
+// because HideMapNamePopUpWindow fills the window with PIXEL_FILL(1), and
+// palette 14 index 1 is #f8f8f8 (the ice highlight color).
+//
+// Fix: instantly blend palette 14 to black, then run the standard
+// teardown. The window-clear's PIXEL_FILL(1) now paints black, which
+// reads as a clean dismiss instead of a flash. HBlank is disabled and
+// BG0 scroll is reset inside HideMapNamePopUpWindow, so dialogs that
+// open on the next frame render without interference.
+void RequestMapNamePopUpDismiss(void)
+{
+    if (!FuncIsActiveTask(Task_MapNamePopUpWindow))
+        return;
+
+    if (gTasks[gPopupTaskId].tState != STATE_PRINT)
+        BlendPalettes(0x00004000, 16, RGB_BLACK);
+    HideMapNamePopUpWindow();
 }
 
 void HideMapNamePopUpWindow(void)
@@ -552,7 +627,19 @@ static void ShowMapNamePopUpWindow(void)
             SetGpuRegBits(REG_OFFSET_WININ, WININ_WIN0_CLR);
 
         mapNamePopUpWindowId = AddMapNamePopUpWindow();
-        secondaryPopUpWindowId = AddSecondaryPopUpWindow();
+        // Snow: only spawn the secondary (bottom) popup when we're actually
+        // going to show the time in it. OW_POPUP_BW_TIME_MODE is NONE here,
+        // so the bottom bar was purely decorative — and its BG0 tilemap row
+        // (tile Y=17) lives in the middle HBlank region (scanlines 80-160)
+        // that uses the map BG0VOFS, not the popup one. During slide-in /
+        // slide-out the secondary tiles got mis-scrolled and read as a brief
+        // flash at the bottom of the screen (CEO repro on Dawnflake → R1).
+        // Suppressing the secondary window entirely cleans that up without
+        // losing any information (no time was being rendered anyway).
+        if (OW_POPUP_BW_TIME_MODE != OW_POPUP_BW_TIME_NONE)
+            secondaryPopUpWindowId = AddSecondaryPopUpWindow();
+        else
+            secondaryPopUpWindowId = WINDOW_NONE;
     }
     else
     {
@@ -572,7 +659,8 @@ static void ShowMapNamePopUpWindow(void)
     {
         AddTextPrinterParameterized(mapNamePopUpWindowId, FONT_SHORT, mapDisplayHeader, 8, 2, TEXT_SKIP_DRAW, NULL);
         CopyWindowToVram(mapNamePopUpWindowId, COPYWIN_FULL);
-        UpdateSecondaryPopUpWindow(secondaryPopUpWindowId);
+        if (secondaryPopUpWindowId != WINDOW_NONE)
+            UpdateSecondaryPopUpWindow(secondaryPopUpWindowId);
     }
     else
     {
@@ -645,12 +733,14 @@ static void LoadMapNamePopUpWindowBg(void)
                 LoadPalette(sMapPopUpTilesPalette_BW_Black, BG_PLTT_ID(14), sizeof(sMapPopUpTilesPalette_BW_Black));
 
             CopyToWindowPixelBuffer(popupWindowId, sMapPopUpTilesPrimary_BW, sizeof(sMapPopUpTilesPrimary_BW), 0);
-            CopyToWindowPixelBuffer(secondaryPopUpWindowId, sMapPopUpTilesSecondary_BW, sizeof(sMapPopUpTilesSecondary_BW), 0);
+            if (secondaryPopUpWindowId != WINDOW_NONE)
+                CopyToWindowPixelBuffer(secondaryPopUpWindowId, sMapPopUpTilesSecondary_BW, sizeof(sMapPopUpTilesSecondary_BW), 0);
             break;
         }
 
         PutWindowTilemap(popupWindowId);
-        PutWindowTilemap(secondaryPopUpWindowId);
+        if (secondaryPopUpWindowId != WINDOW_NONE)
+            PutWindowTilemap(secondaryPopUpWindowId);
     }
     else
     {

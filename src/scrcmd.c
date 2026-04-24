@@ -32,6 +32,7 @@
 #include "item.h"
 #include "lilycove_lady.h"
 #include "main.h"
+#include "map_name_popup.h"
 #include "map_preview_screen.h"
 #include "menu.h"
 #include "money.h"
@@ -1613,6 +1614,16 @@ bool8 ScrCmd_lockall(struct ScriptContext *ctx)
     }
     else
     {
+        // Snow: gracefully dismiss any map-name title card the moment a
+        // cutscene/dialog starts. The 4-second GEN_5 popup used to linger
+        // during Mom's Running Shoes cutscene and Autumn's R1 catching
+        // tutorial, both of which fire via frame-table scripts on map
+        // entry. An abrupt HideMapNamePopUpWindow produced a visible white
+        // flash because palette 14 and the popup tiles snapped off in one
+        // frame; Request does a palette-faded slide-out instead. Hooking
+        // the bytecode here catches every real cutscene without dismissing
+        // the popup on silent coord-event passes (those don't lockall).
+        RequestMapNamePopUpDismiss();
         struct ObjectEvent *followerObj = GetFollowerObject();
         FreezeObjects_WaitForPlayer();
         SetupNativeScript(ctx, IsFreezePlayerFinished);
@@ -1634,6 +1645,9 @@ bool8 ScrCmd_lock(struct ScriptContext *ctx)
     }
     else
     {
+        // Snow: see ScrCmd_lockall — same rationale. NPC dialogs lead with
+        // `lock`, so this fades the popup before the message window opens.
+        RequestMapNamePopUpDismiss();
         struct ObjectEvent *followerObj = GetFollowerObject();
         if (gObjectEvents[gSelectedObjectEvent].active)
         {
