@@ -2918,6 +2918,91 @@ void TrySpawnObjectEvents(s16 cameraX, s16 cameraY)
                     TrySpawnObjectEventTemplate(template, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, cameraX, cameraY);
             }
         }
+
+        // Snow-project cross-map NPC rendering:
+        // Also spawn object events from directly-connected neighbor maps so NPCs
+        // don't pop in/out at the seam. Translated to current-map coords using
+        // the connection's direction and offset. Local IDs are offset above 100
+        // to avoid collision with current-map local IDs (which are 1..N).
+        if (gMapHeader.connections != NULL)
+        {
+            u32 ci;
+            u32 connCount = gMapHeader.connections->count;
+            const struct MapConnection *connection = gMapHeader.connections->connections;
+            s32 curWidth  = gMapHeader.mapLayout->width;
+            s32 curHeight = gMapHeader.mapLayout->height;
+
+            for (ci = 0; ci < connCount; ci++, connection++)
+            {
+                enum Connection dir = connection->direction;
+                const struct MapHeader *cMap;
+                s32 offset, cWidth, cHeight;
+                u8 j, cObjCount;
+
+                if (dir != CONNECTION_NORTH && dir != CONNECTION_SOUTH
+                 && dir != CONNECTION_WEST && dir != CONNECTION_EAST)
+                    continue;
+
+                cMap = GetMapHeaderFromConnection(connection);
+                if (cMap == NULL || cMap->events == NULL)
+                    continue;
+
+                offset  = connection->offset;
+                cWidth  = cMap->mapLayout->width;
+                cHeight = cMap->mapLayout->height;
+                cObjCount = cMap->events->objectEventCount;
+
+                for (j = 0; j < cObjCount && j < 32; j++)
+                {
+                    const struct ObjectEventTemplate *fTpl = &cMap->events->objectEvents[j];
+                    struct ObjectEventTemplate localCopy;
+                    s16 localX, localY, fnpcX, fnpcY;
+
+                    switch (dir)
+                    {
+                    case CONNECTION_NORTH:
+                        localX = fTpl->x + offset;
+                        localY = fTpl->y - cHeight;
+                        break;
+                    case CONNECTION_SOUTH:
+                        localX = fTpl->x + offset;
+                        localY = fTpl->y + curHeight;
+                        break;
+                    case CONNECTION_WEST:
+                        localX = fTpl->x - cWidth;
+                        localY = fTpl->y + offset;
+                        break;
+                    case CONNECTION_EAST:
+                        localX = fTpl->x + curWidth;
+                        localY = fTpl->y + offset;
+                        break;
+                    default:
+                        continue;
+                    }
+
+                    fnpcX = localX + MAP_OFFSET;
+                    fnpcY = localY + MAP_OFFSET;
+
+                    if (!(top <= fnpcY && bottom >= fnpcY && left <= fnpcX && right >= fnpcX))
+                        continue;
+                    if (FlagGet(fTpl->flagId))
+                        continue;
+
+                    localCopy = *fTpl;
+                    localCopy.x = localX;
+                    localCopy.y = localY;
+                    // Keep fTpl->localId intact so script lookup via
+                    // (localId, mapNum, mapGroup) resolves on the foreign
+                    // map's header. Collision with current-map objects is
+                    // impossible because mapNum differs.
+
+                    if (localCopy.graphicsId == OBJ_EVENT_GFX_LIGHT_SPRITE)
+                        SpawnLightSprite(fnpcX, fnpcY, cameraX, cameraY, localCopy.trainerRange_berryTreeId);
+                    else
+                        TrySpawnObjectEventTemplate(&localCopy, connection->mapNum, connection->mapGroup, cameraX, cameraY);
+                }
+            }
+        }
     }
 }
 
