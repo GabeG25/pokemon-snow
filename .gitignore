@@ -69,3 +69,4 @@ __pycache__
 # Local-only project artifacts
 /design-archive/
 /install-devkitpro-pacman
+.claude/settings.local.json
