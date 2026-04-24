@@ -1,6 +1,15 @@
 DawnflakeTown_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, DawnflakeTown_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, DawnflakeTown_OnFrame
 	.byte 0
+
+@ On every Dawnflake load, make sure FLAG_HIDE_MAP_NAME_POPUP is cleared.
+@ The bedroom wake-up used to set it and never cleared it in Snow's
+@ script flow; any save stuck in that state gets healed the moment the
+@ player is in Dawnflake outdoor.
+DawnflakeTown_OnTransition::
+	clearflag FLAG_HIDE_MAP_NAME_POPUP
+	end
 
 @ ═══════════════════════════════════════════════════════════
 @ Frame table — Mom Running Shoes auto-cutscene
@@ -43,12 +52,32 @@ DawnflakeTown_EventScript_VillagerPostRival::
 @ ═══════════════════════════════════════════════════════════
 
 DawnflakeTown_EventScript_SouthExitStarterGate::
-	lockall
+	@ The previous version put `setvar VAR_TEMP_0, 1` at the top as a
+	@ "one-shot guard" to prevent re-firing per stride. That set the
+	@ coord-event var gate to 1 on the first attempt — which meant
+	@ after the first BLOCK (msgbox + pushback), a second southward
+	@ step did not re-fire the gate (VAR_TEMP_0 was already 1) and
+	@ the player walked straight through to Route 1 with no Pokémon.
+	@ This was the v101/v102 bypass the CEO kept reproducing.
+	@
+	@ Correct design: only silence the trigger on SUCCESSFUL pass.
+	@ While the player is still being blocked, keep VAR_TEMP_0=0 so
+	@ every retry re-fires the gate.
 	goto_if_unset FLAG_SNOW_STARTER_CUTSCENE_DONE, DawnflakeTown_EventScript_StarterGateBlock
-	releaseall
+	specialvar VAR_RESULT, CalculatePlayerPartyCount
+	compare VAR_RESULT, 0
+	goto_if_eq DawnflakeTown_EventScript_StarterGateBlock
+	@ Pass: set the one-shot guard now (so post-cutscene strides don't
+	@ trigger lockall/release churn on every step across row 18) and
+	@ end silently — no lock means the player keeps their momentum.
+	setvar VAR_TEMP_0, 1
 	end
 
 DawnflakeTown_EventScript_StarterGateBlock::
+	@ lockall first so speed-up momentum can't carry the player onto
+	@ the next tile before the gate takes effect. VAR_TEMP_0 stays 0
+	@ so every retry re-fires this block path.
+	lockall
 	msgbox DawnflakeTown_Text_StarterGateBlock2, MSGBOX_DEFAULT
 	applymovement OBJ_EVENT_ID_PLAYER, DawnflakeTown_Movement_PlayerPushBack
 	waitmovement 0

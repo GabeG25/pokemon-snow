@@ -18,7 +18,14 @@ DawnflakeTown_PlayersHouse_2F_OnFrame:
 DawnflakeTown_PlayersHouse_2F_EventScript_WakeUp::
 	lockall
 	@ ── Suppress vanilla Littleroot intro state machine ──
-	setflag FLAG_HIDE_MAP_NAME_POPUP
+	@ FLAG_HIDE_MAP_NAME_POPUP was set here to hide the "LITTLEROOT TOWN"
+	@ popup during wake-up, but never cleared in Snow's script flow
+	@ (the clearflag lived in vanilla Littleroot scripts Snow bypasses).
+	@ That silently disabled every town/route title card from this point
+	@ onward. Cleared here so the ice popup fires correctly for every
+	@ Snow transition. A running save that got this flag stuck will also
+	@ pick up the fix on the next entry into the bedroom.
+	clearflag FLAG_HIDE_MAP_NAME_POPUP
 	setvar VAR_LITTLEROOT_INTRO_STATE, 8
 	setvar VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 4
 	setvar VAR_LITTLEROOT_HOUSES_STATE_MAY, 4
