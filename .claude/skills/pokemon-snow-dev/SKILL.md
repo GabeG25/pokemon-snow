@@ -131,5 +131,5 @@ If no workflow matches, build one by composing the relevant reference files.
 - **Trainer class fallbacks:** Probe pattern (Boarder/Skier/Miner→Hiker) for missing classes
 - **ROM is source of truth**, not markdown design docs
 - **WSL clipboard strips blank lines** — use `printf` single-line for multi-line content
-- **OneDrive Desktop path:** `/mnt/c/Users/gabeg/OneDrive/Desktop/`
+- **Local ROM deploy path:** `/mnt/c/Users/gabeg/PokemonSnow/` (Windows: `C:\Users\gabeg\PokemonSnow\`)
 - **317-species dex** for the Boralyss region
