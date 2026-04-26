@@ -222,25 +222,9 @@
   ],
   "bg_events": [
     {
-      "type": "sign",
-      "x": 7,
-      "y": 1,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "SnowRoute1_EventScript_TrailheadSign"
-    },
-    {
-      "type": "sign",
-      "x": 11,
-      "y": 8,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "SnowRoute1_EventScript_GrassSign"
-    },
-    {
       "type": "hidden_item",
-      "x": 3,
-      "y": 17,
+      "x": 4,
+      "y": 9,
       "elevation": 3,
       "item": "ITEM_ANTIDOTE",
       "flag": "FLAG_HIDDEN_ITEM_SNOW_ROUTE1_ANTIDOTE"

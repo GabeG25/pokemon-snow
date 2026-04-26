@@ -541,30 +541,6 @@ SnowRoute1_Text_KaiPostBattle:
 	.string "know she remembers me.$"
 
 @ ═══════════════════════════════════════════════════════════
-@ Signs
-@ ═══════════════════════════════════════════════════════════
-
-SnowRoute1_EventScript_TrailheadSign::
-	msgbox SnowRoute1_Text_TrailheadSign, MSGBOX_SIGN
-	end
-
-SnowRoute1_Text_TrailheadSign:
-	.string "POWDERPATH TRAIL\p"
-	.string "North: DAWNFLAKE TOWN\n"
-	.string "South: POWDERPATH VILLAGE\p"
-	.string "Travelers, stay on the path.$"
-
-SnowRoute1_EventScript_GrassSign::
-	msgbox SnowRoute1_Text_GrassSign, MSGBOX_SIGN
-	end
-
-SnowRoute1_Text_GrassSign:
-	.string "TRAIL NOTICE\p"
-	.string "Wild POKEMON live in the tall\n"
-	.string "grass. Keep a POKEMON of your\l"
-	.string "own ready before you step in.$"
-
-@ ═══════════════════════════════════════════════════════════
 @ Potion item ball
 @ ═══════════════════════════════════════════════════════════
 
