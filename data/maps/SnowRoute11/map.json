@@ -1,9 +1,12 @@
 {
+  "id": "MAP_SNOW_ROUTE11",
+  "name": "SnowRoute11",
   "layout": "LAYOUT_SNOW_ROUTE11",
   "music": "MUS_ROUTE101",
   "region_map_section": "MAPSEC_BRIGHTBLOOM_MEADOW",
   "requires_flash": false,
   "weather": "WEATHER_SNOW",
+  "map_type": "MAP_TYPE_ROUTE",
   "allow_cycling": true,
   "allow_escaping": false,
   "allow_running": true,
@@ -125,8 +128,5 @@
       "item": "ITEM_TM26",
       "flag": "FLAG_HIDDEN_ITEM_SNOW_R11_TM26_VOLT_SWITCH"
     }
-  ],
-  "id": "MAP_SNOW_ROUTE11",
-  "name": "SnowRoute11",
-  "map_type": "MAP_TYPE_ROUTE"
+  ]
 }

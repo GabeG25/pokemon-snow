@@ -1,9 +1,12 @@
 {
+  "id": "MAP_SOLACE_TOWN",
+  "name": "SolaceTown",
   "layout": "LAYOUT_SOLACE_TOWN",
   "music": "MUS_ROUTE101",
   "region_map_section": "MAPSEC_SOLACE_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_SNOW",
+  "map_type": "MAP_TYPE_TOWN",
   "allow_cycling": true,
   "allow_escaping": false,
   "allow_running": true,
@@ -53,8 +56,5 @@
     }
   ],
   "coord_events": [],
-  "bg_events": [],
-  "id": "MAP_SOLACE_TOWN",
-  "name": "SolaceTown",
-  "map_type": "MAP_TYPE_TOWN"
+  "bg_events": []
 }

@@ -1,9 +1,12 @@
 {
+  "id": "MAP_DRIFTROCK_ISLE",
+  "name": "DriftrockIsle",
   "layout": "LAYOUT_DRIFTROCK_ISLE",
   "music": "MUS_ROUTE101",
   "region_map_section": "MAPSEC_DRIFTROCK_ISLE",
   "requires_flash": false,
   "weather": "WEATHER_SNOW",
+  "map_type": "MAP_TYPE_ROUTE",
   "allow_cycling": true,
   "allow_escaping": false,
   "allow_running": true,
@@ -94,8 +97,5 @@
       "item": "ITEM_TM23",
       "flag": "FLAG_HIDDEN_ITEM_SNOW_DI_TM23_POISON_JAB"
     }
-  ],
-  "id": "MAP_DRIFTROCK_ISLE",
-  "name": "DriftrockIsle",
-  "map_type": "MAP_TYPE_ROUTE"
+  ]
 }

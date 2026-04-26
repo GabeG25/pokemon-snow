@@ -1,9 +1,12 @@
 {
+  "id": "MAP_SNOW_ROUTE14",
+  "name": "SnowRoute14",
   "layout": "LAYOUT_SNOW_ROUTE14",
   "music": "MUS_ROUTE101",
   "region_map_section": "MAPSEC_CINDERSTONE_PATH",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
+  "map_type": "MAP_TYPE_ROUTE",
   "allow_cycling": true,
   "allow_escaping": false,
   "allow_running": true,
@@ -159,8 +162,5 @@
       "item": "ITEM_MAGMARIZER",
       "flag": "FLAG_HIDDEN_ITEM_SNOW_R14_MAGMARIZER"
     }
-  ],
-  "id": "MAP_SNOW_ROUTE14",
-  "name": "SnowRoute14",
-  "map_type": "MAP_TYPE_ROUTE"
+  ]
 }

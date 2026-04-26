@@ -1,9 +1,12 @@
 {
+  "id": "MAP_SNOW_ROUTE6",
+  "name": "SnowRoute6",
   "layout": "LAYOUT_SNOW_ROUTE6",
   "music": "MUS_ROUTE101",
   "region_map_section": "MAPSEC_GLACIER_LAKE",
   "requires_flash": false,
   "weather": "WEATHER_SNOW",
+  "map_type": "MAP_TYPE_ROUTE",
   "allow_cycling": true,
   "allow_escaping": false,
   "allow_running": true,
@@ -129,8 +132,5 @@
   ],
   "warp_events": [],
   "coord_events": [],
-  "bg_events": [],
-  "id": "MAP_SNOW_ROUTE6",
-  "name": "SnowRoute6",
-  "map_type": "MAP_TYPE_ROUTE"
+  "bg_events": []
 }
