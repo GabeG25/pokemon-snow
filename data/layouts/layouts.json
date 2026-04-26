@@ -9450,8 +9450,8 @@
     {
       "id": "LAYOUT_SNOW_ROUTE2",
       "name": "SnowRoute2_Layout",
-      "width": 50,
-      "height": 20,
+      "width": 30,
+      "height": 61,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Petalburg",
       "border_filepath": "data/layouts/SnowRoute2/border.bin",

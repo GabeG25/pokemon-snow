@@ -27,60 +27,60 @@
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
-      "x": 14,
-      "y": 4,
+      "x": 12,
+      "y": 10,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NORMAL",
-      "trainer_sight_or_berry_tree_id": "2",
+      "trainer_sight_or_berry_tree_id": "5",
       "script": "SnowRoute2_EventScript_Brett",
       "flag": "0"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
-      "x": 19,
-      "y": 5,
+      "x": 17,
+      "y": 20,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NORMAL",
-      "trainer_sight_or_berry_tree_id": "3",
+      "trainer_sight_or_berry_tree_id": "5",
       "script": "SnowRoute2_EventScript_Finn",
       "flag": "0"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_HIKER",
-      "x": 40,
-      "y": 5,
+      "x": 12,
+      "y": 37,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NORMAL",
-      "trainer_sight_or_berry_tree_id": "3",
+      "trainer_sight_or_berry_tree_id": "5",
       "script": "SnowRoute2_EventScript_Mila",
       "flag": "0"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_HIKER",
-      "x": 22,
-      "y": 12,
+      "x": 17,
+      "y": 46,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NORMAL",
-      "trainer_sight_or_berry_tree_id": "2",
+      "trainer_sight_or_berry_tree_id": "5",
       "script": "SnowRoute2_EventScript_Gus",
       "flag": "0"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-      "x": 43,
-      "y": 4,
+      "x": 0,
+      "y": 59,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
@@ -92,8 +92,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_HIKER",
-      "x": 3,
-      "y": 8,
+      "x": 12,
+      "y": 58,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 0,
@@ -105,8 +105,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_CAMPER",
-      "x": 30,
-      "y": 17,
+      "x": 18,
+      "y": 2,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
@@ -121,36 +121,12 @@
   "coord_events": [],
   "bg_events": [
     {
-      "type": "sign",
-      "x": 10,
-      "y": 6,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "SnowRoute2_EventScript_PassWarningSign"
-    },
-    {
-      "type": "sign",
-      "x": 39,
-      "y": 5,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "SnowRoute2_EventScript_FrozenStreamSign"
-    },
-    {
-      "type": "sign",
-      "x": 28,
-      "y": 18,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "SnowRoute2_EventScript_IcespireTownSign"
-    },
-    {
       "type": "hidden_item",
-      "x": 12,
-      "y": 3,
+      "x": 29,
+      "y": 59,
       "elevation": 3,
-      "item": "ITEM_POTION",
-      "flag": "FLAG_HIDDEN_ITEM_SNOW_ROUTE2_POTION"
+      "item": "ITEM_GREAT_BALL",
+      "flag": "FLAG_HIDDEN_ITEM_SNOW_ROUTE2_GREAT_BALL"
     }
   ]
 }

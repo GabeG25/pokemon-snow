@@ -55,22 +55,6 @@ SnowRoute2_EventScript_LostTourist::
 	end
 
 @ ═══════════════════════════════════════════════════════════
-@ Signs
-@ ═══════════════════════════════════════════════════════════
-
-SnowRoute2_EventScript_PassWarningSign::
-	msgbox SnowRoute2_Text_PassWarningSign, MSGBOX_SIGN
-	end
-
-SnowRoute2_EventScript_FrozenStreamSign::
-	msgbox SnowRoute2_Text_FrozenStreamSign, MSGBOX_SIGN
-	end
-
-SnowRoute2_EventScript_IcespireTownSign::
-	msgbox SnowRoute2_Text_IcespireTownSign, MSGBOX_SIGN
-	end
-
-@ ═══════════════════════════════════════════════════════════
 @ Text
 @ ═══════════════════════════════════════════════════════════
 
@@ -169,21 +153,3 @@ SnowRoute2_Text_LostTourist:
 	.string "I'm gonna cry when I reach\l"
 	.string "that roof.$"
 
-@ Signs ----------------------------------------------------
-SnowRoute2_Text_PassWarningSign:
-	.string "ICESPIRE PASS\p"
-	.string "Elevation climbs sharply ahead.\n"
-	.string "Dress warm. Travel in daylight.\p"
-	.string "Do not stop on the bridge.$"
-
-SnowRoute2_Text_FrozenStreamSign:
-	.string "THE LONGCREEK\p"
-	.string "A running creek until last winter.\n"
-	.string "Frozen solid since the DIRECTOR\l"
-	.string "came through.\p"
-	.string "- POWDERPATH Trail Authority$"
-
-SnowRoute2_Text_IcespireTownSign:
-	.string "ICESPIRE TOWN - just ahead\p"
-	.string "Home of Gym Leader SILVAN.\n"
-	.string "POKEMON CENTER open all hours.$"
