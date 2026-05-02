@@ -1,6 +1,9 @@
 	.section .rodata
 
 	.align 2
+DirectSoundWaveData_clover_00257c50::
+	.incbin "sound/direct_sound_samples/clover/clover_00257c50.bin"
+	.align 2
 DirectSoundWaveData_clover_002d8e9c::
 	.incbin "sound/direct_sound_samples/clover/clover_002d8e9c.bin"
 	.align 2
@@ -76,6 +79,9 @@ DirectSoundWaveData_clover_004ee778::
 DirectSoundWaveData_clover_004f038c::
 	.incbin "sound/direct_sound_samples/clover/clover_004f038c.bin"
 	.align 2
+DirectSoundWaveData_clover_004fc470::
+	.incbin "sound/direct_sound_samples/clover/clover_004fc470.bin"
+	.align 2
 DirectSoundWaveData_clover_004fe57c::
 	.incbin "sound/direct_sound_samples/clover/clover_004fe57c.bin"
 	.align 2
@@ -108,6 +114,9 @@ DirectSoundWaveData_clover_00613f90::
 	.align 2
 DirectSoundWaveData_clover_006a3bd0::
 	.incbin "sound/direct_sound_samples/clover/clover_006a3bd0.bin"
+	.align 2
+DirectSoundWaveData_clover_006a6458::
+	.incbin "sound/direct_sound_samples/clover/clover_006a6458.bin"
 	.align 2
 DirectSoundWaveData_clover_006b2198::
 	.incbin "sound/direct_sound_samples/clover/clover_006b2198.bin"
@@ -192,6 +201,9 @@ DirectSoundWaveData_clover_00945114::
 	.align 2
 DirectSoundWaveData_clover_009465f4::
 	.incbin "sound/direct_sound_samples/clover/clover_009465f4.bin"
+	.align 2
+DirectSoundWaveData_clover_00957a5c::
+	.incbin "sound/direct_sound_samples/clover/clover_00957a5c.bin"
 	.align 2
 DirectSoundWaveData_clover_0096fc74::
 	.incbin "sound/direct_sound_samples/clover/clover_0096fc74.bin"
@@ -313,6 +325,9 @@ DirectSoundWaveData_clover_00b28fcc::
 DirectSoundWaveData_clover_00b2ba94::
 	.incbin "sound/direct_sound_samples/clover/clover_00b2ba94.bin"
 	.align 2
+DirectSoundWaveData_clover_00b2e6ec::
+	.incbin "sound/direct_sound_samples/clover/clover_00b2e6ec.bin"
+	.align 2
 DirectSoundWaveData_clover_00b32480::
 	.incbin "sound/direct_sound_samples/clover/clover_00b32480.bin"
 	.align 2
@@ -388,8 +403,17 @@ DirectSoundWaveData_clover_00b8dbe0::
 DirectSoundWaveData_clover_00b8f3b8::
 	.incbin "sound/direct_sound_samples/clover/clover_00b8f3b8.bin"
 	.align 2
+DirectSoundWaveData_clover_00b928fc::
+	.incbin "sound/direct_sound_samples/clover/clover_00b928fc.bin"
+	.align 2
 DirectSoundWaveData_clover_00b964cc::
 	.incbin "sound/direct_sound_samples/clover/clover_00b964cc.bin"
+	.align 2
+DirectSoundWaveData_clover_00b991f0::
+	.incbin "sound/direct_sound_samples/clover/clover_00b991f0.bin"
+	.align 2
+DirectSoundWaveData_clover_00b9c000::
+	.incbin "sound/direct_sound_samples/clover/clover_00b9c000.bin"
 	.align 2
 DirectSoundWaveData_clover_00c00000::
 	.incbin "sound/direct_sound_samples/clover/clover_00c00000.bin"
@@ -552,6 +576,9 @@ DirectSoundWaveData_clover_00f35790::
 	.align 2
 DirectSoundWaveData_clover_00f3cd1c::
 	.incbin "sound/direct_sound_samples/clover/clover_00f3cd1c.bin"
+	.align 2
+DirectSoundWaveData_clover_00f3d80c::
+	.incbin "sound/direct_sound_samples/clover/clover_00f3d80c.bin"
 	.align 2
 DirectSoundWaveData_clover_00f85870::
 	.incbin "sound/direct_sound_samples/clover/clover_00f85870.bin"

@@ -388,6 +388,414 @@ voicegroup_clover_battle::
 	.4byte 0x00070100
 
 	.align 2
+voicegroup_clover_trainer::
+	.byte 0x80, 0, 0x00, 0x00
+	.4byte voicegroup_clover_00800600
+	.4byte 0
+	.byte 0x40, 0, 0x00, 0x00
+	.4byte voicegroup_clover_0048a508
+	.4byte KeySplitTable_clover_00874bb4
+	.byte 0x40, 0, 0x00, 0x00
+	.4byte voicegroup_clover_00cce06c
+	.4byte KeySplitTable_clover_00c0a7ec
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00f35790
+	.4byte 0x00ff00ff
+	.byte 0x40, 0, 0x00, 0x00
+	.4byte voicegroup_clover_00cce030
+	.4byte KeySplitTable_clover_00c0a7ec
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_006b2198
+	.4byte 0x7f00e0ff
+	.byte 0x02, 60, 0x00, 0x00
+	.4byte 0x00000003
+	.4byte 0x00070300
+	.byte 0x00, 0, 0x00, 0x00
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00fc2068
+	.4byte 0xef8bbcff
+	.byte 0x40, 0, 0x00, 0x00
+	.4byte voicegroup_clover_00a4e028
+	.4byte KeySplitTable_clover_00c7ea54
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00a4d7b0
+	.4byte 0xf88badff
+	.byte 0x40, 0, 0x00, 0x00
+	.4byte voicegroup_clover_00ccdf68
+	.4byte KeySplitTable_clover_00ccdfb0
+	.byte 0x40, 0, 0x00, 0x00
+	.4byte voicegroup_clover_00332f68
+	.4byte KeySplitTable_clover_00ccdfb0
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00c41260
+	.4byte 0xeb00ebff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00c70c9c
+	.4byte 0x7f00e8ff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00c70c9c
+	.4byte 0xc000f8ff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00c70c9c
+	.4byte 0xd868a5ff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00c5be78
+	.4byte 0x7fff00ff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00828a90
+	.4byte 0x7fccd8ff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00c60db0
+	.4byte 0x7fff00ff
+	.byte 0x00, 0, 0x00, 0x00
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_0050d7b4
+	.4byte 0x7fff00ff
+	.byte 0x00, 0, 0x00, 0x00
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00b47db4
+	.4byte 0xf200f57f
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00b47db4
+	.4byte 0x7f00fdff
+	.byte 0x03, 60, 0x00, 0x00
+	.4byte ProgrammableWaveData_clover_004a327c
+	.4byte 0x000f0700
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00c3b168
+	.4byte 0x7fff00ff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00c3b168
+	.4byte 0xe8ff00ff
+	.byte 0x80, 0, 0x00, 0x00
+	.4byte voicegroup_clover_00ad2adc
+	.4byte 0
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00b5cc74
+	.4byte 0x7ff27fff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00b3f19c
+	.4byte 0xa5ff00ff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_004a8354
+	.4byte 0x7fff00ff
+	.byte 0x40, 0, 0x00, 0x00
+	.4byte voicegroup_clover_00877734
+	.4byte KeySplitTable_clover_008776b4
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00c26d8c
+	.4byte 0x7f00feff
+	.byte 0x00, 0, 0x00, 0x00
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00c42024
+	.4byte 0x7f19feff
+	.byte 0x40, 0, 0x00, 0x00
+	.4byte voicegroup_clover_004a5890
+	.4byte KeySplitTable_clover_004a5810
+	.byte 0x40, 0, 0x00, 0x00
+	.4byte voicegroup_clover_004a5944
+	.4byte KeySplitTable_clover_004a5810
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_004d9258
+	.4byte 0x7f00f9ff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_004d9258
+	.4byte 0x7300fcff
+	.byte 0x40, 0, 0x00, 0x00
+	.4byte voicegroup_clover_008289ec
+	.4byte KeySplitTable_clover_00828a10
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_006a6458
+	.4byte 0x7f00fdff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00c26d8c
+	.4byte 0xc067f2ff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00c42024
+	.4byte 0x7fff00ff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00b32480
+	.4byte 0xc000f8ff
+	.byte 0x40, 0, 0x00, 0x00
+	.4byte voicegroup_clover_00c06e0c
+	.4byte KeySplitTable_clover_00c06d8c
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00b45db8
+	.4byte 0x7f00f8ff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00b32480
+	.4byte 0xf600fcff
+	.byte 0x40, 0, 0x00, 0x00
+	.4byte voicegroup_clover_00cd0af4
+	.4byte KeySplitTable_clover_00fddfdc
+	.byte 0x00, 0, 0x00, 0x00
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_0083d9dc
+	.4byte 0xa0ff00f0
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00957a5c
+	.4byte 0xa5ff00ff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00c38714
+	.4byte 0xebff00ff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00803548
+	.4byte 0x7fff00ff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00f3d80c
+	.4byte 0xc0ff00ff
+	.byte 0x40, 0, 0x00, 0x00
+	.4byte voicegroup_clover_0073fbe0
+	.4byte KeySplitTable_clover_0073fb60
+	.byte 0x40, 0, 0x00, 0x00
+	.4byte voicegroup_clover_0048a55c
+	.4byte KeySplitTable_clover_004a30e4
+	.byte 0x00, 0, 0x00, 0x00
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.byte 0x40, 0, 0x00, 0x00
+	.4byte voicegroup_clover_0048ab80
+	.4byte KeySplitTable_clover_004a3138
+	.byte 0x40, 0, 0x00, 0x00
+	.4byte voicegroup_clover_008592ec
+	.4byte KeySplitTable_clover_004a3180
+	.byte 0x40, 0, 0x00, 0x00
+	.4byte voicegroup_clover_0048ab98
+	.4byte KeySplitTable_clover_004a3180
+	.byte 0x40, 0, 0x00, 0x00
+	.4byte voicegroup_clover_00b2e6c8
+	.4byte KeySplitTable_clover_00b2e648
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00f85870
+	.4byte 0x7fff00ff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00b2e6ec
+	.4byte 0xa5ff00ff
+	.byte 0x40, 0, 0x00, 0x00
+	.4byte voicegroup_clover_00fe9a04
+	.4byte KeySplitTable_clover_00f023ec
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00831570
+	.4byte 0x7fff00ff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_0082ae94
+	.4byte 0xa59aa5ff
+	.byte 0x00, 0, 0x00, 0x00
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.byte 0x00, 0, 0x00, 0x00
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.byte 0x80, 0, 0x00, 0x00
+	.4byte voicegroup_clover_00fbb4ac
+	.4byte 0
+	.byte 0x00, 0, 0x00, 0x00
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.byte 0x40, 0, 0x00, 0x00
+	.4byte voicegroup_clover_0073f5d8
+	.4byte KeySplitTable_clover_0073f558
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00c4037c
+	.4byte 0xa5ff00ff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00c4037c
+	.4byte 0x7fff00ff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00c38714
+	.4byte 0x7fff00d8
+	.byte 0x40, 0, 0x00, 0x00
+	.4byte voicegroup_clover_008dee20
+	.4byte KeySplitTable_clover_008aecac
+	.byte 0x40, 0, 0x00, 0x00
+	.4byte voicegroup_clover_008dee50
+	.4byte KeySplitTable_clover_008aecac
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00c54d60
+	.4byte 0xa5ff00ff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00c5ccb8
+	.4byte 0x7fff0040
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00c5ccb8
+	.4byte 0x0000c0ff
+	.byte 0x09, 60, 0x00, 0x00
+	.4byte 0x00000002
+	.4byte 0x000f0000
+	.byte 0x09, 60, 0x00, 0x00
+	.4byte 0x00000001
+	.4byte 0x00070300
+	.byte 0x09, 60, 0x00, 0x00
+	.4byte 0x00000000
+	.4byte 0x00070300
+	.byte 0x09, 60, 0x00, 0x00
+	.4byte 0x00000002
+	.4byte 0x000c0300
+	.byte 0x09, 60, 0x00, 0x00
+	.4byte 0x00000001
+	.4byte 0x000f0000
+	.byte 0x09, 60, 0x00, 0x00
+	.4byte 0x00000002
+	.4byte 0x010f0000
+	.byte 0x09, 60, 0x00, 0x00
+	.4byte 0x00000002
+	.4byte 0x00070300
+	.byte 0x09, 60, 0x00, 0x00
+	.4byte 0x00000000
+	.4byte 0x000f0000
+	.byte 0x02, 60, 0x00, 0x00
+	.4byte 0x00000002
+	.4byte 0x000f0000
+	.byte 0x02, 60, 0x00, 0x00
+	.4byte 0x00000001
+	.4byte 0x00070300
+	.byte 0x02, 60, 0x00, 0x00
+	.4byte 0x00000002
+	.4byte 0x000c0300
+	.byte 0x02, 60, 0x00, 0x00
+	.4byte 0x00000000
+	.4byte 0x00070300
+	.byte 0x02, 60, 0x00, 0x00
+	.4byte 0x00000001
+	.4byte 0x000f0000
+	.byte 0x02, 60, 0x00, 0x00
+	.4byte 0x00000002
+	.4byte 0x00070300
+	.byte 0x02, 60, 0x00, 0x00
+	.4byte 0x00000003
+	.4byte 0x00070300
+	.byte 0x00, 0, 0x00, 0x00
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.byte 0x03, 60, 0x00, 0x00
+	.4byte ProgrammableWaveData_clover_00850260
+	.4byte 0x00070300
+	.byte 0x03, 60, 0x00, 0x00
+	.4byte ProgrammableWaveData_clover_004a322c
+	.4byte 0x00070300
+	.byte 0x03, 60, 0x00, 0x00
+	.4byte ProgrammableWaveData_clover_004a31ec
+	.4byte 0x000f0000
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00814fac
+	.4byte 0x7fff00ff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00814fac
+	.4byte 0xc0e0c0ff
+	.byte 0x02, 60, 0x00, 0x00
+	.4byte 0x00000002
+	.4byte 0x010f0000
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00506c68
+	.4byte 0x7fff00ff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00506c68
+	.4byte 0xeeff00ff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00b928fc
+	.4byte 0x7fff00ff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00b9c000
+	.4byte 0x00ff00ff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00b991f0
+	.4byte 0x00ff00ff
+	.byte 0x00, 0, 0x00, 0x00
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00257c50
+	.4byte 0x7fff00ff
+	.byte 0x0c, 60, 0x00, 0x00
+	.4byte 0x00000001
+	.4byte 0x00030400
+	.byte 0x0c, 60, 0x00, 0x00
+	.4byte 0x00000000
+	.4byte 0x01000600
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00c70c9c
+	.4byte 0xd800f9ff
+	.byte 0x0c, 60, 0x00, 0x00
+	.4byte 0x00000000
+	.4byte 0x000f0006
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_004fc470
+	.4byte 0x7fff00ff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00ade494
+	.4byte 0xcc00f5ff
+	.byte 0x00, 0, 0x00, 0x00
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00b32480
+	.4byte 0xe700f8ff
+	.byte 0x0c, 60, 0x00, 0x00
+	.4byte 0x00000000
+	.4byte 0x01070100
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_004ee778
+	.4byte 0x7fff00ff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00f029d8
+	.4byte 0xc000fe03
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00830064
+	.4byte 0x00ff0025
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_0082dbec
+	.4byte 0x00ff0025
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00f029d8
+	.4byte 0x00ff0040
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00f30774
+	.4byte 0x7fff00ff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00b8d390
+	.4byte 0x7f00f8ff
+	.byte 0x0c, 60, 0x00, 0x00
+	.4byte 0x00000001
+	.4byte 0x000f0000
+	.byte 0x0c, 60, 0x00, 0x00
+	.4byte 0x00000000
+	.4byte 0x000f0000
+	.byte 0x80, 0, 0x00, 0x00
+	.4byte voicegroup_clover_004941b0
+	.4byte 0
+
+	.align 2
+voicegroup_clover_00332f68::
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00aef9b8
+	.4byte 0xe248fdff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00af16b4
+	.4byte 0xe248fdff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00af3078
+	.4byte 0xe248fdff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00af48bc
+	.4byte 0xe248fdff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00af5d68
+	.4byte 0xe248fdff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00af7364
+	.4byte 0xe248fdff
+
+	.align 2
 voicegroup_clover_00489f74::
 	.byte 0x01, 60, 0x00, 0x00
 	.4byte 0x00000002
@@ -2959,6 +3367,63 @@ voicegroup_clover_004941b0::
 	.4byte 0x00ff00ff
 
 	.align 2
+voicegroup_clover_004a5890::
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00b00000
+	.4byte 0xa533fcff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00b026d0
+	.4byte 0xa533fcff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00b04ccc
+	.4byte 0xa533fcff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00b00000
+	.4byte 0x7380ebff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00b026d0
+	.4byte 0x7380ebff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00b04ccc
+	.4byte 0x7380ebff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00b00000
+	.4byte 0x7fffffff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00b026d0
+	.4byte 0x7fffffff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00b04ccc
+	.4byte 0x7fffffff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00b00000
+	.4byte 0xeb33fcff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00b026d0
+	.4byte 0xeb33fcff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00b04ccc
+	.4byte 0xeb33fcff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00b00000
+	.4byte 0x7f34fcff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00b026d0
+	.4byte 0x7f34fcff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00b04ccc
+	.4byte 0x7f34fcff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00b00000
+	.4byte 0x7f34feff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00b026d0
+	.4byte 0x7f34feff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00b04ccc
+	.4byte 0x7f34feff
+
+	.align 2
 voicegroup_clover_004a58fc::
 	.byte 0x00, 60, 0x00, 0x00
 	.4byte DirectSoundWaveData_clover_00b00000
@@ -2999,6 +3464,18 @@ voicegroup_clover_004a5920::
 	.byte 0x00, 60, 0x00, 0x00
 	.4byte DirectSoundWaveData_clover_00b04ccc
 	.4byte 0x7f34fcff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00b00000
+	.4byte 0x7f34feff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00b026d0
+	.4byte 0x7f34feff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00b04ccc
+	.4byte 0x7f34feff
+
+	.align 2
+voicegroup_clover_004a5944::
 	.byte 0x00, 60, 0x00, 0x00
 	.4byte DirectSoundWaveData_clover_00b00000
 	.4byte 0x7f34feff
@@ -3557,6 +4034,21 @@ voicegroup_clover_008dee20::
 	.byte 0x00, 60, 0x00, 0x00
 	.4byte DirectSoundWaveData_clover_004b9c70
 	.4byte 0xc0c0c0ff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00c63fcc
+	.4byte 0xe8c0c0ff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00c66bd4
+	.4byte 0xe8c0c0ff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00c6a3e8
+	.4byte 0xe8c0c0ff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_004b9c70
+	.4byte 0xe8c0c0ff
+
+	.align 2
+voicegroup_clover_008dee50::
 	.byte 0x00, 60, 0x00, 0x00
 	.4byte DirectSoundWaveData_clover_00c63fcc
 	.4byte 0xe8c0c0ff
@@ -4279,6 +4771,24 @@ voicegroup_clover_00cce030::
 	.4byte 0xe800feff
 
 	.align 2
+voicegroup_clover_00cce06c::
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00c446cc
+	.4byte 0xe800feff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00c4847c
+	.4byte 0xe800feff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00c4cb30
+	.4byte 0xe800feff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00c4ff10
+	.4byte 0xe800feff
+	.byte 0x00, 60, 0x00, 0x00
+	.4byte DirectSoundWaveData_clover_00c52080
+	.4byte 0xe800feff
+
+	.align 2
 voicegroup_clover_00cd0af4::
 	.byte 0x00, 60, 0x00, 0x00
 	.4byte DirectSoundWaveData_clover_00caf6d4
@@ -4760,4 +5270,3 @@ voicegroup_clover_00fe9a04::
 	.byte 0x01, 60, 0x00, 0x00
 	.4byte 0x00000002
 	.4byte 0x000f0000
-

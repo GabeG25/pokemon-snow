@@ -22,3 +22,9 @@ ProgrammableWaveData_clover_004a324c::
 ProgrammableWaveData_clover_004a325c::
 	.incbin "sound/programmable_wave_samples/clover/clover_004a325c.pcm"
 
+ProgrammableWaveData_clover_004a327c::
+	.incbin "sound/programmable_wave_samples/clover/clover_004a327c.pcm"
+
+ProgrammableWaveData_clover_00850260::
+	.incbin "sound/programmable_wave_samples/clover/clover_00850260.pcm"
+
