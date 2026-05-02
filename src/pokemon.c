@@ -5755,6 +5755,9 @@ bool32 IsSpeciesInHoennDex(u16 species)
         return TRUE;
 }
 
+// Snow: name match for Autumn rival; TRAINER_CLASS_RIVAL is shared with Asher.
+static const u8 sAutumnRivalName[] = _("AUTUMN");
+
 u16 GetBattleBGM(void)
 {
     if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY)
@@ -5779,18 +5782,30 @@ u16 GetBattleBGM(void)
     }
     else if (gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED_LINK))
     {
-        return MUS_VS_TRAINER;
+        return MUS_DP_VS_TRAINER;
     }
     else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
     {
+        u16 opponentId = TRAINER_BATTLE_PARAM.opponentA;
         enum TrainerClassID trainerClass;
 
+        // Snow per-trainer overrides — checked before class dispatch so they
+        // don't depend on adding new trainer classes for narrative bosses.
+        switch (opponentId)
+        {
+        case TRAINER_SNOW_F22_TYRELL:    return MUS_DP_VS_GALACTIC_BOSS;   // F22, calculated-CEO phase
+        case TRAINER_SNOW_F27_TYRELL:    return MUS_URANIUM_VS_URAYNE;     // F27, manic-falling-king phase
+        case TRAINER_SNOW_F20_XENON:     return MUS_B2_VS_COLRESS;         // Head Researcher
+        case TRAINER_SNOW_GYM1_TUCKER:   return MUS_PL_VS_FRONTIER_BRAIN;  // Gym 1 frontier-brain-tier
+        case TRAINER_SNOW_GYM1_NIECA:    return MUS_PL_VS_FRONTIER_BRAIN;  // Gym 1 frontier-brain-tier
+        }
+
         if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
-            trainerClass = GetFrontierOpponentClass(TRAINER_BATTLE_PARAM.opponentA);
+            trainerClass = GetFrontierOpponentClass(opponentId);
         else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_HILL)
             trainerClass = TRAINER_CLASS_EXPERT;
         else
-            trainerClass = GetTrainerClassFromId(TRAINER_BATTLE_PARAM.opponentA);
+            trainerClass = GetTrainerClassFromId(opponentId);
 
         switch (trainerClass)
         {
@@ -5799,21 +5814,28 @@ u16 GetBattleBGM(void)
             return MUS_VS_AQUA_MAGMA_LEADER;
         case TRAINER_CLASS_TEAM_AQUA:
         case TRAINER_CLASS_TEAM_MAGMA:
+            // Snow: Team Veil grunts use Magma class via fallback (CLAUDE.md).
+            return MUS_DP_VS_GALACTIC;
         case TRAINER_CLASS_AQUA_ADMIN:
         case TRAINER_CLASS_MAGMA_ADMIN:
-            return MUS_VS_AQUA_MAGMA;
+            // Snow: Veil Admins (Crash, Mika) use Magma Admin class via fallback.
+            return MUS_DP_VS_GALACTIC_COMMANDER;
         case TRAINER_CLASS_LEADER:
-            return MUS_VS_GYM_LEADER;
+            // Snow gym leaders (8 narrative).
+            return MUS_PL_VS_FRONTIER_BRAIN;
         case TRAINER_CLASS_CHAMPION:
-            return MUS_VS_CHAMPION;
+            // Snow Champion Tyrim (F35).
+            return MUS_DP_VS_CHAMPION;
         case TRAINER_CLASS_RIVAL:
             if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
                 return MUS_VS_RIVAL;
-            if (!StringCompare(GetTrainerNameFromId(TRAINER_BATTLE_PARAM.opponentA), gText_BattleWallyName))
-                return MUS_VS_TRAINER;
-            return MUS_VS_RIVAL;
+            // Asher and Autumn share TRAINER_CLASS_RIVAL — name-discriminate.
+            if (!StringCompare(GetTrainerNameFromId(opponentId), sAutumnRivalName))
+                return MUS_CLOVER_VS_KEKSANDRA;
+            return MUS_B2_VS_RIVAL; // Asher (default rival)
         case TRAINER_CLASS_ELITE_FOUR:
-            return MUS_VS_ELITE_FOUR;
+            // Snow Elite Four (Brynn, Vesper, Reverie, Wyatt).
+            return MUS_DP_VS_GYM_LEADER;
         case TRAINER_CLASS_CHAMPION_FRLG:
             return MUS_RG_VS_CHAMPION;
         case TRAINER_CLASS_LEADER_FRLG:
@@ -5828,18 +5850,14 @@ u16 GetBattleBGM(void)
         case TRAINER_CLASS_PYRAMID_KING:
             return MUS_VS_FRONTIER_BRAIN;
         default:
-            if (GetCurrentRegion() == REGION_KANTO)
-                return MUS_RG_VS_TRAINER;
-            else
-                return MUS_VS_TRAINER;
+            // Snow default route trainer music.
+            return MUS_DP_VS_TRAINER;
         }
     }
     else
     {
-        if (GetCurrentRegion() == REGION_KANTO)
-            return MUS_RG_VS_WILD;
-        else
-            return MUS_VS_WILD;
+        // Snow wild encounter music.
+        return MUS_BW_VS_WILD;
     }
 }
 
