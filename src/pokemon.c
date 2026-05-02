@@ -5791,13 +5791,13 @@ u16 GetBattleBGM(void)
 
         // Snow per-trainer overrides — checked before class dispatch so they
         // don't depend on adding new trainer classes for narrative bosses.
+        // (Gym trainers like Tucker/Nieca intentionally fall through to default
+        // route-trainer music; only the gym LEADER gets MUS_PL_VS_FRONTIER_BRAIN.)
         switch (opponentId)
         {
         case TRAINER_SNOW_F22_TYRELL:    return MUS_DP_VS_GALACTIC_BOSS;   // F22, calculated-CEO phase
         case TRAINER_SNOW_F27_TYRELL:    return MUS_URANIUM_VS_URAYNE;     // F27, manic-falling-king phase
         case TRAINER_SNOW_F20_XENON:     return MUS_B2_VS_COLRESS;         // Head Researcher
-        case TRAINER_SNOW_GYM1_TUCKER:   return MUS_PL_VS_FRONTIER_BRAIN;  // Gym 1 frontier-brain-tier
-        case TRAINER_SNOW_GYM1_NIECA:    return MUS_PL_VS_FRONTIER_BRAIN;  // Gym 1 frontier-brain-tier
         }
 
         if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
