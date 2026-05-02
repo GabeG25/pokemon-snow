@@ -22,6 +22,15 @@
 *.fwjpnfont
 sound/**/*.bin
 sound/songs/midi/*.s
+
+# DPP/BW music expansion (CyanSMP64 fan pack import) — sample binaries committed directly as pre-compressed build artifacts.
+# These are imported as-is from CyanSMP64/pokeemerald music_expansion_dev branch and don't have corresponding .wav source in this repo.
+!sound/direct_sound_samples/bw_*.bin
+!sound/direct_sound_samples/dp_*.bin
+!sound/direct_sound_samples/hg_*.bin
+!sound/direct_sound_samples/pl_*.bin
+!sound/direct_sound_samples/purenoise.bin
+!sound/direct_sound_samples/puresquare_*.bin
 tools/agbcc
 *.map
 *.bat
