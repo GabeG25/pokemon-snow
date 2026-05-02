@@ -576,6 +576,7 @@ gSongTable::
 	song mus_dp_vs_trainer, MUSIC_PLAYER_BGM, 0
 	song mus_bw_vs_wild, MUSIC_PLAYER_BGM, 0
 	song mus_uranium_vs_urayne, MUSIC_PLAYER_BGM, 0
+	song mus_dp_vs_galactic_boss, MUSIC_PLAYER_BGM, 0
 
 	song ph_trap_blend, MUSIC_PLAYER_SE2, 2
 	song ph_trap_held, MUSIC_PLAYER_SE2, 2
