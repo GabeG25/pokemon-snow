@@ -5775,6 +5775,10 @@ u16 GetBattleBGM(void)
         case SPECIES_REGIGIGAS:
         case SPECIES_REGIELEKI:
         case SPECIES_REGIDRAGO:
+        case SPECIES_KYUREM:
+        case SPECIES_KYUREM_WHITE:
+        case SPECIES_KYUREM_BLACK:
+            // Snow Kyurem story arc uses the Regi trio theme.
             return MUS_VS_REGI;
         default:
             return MUS_RG_VS_LEGEND;
@@ -5798,6 +5802,7 @@ u16 GetBattleBGM(void)
         case TRAINER_SNOW_F22_TYRELL:    return MUS_DP_VS_GALACTIC_BOSS;   // F22, calculated-CEO phase
         case TRAINER_SNOW_F27_TYRELL:    return MUS_URANIUM_VS_URAYNE;     // F27, manic-falling-king phase
         case TRAINER_SNOW_F20_XENON:     return MUS_B2_VS_COLRESS;         // Head Researcher
+        case TRAINER_SNOW_F28_PROF:      return MUS_CLOVER_VS_STUMP;       // Professor Evergreen boss fight
         }
 
         if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
