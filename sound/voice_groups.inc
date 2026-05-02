@@ -299,3 +299,7 @@
 .include "sound/voicegroups/voicegroupInst64.inc"
 .include "sound/voicegroups/voicegroupInst65.inc"
 .include "sound/voicegroups/voicegroupInst7.inc"
+
+@ Pokemon Clover voicegroup imports for Keksandra/Stump
+.include "sound/voicegroups/clover_keysplits.inc"
+.include "sound/voicegroups/clover_battle.inc"

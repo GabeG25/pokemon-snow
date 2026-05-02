@@ -322,6 +322,9 @@ DATA_ASM_OBJS := $(patsubst $(DATA_ASM_SUBDIR)/%.s,$(DATA_ASM_BUILDDIR)/%.o,$(DA
 
 MID_SRCS := $(wildcard $(MID_SUBDIR)/*.mid)
 MID_OBJS := $(patsubst $(MID_SUBDIR)/%.mid,$(MID_BUILDDIR)/%.o,$(MID_SRCS))
+# Clover song bytecode (extracted directly from Clover ROM, not via MIDI).
+# These .s files are committed; they bypass mid2agb for 1:1 fidelity.
+MID_OBJS += $(MID_BUILDDIR)/mus_clover_vs_keksandra.o $(MID_BUILDDIR)/mus_clover_vs_stump.o
 
 OBJS     := $(C_OBJS) $(C_ASM_OBJS) $(ASM_OBJS) $(DATA_ASM_OBJS) $(MID_OBJS)
 OBJS_REL := $(patsubst $(OBJ_DIR)/%,%,$(OBJS))

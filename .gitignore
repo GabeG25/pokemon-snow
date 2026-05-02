@@ -31,6 +31,11 @@ sound/songs/midi/*.s
 !sound/direct_sound_samples/pl_*.bin
 !sound/direct_sound_samples/purenoise.bin
 !sound/direct_sound_samples/puresquare_*.bin
+
+# Pokemon Clover 1:1 engine-level port (Keksandra + Stump battle themes).
+# Bytecode .s extracted via custom disassembler from Clover ROM; sample .bin and wave .pcm extracted from Clover's voicegroup tree.
+!sound/direct_sound_samples/clover/clover_*.bin
+!sound/songs/midi/mus_clover_*.s
 tools/agbcc
 *.map
 *.bat

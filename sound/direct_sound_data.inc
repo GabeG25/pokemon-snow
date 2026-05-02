@@ -10687,3 +10687,6 @@ DirectSoundWaveData_puresquare_25::
 	.align 2
 DirectSoundWaveData_puresquare_50::
 	.incbin "sound/direct_sound_samples/puresquare_50.bin"
+
+	@ Pokemon Clover sample imports
+	.include "sound/direct_sound_data_clover.inc"

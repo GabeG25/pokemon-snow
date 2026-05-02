@@ -76,3 +76,6 @@ ProgrammableWaveData_24::
 
 ProgrammableWaveData_25::
 	.incbin "sound/programmable_wave_samples/25.pcm"
+
+	@ Pokemon Clover programmable wave imports
+	.include "sound/programmable_wave_data_clover.inc"
