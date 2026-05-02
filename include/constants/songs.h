@@ -501,6 +501,8 @@
 #define MUS_BW_VS_WILD              567 // Wild Battle (BW) — wild encounters
 #define MUS_URANIUM_VS_URAYNE       568 // Urayne Battle Theme (Pokémon Uranium) — Tyrell #2 (F27, manic-falling-king phase)
 #define MUS_DP_VS_GALACTIC_BOSS     569 // Cyrus Battle Theme (DPP) — Tyrell #1 (F22, calculated-CEO phase)
+#define MUS_CLOVER_VS_KEKSANDRA     570 // Battle Keksandra (Pokémon Clover) — Autumn rival
+#define MUS_CLOVER_VS_STUMP         571 // Battle Professor Stump (Pokémon Clover) — Evergreen
 #define END_MUS                     MUS_RG_TEACHY_TV_MENU
 
 // These PH_* constants are phoneme sounds used by the "bard" NPC (see src/bard_music.c and src/mauville_old_man.c).
