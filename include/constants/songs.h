@@ -490,6 +490,15 @@
 #define MUS_RG_TRAINER_TOWER        556 // MUS_RG_T_TOWER
 #define MUS_RG_SLOW_PALLET          557 // MUS_RG_SLOWMASARA
 #define MUS_RG_TEACHY_TV_MENU       558 // MUS_RG_TVNOIZE
+#define MUS_B2_VS_RIVAL             559 // Hugh's Theme (B2W2) — Asher rival
+#define MUS_DP_VS_GALACTIC          560 // Team Galactic Grunt (DPP) — Veil Grunts
+#define MUS_DP_VS_GALACTIC_COMMANDER 561 // Team Galactic Commander (DPP) — Crash + Mika
+#define MUS_B2_VS_COLRESS           562 // Team Plasma Colress (B2W2) — Xenon
+#define MUS_PL_VS_FRONTIER_BRAIN    563 // Frontier Brain (Platinum) — Gym Leaders + Tucker/Nieca
+#define MUS_DP_VS_GYM_LEADER        564 // Gym Leader (DPP) — Elite Four
+#define MUS_DP_VS_CHAMPION          565 // Champion Cynthia (DPP) — Champion Tyrim
+#define MUS_DP_VS_TRAINER           566 // Trainer Battle (DPP) — default route trainers
+#define MUS_BW_VS_WILD              567 // Wild Battle (BW) — wild encounters
 #define END_MUS                     MUS_RG_TEACHY_TV_MENU
 
 // These PH_* constants are phoneme sounds used by the "bard" NPC (see src/bard_music.c and src/mauville_old_man.c).
