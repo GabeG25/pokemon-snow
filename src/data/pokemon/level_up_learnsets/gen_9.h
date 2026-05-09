@@ -1292,42 +1292,34 @@ static const struct LevelUpMove sDugtrioAlolaLevelUpLearnset[] = {
 #endif //P_FAMILY_DIGLETT
 
 #if P_FAMILY_MEOWTH
-static const struct LevelUpMove sMeowthLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 1, MOVE_GROWL),
-    LEVEL_UP_MOVE( 1, MOVE_FAKE_OUT),
-    LEVEL_UP_MOVE( 4, MOVE_FEINT),
-    LEVEL_UP_MOVE( 8, MOVE_SCRATCH),
-    LEVEL_UP_MOVE(12, MOVE_PAY_DAY),
-    LEVEL_UP_MOVE(16, MOVE_BITE),
-    LEVEL_UP_MOVE(20, MOVE_TAUNT),
-    LEVEL_UP_MOVE(24, MOVE_ASSURANCE),
-    LEVEL_UP_MOVE(29, MOVE_FURY_SWIPES),
-    LEVEL_UP_MOVE(32, MOVE_SCREECH),
-    LEVEL_UP_MOVE(36, MOVE_SLASH),
-    LEVEL_UP_MOVE(40, MOVE_NASTY_PLOT),
-    LEVEL_UP_MOVE(44, MOVE_PLAY_ROUGH),
-        LEVEL_UP_MOVE( 1, MOVE_GUARD_SWAP),
+// Snow custom learnset, family-shared (Meowth/Persian regular line identical).
+// Alolan and Galarian forms below have their own learnsets — only the regular
+// line is part of the Boralyss main dex; Alolan forms are encounterable via
+// regional-form rules, Galarian forms are not used in Snow's Gen 1-5 scope.
+#define MEOWTH_FAMILY_SNOW_LEARNSET                   \
+    LEVEL_UP_MOVE( 1, MOVE_SCRATCH),                  \
+    LEVEL_UP_MOVE( 5, MOVE_GROWL),                    \
+    LEVEL_UP_MOVE( 9, MOVE_PAY_DAY),                  \
+    LEVEL_UP_MOVE(12, MOVE_TAIL_WHIP),                \
+    LEVEL_UP_MOVE(14, MOVE_TAUNT),                    \
+    LEVEL_UP_MOVE(19, MOVE_BITE),                     \
+    LEVEL_UP_MOVE(23, MOVE_HYPER_VOICE),              \
+    LEVEL_UP_MOVE(28, MOVE_COVET),                    \
+    LEVEL_UP_MOVE(34, MOVE_POWER_GEM),                \
+    LEVEL_UP_MOVE(40, MOVE_SHADOW_CLAW),              \
+    LEVEL_UP_MOVE(43, MOVE_SLASH),                    \
+    LEVEL_UP_MOVE(49, MOVE_NASTY_PLOT),               \
+    LEVEL_UP_MOVE(59, MOVE_PLAY_ROUGH),               \
+    LEVEL_UP_MOVE(64, MOVE_FAKE_OUT),                 \
+    LEVEL_UP_MOVE(87, MOVE_BATON_PASS),               \
     LEVEL_UP_END
+
+static const struct LevelUpMove sMeowthLevelUpLearnset[] = {
+    MEOWTH_FAMILY_SNOW_LEARNSET
 };
 
 static const struct LevelUpMove sPersianLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 0, MOVE_POWER_GEM),
-    LEVEL_UP_MOVE( 1, MOVE_SCRATCH),
-    LEVEL_UP_MOVE( 1, MOVE_GROWL),
-    LEVEL_UP_MOVE( 1, MOVE_FAKE_OUT),
-    LEVEL_UP_MOVE( 1, MOVE_FEINT),
-    LEVEL_UP_MOVE( 1, MOVE_SWITCHEROO),
-    LEVEL_UP_MOVE(12, MOVE_PAY_DAY),
-    LEVEL_UP_MOVE(16, MOVE_BITE),
-    LEVEL_UP_MOVE(20, MOVE_TAUNT),
-    LEVEL_UP_MOVE(24, MOVE_ASSURANCE),
-    LEVEL_UP_MOVE(31, MOVE_FURY_SWIPES),
-    LEVEL_UP_MOVE(36, MOVE_SCREECH),
-    LEVEL_UP_MOVE(42, MOVE_SLASH),
-    LEVEL_UP_MOVE(48, MOVE_NASTY_PLOT),
-    LEVEL_UP_MOVE(54, MOVE_PLAY_ROUGH),
-        LEVEL_UP_MOVE( 1, MOVE_GUARD_SWAP),
-    LEVEL_UP_END
+    MEOWTH_FAMILY_SNOW_LEARNSET
 };
 
 #if P_ALOLAN_FORMS
@@ -10078,59 +10070,59 @@ static const struct LevelUpMove sEmpoleonLevelUpLearnset[] = {
 #endif //P_FAMILY_PIPLUP
 
 #if P_FAMILY_STARLY
+// Snow custom learnset. 17 entries shared across the family at identical levels;
+// Brave Bird is the per-evolution split: Starly learns Brave Bird at Lv 41 if
+// the player delays evolution as a reward, while Staravia and Staraptor learn
+// it at Lv 80 in the family-shared late-game capstone slot.
 static const struct LevelUpMove sStarlyLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
-    LEVEL_UP_MOVE( 1, MOVE_GROWL),
-    LEVEL_UP_MOVE( 5, MOVE_QUICK_ATTACK),
-    LEVEL_UP_MOVE( 9, MOVE_WING_ATTACK),
-    LEVEL_UP_MOVE(13, MOVE_DOUBLE_TEAM),
-    LEVEL_UP_MOVE(17, MOVE_ENDEAVOR),
-    LEVEL_UP_MOVE(21, MOVE_WHIRLWIND),
-    LEVEL_UP_MOVE(25, MOVE_AERIAL_ACE),
-    LEVEL_UP_MOVE(29, MOVE_TAKE_DOWN),
-    LEVEL_UP_MOVE(33, MOVE_AGILITY),
-    LEVEL_UP_MOVE(37, MOVE_BRAVE_BIRD),
-    LEVEL_UP_MOVE(41, MOVE_FINAL_GAMBIT),
-        LEVEL_UP_MOVE( 1, MOVE_OUTRAGE),
-        LEVEL_UP_MOVE( 1, MOVE_TAILWIND),
+    LEVEL_UP_MOVE( 1, MOVE_GUST),
+    LEVEL_UP_MOVE( 1, MOVE_LEER),
+    LEVEL_UP_MOVE( 4, MOVE_WHIRLWIND),
+    LEVEL_UP_MOVE( 9, MOVE_TACKLE),
+    LEVEL_UP_MOVE(14, MOVE_RAZOR_WIND),
+    LEVEL_UP_MOVE(22, MOVE_WING_ATTACK),
+    LEVEL_UP_MOVE(29, MOVE_QUICK_ATTACK),
+    LEVEL_UP_MOVE(32, MOVE_AIR_SLASH),
+    LEVEL_UP_MOVE(38, MOVE_FINAL_GAMBIT),
+    LEVEL_UP_MOVE(41, MOVE_BRAVE_BIRD),
+    LEVEL_UP_MOVE(43, MOVE_TAKE_DOWN),
+    LEVEL_UP_MOVE(48, MOVE_STEEL_WING),
+    LEVEL_UP_MOVE(53, MOVE_DOUBLE_TEAM),
+    LEVEL_UP_MOVE(58, MOVE_ROOST),
+    LEVEL_UP_MOVE(65, MOVE_DOUBLE_EDGE),
+    LEVEL_UP_MOVE(69, MOVE_DETECT),
+    LEVEL_UP_MOVE(74, MOVE_CLOSE_COMBAT),
+    LEVEL_UP_MOVE(90, MOVE_ENDEAVOR),
     LEVEL_UP_END
 };
 
-static const struct LevelUpMove sStaraviaLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
-    LEVEL_UP_MOVE( 1, MOVE_GROWL),
-    LEVEL_UP_MOVE( 1, MOVE_QUICK_ATTACK),
-    LEVEL_UP_MOVE( 9, MOVE_WING_ATTACK),
-    LEVEL_UP_MOVE(13, MOVE_DOUBLE_TEAM),
-    LEVEL_UP_MOVE(18, MOVE_ENDEAVOR),
-    LEVEL_UP_MOVE(23, MOVE_WHIRLWIND),
-    LEVEL_UP_MOVE(28, MOVE_AERIAL_ACE),
-    LEVEL_UP_MOVE(33, MOVE_TAKE_DOWN),
-    LEVEL_UP_MOVE(38, MOVE_AGILITY),
-    LEVEL_UP_MOVE(43, MOVE_BRAVE_BIRD),
-    LEVEL_UP_MOVE(48, MOVE_FINAL_GAMBIT),
-        LEVEL_UP_MOVE( 1, MOVE_OUTRAGE),
-        LEVEL_UP_MOVE( 1, MOVE_TAILWIND),
+#define STARLY_LINE_EVOLVED_LEARNSET                  \
+    LEVEL_UP_MOVE( 1, MOVE_GUST),                     \
+    LEVEL_UP_MOVE( 1, MOVE_LEER),                     \
+    LEVEL_UP_MOVE( 4, MOVE_WHIRLWIND),                \
+    LEVEL_UP_MOVE( 9, MOVE_TACKLE),                   \
+    LEVEL_UP_MOVE(14, MOVE_RAZOR_WIND),               \
+    LEVEL_UP_MOVE(22, MOVE_WING_ATTACK),              \
+    LEVEL_UP_MOVE(29, MOVE_QUICK_ATTACK),             \
+    LEVEL_UP_MOVE(32, MOVE_AIR_SLASH),                \
+    LEVEL_UP_MOVE(38, MOVE_FINAL_GAMBIT),             \
+    LEVEL_UP_MOVE(43, MOVE_TAKE_DOWN),                \
+    LEVEL_UP_MOVE(48, MOVE_STEEL_WING),               \
+    LEVEL_UP_MOVE(53, MOVE_DOUBLE_TEAM),              \
+    LEVEL_UP_MOVE(58, MOVE_ROOST),                    \
+    LEVEL_UP_MOVE(65, MOVE_DOUBLE_EDGE),              \
+    LEVEL_UP_MOVE(69, MOVE_DETECT),                   \
+    LEVEL_UP_MOVE(74, MOVE_CLOSE_COMBAT),             \
+    LEVEL_UP_MOVE(80, MOVE_BRAVE_BIRD),               \
+    LEVEL_UP_MOVE(90, MOVE_ENDEAVOR),                 \
     LEVEL_UP_END
+
+static const struct LevelUpMove sStaraviaLevelUpLearnset[] = {
+    STARLY_LINE_EVOLVED_LEARNSET
 };
 
 static const struct LevelUpMove sStaraptorLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 0, MOVE_CLOSE_COMBAT),
-    LEVEL_UP_MOVE( 1, MOVE_WING_ATTACK),
-    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
-    LEVEL_UP_MOVE( 1, MOVE_GROWL),
-    LEVEL_UP_MOVE( 1, MOVE_QUICK_ATTACK),
-    LEVEL_UP_MOVE(13, MOVE_DOUBLE_TEAM),
-    LEVEL_UP_MOVE(18, MOVE_ENDEAVOR),
-    LEVEL_UP_MOVE(23, MOVE_WHIRLWIND),
-    LEVEL_UP_MOVE(28, MOVE_AERIAL_ACE),
-    LEVEL_UP_MOVE(33, MOVE_TAKE_DOWN),
-    LEVEL_UP_MOVE(41, MOVE_AGILITY),
-    LEVEL_UP_MOVE(49, MOVE_BRAVE_BIRD),
-    LEVEL_UP_MOVE(57, MOVE_FINAL_GAMBIT),
-        LEVEL_UP_MOVE( 1, MOVE_OUTRAGE),
-        LEVEL_UP_MOVE( 1, MOVE_TAILWIND),
-    LEVEL_UP_END
+    STARLY_LINE_EVOLVED_LEARNSET
 };
 #endif //P_FAMILY_STARLY
 
@@ -13486,61 +13478,42 @@ static const struct LevelUpMove sSwannaLevelUpLearnset[] = {
 #endif //P_FAMILY_DUCKLETT
 
 #if P_FAMILY_VANILLITE
-static const struct LevelUpMove sVanilliteLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 1, MOVE_ASTONISH),
-    LEVEL_UP_MOVE( 1, MOVE_HARDEN),
-    LEVEL_UP_MOVE( 4, MOVE_TAUNT),
-    LEVEL_UP_MOVE( 8, MOVE_MIST),
-    LEVEL_UP_MOVE(12, MOVE_ICY_WIND),
-    LEVEL_UP_MOVE(16, MOVE_AVALANCHE),
-    LEVEL_UP_MOVE(20, MOVE_HAIL),
-    LEVEL_UP_MOVE(24, MOVE_ICICLE_SPEAR),
-    LEVEL_UP_MOVE(28, MOVE_UPROAR),
-    LEVEL_UP_MOVE(32, MOVE_ACID_ARMOR),
-    LEVEL_UP_MOVE(36, MOVE_MIRROR_COAT),
-    LEVEL_UP_MOVE(40, MOVE_ICE_BEAM),
-    LEVEL_UP_MOVE(44, MOVE_BLIZZARD),
-    LEVEL_UP_MOVE(48, MOVE_SHEER_COLD),
+// Snow custom learnset, family-shared (Vanillite/Vanillish/Vanilluxe identical).
+// Note: Frost Breath at Lv 92 is intentional — Snow's 2x crit multiplier
+// (DECISIONS.md "2x critical hit damage") makes Frost Breath's always-crit a
+// 120 BP effective hit at 90% accuracy, gating it as a late-game capstone.
+#define VANILLITE_FAMILY_SNOW_LEARNSET                \
+    LEVEL_UP_MOVE( 1, MOVE_TACKLE),                   \
+    LEVEL_UP_MOVE( 1, MOVE_HARDEN),                   \
+    LEVEL_UP_MOVE( 5, MOVE_POWDER_SNOW),              \
+    LEVEL_UP_MOVE(10, MOVE_MIST),                     \
+    LEVEL_UP_MOVE(12, MOVE_TAUNT),                    \
+    LEVEL_UP_MOVE(15, MOVE_ICY_WIND),                 \
+    LEVEL_UP_MOVE(21, MOVE_DRAINING_KISS),            \
+    LEVEL_UP_MOVE(28, MOVE_ICICLE_SPEAR),             \
+    LEVEL_UP_MOVE(30, MOVE_SELF_DESTRUCT),            \
+    LEVEL_UP_MOVE(33, MOVE_ICICLE_CRASH),             \
+    LEVEL_UP_MOVE(39, MOVE_EXPLOSION),                \
+    LEVEL_UP_MOVE(44, MOVE_SHADOW_BALL),              \
+    LEVEL_UP_MOVE(51, MOVE_FREEZE_DRY),               \
+    LEVEL_UP_MOVE(57, MOVE_LIGHT_SCREEN),             \
+    LEVEL_UP_MOVE(62, MOVE_REFLECT),                  \
+    LEVEL_UP_MOVE(67, MOVE_DAZZLING_GLEAM),           \
+    LEVEL_UP_MOVE(74, MOVE_BLIZZARD),                 \
+    LEVEL_UP_MOVE(81, MOVE_AURORA_VEIL),              \
+    LEVEL_UP_MOVE(92, MOVE_FROST_BREATH),             \
     LEVEL_UP_END
+
+static const struct LevelUpMove sVanilliteLevelUpLearnset[] = {
+    VANILLITE_FAMILY_SNOW_LEARNSET
 };
 
 static const struct LevelUpMove sVanillishLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 1, MOVE_ASTONISH),
-    LEVEL_UP_MOVE( 1, MOVE_HARDEN),
-    LEVEL_UP_MOVE( 1, MOVE_TAUNT),
-    LEVEL_UP_MOVE( 1, MOVE_MIST),
-    LEVEL_UP_MOVE(12, MOVE_ICY_WIND),
-    LEVEL_UP_MOVE(16, MOVE_AVALANCHE),
-    LEVEL_UP_MOVE(20, MOVE_HAIL),
-    LEVEL_UP_MOVE(24, MOVE_ICICLE_SPEAR),
-    LEVEL_UP_MOVE(28, MOVE_UPROAR),
-    LEVEL_UP_MOVE(32, MOVE_ACID_ARMOR),
-    LEVEL_UP_MOVE(38, MOVE_MIRROR_COAT),
-    LEVEL_UP_MOVE(44, MOVE_ICE_BEAM),
-    LEVEL_UP_MOVE(50, MOVE_BLIZZARD),
-    LEVEL_UP_MOVE(56, MOVE_SHEER_COLD),
-    LEVEL_UP_END
+    VANILLITE_FAMILY_SNOW_LEARNSET
 };
 
 static const struct LevelUpMove sVanilluxeLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 1, MOVE_WEATHER_BALL),
-    LEVEL_UP_MOVE( 1, MOVE_ICICLE_CRASH),
-    LEVEL_UP_MOVE( 1, MOVE_FREEZE_DRY),
-    LEVEL_UP_MOVE( 1, MOVE_ASTONISH),
-    LEVEL_UP_MOVE( 1, MOVE_HARDEN),
-    LEVEL_UP_MOVE( 1, MOVE_TAUNT),
-    LEVEL_UP_MOVE( 1, MOVE_MIST),
-    LEVEL_UP_MOVE(12, MOVE_ICY_WIND),
-    LEVEL_UP_MOVE(16, MOVE_AVALANCHE),
-    LEVEL_UP_MOVE(20, MOVE_HAIL),
-    LEVEL_UP_MOVE(24, MOVE_ICICLE_SPEAR),
-    LEVEL_UP_MOVE(28, MOVE_UPROAR),
-    LEVEL_UP_MOVE(32, MOVE_ACID_ARMOR),
-    LEVEL_UP_MOVE(38, MOVE_MIRROR_COAT),
-    LEVEL_UP_MOVE(44, MOVE_ICE_BEAM),
-    LEVEL_UP_MOVE(52, MOVE_BLIZZARD),
-    LEVEL_UP_MOVE(60, MOVE_SHEER_COLD),
-    LEVEL_UP_END
+    VANILLITE_FAMILY_SNOW_LEARNSET
 };
 #endif //P_FAMILY_VANILLITE
 
@@ -14096,53 +14069,50 @@ static const struct LevelUpMove sHaxorusLevelUpLearnset[] = {
 #endif //P_FAMILY_AXEW
 
 #if P_FAMILY_CUBCHOO
+// Snow custom learnset, family-shared base (16 entries identical Cubchoo/Beartic).
+// Exception: Yawn — Cubchoo learns at Lv 53 (delay-evolution reward),
+// Beartic learns at Lv 95 (player-side cap).
 static const struct LevelUpMove sCubchooLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 1, MOVE_GROWL),
     LEVEL_UP_MOVE( 1, MOVE_POWDER_SNOW),
-    LEVEL_UP_MOVE( 3, MOVE_ENDURE),
-    LEVEL_UP_MOVE( 6, MOVE_FURY_SWIPES),
-    LEVEL_UP_MOVE( 9, MOVE_ICY_WIND),
-    LEVEL_UP_MOVE(12, MOVE_PLAY_NICE),
-    LEVEL_UP_MOVE(15, MOVE_BRINE),
-    LEVEL_UP_MOVE(18, MOVE_FROST_BREATH),
-    LEVEL_UP_MOVE(21, MOVE_SLASH),
-    LEVEL_UP_MOVE(24, MOVE_FLAIL),
-    LEVEL_UP_MOVE(27, MOVE_CHARM),
-    LEVEL_UP_MOVE(30, MOVE_SNOWSCAPE),
-    LEVEL_UP_MOVE(33, MOVE_THRASH),
-    LEVEL_UP_MOVE(36, MOVE_REST),
-    LEVEL_UP_MOVE(39, MOVE_BLIZZARD),
-    LEVEL_UP_MOVE(42, MOVE_SHEER_COLD),
-        LEVEL_UP_MOVE( 1, MOVE_JET_PUNCH),
-        LEVEL_UP_MOVE( 1, MOVE_ICE_HAMMER),
-        LEVEL_UP_MOVE( 1, MOVE_CLOSE_COMBAT),
+    LEVEL_UP_MOVE( 1, MOVE_GROWL),
+    LEVEL_UP_MOVE( 4, MOVE_SCRATCH),
+    LEVEL_UP_MOVE( 8, MOVE_ENDURE),
+    LEVEL_UP_MOVE(14, MOVE_BITE),
+    LEVEL_UP_MOVE(21, MOVE_BRINE),
+    LEVEL_UP_MOVE(26, MOVE_FURY_SWIPES),
+    LEVEL_UP_MOVE(31, MOVE_CHARM),
+    LEVEL_UP_MOVE(37, MOVE_ICE_FANG),
+    LEVEL_UP_MOVE(41, MOVE_SLASH),
+    LEVEL_UP_MOVE(45, MOVE_REST),
+    LEVEL_UP_MOVE(50, MOVE_HONE_CLAWS),
+    LEVEL_UP_MOVE(53, MOVE_YAWN),
+    LEVEL_UP_MOVE(56, MOVE_ICE_PUNCH),
+    LEVEL_UP_MOVE(62, MOVE_LIQUIDATION),
+    LEVEL_UP_MOVE(69, MOVE_PLAY_ROUGH),
+    LEVEL_UP_MOVE(75, MOVE_THRASH),
+    LEVEL_UP_MOVE(78, MOVE_ICICLE_CRASH),
     LEVEL_UP_END
 };
 
 static const struct LevelUpMove sBearticLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 0, MOVE_ICICLE_CRASH),
-    LEVEL_UP_MOVE( 1, MOVE_ENDURE),
-    LEVEL_UP_MOVE( 1, MOVE_GROWL),
-    LEVEL_UP_MOVE( 1, MOVE_FURY_SWIPES),
     LEVEL_UP_MOVE( 1, MOVE_POWDER_SNOW),
-    LEVEL_UP_MOVE( 1, MOVE_CHARM),
-    LEVEL_UP_MOVE( 1, MOVE_AQUA_JET),
-    LEVEL_UP_MOVE( 9, MOVE_ICY_WIND),
-    LEVEL_UP_MOVE(12, MOVE_PLAY_NICE),
-    LEVEL_UP_MOVE(15, MOVE_BRINE),
-    LEVEL_UP_MOVE(18, MOVE_FROST_BREATH),
-    LEVEL_UP_MOVE(21, MOVE_SLASH),
-    LEVEL_UP_MOVE(24, MOVE_FLAIL),
-    LEVEL_UP_MOVE(27, MOVE_SWAGGER),
-    LEVEL_UP_MOVE(30, MOVE_SNOWSCAPE),
-    LEVEL_UP_MOVE(33, MOVE_THRASH),
-    LEVEL_UP_MOVE(36, MOVE_REST),
-    LEVEL_UP_MOVE(41, MOVE_BLIZZARD),
-    LEVEL_UP_MOVE(46, MOVE_SHEER_COLD),
-    LEVEL_UP_MOVE(51, MOVE_SUPERPOWER),
-        LEVEL_UP_MOVE( 1, MOVE_JET_PUNCH),
-        LEVEL_UP_MOVE( 1, MOVE_ICE_HAMMER),
-        LEVEL_UP_MOVE( 1, MOVE_CLOSE_COMBAT),
+    LEVEL_UP_MOVE( 1, MOVE_GROWL),
+    LEVEL_UP_MOVE( 4, MOVE_SCRATCH),
+    LEVEL_UP_MOVE( 8, MOVE_ENDURE),
+    LEVEL_UP_MOVE(14, MOVE_BITE),
+    LEVEL_UP_MOVE(21, MOVE_BRINE),
+    LEVEL_UP_MOVE(26, MOVE_FURY_SWIPES),
+    LEVEL_UP_MOVE(31, MOVE_CHARM),
+    LEVEL_UP_MOVE(37, MOVE_ICE_FANG),
+    LEVEL_UP_MOVE(41, MOVE_SLASH),
+    LEVEL_UP_MOVE(45, MOVE_REST),
+    LEVEL_UP_MOVE(50, MOVE_HONE_CLAWS),
+    LEVEL_UP_MOVE(56, MOVE_ICE_PUNCH),
+    LEVEL_UP_MOVE(62, MOVE_LIQUIDATION),
+    LEVEL_UP_MOVE(69, MOVE_PLAY_ROUGH),
+    LEVEL_UP_MOVE(75, MOVE_THRASH),
+    LEVEL_UP_MOVE(78, MOVE_ICICLE_CRASH),
+    LEVEL_UP_MOVE(95, MOVE_YAWN),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_CUBCHOO
