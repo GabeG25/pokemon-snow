@@ -47,7 +47,7 @@ Eviolite pre-evo exception: trainer Pokémon can hold Eviolite only if the speci
 Trade evolution via held-item config toggle: species that normally require trade evolution use an in-engine toggle instead, preserving the evolution trigger without multiplayer dependency
 
 Implementation State
-This section is living — update as routes ship. Last updated: 2026-04-17 post-autonomous-completion.
+This section is living — update as routes ship. Last updated: 2026-05-08 post-streaming-audio-and-species-strip.
 Shipped (data layer, compiled into ROM):
 
 Route trainers: R1(3) R2(4) R3(5) R5(6) R6(8) R7(5) R8(6) R9(8) R10(8) R11(6) R12(7) R13(9) R14(9) R15(9) DI(5) VR(8) = 106 trainers
@@ -71,6 +71,25 @@ Shipped (species data layer):
 2x crit damage, physical Water Shuriken, trade evo native in expansion
 Gallade Sharpness already handled by pokeemerald-expansion GEN_9 guard
 51-TM Snow remap (TMs 01-51 per v17 §11, shipped via commit c5f61fe218)
+
+Shipped (audio, streaming PCM era — 2026-05-08 batch):
+
+Two narrative-flagship battle themes now play as streamed real game audio (not GBA m4a synth):
+
+- MUS_B2_VS_COLRESS — actual Pokémon B2W2 game audio, raw 8-bit mono at 21024 Hz, full 116-second body with 100 ms crossfade loop. Wired to Xenon's battle (TRAINER_SNOW_F20_XENON) per the Xenon=Colress narrative parallel.
+- MUS_URANIUM_VS_URAYNE — actual Pokémon Uranium game audio, raw 8-bit mono at 21024 Hz, sample-precise 96.811-second loop with zero crossfade (the YouTube source is already stitched at exactly that interval). Wired to Tyrell's F27 fight per the Urayne narrative beat.
+
+Engine/build state for streaming:
+
+- m4a SOUND_MODE_FREQ_26758, maxChans=12 (boosted from 8 to give the engine spare channels for Pokémon cries during dense music).
+- voicegroup_colress_stream and voicegroup_urayne_stream contain a single voice_directsound voice each (NOT voice_directsound_comp — the *_comp variant decodes DPCM and would garble raw 8-bit data).
+- mus_b2_vs_colress.s and mus_uranium_vs_urayne.s are hand-written m4a bytecode (TIE-note-forever pattern) that bypass mid2agb. Makefile MID_OBJS lists them explicitly.
+- Sample bins live in sound/direct_sound_samples/ (colress_stream.bin, urayne_stream.bin) and are whitelisted in .gitignore.
+- The encoder (/tmp/clover-port/streamed/wav_to_gba_stream.py) takes 21024 Hz mono 16-bit WAV input and emits a 16-byte GBA sample header (type=0, status=0x4000=loop, freq=rate*1024, loop_start, total_samples) followed by signed 8-bit PCM.
+
+Shipped (species data slimming — 2026-05-08):
+
+P_GEN_6_POKEMON, P_GEN_7_POKEMON, P_GEN_8_POKEMON, P_GEN_9_POKEMON all set to FALSE in include/config/species_enabled.h. Snow's regional dex uses 196 P_FAMILY_* (Gen 1–5 base species + cross-gen evolutions like Sylveon, Slowking, Porygon-Z, regional/mega forms). Disabling Gen 6–9 base families freed approximately 13 MB of ROM space (cries + species data + learnsets + sprites for ~750 unused families). ROM utilization dropped from 99.94% to 87.03%.
 
 Shipped (engine mechanics, all active globally):
 
@@ -129,7 +148,8 @@ Team Veil scripted events past R5 (R6 tag-double grunts, R12/R14 grunt pairs, Fa
 22 hidden items placed across maps (v17 §16)
 Real Team Veil / Boarder / Skier / Miner class sprites (fallbacks active)
 Custom Boralyss region map PNG (vanilla Hoenn placeholder)
-Music, art, sound beyond vanilla Emerald
+Remaining music ports beyond Colress + Urayne (other route/gym BGM still uses vanilla Emerald or DPP/BW/HG/SS engine voicegroups)
+Custom art for the rest of the project
 Balance playtesting
 
 Rough completeness: ~55-60% toward a fully playable build. All engine mechanics, data layers, structural map infrastructure (73 maps), Act 1 scripting, and post-Act-1 gym-city interiors are shipped. Remaining work is CEO creative (dialogue, 64 grunts, Kyurem design, League interior) and art.
