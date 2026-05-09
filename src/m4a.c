@@ -73,9 +73,10 @@ void m4aSoundInit(void)
     SoundInit(&gSoundInfo);
     MPlayExtender(gCgbChans);
     m4aSoundMode(SOUND_MODE_DA_BIT_8
-               | SOUND_MODE_FREQ_13379
+               | SOUND_MODE_FREQ_26758
                | (12 << SOUND_MODE_MASVOL_SHIFT)
-               | (8 << SOUND_MODE_MAXCHN_SHIFT));
+               | SOUND_MODE_REVERB_SET | (50 & SOUND_MODE_REVERB_VAL)
+               | (12 << SOUND_MODE_MAXCHN_SHIFT));
 
     for (i = 0; i < NUM_MUSIC_PLAYERS; i++)
     {

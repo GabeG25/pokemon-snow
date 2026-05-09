@@ -36,6 +36,13 @@ sound/songs/midi/*.s
 # Bytecode .s extracted via custom disassembler from Clover ROM; sample .bin and wave .pcm extracted from Clover's voicegroup tree.
 !sound/direct_sound_samples/clover/clover_*.bin
 !sound/songs/midi/mus_clover_*.s
+
+# Streamed PCM song samples (Xenon's Colress + F27 Tyrell's Urayne battle themes).
+# Real B2W2 / Pokemon Uranium audio encoded as raw 8-bit mono at 21024 Hz.
+!sound/direct_sound_samples/colress_stream.bin
+!sound/direct_sound_samples/urayne_stream.bin
+!sound/songs/midi/mus_b2_vs_colress.s
+!sound/songs/midi/mus_uranium_vs_urayne.s
 tools/agbcc
 *.map
 *.bat

@@ -566,7 +566,7 @@ gSongTable::
 	song mus_rg_slow_pallet, MUSIC_PLAYER_BGM, 0
 	song mus_rg_teachy_tv_menu, MUSIC_PLAYER_BGM, 0
 	@ === DPP/BW music expansion (CyanSMP64 fan pack) ===
-	song mus_b2_vs_rival, MUSIC_PLAYER_BGM, 0
+	song mus_dummy, MUSIC_PLAYER_BGM, 0	@ was mus_b2_vs_rival; replaced by MUS_HG_VS_RIVAL for Asher
 	song mus_dp_vs_galactic, MUSIC_PLAYER_BGM, 0
 	song mus_dp_vs_galactic_commander, MUSIC_PLAYER_BGM, 0
 	song mus_b2_vs_colress, MUSIC_PLAYER_BGM, 0
@@ -579,6 +579,8 @@ gSongTable::
 	song mus_dp_vs_galactic_boss, MUSIC_PLAYER_BGM, 0
 	song mus_clover_vs_keksandra, MUSIC_PLAYER_BGM, 0
 	song mus_clover_vs_stump, MUSIC_PLAYER_BGM, 0
+	song mus_dp_vs_wild, MUSIC_PLAYER_BGM, 0
+	song mus_hg_vs_rival, MUSIC_PLAYER_BGM, 0
 
 	song ph_trap_blend, MUSIC_PLAYER_SE2, 2
 	song ph_trap_held, MUSIC_PLAYER_SE2, 2

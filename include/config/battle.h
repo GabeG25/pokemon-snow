@@ -318,7 +318,7 @@
 // Interface settings
 #define B_FAST_INTRO_PKMN_TEXT              TRUE  // If set to TRUE, battle intro texts print at the same time as animation of a Pokémon, as opposing to waiting for the animation to end.
 #define B_FAST_INTRO_NO_SLIDE               FALSE // If set to TRUE, the slide animation that happens at the beginning of the battle is skipped.
-#define B_FAST_HP_DRAIN                     TRUE  // If set to TRUE, HP bars will move faster.
+#define B_FAST_HP_DRAIN                     TRUE  // Engine quirk: PrintHpOnHealthbox does clear-then-redraw every frame, exposing one cleared frame as flicker. FAST=TRUE finishes the animation in fewer frames so the flicker isn't visible long. FALSE drained 1 HP/frame which made the flicker last for many frames and was perceptibly worse.
 #define B_FAST_EXP_GROW                     TRUE  // If set to TRUE, EXP bars will move faster.
 #define B_SHOW_TARGETS                      TRUE  // If set to TRUE, all available targets, for moves hitting 2 or 3 Pokémon, will be shown before selecting a move.
 #define B_SHOW_CATEGORY_ICON                TRUE  // If set to TRUE, it will show an icon in the summary and move relearner showing the move's category.
