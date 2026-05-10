@@ -5243,72 +5243,64 @@ static const struct LevelUpMove sXatuLevelUpLearnset[] = {
 #endif //P_FAMILY_NATU
 
 #if P_FAMILY_MAREEP
+// Snow custom learnset. 19 entries shared across the family at identical levels;
+// Tail Glow is the per-evolution split: Mareep learns it at Lv 59 (delay-evolution
+// reward) while Flaaffy and Ampharos learn it at Lv 95 (player-side cap). Same
+// shape as the Starly/Brave Bird split — split is on the first stage so the
+// early move actually matters at the level the species can still be at.
 static const struct LevelUpMove sMareepLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
+    LEVEL_UP_MOVE( 1, MOVE_THUNDER_SHOCK),
     LEVEL_UP_MOVE( 1, MOVE_GROWL),
-    LEVEL_UP_MOVE( 4, MOVE_THUNDER_WAVE),
-    LEVEL_UP_MOVE( 8, MOVE_THUNDER_SHOCK),
-    LEVEL_UP_MOVE(11, MOVE_COTTON_SPORE),
-    LEVEL_UP_MOVE(15, MOVE_CHARGE),
-    LEVEL_UP_MOVE(18, MOVE_TAKE_DOWN),
-    LEVEL_UP_MOVE(22, MOVE_ELECTRO_BALL),
-    LEVEL_UP_MOVE(25, MOVE_CONFUSE_RAY),
-    LEVEL_UP_MOVE(29, MOVE_POWER_GEM),
-    LEVEL_UP_MOVE(32, MOVE_DISCHARGE),
-    LEVEL_UP_MOVE(36, MOVE_COTTON_GUARD),
-    LEVEL_UP_MOVE(39, MOVE_DAZZLING_GLEAM),
-    LEVEL_UP_MOVE(43, MOVE_LIGHT_SCREEN),
-    LEVEL_UP_MOVE(46, MOVE_THUNDER),
-        LEVEL_UP_MOVE( 1, MOVE_DRACO_METEOR),
-        LEVEL_UP_MOVE( 1, MOVE_HYDRO_PUMP),
+    LEVEL_UP_MOVE( 6, MOVE_TACKLE),
+    LEVEL_UP_MOVE(10, MOVE_COTTON_SPORE),
+    LEVEL_UP_MOVE(12, MOVE_CHARGE),
+    LEVEL_UP_MOVE(15, MOVE_SWIFT),
+    LEVEL_UP_MOVE(18, MOVE_SPARK),
+    LEVEL_UP_MOVE(22, MOVE_CONFUSE_RAY),
+    LEVEL_UP_MOVE(27, MOVE_SHOCK_WAVE),
+    LEVEL_UP_MOVE(33, MOVE_SIGNAL_BEAM),
+    LEVEL_UP_MOVE(39, MOVE_MILK_DRINK),
+    LEVEL_UP_MOVE(45, MOVE_ENERGY_BALL),
+    LEVEL_UP_MOVE(53, MOVE_THUNDERBOLT),
+    LEVEL_UP_MOVE(55, MOVE_THUNDER_WAVE),
+    LEVEL_UP_MOVE(59, MOVE_TAIL_GLOW),
+    LEVEL_UP_MOVE(61, MOVE_COTTON_GUARD),
+    LEVEL_UP_MOVE(67, MOVE_NUZZLE),
+    LEVEL_UP_MOVE(73, MOVE_DRAGON_PULSE),
+    LEVEL_UP_MOVE(80, MOVE_THUNDER),
+    LEVEL_UP_MOVE(88, MOVE_DRACO_METEOR),
     LEVEL_UP_END
 };
 
-static const struct LevelUpMove sFlaaffyLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
-    LEVEL_UP_MOVE( 1, MOVE_GROWL),
-    LEVEL_UP_MOVE( 6, MOVE_THUNDER_SHOCK),
-    LEVEL_UP_MOVE( 9, MOVE_THUNDER_WAVE),
-    LEVEL_UP_MOVE(11, MOVE_COTTON_SPORE),
-    LEVEL_UP_MOVE(16, MOVE_CHARGE),
-    LEVEL_UP_MOVE(20, MOVE_TAKE_DOWN),
-    LEVEL_UP_MOVE(25, MOVE_ELECTRO_BALL),
-    LEVEL_UP_MOVE(29, MOVE_CONFUSE_RAY),
-    LEVEL_UP_MOVE(34, MOVE_POWER_GEM),
-    LEVEL_UP_MOVE(38, MOVE_DISCHARGE),
-    LEVEL_UP_MOVE(43, MOVE_COTTON_GUARD),
-    LEVEL_UP_MOVE(47, MOVE_DAZZLING_GLEAM),
-    LEVEL_UP_MOVE(52, MOVE_LIGHT_SCREEN),
-    LEVEL_UP_MOVE(56, MOVE_THUNDER),
-        LEVEL_UP_MOVE( 1, MOVE_DRACO_METEOR),
-        LEVEL_UP_MOVE( 1, MOVE_HYDRO_PUMP),
+#define MAREEP_LINE_EVOLVED_LEARNSET                  \
+    LEVEL_UP_MOVE( 1, MOVE_THUNDER_SHOCK),            \
+    LEVEL_UP_MOVE( 1, MOVE_GROWL),                    \
+    LEVEL_UP_MOVE( 6, MOVE_TACKLE),                   \
+    LEVEL_UP_MOVE(10, MOVE_COTTON_SPORE),             \
+    LEVEL_UP_MOVE(12, MOVE_CHARGE),                   \
+    LEVEL_UP_MOVE(15, MOVE_SWIFT),                    \
+    LEVEL_UP_MOVE(18, MOVE_SPARK),                    \
+    LEVEL_UP_MOVE(22, MOVE_CONFUSE_RAY),              \
+    LEVEL_UP_MOVE(27, MOVE_SHOCK_WAVE),               \
+    LEVEL_UP_MOVE(33, MOVE_SIGNAL_BEAM),              \
+    LEVEL_UP_MOVE(39, MOVE_MILK_DRINK),               \
+    LEVEL_UP_MOVE(45, MOVE_ENERGY_BALL),              \
+    LEVEL_UP_MOVE(53, MOVE_THUNDERBOLT),              \
+    LEVEL_UP_MOVE(55, MOVE_THUNDER_WAVE),             \
+    LEVEL_UP_MOVE(61, MOVE_COTTON_GUARD),             \
+    LEVEL_UP_MOVE(67, MOVE_NUZZLE),                   \
+    LEVEL_UP_MOVE(73, MOVE_DRAGON_PULSE),             \
+    LEVEL_UP_MOVE(80, MOVE_THUNDER),                  \
+    LEVEL_UP_MOVE(88, MOVE_DRACO_METEOR),             \
+    LEVEL_UP_MOVE(95, MOVE_TAIL_GLOW),                \
     LEVEL_UP_END
+
+static const struct LevelUpMove sFlaaffyLevelUpLearnset[] = {
+    MAREEP_LINE_EVOLVED_LEARNSET
 };
 
 static const struct LevelUpMove sAmpharosLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 0, MOVE_THUNDER_PUNCH),
-    LEVEL_UP_MOVE( 1, MOVE_FIRE_PUNCH),
-    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
-    LEVEL_UP_MOVE( 1, MOVE_GROWL),
-    LEVEL_UP_MOVE( 1, MOVE_THUNDER_SHOCK),
-    LEVEL_UP_MOVE( 1, MOVE_THUNDER_WAVE),
-    LEVEL_UP_MOVE( 1, MOVE_DRAGON_PULSE),
-    LEVEL_UP_MOVE( 1, MOVE_MAGNETIC_FLUX),
-    LEVEL_UP_MOVE( 1, MOVE_ZAP_CANNON),
-    LEVEL_UP_MOVE(11, MOVE_COTTON_SPORE),
-    LEVEL_UP_MOVE(16, MOVE_CHARGE),
-    LEVEL_UP_MOVE(20, MOVE_TAKE_DOWN),
-    LEVEL_UP_MOVE(25, MOVE_ELECTRO_BALL),
-    LEVEL_UP_MOVE(29, MOVE_CONFUSE_RAY),
-    LEVEL_UP_MOVE(35, MOVE_POWER_GEM),
-    LEVEL_UP_MOVE(40, MOVE_DISCHARGE),
-    LEVEL_UP_MOVE(46, MOVE_COTTON_GUARD),
-    LEVEL_UP_MOVE(51, MOVE_DAZZLING_GLEAM),
-    LEVEL_UP_MOVE(57, MOVE_LIGHT_SCREEN),
-    LEVEL_UP_MOVE(62, MOVE_THUNDER),
-        LEVEL_UP_MOVE( 1, MOVE_DRACO_METEOR),
-        LEVEL_UP_MOVE( 1, MOVE_HYDRO_PUMP),
-    LEVEL_UP_END
+    MAREEP_LINE_EVOLVED_LEARNSET
 };
 #endif //P_FAMILY_MAREEP
 
@@ -9302,70 +9294,58 @@ static const struct LevelUpMove sAbsolLevelUpLearnset[] = {
 #endif //P_FAMILY_ABSOL
 
 #if P_FAMILY_SNORUNT
-static const struct LevelUpMove sSnoruntLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 1, MOVE_HEADBUTT),
-    LEVEL_UP_MOVE( 1, MOVE_POWDER_SNOW),
-    LEVEL_UP_MOVE( 1, MOVE_ASTONISH),
-    LEVEL_UP_MOVE( 5, MOVE_LEER),
-    LEVEL_UP_MOVE(10, MOVE_DOUBLE_TEAM),
-    LEVEL_UP_MOVE(15, MOVE_ICE_SHARD),
-    LEVEL_UP_MOVE(20, MOVE_PROTECT),
-    LEVEL_UP_MOVE(25, MOVE_ICY_WIND),
-    LEVEL_UP_MOVE(30, MOVE_FROST_BREATH),
-    LEVEL_UP_MOVE(35, MOVE_BITE),
-    LEVEL_UP_MOVE(40, MOVE_ICE_FANG),
-    LEVEL_UP_MOVE(45, MOVE_SNOWSCAPE),
-    LEVEL_UP_MOVE(50, MOVE_WEATHER_BALL),
-    LEVEL_UP_MOVE(55, MOVE_CRUNCH),
-    LEVEL_UP_MOVE(60, MOVE_BLIZZARD),
+// Snow custom learnset. Branched evolution: Snorunt and Glalie share one
+// learnset; Froslass diverges from Lv 43 onward (physical/explosion theme for
+// Glalie line vs status/ghost theme for Froslass). Levels 1-38 are identical
+// across all three species.
+#define SNORUNT_FAMILY_SHARED_EARLY                   \
+    LEVEL_UP_MOVE( 1, MOVE_POWDER_SNOW),              \
+    LEVEL_UP_MOVE( 1, MOVE_LEER),                     \
+    LEVEL_UP_MOVE( 7, MOVE_POUND),                    \
+    LEVEL_UP_MOVE(10, MOVE_ENDURE),                   \
+    LEVEL_UP_MOVE(13, MOVE_BITE),                     \
+    LEVEL_UP_MOVE(17, MOVE_ICY_WIND),                 \
+    LEVEL_UP_MOVE(20, MOVE_HEADBUTT),                 \
+    LEVEL_UP_MOVE(23, MOVE_ICE_SHARD),                \
+    LEVEL_UP_MOVE(26, MOVE_CONFUSE_RAY),              \
+    LEVEL_UP_MOVE(31, MOVE_ICE_FANG),                 \
+    LEVEL_UP_MOVE(38, MOVE_DOUBLE_TEAM)
+
+#define SNORUNT_GLALIE_LEARNSET                       \
+    SNORUNT_FAMILY_SHARED_EARLY,                      \
+    LEVEL_UP_MOVE(43, MOVE_SELF_DESTRUCT),            \
+    LEVEL_UP_MOVE(46, MOVE_ICICLE_CRASH),             \
+    LEVEL_UP_MOVE(51, MOVE_EXPLOSION),                \
+    LEVEL_UP_MOVE(57, MOVE_CRUNCH),                   \
+    LEVEL_UP_MOVE(64, MOVE_REFLECT),                  \
+    LEVEL_UP_MOVE(69, MOVE_ICE_BEAM),                 \
+    LEVEL_UP_MOVE(75, MOVE_GLARE),                    \
+    LEVEL_UP_MOVE(81, MOVE_BLIZZARD),                 \
+    LEVEL_UP_MOVE(86, MOVE_PROTECT),                  \
+    LEVEL_UP_MOVE(92, MOVE_SHEER_COLD),               \
     LEVEL_UP_END
+
+static const struct LevelUpMove sSnoruntLevelUpLearnset[] = {
+    SNORUNT_GLALIE_LEARNSET
 };
 
 static const struct LevelUpMove sGlalieLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 0, MOVE_FREEZE_DRY),
-    LEVEL_UP_MOVE( 1, MOVE_HEADBUTT),
-    LEVEL_UP_MOVE( 1, MOVE_LEER),
-    LEVEL_UP_MOVE( 1, MOVE_DOUBLE_TEAM),
-    LEVEL_UP_MOVE( 1, MOVE_POWDER_SNOW),
-    LEVEL_UP_MOVE( 1, MOVE_ASTONISH),
-    LEVEL_UP_MOVE( 1, MOVE_SHEER_COLD),
-    LEVEL_UP_MOVE(15, MOVE_ICE_SHARD),
-    LEVEL_UP_MOVE(20, MOVE_PROTECT),
-    LEVEL_UP_MOVE(25, MOVE_ICY_WIND),
-    LEVEL_UP_MOVE(30, MOVE_FROST_BREATH),
-    LEVEL_UP_MOVE(35, MOVE_BITE),
-    LEVEL_UP_MOVE(40, MOVE_ICE_FANG),
-    LEVEL_UP_MOVE(47, MOVE_SNOWSCAPE),
-    LEVEL_UP_MOVE(54, MOVE_WEATHER_BALL),
-    LEVEL_UP_MOVE(61, MOVE_CRUNCH),
-    LEVEL_UP_MOVE(68, MOVE_BLIZZARD),
-    LEVEL_UP_END
+    SNORUNT_GLALIE_LEARNSET
 };
 
 #if P_GEN_4_CROSS_EVOS
 static const struct LevelUpMove sFroslassLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 0, MOVE_HEX),
-    LEVEL_UP_MOVE( 1, MOVE_CRUNCH),
-    LEVEL_UP_MOVE( 1, MOVE_ICE_FANG),
-    LEVEL_UP_MOVE( 1, MOVE_ASTONISH),
-    LEVEL_UP_MOVE( 1, MOVE_DESTINY_BOND),
-    LEVEL_UP_MOVE( 1, MOVE_PROTECT),
-    LEVEL_UP_MOVE( 1, MOVE_HEADBUTT),
-    LEVEL_UP_MOVE( 1, MOVE_DOUBLE_TEAM),
-    LEVEL_UP_MOVE( 1, MOVE_BITE),
-    LEVEL_UP_MOVE( 1, MOVE_LEER),
-    LEVEL_UP_MOVE( 1, MOVE_POWDER_SNOW),
-    LEVEL_UP_MOVE(15, MOVE_ICE_SHARD),
-    LEVEL_UP_MOVE(20, MOVE_DRAINING_KISS),
-    LEVEL_UP_MOVE(25, MOVE_ICY_WIND),
-    LEVEL_UP_MOVE(30, MOVE_FROST_BREATH),
-    LEVEL_UP_MOVE(35, MOVE_CONFUSE_RAY),
-    LEVEL_UP_MOVE(40, MOVE_SNOWSCAPE),
-    LEVEL_UP_MOVE(47, MOVE_WILL_O_WISP),
-    LEVEL_UP_MOVE(54, MOVE_AURORA_VEIL),
-    LEVEL_UP_MOVE(61, MOVE_SHADOW_BALL),
-    LEVEL_UP_MOVE(68, MOVE_BLIZZARD),
-        LEVEL_UP_MOVE( 1, MOVE_LAST_RESPECTS),
+    SNORUNT_FAMILY_SHARED_EARLY,
+    LEVEL_UP_MOVE(43, MOVE_SPITE),
+    LEVEL_UP_MOVE(46, MOVE_SHADOW_SNEAK),
+    LEVEL_UP_MOVE(51, MOVE_HEX),
+    LEVEL_UP_MOVE(57, MOVE_CURSE),
+    LEVEL_UP_MOVE(64, MOVE_LIGHT_SCREEN),
+    LEVEL_UP_MOVE(69, MOVE_ICE_BEAM),
+    LEVEL_UP_MOVE(75, MOVE_SHADOW_BALL),
+    LEVEL_UP_MOVE(81, MOVE_BLIZZARD),
+    LEVEL_UP_MOVE(86, MOVE_WILL_O_WISP),
+    LEVEL_UP_MOVE(92, MOVE_SHEER_COLD),
     LEVEL_UP_END
 };
 #endif //P_GEN_4_CROSS_EVOS
@@ -13518,41 +13498,36 @@ static const struct LevelUpMove sVanilluxeLevelUpLearnset[] = {
 #endif //P_FAMILY_VANILLITE
 
 #if P_FAMILY_DEERLING
-static const struct LevelUpMove sDeerlingLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
-    LEVEL_UP_MOVE( 4, MOVE_GROWL),
-    LEVEL_UP_MOVE( 7, MOVE_SAND_ATTACK),
-    LEVEL_UP_MOVE(10, MOVE_DOUBLE_KICK),
-    LEVEL_UP_MOVE(13, MOVE_LEECH_SEED),
-    LEVEL_UP_MOVE(16, MOVE_BULLET_SEED),
-    LEVEL_UP_MOVE(20, MOVE_TAKE_DOWN),
-    LEVEL_UP_MOVE(24, MOVE_ZEN_HEADBUTT),
-    LEVEL_UP_MOVE(28, MOVE_ENERGY_BALL),
-    LEVEL_UP_MOVE(32, MOVE_CHARM),
-    LEVEL_UP_MOVE(37, MOVE_DOUBLE_EDGE),
-    LEVEL_UP_MOVE(42, MOVE_SOLAR_BEAM),
-        LEVEL_UP_MOVE( 1, MOVE_OBSTRUCT),
+// Snow custom learnset, family-shared (Deerling/Sawsbuck identical, all forms).
+#define DEERLING_FAMILY_SNOW_LEARNSET                 \
+    LEVEL_UP_MOVE( 1, MOVE_TACKLE),                   \
+    LEVEL_UP_MOVE( 1, MOVE_LEAFAGE),                  \
+    LEVEL_UP_MOVE( 7, MOVE_SPEED_SWAP),               \
+    LEVEL_UP_MOVE( 9, MOVE_DOUBLE_KICK),              \
+    LEVEL_UP_MOVE(15, MOVE_DOUBLE_HIT),               \
+    LEVEL_UP_MOVE(18, MOVE_POUNCE),                   \
+    LEVEL_UP_MOVE(22, MOVE_RAZOR_LEAF),               \
+    LEVEL_UP_MOVE(24, MOVE_WORRY_SEED),               \
+    LEVEL_UP_MOVE(25, MOVE_LEECH_SEED),               \
+    LEVEL_UP_MOVE(31, MOVE_HEADBUTT),                 \
+    LEVEL_UP_MOVE(38, MOVE_HORN_LEECH),               \
+    LEVEL_UP_MOVE(42, MOVE_ENERGY_BALL),              \
+    LEVEL_UP_MOVE(46, MOVE_LEECH_LIFE),               \
+    LEVEL_UP_MOVE(51, MOVE_DOUBLE_EDGE),              \
+    LEVEL_UP_MOVE(59, MOVE_LEAF_STORM),               \
+    LEVEL_UP_MOVE(67, MOVE_JUMP_KICK),                \
+    LEVEL_UP_MOVE(77, MOVE_MEGAHORN),                 \
+    LEVEL_UP_MOVE(80, MOVE_HIGH_JUMP_KICK),           \
+    LEVEL_UP_MOVE(87, MOVE_MEGA_KICK),                \
+    LEVEL_UP_MOVE(94, MOVE_WOOD_HAMMER),              \
     LEVEL_UP_END
+
+static const struct LevelUpMove sDeerlingLevelUpLearnset[] = {
+    DEERLING_FAMILY_SNOW_LEARNSET
 };
 
 static const struct LevelUpMove sSawsbuckLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 0, MOVE_HORN_LEECH),
-    LEVEL_UP_MOVE( 1, MOVE_SAND_ATTACK),
-    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
-    LEVEL_UP_MOVE( 1, MOVE_GROWL),
-    LEVEL_UP_MOVE( 1, MOVE_MEGAHORN),
-    LEVEL_UP_MOVE(10, MOVE_DOUBLE_KICK),
-    LEVEL_UP_MOVE(13, MOVE_LEECH_SEED),
-    LEVEL_UP_MOVE(16, MOVE_BULLET_SEED),
-    LEVEL_UP_MOVE(20, MOVE_TAKE_DOWN),
-    LEVEL_UP_MOVE(24, MOVE_ZEN_HEADBUTT),
-    LEVEL_UP_MOVE(28, MOVE_ENERGY_BALL),
-    LEVEL_UP_MOVE(36, MOVE_CHARM),
-    LEVEL_UP_MOVE(44, MOVE_DOUBLE_EDGE),
-    LEVEL_UP_MOVE(52, MOVE_SOLAR_BEAM),
-        LEVEL_UP_MOVE( 1, MOVE_AXE_KICK),
-        LEVEL_UP_MOVE( 1, MOVE_OBSTRUCT),
-    LEVEL_UP_END
+    DEERLING_FAMILY_SNOW_LEARNSET
 };
 #endif //P_FAMILY_DEERLING
 
