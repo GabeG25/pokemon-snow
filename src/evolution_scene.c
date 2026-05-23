@@ -781,8 +781,12 @@ static void Task_EvolutionScene(u8 taskId)
             BattlePutTextOnWindow(gStringVar4, B_WIN_MSG);
             PlayBGM(MUS_EVOLVED);
             gTasks[taskId].tState++;
+            u32 snowAbilityNum = GetMonData(mon, MON_DATA_ABILITY_NUM);       // Snow: keep ability slot (A1->A1) through evolution
+            u32 snowUsesWild = GetMonData(mon, MON_DATA_USES_WILD_ABILITIES); // Snow: keep player-side wildAbilities flag
             SetMonData(mon, MON_DATA_SPECIES, (void *)(&gTasks[taskId].tPostEvoSpecies));
             SetMonData(mon, MON_DATA_EVOLUTION_TRACKER, &zero);
+            SetMonData(mon, MON_DATA_ABILITY_NUM, &snowAbilityNum);
+            SetMonData(mon, MON_DATA_USES_WILD_ABILITIES, &snowUsesWild);
             CalculateMonStats(mon);
             EvolutionRenameMon(mon, gTasks[taskId].tPreEvoSpecies, gTasks[taskId].tPostEvoSpecies);
             GetSetPokedexFlag(SpeciesToNationalPokedexNum(gTasks[taskId].tPostEvoSpecies), FLAG_SET_SEEN);
@@ -1208,8 +1212,12 @@ static void Task_TradeEvolutionScene(u8 taskId)
             DrawTextOnTradeWindow(0, gStringVar4, 1);
             PlayFanfare(MUS_EVOLVED);
             gTasks[taskId].tState++;
+            u32 snowAbilityNum = GetMonData(mon, MON_DATA_ABILITY_NUM);       // Snow: keep ability slot (A1->A1) through evolution
+            u32 snowUsesWild = GetMonData(mon, MON_DATA_USES_WILD_ABILITIES); // Snow: keep player-side wildAbilities flag
             SetMonData(mon, MON_DATA_SPECIES, (&gTasks[taskId].tPostEvoSpecies));
             SetMonData(mon, MON_DATA_EVOLUTION_TRACKER, &zero);
+            SetMonData(mon, MON_DATA_ABILITY_NUM, &snowAbilityNum);
+            SetMonData(mon, MON_DATA_USES_WILD_ABILITIES, &snowUsesWild);
             CalculateMonStats(mon);
             EvolutionRenameMon(mon, gTasks[taskId].tPreEvoSpecies, gTasks[taskId].tPostEvoSpecies);
             GetSetPokedexFlag(SpeciesToNationalPokedexNum(gTasks[taskId].tPostEvoSpecies), FLAG_SET_SEEN);

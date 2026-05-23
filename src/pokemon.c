@@ -1599,7 +1599,10 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u32 personal
     u32 teraType = value == 0 ? GetSpeciesType(species, 0) : GetSpeciesType(species, 1);
     SetBoxMonData(boxMon, MON_DATA_TERA_TYPE, &teraType);
     //using gen 3-4 ability formula, it was changed in later gens
-    if (GetSpeciesAbility(species, 1))
+    // Snow: also allow ability slot 1 when the player-side wildAbilities table has a 2nd ability,
+    // so wild-caught / gift mons can roll either of their two player abilities (e.g. Mareep Fluffy OR Static),
+    // not just slot 0 when the base .abilities[1] happens to be empty.
+    if (GetSpeciesAbility(species, 1) || gSpeciesInfo[species].wildAbilities[1] != ABILITY_NONE)
         SetBoxMonData(boxMon, MON_DATA_ABILITY_NUM, &value);
 }
 
