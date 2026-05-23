@@ -600,7 +600,10 @@ static void CB2_InitBattleInternal(void)
             CreateNPCTrainerParty(&gEnemyParty[0], TRAINER_BATTLE_PARAM.opponentA, TRUE);
             if (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS && !BATTLE_TWO_VS_ONE_OPPONENT)
                 CreateNPCTrainerParty(&gEnemyParty[PARTY_SIZE / 2], TRAINER_BATTLE_PARAM.opponentB, FALSE);
-            SetWildMonHeldItem();
+            // Snow: wild Pokemon never carry held items (player-side design choice),
+            // so caught wild mons hold nothing. Trainer/gift items are set elsewhere
+            // and are unaffected. SetWildMonHeldItem() self-guards trainers anyway.
+            // SetWildMonHeldItem();
             CalculateEnemyPartyCount();
         }
     }
