@@ -242,6 +242,7 @@ enum {
     MB_DOWN_RIGHT_STAIR_WARP,
     MB_DOWN_LEFT_STAIR_WARP,
     MB_ROCK_CLIMB,
+    MB_SNOW_SLIDE, // Mahogany-Gym-style ice: pushes player one tile in their current direction; chains while next tile is also MB_SNOW_SLIDE, stops at non-slide/wall.
     NUM_METATILE_BEHAVIORS
 };
 

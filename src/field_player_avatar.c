@@ -36,7 +36,7 @@
 #include "constants/songs.h"
 #include "constants/trainer_types.h"
 
-#define NUM_FORCED_MOVEMENTS 22
+#define NUM_FORCED_MOVEMENTS 23
 #define NUM_ACRO_BIKE_COLLISIONS 5
 
 enum SpinDirection
@@ -86,6 +86,7 @@ static bool8 ForcedMovement_SlideSouth(void);
 static bool8 ForcedMovement_SlideNorth(void);
 static bool8 ForcedMovement_SlideWest(void);
 static bool8 ForcedMovement_SlideEast(void);
+static bool8 ForcedMovement_SnowSlide(void);
 static bool8 ForcedMovement_MatJump(void);
 static bool8 ForcedMovement_MatSpin(void);
 static bool8 ForcedMovement_MuddySlope(void);
@@ -174,6 +175,7 @@ static bool8 (*const sForcedMovementTestFuncs[NUM_FORCED_MOVEMENTS])(u8) =
     MetatileBehavior_IsSlideNorth,
     MetatileBehavior_IsSlideWest,
     MetatileBehavior_IsSlideEast,
+    MetatileBehavior_IsSnowSlide,
     MetatileBehavior_IsWaterfall,
     MetatileBehavior_IsSecretBaseJumpMat,
     MetatileBehavior_IsSecretBaseSpinMat,
@@ -202,6 +204,7 @@ static bool8 (*const sForcedMovementFuncs[NUM_FORCED_MOVEMENTS + 1])(void) =
     ForcedMovement_SlideNorth,
     ForcedMovement_SlideWest,
     ForcedMovement_SlideEast,
+    ForcedMovement_SnowSlide,
     ForcedMovement_PushedSouthByCurrent,
     ForcedMovement_MatJump,
     ForcedMovement_MatSpin,
@@ -650,6 +653,21 @@ static bool8 ForcedMovement_SlideWest(void)
 static bool8 ForcedMovement_SlideEast(void)
 {
     return ForcedMovement_Slide(DIR_EAST, PlayerWalkFast);
+}
+
+// Mahogany-Gym-style ice slide: pushes the player one tile in their current
+// movement direction (the last non-zero input the player gave). Because the
+// engine re-evaluates the metatile beneath the player every frame, this
+// continues to fire as long as the player remains on an MB_SNOW_SLIDE tile —
+// producing a "slide until wall or non-slide tile" behavior. Facing is locked
+// so the slide keeps going without requiring continuous input.
+static bool8 ForcedMovement_SnowSlide(void)
+{
+    struct ObjectEvent *playerObjEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+
+    playerObjEvent->disableAnim = TRUE;
+    playerObjEvent->facingDirectionLocked = TRUE;
+    return DoForcedMovement(playerObjEvent->movementDirection, PlayerWalkFast);
 }
 
 static bool8 ForcedMovement_MatJump(void)

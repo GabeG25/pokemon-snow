@@ -1,7 +1,7 @@
 {
   "id": "MAP_ICESPIRE_TOWN_MART",
   "name": "IcespireTown_Mart",
-  "layout": "LAYOUT_MART",
+  "layout": "LAYOUT_ICESPIRE_MART",
   "music": "MUS_POKE_MART",
   "region_map_section": "MAPSEC_ICESPIRE_TOWN",
   "requires_flash": false,
@@ -30,9 +30,9 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_3",
       "x": 9,
-      "y": 4,
+      "y": 5,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",

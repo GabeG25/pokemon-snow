@@ -2491,8 +2491,8 @@ static void CreatePokedexList(u8 dexMode, u8 order)
             {
                 temp_dexNum = RegionalToNationalOrder(i + 1);
                 sPokedexView->pokedexList[i].dexNum = temp_dexNum;
-                sPokedexView->pokedexList[i].seen = GetSetPokedexFlag(temp_dexNum, FLAG_GET_SEEN);
-                sPokedexView->pokedexList[i].owned = GetSetPokedexFlag(temp_dexNum, FLAG_GET_CAUGHT);
+                sPokedexView->pokedexList[i].seen = GetBoralyssSlotSeenCaught(i + 1, FLAG_GET_SEEN);
+                sPokedexView->pokedexList[i].owned = GetBoralyssSlotSeenCaught(i + 1, FLAG_GET_CAUGHT);
                 if (sPokedexView->pokedexList[i].seen)
                     sPokedexView->pokemonListCount = i + 1;
             }

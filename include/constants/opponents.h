@@ -1023,12 +1023,14 @@
 #define TRAINER_SNOW_VR_6_JINX              1015
 #define TRAINER_SNOW_VR_7_ZENO              1016
 #define TRAINER_SNOW_VR_8_KYROS             1017
+#define TRAINER_SNOW_GYM1_TUCKER            1018
+#define TRAINER_SNOW_GYM1_NIECA             1019
 
-// NOTE: Because each Trainer uses a flag to determine when they are defeated, there is only space for 70 additional trainers before trainer flag space overflows
+// NOTE: Because each Trainer uses a flag to determine when they are defeated, there is only space for 68 additional trainers before trainer flag space overflows
 //       More space can be made by shifting flags around in constants/flags.h or changing how trainer flags are handled
 //       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
 
-#define TRAINERS_COUNT_EMERALD     1018
+#define TRAINERS_COUNT_EMERALD     1020
 #define MAX_TRAINERS_COUNT_EMERALD 1088
 
 #if IS_FRLG

@@ -18,6 +18,9 @@ DawnflakeTown_PlayersHouse_1F_EventScript_MomCutscene::
 	waitmovement 0
 	applymovement 1, DawnflakeTown_PlayersHouse_1F_Movement_MomFaceUp
 	waitmovement 0
+	playse SE_PIN
+	applymovement 1, Common_Movement_ExclamationMark
+	waitmovement 0
 	msgbox DawnflakeTown_PlayersHouse_1F_Text_MomCutscene, MSGBOX_DEFAULT
 	closemessage
 	setvar VAR_SNOW_INTRO_STATE, 2
@@ -69,11 +72,10 @@ DawnflakeTown_PlayersHouse_1F_EventScript_Bookshelf::
 @ ═══════════════════════════════════════════════════════════
 
 DawnflakeTown_PlayersHouse_1F_Text_MomMorning:
-	.string "MOM: Up and at 'em, sweetheart!\p"
-	.string "Professor EVERGREEN called down\n"
-	.string "from the lab twice already.\p"
-	.string "He's a patient man. Don't make\n"
-	.string "him be patient a third time.$"
+	.string "MOM: Still here, sweetheart?\p"
+	.string "The PROFESSOR isn't getting\n"
+	.string "any younger.\p"
+	.string "Best you don't keep him.$"
 
 DawnflakeTown_PlayersHouse_1F_Text_MomAfterStarter:
 	.string "MOM: Oh - you've got one!\p"
@@ -84,18 +86,19 @@ DawnflakeTown_PlayersHouse_1F_Text_MomAfterStarter:
 	.string "Even when he isn't.$"
 
 DawnflakeTown_PlayersHouse_1F_Text_MomHealOffer:
-	.string "MOM: Let me look at you.\p"
-	.string "Cold out there already, isn't it.\p"
-	.string "Here - sit for a minute. I'll\n"
-	.string "get your team back on their feet.$"
+	.string "MOM: Oh, {PLAYER}, you're\n"
+	.string "already home?\p"
+	.string "Please sit inside and rest\n"
+	.string "for a while, honey.\p"
+	.string "Give your POKEMON a chance\n"
+	.string "to rest as well.$"
 
 DawnflakeTown_PlayersHouse_1F_Text_MomHealAfter:
-	.string "MOM: There. Good as new.\p"
-	.string "The region's been strange lately,\n"
-	.string "{PLAYER}. The winter came early,\l"
-	.string "and it came wrong.\p"
-	.string "Promise me you'll come home\n"
-	.string "if you ever need to.$"
+	.string "MOM: There you go, {PLAYER}.\p"
+	.string "Now you're all healed up and\n"
+	.string "ready to go.\p"
+	.string "Just make sure you stay safe\n"
+	.string "out there, sweetie.$"
 
 DawnflakeTown_PlayersHouse_1F_Text_Bookshelf:
 	.string "A shelf of well-worn books.\p"
@@ -113,7 +116,7 @@ DawnflakeTown_PlayersHouse_1F_Text_MomCutscene:
 	.string "down from the lab twice\l"
 	.string "already.\p"
 	.string "He's a patient man, honey.\n"
-	.string "Don't make him be patient a\l"
+	.string "Don't make him wait a\l"
 	.string "third time.\p"
 	.string "Head on over whenever you're\n"
 	.string "ready.$"

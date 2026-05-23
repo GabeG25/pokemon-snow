@@ -8031,6 +8031,7 @@ static const struct LevelUpMove sAronLevelUpLearnset[] = {
     LEVEL_UP_MOVE(21, MOVE_IRON_DEFENSE),
     LEVEL_UP_MOVE(27, MOVE_ROCK_TOMB),
     LEVEL_UP_MOVE(32, MOVE_DIG),
+    LEVEL_UP_MOVE(35, MOVE_HEAVY_SLAM),
     LEVEL_UP_MOVE(38, MOVE_DOUBLE_EDGE),
     LEVEL_UP_MOVE(43, MOVE_ROCK_SLIDE),
     LEVEL_UP_MOVE(49, MOVE_IRON_HEAD),
@@ -8053,6 +8054,7 @@ static const struct LevelUpMove sAronLevelUpLearnset[] = {
     LEVEL_UP_MOVE(21, MOVE_IRON_DEFENSE),             \
     LEVEL_UP_MOVE(27, MOVE_ROCK_TOMB),                \
     LEVEL_UP_MOVE(32, MOVE_DIG),                      \
+    LEVEL_UP_MOVE(35, MOVE_HEAVY_SLAM),               \
     LEVEL_UP_MOVE(38, MOVE_DOUBLE_EDGE),              \
     LEVEL_UP_MOVE(43, MOVE_ROCK_SLIDE),               \
     LEVEL_UP_MOVE(49, MOVE_IRON_HEAD),                \

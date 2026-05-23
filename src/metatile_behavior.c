@@ -487,6 +487,17 @@ bool8 MetatileBehavior_IsSlideEast(u8 metatileBehavior)
         return FALSE;
 }
 
+// Mahogany-Gym-style ice slide: continuously pushes player in their current
+// movement direction while standing on this behavior. Direction is taken from
+// the player (last non-zero input), not baked into the metatile.
+bool8 MetatileBehavior_IsSnowSlide(u8 metatileBehavior)
+{
+    if (metatileBehavior == MB_SNOW_SLIDE)
+        return TRUE;
+    else
+        return FALSE;
+}
+
 bool8 MetatileBehavior_IsCounter(u8 metatileBehavior)
 {
     if (metatileBehavior == MB_COUNTER)

@@ -22,8 +22,8 @@ DawnflakeTown_EvergreensLab_EventScript_Evergreen::
 	@ Two-stage: first the multichoice menu, then a per-starter blurb +
 	@ confirm so the player has more detail before committing. After
 	@ they commit, givemon + nickname prompt before returning to the
-	@ main ceremony flow.
-	msgbox DawnflakeTown_EvergreensLab_Text_StarterPrompt, MSGBOX_DEFAULT
+	@ main ceremony flow. The KARANAGA introduction in EvergreenIntro
+	@ already names all three species, so StarterPrompt is skipped.
 	goto DawnflakeTown_EvergreensLab_EventScript_StarterMenu
 
 DawnflakeTown_EvergreensLab_EventScript_StarterMenu::
@@ -38,19 +38,35 @@ DawnflakeTown_EvergreensLab_EventScript_StarterMenu::
 	end
 
 DawnflakeTown_EvergreensLab_EventScript_PreviewTreecko::
+	@ Small delay lets the dynmultichoice menu finish closing before the
+	@ sprite bubble pops in, otherwise the menu close + bubble open
+	@ overlap and look choppy.
+	delay 12
+	showmonpic SPECIES_TREECKO, 10, 3
 	msgbox DawnflakeTown_EvergreensLab_Text_TreeckoBlurb, MSGBOX_DEFAULT
+	hidemonpic
+	@ And again — let the bubble fully close before the YES/NO opens.
+	delay 12
 	msgbox DawnflakeTown_EvergreensLab_Text_StarterConfirm, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, DawnflakeTown_EvergreensLab_EventScript_StarterMenu
 	goto DawnflakeTown_EvergreensLab_EventScript_GiveTreecko
 
 DawnflakeTown_EvergreensLab_EventScript_PreviewTorchic::
+	delay 12
+	showmonpic SPECIES_TORCHIC, 10, 3
 	msgbox DawnflakeTown_EvergreensLab_Text_TorchicBlurb, MSGBOX_DEFAULT
+	hidemonpic
+	delay 12
 	msgbox DawnflakeTown_EvergreensLab_Text_StarterConfirm, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, DawnflakeTown_EvergreensLab_EventScript_StarterMenu
 	goto DawnflakeTown_EvergreensLab_EventScript_GiveTorchic
 
 DawnflakeTown_EvergreensLab_EventScript_PreviewMudkip::
+	delay 12
+	showmonpic SPECIES_MUDKIP, 10, 3
 	msgbox DawnflakeTown_EvergreensLab_Text_MudkipBlurb, MSGBOX_DEFAULT
+	hidemonpic
+	delay 12
 	msgbox DawnflakeTown_EvergreensLab_Text_StarterConfirm, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, DawnflakeTown_EvergreensLab_EventScript_StarterMenu
 	goto DawnflakeTown_EvergreensLab_EventScript_GiveMudkip
@@ -260,8 +276,104 @@ DawnflakeTown_EvergreensLab_EventScript_ResumePostAsher::
 	release
 	end
 
+@ ═══════════════════════════════════════════════════════════
+@ Post-ceremony Evergreen — offers a POKEDEX rating check.
+@ 10-tier evenly-divided scale across the 317-species dex.
+@ Full dex (10/10) gifts a HIDDEN ABILITY CHARM (one-time).
+@ ═══════════════════════════════════════════════════════════
+
 DawnflakeTown_EvergreensLab_EventScript_EvergreenPost::
-	msgbox DawnflakeTown_EvergreensLab_Text_EvergreenHeadSouth, MSGBOX_DEFAULT
+	lock
+	faceplayer
+	msgbox DawnflakeTown_EvergreensLab_Text_EvergreenPokedexIntro, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, DawnflakeTown_EvergreensLab_EventScript_EvergreenPokedexDecline
+	@ Regional dex count is loaded into VAR_0x8006 by ScriptGetPokedexInfo.
+	setvar VAR_0x8004, 0
+	specialvar VAR_RESULT, ScriptGetPokedexInfo
+	buffernumberstring STR_VAR_1, VAR_0x8006
+	@ Tier thresholds: every 10% of the 317-species dex, full dex required for 10/10.
+	compare VAR_0x8006, 317
+	goto_if_ge DawnflakeTown_EvergreensLab_EventScript_PokedexRating10
+	compare VAR_0x8006, 285
+	goto_if_ge DawnflakeTown_EvergreensLab_EventScript_PokedexRating9
+	compare VAR_0x8006, 254
+	goto_if_ge DawnflakeTown_EvergreensLab_EventScript_PokedexRating8
+	compare VAR_0x8006, 222
+	goto_if_ge DawnflakeTown_EvergreensLab_EventScript_PokedexRating7
+	compare VAR_0x8006, 190
+	goto_if_ge DawnflakeTown_EvergreensLab_EventScript_PokedexRating6
+	compare VAR_0x8006, 159
+	goto_if_ge DawnflakeTown_EvergreensLab_EventScript_PokedexRating5
+	compare VAR_0x8006, 127
+	goto_if_ge DawnflakeTown_EvergreensLab_EventScript_PokedexRating4
+	compare VAR_0x8006, 95
+	goto_if_ge DawnflakeTown_EvergreensLab_EventScript_PokedexRating3
+	compare VAR_0x8006, 64
+	goto_if_ge DawnflakeTown_EvergreensLab_EventScript_PokedexRating2
+	goto DawnflakeTown_EvergreensLab_EventScript_PokedexRating1
+
+DawnflakeTown_EvergreensLab_EventScript_EvergreenPokedexDecline::
+	msgbox DawnflakeTown_EvergreensLab_Text_EvergreenPokedexDecline, MSGBOX_DEFAULT
+	release
+	end
+
+DawnflakeTown_EvergreensLab_EventScript_PokedexRating1::
+	msgbox DawnflakeTown_EvergreensLab_Text_PokedexRating1, MSGBOX_DEFAULT
+	release
+	end
+
+DawnflakeTown_EvergreensLab_EventScript_PokedexRating2::
+	msgbox DawnflakeTown_EvergreensLab_Text_PokedexRating2, MSGBOX_DEFAULT
+	release
+	end
+
+DawnflakeTown_EvergreensLab_EventScript_PokedexRating3::
+	msgbox DawnflakeTown_EvergreensLab_Text_PokedexRating3, MSGBOX_DEFAULT
+	release
+	end
+
+DawnflakeTown_EvergreensLab_EventScript_PokedexRating4::
+	msgbox DawnflakeTown_EvergreensLab_Text_PokedexRating4, MSGBOX_DEFAULT
+	release
+	end
+
+DawnflakeTown_EvergreensLab_EventScript_PokedexRating5::
+	msgbox DawnflakeTown_EvergreensLab_Text_PokedexRating5, MSGBOX_DEFAULT
+	release
+	end
+
+DawnflakeTown_EvergreensLab_EventScript_PokedexRating6::
+	msgbox DawnflakeTown_EvergreensLab_Text_PokedexRating6, MSGBOX_DEFAULT
+	release
+	end
+
+DawnflakeTown_EvergreensLab_EventScript_PokedexRating7::
+	msgbox DawnflakeTown_EvergreensLab_Text_PokedexRating7, MSGBOX_DEFAULT
+	release
+	end
+
+DawnflakeTown_EvergreensLab_EventScript_PokedexRating8::
+	msgbox DawnflakeTown_EvergreensLab_Text_PokedexRating8, MSGBOX_DEFAULT
+	release
+	end
+
+DawnflakeTown_EvergreensLab_EventScript_PokedexRating9::
+	msgbox DawnflakeTown_EvergreensLab_Text_PokedexRating9, MSGBOX_DEFAULT
+	release
+	end
+
+DawnflakeTown_EvergreensLab_EventScript_PokedexRating10::
+	goto_if_set FLAG_SNOW_GOT_HA_CHARM, DawnflakeTown_EvergreensLab_EventScript_PokedexRating10Repeat
+	msgbox DawnflakeTown_EvergreensLab_Text_PokedexRating10Initial, MSGBOX_DEFAULT
+	playfanfare MUS_OBTAIN_ITEM
+	waitfanfare
+	msgbox DawnflakeTown_EvergreensLab_Text_HAReceived, MSGBOX_DEFAULT
+	setflag FLAG_SNOW_GOT_HA_CHARM
+	release
+	end
+
+DawnflakeTown_EvergreensLab_EventScript_PokedexRating10Repeat::
+	msgbox DawnflakeTown_EvergreensLab_Text_PokedexRating10Repeat, MSGBOX_DEFAULT
 	release
 	end
 
@@ -370,33 +482,46 @@ DawnflakeTown_EvergreensLab_Movement_NpcEnterDoor:
 @ ═══════════════════════════════════════════════════════════
 
 DawnflakeTown_EvergreensLab_Text_EvergreenIntro:
-	.string "PROF. EVERGREEN: There you are.\p"
-	.string "I was about to send AUTUMN out\n"
-	.string "to find you, but she beat me\l"
-	.string "to it. She usually does.\p"
-	.string "We have three POKEMON here,\n"
-	.string "sent up from a region that\l"
-	.string "doesn't know cold the way ours\l"
-	.string "does.\p"
-	.string "Pick the one that holds your\n"
-	.string "eye - that's yours.$"
+	.string "PROF. EVERGREEN: There ya are!\p"
+	.string "ASHER has been on his phone\n"
+	.string "the whole time. Can ya\l"
+	.string "believe that?\p"
+	.string "Anyway, I drew all 3 of your\n"
+	.string "names out of a hat.\p"
+	.string "And {PLAYER} was the one I\n"
+	.string "picked, so you'll get first\l"
+	.string "pick.\p"
+	.string "These 3 critters aren't like\n"
+	.string "anything we've got here in\l"
+	.string "BORALYSS.\p"
+	.string "They come from a far-off region\n"
+	.string "in the east called KARANAGA.\p"
+	.string "Tropical, arid, and a long way\n"
+	.string "from any winter.\p"
+	.string "That means they're rare - the\n"
+	.string "kind that can do big things\l"
+	.string "in the right hands.\p"
+	.string "So. Here they are.\p"
+	.string "TREECKO, the WOOD GECKO POKEMON.\p"
+	.string "TORCHIC, the FIRE CHICK POKEMON.\p"
+	.string "And MUDKIP, the MUD FISH POKEMON.$"
 
 DawnflakeTown_EvergreensLab_Text_EvergreenGotStarter:
-	.string "PROF. EVERGREEN: Good. I think\n"
-	.string "that one fits you well.\p"
-	.string "Take a moment together. Names\n"
-	.string "matter to POKEMON, even when\l"
-	.string "they pretend otherwise.$"
+	.string "PROF. EVERGREEN: Hm. Good.\n"
+	.string "I think that one fits ya well.$"
 
 DawnflakeTown_EvergreensLab_Text_EvergreenPokedex:
-	.string "PROF. EVERGREEN: And here -\n"
-	.string "a POKEDEX.\p"
-	.string "Every POKEMON you meet leaves\n"
+	.string "PROF. EVERGREEN: Looks like all 3\n"
+	.string "of you are acquainted with your\l"
+	.string "little beasts.\p"
+	.string "Here is a brand new POKEDEX\n"
+	.string "for each of you.\p"
+	.string "Every POKEMON ya meet leaves\n"
 	.string "a mark in there. The region's\l"
-	.string "catalogue grows alongside\l"
-	.string "you.\p"
-	.string "Consider it a small favor for\n"
-	.string "me, for the road ahead.$"
+	.string "catalogue grows alongside ya.\p"
+	.string "Consider it a small errand for\n"
+	.string "me, and a helpful tool on the\l"
+	.string "road ahead.$"
 
 DawnflakeTown_EvergreensLab_Text_StarterPrompt:
 	.string "PROF. EVERGREEN: Take your time\n"
@@ -414,72 +539,75 @@ DawnflakeTown_EvergreensLab_Text_StarterMudkip:
 	.string "MUDKIP$"
 
 DawnflakeTown_EvergreensLab_Text_TreeckoBlurb:
-	.string "PROF. EVERGREEN: This is\n"
+	.string "PROF. EVERGREEN: This here is\n"
 	.string "TREECKO, the WOOD GECKO\l"
-	.string "POKEMON - a GRASS type.\p"
-	.string "It tends to watch a thing for\n"
-	.string "a long while before it touches\l"
-	.string "anything new.\p"
-	.string "Patient in battle and patient\n"
-	.string "out of it - a useful tempera-\l"
-	.string "ment in a region where the\l"
-	.string "wind doesn't quit.\p"
-	.string "Slow to forget the people who\n"
-	.string "lose its trust, though.$"
+	.string "POKEMON. GRASS type.\p"
+	.string "Sleeps in the high canopies\n"
+	.string "of KARANAGA's jungles when\l"
+	.string "the sun's at its worst.\p"
+	.string "Got grip-pads on its hands\n"
+	.string "and feet that stick to anything\l"
+	.string "- glass, bark, even sheet ice.\p"
+	.string "An adaptable and calculated\n"
+	.string "fighter. Reads its opponent\l"
+	.string "like a book before it ever\l"
+	.string "throws a punch.$"
 
 DawnflakeTown_EvergreensLab_Text_TorchicBlurb:
-	.string "PROF. EVERGREEN: This one is\n"
-	.string "TORCHIC, the CHICK POKEMON.\p"
-	.string "A FIRE type, and warmer than\n"
-	.string "any thermometer I own. Our\l"
-	.string "winter doesn't bother it in\l"
-	.string "the slightest.\p"
-	.string "It decides on its partner\n"
-	.string "quickly and keeps that decision\l"
-	.string "for life.\p"
-	.string "Hard to lose, once it's chosen\n"
-	.string "you.$"
+	.string "PROF. EVERGREEN: This here\n"
+	.string "is TORCHIC, the FIRE CHICK\l"
+	.string "POKEMON. FIRE type.\p"
+	.string "Comes from the volcanic\n"
+	.string "plateaus on the south edge\l"
+	.string "of KARANAGA.\p"
+	.string "Hatched in heat, and molded\n"
+	.string "by the magma rock.\p"
+	.string "Carries a fire sac in its belly\n"
+	.string "that'll boil water right\l"
+	.string "through the feathers.\p"
+	.string "Imprints on its trainer like\n"
+	.string "a chick on its mother. Loyal\l"
+	.string "as they come.$"
 
 DawnflakeTown_EvergreensLab_Text_MudkipBlurb:
-	.string "PROF. EVERGREEN: And this is\n"
-	.string "MUDKIP, the MUD FISH POKEMON,\l"
-	.string "a WATER type.\p"
-	.string "It reads rivers through the\n"
-	.string "fin on its head, and trusts\l"
-	.string "that fin more than its own\l"
-	.string "eyes.\p"
-	.string "Steady and stubborn. Once\n"
-	.string "those feet plant themselves\l"
-	.string "you'll need a crowbar to move\l"
-	.string "it.\p"
-	.string "A grounding presence, in a\n"
-	.string "country where the snow takes\l"
-	.string "its time melting.$"
+	.string "PROF. EVERGREEN: And here\n"
+	.string "we've got MUDKIP, the MUD FISH\l"
+	.string "POKEMON. WATER type.\p"
+	.string "Hatches in the mangrove swamps\n"
+	.string "deep in KARANAGA, between\l"
+	.string "patches of mud in the water\l"
+	.string "that act as nests.\p"
+	.string "The fin on its head feels every\n"
+	.string "ripple in the water. Reads a\l"
+	.string "storm coming a full day out.\p"
+	.string "Slow to anger. But once that\n"
+	.string "jaw closes - won't matter what -\l"
+	.string "it ain't letting go.$"
 
 DawnflakeTown_EvergreensLab_Text_StarterConfirm:
-	.string "PROF. EVERGREEN: That one?\n"
-	.string "You're sure?$"
+	.string "PROF. EVERGREEN: Is this the one?$"
 
 DawnflakeTown_EvergreensLab_Text_EvergreenAllPicked:
-	.string "PROF. EVERGREEN: Good - all\n"
-	.string "three of you have your\l"
-	.string "POKEMON now.\p"
-	.string "Take a minute together before\n"
-	.string "you head out. The road from\l"
-	.string "here gets long.$"
+	.string "PROF. EVERGREEN: All right then.\p"
+	.string "Three trainers, three critters.\n"
+	.string "The road takes it from here.\p"
+	.string "Good luck too all of ya.$"
 
 DawnflakeTown_EvergreensLab_Text_AutumnLabPreCeremony:
 	.string "AUTUMN: {PLAYER}!! Finally!\p"
-	.string "EVERGREEN's been waiting forever\n"
-	.string "but he'll never tell you that.\p"
+	.string "I'm so excited! I saw all 3\n"
+	.string "POKEMON already, and they're\l"
+	.string "all super adorable!\p"
 	.string "Go go go - I want to see\n"
 	.string "which one you pick!$"
 
 DawnflakeTown_EvergreensLab_Text_AsherChallenge:
-	.string "ASHER: Done?\p"
+	.string "ASHER: Now that he's finally\n"
+	.string "done.\p"
 	.string "{PLAYER}, mine has the type\n"
-	.string "advantage. I checked.\p"
-	.string "I've been ready for this.\n"
+	.string "advantage. I made sure of it.\p"
+	.string "I've been ready for this,\n"
+	.string "{PLAYER}.\p"
 	.string "I hope you have too.\p"
 	.string "Let's battle.$"
 
@@ -489,89 +617,210 @@ DawnflakeTown_EvergreensLab_Text_AsherDefeat:
 DawnflakeTown_EvergreensLab_Text_AsherPostBattle:
 	.string "ASHER: ...\p"
 	.string "I prepped for this.\n"
-	.string "You still won.\p"
+	.string "But somehow you won anyway.\p"
 	.string "Enjoy it while you can,\n"
 	.string "{PLAYER}.$"
 
 DawnflakeTown_EvergreensLab_Text_AsherPostBattleLoss:
-	.string "ASHER: Hmph.\p"
-	.string "Told you I checked.\p"
-	.string "Maybe prep harder next\n"
-	.string "time, {PLAYER}.\p"
-	.string "EVERGREEN. I'm out.$"
+	.string "ASHER: Hah.\p"
+	.string "Told you I made sure, {PLAYER}.\p"
+	.string "Don't worry though, EVERGREEN's\n"
+	.string "right. You tried your best.\p"
+	.string "Although it still wasn't enough.\p"
+	.string "Alright, I'm out of here.$"
 
 DawnflakeTown_EvergreensLab_Text_AsherVictoryInBattle:
-	.string "ASHER: Hm.$"
+	.string "ASHER: ...Scoff... That's it?$"
 
 DawnflakeTown_EvergreensLab_Text_AsherBrush:
 	.string "ASHER: I'm busy.$"
 
 DawnflakeTown_EvergreensLab_Text_AutumnPitch:
-	.string "AUTUMN: Oh my GOSH that was\n"
-	.string "incredible!\p"
-	.string "PROF, you're not getting out\n"
-	.string "of the field-data plan! You\l"
-	.string "said yes already, no take-backs.\p"
-	.string "{PLAYER} - meet me on ROUTE 1!\n"
-	.string "Don't make me wait!\p"
-	.string "And bring your POKEDEX, we've\n"
-	.string "got pages to fill!$"
+	.string "AUTUMN: Oh my god, that was\n"
+	.string "so cool.\p"
+	.string "Both POKEMON fought so bravely,\n"
+	.string "you should be proud, {PLAYER}!\p"
+	.string "Anyway, {PLAYER}, meet me on\n"
+	.string "ROUTE 1!\p"
+	.string "I'm going to teach you how to\n"
+	.string "catch a wild POKEMON, so bring\l"
+	.string "your POKEDEX!$"
 
 DawnflakeTown_EvergreensLab_Text_EvergreenWaitForAutumn:
-	.string "PROF. EVERGREEN: Slow down a\n"
-	.string "minute - AUTUMN's not here yet.\p"
-	.string "She's at home wearing a hole\n"
-	.string "in the floorboards, no doubt.\l"
-	.string "I saw her run past my window\l"
-	.string "twice this morning alone.\p"
-	.string "Pop by and tell her I won't\n"
-	.string "start without her.$"
+	.string "PROF. EVERGREEN: Hm. Slow down\n"
+	.string "a minute - AUTUMN's not here\l"
+	.string "yet.\p"
+	.string "She's at home sleeping like a\n"
+	.string "SNORLAX, no doubt about it.\p"
+	.string "{PLAYER}, would ya mind popping\n"
+	.string "over there to wake her up for\l"
+	.string "us?\p"
+	.string "I don't want to be waiting\n"
+	.string "another 2 hours.$"
 
 DawnflakeTown_EvergreensLab_Text_EvergreenTM:
-	.string "PROF. EVERGREEN: One more thing\n"
-	.string "before you go - take TM01.\p"
-	.string "WORK UP. A training move that\n"
-	.string "builds physical strength.\p"
-	.string "The ROUTE 1 trail isn't kind\n"
-	.string "to soft beginnings, so put it\l"
-	.string "to use early.\p"
-	.string "AUTUMN's waiting on you. She\n"
-	.string "wasn't made for standing still,\l"
-	.string "so don't keep her.$"
+	.string "PROF. EVERGREEN: Well.\n"
+	.string "That was something.\p"
+	.string "Before ya head off, I got\n"
+	.string "something to give ya. The TM\l"
+	.string "for WORK UP.\p"
+	.string "It's a one-time use item you\n"
+	.string "can use to teach your POKEMON\l"
+	.string "the move WORK UP.\p"
+	.string "Trust me, it'll be mighty handy\n"
+	.string "along the road ahead.\p"
+	.string "All right then. Don't keep\n"
+	.string "AUTUMN waiting, and good luck\l"
+	.string "on your journey.$"
 
 DawnflakeTown_EvergreensLab_Text_EvergreenReady:
 	.string "PROF. EVERGREEN: Oh - you're\n"
-	.string "back.\p"
-	.string "Take a breath.$"
+	.string "finally back.\p"
+	.string "Don't get too down on yourself,\n"
+	.string "{PLAYER}.\p"
+	.string "You tried your best, and that\n"
+	.string "is what matters most.\p"
+	.string "Remember that.$"
 
 DawnflakeTown_EvergreensLab_Text_EvergreenPostBattleWin:
-	.string "PROF. EVERGREEN: Well.\p"
-	.string "ASHER walked out quieter\n"
-	.string "than he came in. Noted.\p"
-	.string "You kept your head. That's\n"
-	.string "the part that's hard to\l"
-	.string "teach.$"
+	.string "PROF. EVERGREEN: Well then!\p"
+	.string "That was exhilarating, {PLAYER}.\p"
+	.string "Ya really held your own there,\n"
+	.string "and sometimes the trainer\l"
+	.string "matters more than the matchup.\p"
+	.string "Remember that.$"
 
-DawnflakeTown_EvergreensLab_Text_EvergreenHeadSouth:
-	.string "PROF. EVERGREEN: ROUTE 1 is\n"
-	.string "south of town - the trail\l"
-	.string "begins there.\p"
-	.string "Keep moving. The cold won't\n"
-	.string "stop just because you do.\p"
-	.string "Take care of each other out\n"
-	.string "there. Both of you.$"
+DawnflakeTown_EvergreensLab_Text_EvergreenPokedexIntro:
+	.string "PROF. EVERGREEN: Oh hello,\n"
+	.string "{PLAYER}!\p"
+	.string "I wasn't expecting ya to\n"
+	.string "stop by.\p"
+	.string "Do you want me to check your\n"
+	.string "POKEDEX progress?$"
+
+DawnflakeTown_EvergreensLab_Text_EvergreenPokedexDecline:
+	.string "PROF. EVERGREEN: Suit yourself.\p"
+	.string "Come back whenever you're\n"
+	.string "ready.$"
+
+DawnflakeTown_EvergreensLab_Text_PokedexRating1:
+	.string "PROF. EVERGREEN: Let me see\n"
+	.string "what ya got.\p"
+	.string "{STR_VAR_1} species in the dex.\p"
+	.string "I'd score that a 1 out of 10.\p"
+	.string "Plenty of road ahead. Keep\n"
+	.string "your eyes open.$"
+
+DawnflakeTown_EvergreensLab_Text_PokedexRating2:
+	.string "PROF. EVERGREEN: Let me see\n"
+	.string "what ya got.\p"
+	.string "{STR_VAR_1} species in the dex.\p"
+	.string "2 out of 10.\p"
+	.string "You're learning. Each new face\n"
+	.string "teaches ya somethin' new.$"
+
+DawnflakeTown_EvergreensLab_Text_PokedexRating3:
+	.string "PROF. EVERGREEN: Let me see\n"
+	.string "what ya got.\p"
+	.string "{STR_VAR_1} species in the dex.\p"
+	.string "3 out of 10.\p"
+	.string "Roughly a quarter of the region\n"
+	.string "in there. Solid ground under\l"
+	.string "your feet.$"
+
+DawnflakeTown_EvergreensLab_Text_PokedexRating4:
+	.string "PROF. EVERGREEN: Let me see\n"
+	.string "what ya got.\p"
+	.string "{STR_VAR_1} species in the dex.\p"
+	.string "4 out of 10.\p"
+	.string "Coming along nicely. Some of\n"
+	.string "these I had to chase for years.$"
+
+DawnflakeTown_EvergreensLab_Text_PokedexRating5:
+	.string "PROF. EVERGREEN: Let me see\n"
+	.string "what ya got.\p"
+	.string "{STR_VAR_1} species in the dex.\p"
+	.string "Halfway there. 5 out of 10.\p"
+	.string "Plenty more to find. The rarer\n"
+	.string "ones live in the harder places.$"
+
+DawnflakeTown_EvergreensLab_Text_PokedexRating6:
+	.string "PROF. EVERGREEN: Let me see\n"
+	.string "what ya got.\p"
+	.string "{STR_VAR_1} species in the dex.\p"
+	.string "6 out of 10.\p"
+	.string "Most folks in BORALYSS never\n"
+	.string "see this many in their whole\l"
+	.string "lives.$"
+
+DawnflakeTown_EvergreensLab_Text_PokedexRating7:
+	.string "PROF. EVERGREEN: Let me see\n"
+	.string "what ya got.\p"
+	.string "{STR_VAR_1} species in the dex.\p"
+	.string "7 out of 10.\p"
+	.string "Some of these I haven't even\n"
+	.string "seen in person.$"
+
+DawnflakeTown_EvergreensLab_Text_PokedexRating8:
+	.string "PROF. EVERGREEN: Let me see\n"
+	.string "what ya got.\p"
+	.string "{STR_VAR_1} species in the dex.\p"
+	.string "8 out of 10.\p"
+	.string "You're in rare air now. The\n"
+	.string "last stretch is gonna test ya.$"
+
+DawnflakeTown_EvergreensLab_Text_PokedexRating9:
+	.string "PROF. EVERGREEN: Let me see\n"
+	.string "what ya got.\p"
+	.string "{STR_VAR_1} species in the dex.\p"
+	.string "9 out of 10. So close.\p"
+	.string "A handful of species left,\n"
+	.string "hiding in the most stubborn\l"
+	.string "corners of BORALYSS.\p"
+	.string "Go find 'em.$"
+
+DawnflakeTown_EvergreensLab_Text_PokedexRating10Initial:
+	.string "PROF. EVERGREEN: Let me see\n"
+	.string "what ya got.\p"
+	.string "...\p"
+	.string "{STR_VAR_1} species in the dex.\p"
+	.string "A perfect 10 out of 10.\p"
+	.string "A complete BORALYSS POKEDEX.\p"
+	.string "You've done what most folks\n"
+	.string "in this region only dream\l"
+	.string "about.\p"
+	.string "Here. I've been hanging onto\n"
+	.string "this for someone who could\l"
+	.string "really earn it.\p"
+	.string "The HIDDEN ABILITY CHARM.\p"
+	.string "Wild POKEMON near ya will\n"
+	.string "have a better chance of\l"
+	.string "showing their rarer abilities.\p"
+	.string "Take it. You've truly earned\n"
+	.string "it, {PLAYER}.$"
+
+DawnflakeTown_EvergreensLab_Text_HAReceived:
+	.string "{PLAYER} received the\n"
+	.string "HIDDEN ABILITY CHARM!$"
+
+DawnflakeTown_EvergreensLab_Text_PokedexRating10Repeat:
+	.string "PROF. EVERGREEN: Let me see\n"
+	.string "what ya got.\p"
+	.string "A complete POKEDEX. Still a\n"
+	.string "perfect 10 out of 10.\p"
+	.string "Hope that CHARM's been\n"
+	.string "treating ya well.$"
 
 DawnflakeTown_EvergreensLab_Text_Aide:
-	.string "AIDE: PROF. EVERGREEN sleeps in\n"
-	.string "the lab now. I'm not\l"
-	.string "exaggerating either.\p"
-	.string "There's a cot behind the file\n"
-	.string "cabinet and a kettle that's\l"
-	.string "always warm.\p"
-	.string "He hasn't gone home since the\n"
-	.string "weather went wrong.\p"
-	.string "He won't say it out loud, but\n"
-	.string "I know he's worried about\l"
-	.string "what's causing this.\p"
-	.string "And what'll happen if it\n"
-	.string "doesn't stop.$"
+	.string "AIDE: Oh, hello child.\p"
+	.string "Want to hear something funny?\p"
+	.string "PROF. EVERGREEN is usually at\n"
+	.string "the LAB more than his own\l"
+	.string "house now.\p"
+	.string "Although I guess it makes sense\n"
+	.string "with the storm that's been\l"
+	.string "going on the past 6 years.\p"
+	.string "Even if it is a good thing,\n"
+	.string "it's just not natural and\l"
+	.string "needs to be studied.\p"
+	.string "So I guess it's not that funny.$"

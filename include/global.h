@@ -282,7 +282,9 @@ struct Pokedex
     /*0x08*/ u32 spindaPersonality; // set when you first see Spinda
     /*0x0C*/ u32 unknown3;
 #if FREE_EXTRA_SEEN_FLAGS_SAVEBLOCK2 == FALSE
-    /*0x10*/ u8 filler[0x68]; // Previously Dex Flags, feel free to remove.
+    /*0x10*/ u8 boralyssFormSeen;     // Boralyss per-form Seen bits for collision pairs
+    /*0x11*/ u8 boralyssFormCaught;   // Boralyss per-form Caught bits for collision pairs
+    /*0x12*/ u8 filler[0x66];         // Previously Dex Flags, feel free to remove.
 #endif //FREE_EXTRA_SEEN_FLAGS_SAVEBLOCK2
 };
 

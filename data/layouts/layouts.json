@@ -9461,11 +9461,71 @@
       "id": "LAYOUT_ICESPIRE_TOWN",
       "name": "IcespireTown_Layout",
       "width": 40,
-      "height": 60,
+      "height": 40,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Rustboro",
+      "secondary_tileset": "gTileset_Sootopolis",
       "border_filepath": "data/layouts/IcespireTown/border.bin",
       "blockdata_filepath": "data/layouts/IcespireTown/map.bin"
+    },
+    {
+      "id": "LAYOUT_ICESPIRE_GYM",
+      "name": "IcespireTown_Gym_Layout",
+      "width": 13,
+      "height": 17,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_SootopolisGym",
+      "border_filepath": "data/layouts/IcespireTown_Gym/border.bin",
+      "blockdata_filepath": "data/layouts/IcespireTown_Gym/map.bin"
+    },
+    {
+      "id": "LAYOUT_ICESPIRE_HOUSE1",
+      "name": "IcespireTown_House1_Layout",
+      "width": 11,
+      "height": 11,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/IcespireTown_House1/border.bin",
+      "blockdata_filepath": "data/layouts/IcespireTown_House1/map.bin"
+    },
+    {
+      "id": "LAYOUT_ICESPIRE_HOUSE2",
+      "name": "IcespireTown_House2_Layout",
+      "width": 7,
+      "height": 7,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/IcespireTown_House2/border.bin",
+      "blockdata_filepath": "data/layouts/IcespireTown_House2/map.bin"
+    },
+    {
+      "id": "LAYOUT_ICESPIRE_HOUSE3",
+      "name": "IcespireTown_House3_Layout",
+      "width": 9,
+      "height": 9,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/IcespireTown_House3/border.bin",
+      "blockdata_filepath": "data/layouts/IcespireTown_House3/map.bin"
+    },
+    {
+      "id": "LAYOUT_ICESPIRE_POKEMON_CENTER_1F",
+      "name": "IcespireTown_PokemonCenter_1F_Layout",
+      "width": 14,
+      "height": 9,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_PokemonCenter",
+      "border_filepath": "data/layouts/IcespireTown_PokemonCenter_1F/border.bin",
+      "blockdata_filepath": "data/layouts/IcespireTown_PokemonCenter_1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_ICESPIRE_MART",
+      "name": "IcespireTown_Mart_Layout",
+      "width": 11,
+      "height": 8,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Shop",
+      "border_filepath": "data/layouts/IcespireTown_Mart/border.bin",
+      "blockdata_filepath": "data/layouts/IcespireTown_Mart/map.bin"
     },
     {
       "id": "LAYOUT_SNOW_ROUTE3",

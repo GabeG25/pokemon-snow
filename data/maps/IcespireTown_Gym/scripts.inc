@@ -1,5 +1,13 @@
 IcespireTown_Gym_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, IcespireTown_Gym_OnTransition
 	.byte 0
+
+@ Force the player to face north on warp-in so they're staring up
+@ the gym at Silvan. The bottom doormat at (6,16) is a flat tile
+@ (MB_NORMAL), so without this script the engine doesn't auto-face.
+IcespireTown_Gym_OnTransition::
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH
+	end
 
 @ ═══════════════════════════════════════════════════════════
 @ Silvan — Gym 1 Leader (Ice), warm, proud, Pro-Veil ignorant
@@ -55,27 +63,17 @@ IcespireTown_Gym_EventScript_GymGuidePostVictory::
 	end
 
 @ ═══════════════════════════════════════════════════════════
-@ Statues
+@ Gym Trainers — Boarder TUCKER + Skier NIECA
 @ ═══════════════════════════════════════════════════════════
 
-IcespireTown_Gym_EventScript_LeftStatue::
-	lockall
-	goto_if_set FLAG_BADGE01_GET, IcespireTown_Gym_EventScript_StatueCertified
-	goto IcespireTown_Gym_EventScript_Statue
-
-IcespireTown_Gym_EventScript_RightStatue::
-	lockall
-	goto_if_set FLAG_BADGE01_GET, IcespireTown_Gym_EventScript_StatueCertified
-	goto IcespireTown_Gym_EventScript_Statue
-
-IcespireTown_Gym_EventScript_Statue::
-	msgbox IcespireTown_Gym_Text_Statue, MSGBOX_DEFAULT
-	releaseall
+IcespireTown_Gym_EventScript_Tucker::
+	trainerbattle_single TRAINER_SNOW_GYM1_TUCKER, IcespireTown_Gym_Text_TuckerIntro, IcespireTown_Gym_Text_TuckerDefeat
+	msgbox IcespireTown_Gym_Text_TuckerPostBattle, MSGBOX_AUTOCLOSE
 	end
 
-IcespireTown_Gym_EventScript_StatueCertified::
-	msgbox IcespireTown_Gym_Text_StatueCertified, MSGBOX_DEFAULT
-	releaseall
+IcespireTown_Gym_EventScript_Nieca::
+	trainerbattle_single TRAINER_SNOW_GYM1_NIECA, IcespireTown_Gym_Text_NiecaIntro, IcespireTown_Gym_Text_NiecaDefeat
+	msgbox IcespireTown_Gym_Text_NiecaPostBattle, MSGBOX_AUTOCLOSE
 	end
 
 @ ═══════════════════════════════════════════════════════════
@@ -153,7 +151,7 @@ IcespireTown_Gym_Text_GymGuideAdvice:
 	.string "PIPLUP is the ace.\p"
 	.string "Fire, Fighting, Rock, Steel -\n"
 	.string "those are your friends here.\p"
-	.string "Good luck in there, champ!$"
+	.string "Good luck in there, trainer!$"
 
 IcespireTown_Gym_Text_GymGuidePostVictory:
 	.string "GYM GUIDE: That was something\n"
@@ -161,14 +159,28 @@ IcespireTown_Gym_Text_GymGuidePostVictory:
 	.string "You should see the look on\n"
 	.string "SILVAN'S face. He loves a good\l"
 	.string "loss. Says it keeps him honest.\p"
-	.string "On to the next gym, champ!$"
+	.string "On to the next gym, trainer!$"
 
-IcespireTown_Gym_Text_Statue:
-	.string "ICESPIRE TOWN POKEMON GYM\p"
-	.string "SILVAN'S POLICY: LET THE COLD\n"
-	.string "TEACH YOU.$"
+IcespireTown_Gym_Text_TuckerIntro:
+	.string "BOARDER TUCKER: Yo! Snow's perfect\n"
+	.string "today.\p"
+	.string "Lemme show you a real run!$"
 
-IcespireTown_Gym_Text_StatueCertified:
-	.string "ICESPIRE TOWN POKEMON GYM\p"
-	.string "SILVAN'S CERTIFIED TRAINERS:\n"
-	.string "{PLAYER}$"
+IcespireTown_Gym_Text_TuckerDefeat:
+	.string "BOARDER TUCKER: Wiped out!$"
+
+IcespireTown_Gym_Text_TuckerPostBattle:
+	.string "BOARDER TUCKER: That was clean.\p"
+	.string "Beat SILVAN. Then come back\n"
+	.string "so I can lose to you again.$"
+
+IcespireTown_Gym_Text_NiecaIntro:
+	.string "SKIER NIECA: I don't fall.\p"
+	.string "Watch this carve.$"
+
+IcespireTown_Gym_Text_NiecaDefeat:
+	.string "SKIER NIECA: Lost my edge.$"
+
+IcespireTown_Gym_Text_NiecaPostBattle:
+	.string "SKIER NIECA: Beautiful run.\p"
+	.string "Go win that ICESHARD BADGE.$"

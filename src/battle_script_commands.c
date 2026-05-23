@@ -11139,7 +11139,6 @@ static void Cmd_trysetcaughtmondexflags(void)
 
     struct Pokemon *caughtMon = GetBattlerMon(GetCatchingBattler());
     u32 species = GetMonData(caughtMon, MON_DATA_SPECIES);
-    u32 personality = GetMonData(caughtMon, MON_DATA_PERSONALITY);
 
     if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_CAUGHT))
     {
@@ -11147,7 +11146,7 @@ static void Cmd_trysetcaughtmondexflags(void)
     }
     else
     {
-        HandleSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_SET_CAUGHT, personality);
+        HandleSetPokedexFlagFromMon(caughtMon, FLAG_SET_CAUGHT);
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
 }

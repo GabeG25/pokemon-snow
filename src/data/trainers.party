@@ -16884,7 +16884,7 @@ Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
 
 Sentret
-Level: 4
+Level: 6
 Ability: Keen Eye
 Nature: Jolly
 - Scratch
@@ -16900,7 +16900,7 @@ Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
 
 Snover
-Level: 4
+Level: 6
 Ability: Snow Warning
 Nature: Quiet
 - Powder Snow
@@ -16916,14 +16916,14 @@ Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
 
 Swinub
-Level: 4
+Level: 6
 Ability: Snow Cloak
 Nature: Adamant
 - Tackle
 - Mud-Slap
 
 Cubchoo
-Level: 5
+Level: 7
 Ability: Snow Cloak
 Nature: Adamant
 - Powder Snow
@@ -24471,3 +24471,66 @@ Nature: Jolly
 - Close Combat
 - Psycho Cut
 - Shadow Sneak
+
+=== TRAINER_SNOW_GYM1_TUCKER ===
+Name: TUCKER
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Hiker
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Snover
+Level: 12
+Ability: Snow Warning
+Nature: Modest
+- Powder Snow
+- Leer
+- Razor Leaf
+- Icy Wind
+
+Spheal
+Level: 12
+Ability: Thick Fat
+Nature: Modest
+- Powder Snow
+- Growl
+- Water Gun
+- Defense Curl
+
+Cubchoo
+Level: 12
+Ability: Snow Cloak
+Nature: Adamant
+- Ice Shard
+- Growl
+- Play Nice
+- Fury Swipes
+
+=== TRAINER_SNOW_GYM1_NIECA ===
+Name: NIECA
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Hiker
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching / Smart Mon Choices
+
+Snorunt
+Level: 13
+Ability: Inner Focus
+Nature: Adamant
+- Icy Wind
+- Leer
+- Headbutt
+- Double Team
+
+Sneasel
+Level: 13
+Ability: Inner Focus
+Nature: Jolly
+- Pursuit
+- Icy Wind
+- Taunt
+- Quick Attack

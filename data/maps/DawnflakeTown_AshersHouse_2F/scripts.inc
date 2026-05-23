@@ -16,11 +16,12 @@ DawnflakeTown_AshersHouse_2F_EventScript_UnsentLetter::
 @ ═══════════════════════════════════════════════════════════
 
 DawnflakeTown_AshersHouse_2F_Text_UnsentLetter:
-	.string "A half-written letter on ASHER's\n"
-	.string "desk, in a careful hand.\p"
-	.string "The first line reads:\p"
-	.string "'Mom, Dad - I don't know who\n"
-	.string "you were before that day,\l"
-	.string "but -'\p"
-	.string "The rest is crossed out so\n"
-	.string "hard the paper tore.$"
+	.string "An old and battered journal\n"
+	.string "lies on the desk.\p"
+	.string "It says:\p"
+	.string "'I miss them. Sometimes I\n"
+	.string "see them in the snow, and I\l"
+	.string "can't tell if I should give\l"
+	.string "up hope or if I already have.'\p"
+	.string "...the rest of the page is\n"
+	.string "ripped out.$"

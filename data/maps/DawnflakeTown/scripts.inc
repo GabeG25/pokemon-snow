@@ -198,10 +198,13 @@ DawnflakeTown_Movement_MomEnterDoor:
 
 DawnflakeTown_Text_Villager:
 	.string "VILLAGER: Morning, dear.\p"
-	.string "First Pokemon today? Oh, how\n"
-	.string "exciting. Mind the snow - it's\l"
-	.string "been coming down strange lately.\p"
-	.string "Strange, and early.$"
+	.string "Heard you're getting your\n"
+	.string "first POKEMON today.\p"
+	.string "Don't forget to come back\n"
+	.string "and tell us how it all\l"
+	.string "turned out.\p"
+	.string "DAWNFLAKE folk like a good\n"
+	.string "story.$"
 
 DawnflakeTown_Text_VillagerPostRival:
 	.string "VILLAGER: Poor Asher.\p"
@@ -210,14 +213,14 @@ DawnflakeTown_Text_VillagerPostRival:
 	.string "quiet.$"
 
 DawnflakeTown_Text_MomRunningShoes:
-	.string "MOM: {PLAYER}! Wait, wait -\n"
-	.string "don't leave yet!\p"
-	.string "I knew you'd forget. Here -\n"
-	.string "your RUNNING SHOES.\p"
-	.string "The cold makes everything slow.\n"
-	.string "These will help.\p"
-	.string "Come home if you need to, okay?\n"
-	.string "Promise me.$"
+	.string "MOM: {PLAYER} wait!\p"
+	.string "I almost forgot to give you\n"
+	.string "your SNOW SHOES.\p"
+	.string "Just make sure to come back\n"
+	.string "home and visit whenever you\l"
+	.string "need to rest, sweetie.\p"
+	.string "And make sure you stay safe\n"
+	.string "out there, please.$"
 
 DawnflakeTown_Text_StarterGateBlock2:
 	.string "The trail south looks rough.\p"

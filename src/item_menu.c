@@ -285,6 +285,7 @@ static const struct ListMenuTemplate sItemListMenu =
     .itemVerticalPadding = 0,
     .scrollMultiple = LIST_NO_MULTIPLE_SCROLL,
     .fontId = FONT_NARROW,
+    .textNarrowWidth = 100,
     .cursorKind = CURSOR_BLACK_ARROW
 };
 

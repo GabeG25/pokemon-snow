@@ -79,6 +79,7 @@
 #define FLAG_SNOW_BEAT_F17_ERIN              0x39
 #define FLAG_SNOW_BEAT_F23_SCORCH            0x3A
 #define FLAG_SNOW_GOT_POTION_R1              0x2A
+#define FLAG_SNOW_F4_ASHER_INTRO_DONE        0x50
 #define FLAG_SNOW_GOT_TM04_RETURN            0x3B
 #define FLAG_SNOW_POWDERPATH_OBSERVER_SEEN   0x3C
 #define FLAG_SNOW_GOT_TM02_HONE_CLAWS        0x3D

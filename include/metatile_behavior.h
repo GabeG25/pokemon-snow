@@ -47,6 +47,7 @@ bool8 MetatileBehavior_IsSlideNorth(u8 metatileBehavior);
 bool8 MetatileBehavior_IsSlideSouth(u8 metatileBehavior);
 bool8 MetatileBehavior_IsSlideWest(u8 metatileBehavior);
 bool8 MetatileBehavior_IsSlideEast(u8 metatileBehavior);
+bool8 MetatileBehavior_IsSnowSlide(u8 metatileBehavior);
 bool8 MetatileBehavior_IsCounter(u8 metatileBehavior);
 bool8 MetatileBehavior_IsPlayerFacingTVScreen(u8 metatileBehavior, u8 playerDir);
 bool8 MetatileBehavior_IsPC(u8 metatileBehavior);
