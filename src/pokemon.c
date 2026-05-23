@@ -1411,7 +1411,7 @@ void CreateRandomMonWithIVs(struct Pokemon *mon, u16 species, u8 level, u8 fixed
 // Snow: Try to upgrade a freshly-created Pokemon to its Hidden Ability slot.
 // Used for wild encounters, eggs, gifts, and starters — anywhere the game
 // gives the player a Pokemon without a scripted ability override.
-// Base 10% chance, boosted to 35% when the player has the HIDDEN ABILITY
+// Base 8% chance, boosted to 35% when the player has the HIDDEN ABILITY
 // CHARM (FLAG_SNOW_GOT_HA_CHARM), gifted by Prof. Evergreen on a complete
 // regional POKEDEX. No-op if the species has no Hidden Ability defined.
 void TrySetWildOrGiftHiddenAbility(struct Pokemon *mon)
@@ -1436,7 +1436,7 @@ void TrySetWildOrGiftHiddenAbility(struct Pokemon *mon)
 
     if (haAbility == ABILITY_NONE)
         return;
-    u32 chance = FlagGet(FLAG_SNOW_GOT_HA_CHARM) ? 35 : 10;
+    u32 chance = FlagGet(FLAG_SNOW_GOT_HA_CHARM) ? 35 : 8;
     if ((Random() % 100) < chance)
     {
         u8 abilityNum = 2;
