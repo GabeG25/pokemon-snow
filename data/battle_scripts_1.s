@@ -5002,6 +5002,37 @@ BattleScript_AllStatsUpSpDef::
 BattleScript_AllStatsUpRet::
 	return
 
+@ Snow: F27 Tyrell's Kyurem - Eternal Winter. Permanent hail is set in battle_util.c;
+@ this shows the weather then omniboosts the entering battler (+1 to every stat).
+BattleScript_EternalWinterActivates::
+	call BattleScript_WeatherAbilityActivates
+	setstatchanger STAT_ATK, 1, FALSE
+	statbuffchange BS_SCRIPTING, STAT_CHANGE_ALLOW_PTR, BattleScript_EternalWinterDef, BIT_DEF | BIT_SPEED | BIT_SPATK | BIT_SPDEF
+	printfromtable gStatUpStringIds
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_EternalWinterDef::
+	setstatchanger STAT_DEF, 1, FALSE
+	statbuffchange BS_SCRIPTING, STAT_CHANGE_ALLOW_PTR, BattleScript_EternalWinterSpeed, BIT_SPEED | BIT_SPATK | BIT_SPDEF
+	printfromtable gStatUpStringIds
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_EternalWinterSpeed::
+	setstatchanger STAT_SPEED, 1, FALSE
+	statbuffchange BS_SCRIPTING, STAT_CHANGE_ALLOW_PTR, BattleScript_EternalWinterSpAtk, BIT_SPATK | BIT_SPDEF
+	printfromtable gStatUpStringIds
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_EternalWinterSpAtk::
+	setstatchanger STAT_SPATK, 1, FALSE
+	statbuffchange BS_SCRIPTING, STAT_CHANGE_ALLOW_PTR, BattleScript_EternalWinterSpDef, BIT_SPDEF
+	printfromtable gStatUpStringIds
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_EternalWinterSpDef::
+	setstatchanger STAT_SPDEF, 1, FALSE
+	statbuffchange BS_SCRIPTING, STAT_CHANGE_ALLOW_PTR, BattleScript_EternalWinterRet
+	printfromtable gStatUpStringIds
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_EternalWinterRet::
+	return
+
 BattleScript_RapidSpinAway::
 	rapidspinfree
 	return

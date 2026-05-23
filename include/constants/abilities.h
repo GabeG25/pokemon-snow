@@ -336,6 +336,7 @@ enum __attribute__((packed)) Ability
 
     // ---- Pokemon Snow custom abilities ----
     ABILITY_DRAGONIZE = ABILITIES_COUNT_GEN9, // Snow: Dragon-type "-ate" (Normal moves become Dragon)
+    ABILITY_ETERNAL_WINTER,                   // Snow: F27 Tyrell's Kyurem boss ability - permanent hail + omniboost on entry
 
     ABILITIES_COUNT,
 };

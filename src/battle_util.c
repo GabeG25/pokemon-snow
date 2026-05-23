@@ -3395,6 +3395,14 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
                 }
             }
             break;
+        case ABILITY_ETERNAL_WINTER: // Snow: F27 Tyrell's Kyurem - permanent hail + omniboost on entry
+            if (!shouldAbilityTrigger)
+                break;
+            TryChangeBattleWeather(battler, BATTLE_WEATHER_HAIL, gLastUsedAbility);
+            gBattleStruct->weatherDuration = 0; // permanent hail, built-in Icy Rock
+            BattleScriptCall(BattleScript_EternalWinterActivates);
+            effect++;
+            break;
         case ABILITY_ELECTRIC_SURGE:
         case ABILITY_HADRON_ENGINE:
             if (!shouldAbilityTrigger)

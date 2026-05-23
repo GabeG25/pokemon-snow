@@ -2421,4 +2421,10 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("Normal moves become Dragon."),
         .aiRating = 8,
     },
+    [ABILITY_ETERNAL_WINTER] =
+    {
+        .name = _("Eternal Winter"),
+        .description = COMPOUND_STRING("Endless hail; all stats rise on entry."),
+        .aiRating = 10,
+    },
 };
