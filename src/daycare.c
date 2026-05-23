@@ -1111,6 +1111,8 @@ void CreateEgg(struct Pokemon *mon, u16 species, bool8 setHotSpringsLocation)
     u8 isEgg;
 
     CreateRandomMonWithIVs(mon, species, EGG_HATCH_LEVEL, USE_RANDOM_IVS);
+    // Snow: HA roll for egg-hatched Pokemon.
+    TrySetWildOrGiftHiddenAbility(mon);
     metLevel = 0;
     ball = BALL_POKE;
     language = LANGUAGE_JAPANESE;

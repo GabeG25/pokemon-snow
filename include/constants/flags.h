@@ -72,7 +72,7 @@
 #define FLAG_SNOW_GOT_DRAGON_SCALE           0x32
 #define FLAG_SNOW_GOT_FOSSIL                 0x33
 #define FLAG_SNOW_BEAT_F7_CRASH              0x34
-#define FLAG_SNOW_BEAT_F8_ASHER              0x35
+#define FLAG_SNOW_GOT_HA_CHARM               0x35
 #define FLAG_SNOW_BEAT_F10_AUTUMN            0x36
 #define FLAG_SNOW_BEAT_F13_MARINA            0x37
 #define FLAG_SNOW_BEAT_F16_PRIYO             0x38

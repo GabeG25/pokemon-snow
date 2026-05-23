@@ -475,6 +475,8 @@ void CreateWildMon(u16 species, u8 level)
     u32 personality = GetMonPersonality(species, GetSynchronizedGender(WILDMON_ORIGIN, species), PickWildMonNature(species), RANDOM_UNOWN_LETTER);
     CreateMonWithIVs(&gEnemyParty[0], species, level, personality, OTID_STRUCT_PLAYER_ID, USE_RANDOM_IVS);
     GiveMonInitialMoveset(&gEnemyParty[0]);
+    // Snow: HA roll. Helper in pokemon.c. See TrySetWildOrGiftHiddenAbility.
+    TrySetWildOrGiftHiddenAbility(&gEnemyParty[0]);
 }
 
 #ifdef BUGFIX

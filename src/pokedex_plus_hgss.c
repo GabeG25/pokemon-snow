@@ -4801,9 +4801,15 @@ static void SaveMonDataInStruct(void)
     sPokedexView->sPokemonStats.eggCycles           = gSpeciesInfo[species].eggCycles;
     sPokedexView->sPokemonStats.expYield            = gSpeciesInfo[species].expYield;
     sPokedexView->sPokemonStats.friendship          = gSpeciesInfo[species].friendship;
-    sPokedexView->sPokemonStats.ability0            = GetAbilityBySpecies(species, 0);
-    sPokedexView->sPokemonStats.ability1            = GetAbilityBySpecies(species, 1);
-    sPokedexView->sPokemonStats.abilityHidden       = GetAbilityBySpecies(species, 2);
+    // Snow: dex shows what the player would actually get when catching. If the
+    // species has a wildAbilities override, surface those instead of the
+    // trainer-canonical .abilities.
+    {
+        bool32 hasOverride = (gSpeciesInfo[species].wildAbilities[0] != ABILITY_NONE);
+        sPokedexView->sPokemonStats.ability0      = GetAbilityBySpeciesWildAware(species, 0, hasOverride);
+        sPokedexView->sPokemonStats.ability1      = GetAbilityBySpeciesWildAware(species, 1, hasOverride);
+        sPokedexView->sPokemonStats.abilityHidden = GetAbilityBySpeciesWildAware(species, 2, hasOverride);
+    }
 }
 
 #define tMonSpriteId data[4]

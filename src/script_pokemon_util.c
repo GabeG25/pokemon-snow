@@ -449,6 +449,21 @@ static u32 ScriptGiveMonParameterized(u8 side, u8 slot, u16 species, u8 level, e
             } while (GetAbilityBySpecies(species, abilityNum) == ABILITY_NONE);
         }
         SetMonData(&mon, MON_DATA_ABILITY_NUM, &abilityNum);
+        // Snow: scripted gifts to the player should resolve through wildAbilities
+        // when the species has overrides. TrySetWildOrGiftHiddenAbility() sets
+        // the flag (and rolls HA when abilityNum was unspecified); when an
+        // explicit abilityNum is provided we just set the flag directly.
+        {
+            u8 trueByte = TRUE;
+            SetMonData(&mon, MON_DATA_USES_WILD_ABILITIES, &trueByte);
+        }
+    }
+    else
+    {
+        // Snow: When the script doesn't pick a specific ability, roll for HA
+        // using the wild/gift charm-aware logic. Also sets the wild-abilities
+        // flag on the mon.
+        TrySetWildOrGiftHiddenAbility(&mon);
     }
 
     // ball
@@ -479,6 +494,8 @@ u32 ScriptGiveMon(u16 species, u8 level, enum Item item)
     u8 heldItem[2];
 
     CreateRandomMon(&mon, species, level);
+    // Snow: HA roll for scripted gift/starter Pokemon without a scripted ability.
+    TrySetWildOrGiftHiddenAbility(&mon);
     if (item)
     {
         heldItem[0] = item;

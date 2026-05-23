@@ -124,6 +124,7 @@ enum MonData {
     MON_DATA_GIGANTAMAX_FACTOR,
     MON_DATA_TERA_TYPE,
     MON_DATA_EVOLUTION_TRACKER,
+    MON_DATA_USES_WILD_ABILITIES, // Snow: mon resolves ability via SpeciesInfo.wildAbilities
 };
 
 struct PokemonSubstruct0
@@ -214,7 +215,7 @@ struct PokemonSubstruct3
     u32 earthRibbon:1;    // Given to teams that have beaten Mt. Battle's 100-battle challenge in Colosseum/XD.
     u32 worldRibbon:1;    // Distributed during Pokémon Festa '04 and '05 to tournament winners.
     u32 isShadow:1;
-    u32 unused_0B:1;
+    u32 usesWildAbilities:1; // Snow: read abilities from SpeciesInfo.wildAbilities instead of .abilities
     u32 abilityNum:2;
 
     // The functionality of this bit changed in FRLG:
@@ -350,6 +351,7 @@ struct BattlePokemon
     /*0x16*/ u32 spAttackIV:5;
     /*0x17*/ u32 spDefenseIV:5;
     /*0x17*/ u32 abilityNum:2;
+    /*0x17*/ u32 usesWildAbilities:1; // Snow: mon originates from player-side ability table
     /*0x18*/ s8 statStages[NUM_BATTLE_STATS];
     /*0x20*/ enum Ability ability;
     /*0x22*/ enum Type types[3];
@@ -414,6 +416,11 @@ struct SpeciesInfo /*0xC4*/
     u8 growthRate;
     u8 eggGroups[2];
     enum Ability abilities[NUM_ABILITY_SLOTS]; // 3 abilities, no longer u8 because we have over 255 abilities now.
+    // Snow: player-side ability override table. When wildAbilities[0] != ABILITY_NONE,
+    // mons created via wild encounter / egg / gift use this table instead of abilities[].
+    // Trainer-party mons always read abilities[] regardless. Default zero-init (all NONE)
+    // means the species has no player-side override and falls back to abilities[].
+    enum Ability wildAbilities[NUM_ABILITY_SLOTS];
     u8 safariZoneFleeRate;
 
     // Pokédex data
@@ -733,6 +740,7 @@ u32 GetMonPersonality(u16 species, u8 gender, u8 nature, u8 unownLetter);
 void CreateMon(struct Pokemon *mon, u16 species, u8 level, u32 personality, struct OriginalTrainerId);
 void CreateRandomMon(struct Pokemon *mon, u16 species, u8 level);
 void CreateRandomMonWithIVs(struct Pokemon *mon, u16 species, u8 level, u8 fixedIv);
+void TrySetWildOrGiftHiddenAbility(struct Pokemon *mon);
 void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u32 personality, struct OriginalTrainerId);
 void CreateMonWithIVs(struct Pokemon *mon, u16 species, u8 level, u32 personality, struct OriginalTrainerId trainerId, u8 fixedIV);
 void SetBoxMonIVs(struct BoxPokemon *mon, u8 fixedIV);
@@ -797,6 +805,8 @@ u8 CalculateEnemyPartyCountInSide(enum BattlerId battler);
 u8 GetMonsStateToDoubles(void);
 u8 GetMonsStateToDoubles_2(void);
 enum Ability GetAbilityBySpecies(u16 species, u8 abilityNum);
+enum Ability GetAbilityBySpeciesWildAware(u16 species, u8 abilityNum, bool32 useWildAbilities);
+enum Ability GetBoxMonAbility(struct BoxPokemon *boxMon);
 enum Ability GetMonAbility(struct Pokemon *mon);
 void CreateSecretBaseEnemyParty(struct SecretBase *secretBaseRecord);
 enum TrainerPicID GetSecretBaseTrainerPicIndex(void);

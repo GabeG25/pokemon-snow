@@ -5271,7 +5271,7 @@ static void Cmd_switchindataupdate(void)
     gBattleMons[battler].types[0] = GetSpeciesType(gBattleMons[battler].species, 0);
     gBattleMons[battler].types[1] = GetSpeciesType(gBattleMons[battler].species, 1);
     gBattleMons[battler].types[2] = TYPE_MYSTERY;
-    gBattleMons[battler].ability = GetAbilityBySpecies(gBattleMons[battler].species, gBattleMons[battler].abilityNum);
+    gBattleMons[battler].ability = GetAbilityBySpeciesWildAware(gBattleMons[battler].species, gBattleMons[battler].abilityNum, gBattleMons[battler].usesWildAbilities);
     #if TESTING
     if (gTestRunnerEnabled)
     {
@@ -9138,7 +9138,7 @@ static void Cmd_healpartystatus(void)
                 ability = GetBattlerAbility(partner);
             else
             {
-                ability = GetAbilityBySpecies(species, abilityNum);
+                ability = GetAbilityBySpeciesWildAware(species, abilityNum, GetMonData(&party[i], MON_DATA_USES_WILD_ABILITIES));
                 #if TESTING
                 if (gTestRunnerEnabled)
                 {
@@ -12872,7 +12872,7 @@ static void UpdatePokeFlutePartyStatus(struct Pokemon* party, u8 position)
         if (species != SPECIES_NONE
             && species != SPECIES_EGG
             && status & AILMENT_FNT
-            && GetAbilityBySpecies(species, abilityNum) != ABILITY_SOUNDPROOF)
+            && GetAbilityBySpeciesWildAware(species, abilityNum, GetMonData(&party[i], MON_DATA_USES_WILD_ABILITIES)) != ABILITY_SOUNDPROOF)
             monToCheck |= (1 << i);
     }
     if (monToCheck)

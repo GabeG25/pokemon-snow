@@ -1300,6 +1300,42 @@ void CreateRandomMonWithIVs(struct Pokemon *mon, u16 species, u8 level, u8 fixed
     GiveMonInitialMoveset(mon);
 }
 
+// Snow: Try to upgrade a freshly-created Pokemon to its Hidden Ability slot.
+// Used for wild encounters, eggs, gifts, and starters — anywhere the game
+// gives the player a Pokemon without a scripted ability override.
+// Base 10% chance, boosted to 35% when the player has the HIDDEN ABILITY
+// CHARM (FLAG_SNOW_GOT_HA_CHARM), gifted by Prof. Evergreen on a complete
+// regional POKEDEX. No-op if the species has no Hidden Ability defined.
+void TrySetWildOrGiftHiddenAbility(struct Pokemon *mon)
+{
+    u16 species = GetMonData(mon, MON_DATA_SPECIES);
+    u8 trueByte = TRUE;
+    enum Ability haAbility;
+
+    // Snow: all wild / gift / egg-hatched mons resolve their ability via the
+    // player-side wildAbilities table when the species has overrides. Set
+    // unconditionally — species without overrides fall back to .abilities
+    // inside the resolver, so the flag is a no-op there.
+    SetMonData(mon, MON_DATA_USES_WILD_ABILITIES, &trueByte);
+
+    // HA roll. Check the species's HA slot in whichever table the mon will
+    // actually resolve against, so an HA defined only in wildAbilities still
+    // qualifies for the roll.
+    if (gSpeciesInfo[SanitizeSpeciesId(species)].wildAbilities[0] != ABILITY_NONE)
+        haAbility = gSpeciesInfo[SanitizeSpeciesId(species)].wildAbilities[2];
+    else
+        haAbility = GetSpeciesAbility(species, 2);
+
+    if (haAbility == ABILITY_NONE)
+        return;
+    u32 chance = FlagGet(FLAG_SNOW_GOT_HA_CHARM) ? 35 : 10;
+    if ((Random() % 100) < chance)
+    {
+        u8 abilityNum = 2;
+        SetMonData(mon, MON_DATA_ABILITY_NUM, &abilityNum);
+    }
+}
+
 void CreateMon(struct Pokemon *mon, u16 species, u8 level, u32 personality, struct OriginalTrainerId trainerId)
 {
     u32 mail;
@@ -2897,6 +2933,9 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
                 }.combinedValue;
             }
             break;
+        case MON_DATA_USES_WILD_ABILITIES:
+            retVal = GetSubstruct3(boxMon)->usesWildAbilities;
+            break;
         default:
             break;
         }
@@ -3329,6 +3368,9 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
             substruct1->evolutionTracker2 = evoTracker.tracker2;
             break;
         }
+        case MON_DATA_USES_WILD_ABILITIES:
+            SET8(GetSubstruct3(boxMon)->usesWildAbilities);
+            break;
         default:
             break;
         }
@@ -3555,36 +3597,66 @@ u8 GetMonsStateToDoubles_2(void)
     return (aliveCount > 1) ? PLAYER_HAS_TWO_USABLE_MONS : PLAYER_HAS_ONE_USABLE_MON;
 }
 
-enum Ability GetAbilityBySpecies(u16 species, u8 abilityNum)
+// Snow: shared resolver. table = base abilities[] OR wildAbilities[] for a species.
+// Same fallback semantics as the original GetAbilityBySpecies: empty HA slot falls
+// back through HA slots, then any non-empty slot.
+static enum Ability ResolveAbilityFromTable(const enum Ability *table, u8 abilityNum)
 {
     int i;
 
     if (abilityNum < NUM_ABILITY_SLOTS)
-        gLastUsedAbility = GetSpeciesAbility(species, abilityNum);
+        gLastUsedAbility = table[abilityNum];
     else
         gLastUsedAbility = ABILITY_NONE;
 
-    if (abilityNum >= NUM_NORMAL_ABILITY_SLOTS) // if abilityNum is empty hidden ability, look for other hidden abilities
+    if (abilityNum >= NUM_NORMAL_ABILITY_SLOTS) // empty HA → try other HA slots
     {
         for (i = NUM_NORMAL_ABILITY_SLOTS; i < NUM_ABILITY_SLOTS && gLastUsedAbility == ABILITY_NONE; i++)
-        {
-            gLastUsedAbility = GetSpeciesAbility(species, i);
-        }
+            gLastUsedAbility = table[i];
     }
-
-    for (i = 0; i < NUM_ABILITY_SLOTS && gLastUsedAbility == ABILITY_NONE; i++) // look for any non-empty ability
-    {
-        gLastUsedAbility = GetSpeciesAbility(species, i);
-    }
+    for (i = 0; i < NUM_ABILITY_SLOTS && gLastUsedAbility == ABILITY_NONE; i++)
+        gLastUsedAbility = table[i];
 
     return gLastUsedAbility;
+}
+
+// Snow: returns wildAbilities table if the species has overrides AND useWild is set,
+// else the base abilities[] table.
+static const enum Ability *SelectAbilityTable(u16 species, bool32 useWild)
+{
+    u16 saneSpecies = SanitizeSpeciesId(species);
+    if (useWild && gSpeciesInfo[saneSpecies].wildAbilities[0] != ABILITY_NONE)
+        return gSpeciesInfo[saneSpecies].wildAbilities;
+    return gSpeciesInfo[saneSpecies].abilities;
+}
+
+enum Ability GetAbilityBySpecies(u16 species, u8 abilityNum)
+{
+    return ResolveAbilityFromTable(SelectAbilityTable(species, FALSE), abilityNum);
+}
+
+// Snow: wild-aware variant. Use for mons that may have been created from the
+// player-side ability table (wild encounter / egg / gift). Trainer mons should
+// have usesWildAbilities=0 and resolve through the base abilities[] table.
+enum Ability GetAbilityBySpeciesWildAware(u16 species, u8 abilityNum, bool32 useWildAbilities)
+{
+    return ResolveAbilityFromTable(SelectAbilityTable(species, useWildAbilities), abilityNum);
 }
 
 enum Ability GetMonAbility(struct Pokemon *mon)
 {
     u16 species = GetMonData(mon, MON_DATA_SPECIES);
     u8 abilityNum = GetMonData(mon, MON_DATA_ABILITY_NUM);
-    return GetAbilityBySpecies(species, abilityNum);
+    bool32 useWild = GetMonData(mon, MON_DATA_USES_WILD_ABILITIES);
+    return GetAbilityBySpeciesWildAware(species, abilityNum, useWild);
+}
+
+enum Ability GetBoxMonAbility(struct BoxPokemon *boxMon)
+{
+    u16 species = GetBoxMonData(boxMon, MON_DATA_SPECIES, NULL);
+    u8 abilityNum = GetBoxMonData(boxMon, MON_DATA_ABILITY_NUM, NULL);
+    bool32 useWild = GetBoxMonData(boxMon, MON_DATA_USES_WILD_ABILITIES, NULL);
+    return GetAbilityBySpeciesWildAware(species, abilityNum, useWild);
 }
 
 void CreateSecretBaseEnemyParty(struct SecretBase *secretBaseRecord)
@@ -3852,12 +3924,13 @@ void PokemonToBattleMon(struct Pokemon *src, struct BattlePokemon *dst)
     dst->spAttack = GetMonData(src, MON_DATA_SPATK);
     dst->spDefense = GetMonData(src, MON_DATA_SPDEF);
     dst->abilityNum = GetMonData(src, MON_DATA_ABILITY_NUM);
+    dst->usesWildAbilities = GetMonData(src, MON_DATA_USES_WILD_ABILITIES);
     dst->otId = GetMonData(src, MON_DATA_OT_ID);
     dst->types[0] = GetSpeciesType(dst->species, 0);
     dst->types[1] = GetSpeciesType(dst->species, 1);
     dst->types[2] = TYPE_MYSTERY;
     dst->isShiny = IsMonShiny(src);
-    dst->ability = GetAbilityBySpecies(dst->species, dst->abilityNum);
+    dst->ability = GetAbilityBySpeciesWildAware(dst->species, dst->abilityNum, dst->usesWildAbilities);
     GetMonData(src, MON_DATA_NICKNAME, nickname);
     StringCopy_Nickname(dst->nickname, nickname);
     GetMonData(src, MON_DATA_OT_NAME, dst->otName);
@@ -6617,7 +6690,7 @@ u32 GetFormChangeTargetSpeciesBoxMon(struct BoxPokemon *boxMon, enum FormChanges
         .method = method,
         .currentSpecies = species,
         .heldItem = GetBoxMonData(boxMon, MON_DATA_HELD_ITEM),
-        .ability = GetAbilityBySpecies(species, GetBoxMonData(boxMon, MON_DATA_ABILITY_NUM)),
+        .ability = GetBoxMonAbility(boxMon),
         .partyItemUsed = gSpecialVar_ItemId,
         .multichoiceSelection = gSpecialVar_Result,
         .status = GetBoxMonData(boxMon, MON_DATA_STATUS),
