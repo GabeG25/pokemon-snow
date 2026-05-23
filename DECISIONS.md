@@ -146,6 +146,11 @@ Decision: Trainer routes ship as complete batches. A route with N trainers in v1
 Rationale: Partial commits create debt — a commit labeled "R3" that is actually 4-of-5 trainers is a trap for git bisect and for future sessions reading commit history. Scope creep is the path to forgotten gaps.
 Alternatives considered: Ship partials with TODO markers in commit bodies (still debt); ship single trainers per commit (high commit volume for low information). Atomic-route is the right unit.
 Locked in: R3 planning session (2026-04-12). R3-5 Veil Grunt shipped in the same commit as R3-1 through R3-4 after tool enhancement unblocked it.
+Speed-up audio mute and speed-up visual artifacts are emulator-side
+Decision: The audio muting during speed-up that the CEO likes is mGBA's "Mute on fast forward" setting, not a ROM feature. The ROM cannot detect emulator fast-forward, so it cannot be implemented in-game; it is a recommended player setting. The minor screen distortion while holding speed-up and the brief black flash when engaging it are mGBA fast-forward rendering artifacts (frameskip + the GBA's mid-frame raster effects). Also not ROM-fixable; disabling frameskip can reduce them.
+Rationale: Fast-forward is an emulator function with no in-ROM hook. Documenting the recommended setting is the full extent of what is controllable.
+Locked in: 2026-05-23 session, after CEO confirmed the mute behavior is desirable and the distortion/flash occur only during speed-up.
+
 Deferred (Not Yet Decided)
 These questions exist in the project but have no locked answer yet. When a session requires one, the CEO decides and the decision moves to the relevant section above.
 
