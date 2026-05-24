@@ -18,6 +18,7 @@
 #include "graphics.h"
 #include "international_string_util.h"
 #include "item.h"
+#include "line_break.h"
 #include "link.h"
 #include "m4a.h"
 #include "malloc.h"
@@ -636,7 +637,7 @@ static const struct WindowTemplate sPageInfoTemplate[] =
         .tilemapLeft = 11,
         .tilemapTop = 9,
         .width = 18,
-        .height = 4,
+        .height = 5,
         .paletteNum = 6,
         .baseBlock = 503,
     },
@@ -647,7 +648,7 @@ static const struct WindowTemplate sPageInfoTemplate[] =
         .width = 18,
         .height = 6,
         .paletteNum = 6,
-        .baseBlock = 575,
+        .baseBlock = 593,
     },
 };
 static const struct WindowTemplate sPageSkillsTemplate[] =
@@ -3663,7 +3664,23 @@ static void PrintMonAbilityName(void)
 static void PrintMonAbilityDescription(void)
 {
     enum Ability ability = GetAbilityBySpeciesWildAware(sMonSummaryScreen->summary.species, sMonSummaryScreen->summary.abilityNum, sMonSummaryScreen->summary.usesWildAbilities);
-    PrintTextOnWindow(AddWindowFromTemplateList(sPageInfoTemplate, PSS_DATA_WINDOW_INFO_ABILITY), gAbilitiesInfo[ability].description, 0, 17, 0, 0);
+    u32 windowId = AddWindowFromTemplateList(sPageInfoTemplate, PSS_DATA_WINDOW_INFO_ABILITY);
+    const u8 *desc = gAbilitiesInfo[ability].description;
+    u32 widthPx = WindowWidthPx(windowId);
+
+    // Snow: descriptions that fit keep the original full-size single line;
+    // longer ones (e.g. Eternal Winter) wrap to two lines in a smaller font
+    // so the complete text always shows instead of clipping at the window edge.
+    if (GetStringWidth(FONT_NORMAL, desc, 0) <= widthPx)
+    {
+        PrintTextOnWindow(windowId, desc, 0, 17, 0, 0);
+    }
+    else
+    {
+        StringCopy(gStringVar4, desc);
+        BreakStringAutomatic(gStringVar4, widthPx, 2, FONT_SMALL, HIDE_SCROLL_PROMPT);
+        PrintTextOnWindowWithFont(windowId, gStringVar4, 0, 15, 0, 0, FONT_SMALL);
+    }
 }
 
 static void BufferMonTrainerMemo(void)
